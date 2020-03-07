@@ -16,6 +16,11 @@ event_loop = asyncio.get_event_loop()
 
 
 class EchoServer(asyncio.Protocol):
+    def __init__(self):
+        self.transport = None
+        self.address = None
+        self.log = None
+
     def connection_made(self, transport):
         self.transport = transport
         self.address = transport.get_extra_info('peername')
