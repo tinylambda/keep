@@ -96,3 +96,57 @@ openssl dgst -sha256 -sign rsaprivatekey.pem -out signature.txt plain.txt
 openssl dgst -sha256 -verify rsapublickey.pem -signature signature.txt plain.txt
 
 
+### DSA算法实践
+# 生成参数文件，类似于DH参数文件
+openssl dsaparam -out dsaparam.pem 1024
+
+# 通过参数文件生成密钥对 dsaprivatekey.pem
+openssl gendsa -out dsaprivatekey.pem dsaparam.pem
+
+# 对私钥文件使用des3算法进行加密
+openssl gendsa -out dsaprivatekey2.pem -des3 dsaparam.pem
+
+# 通过密钥对文件，拆分出公钥
+openssl dsa -in dsaprivatekey.pem -pubout -out dsapublickey.pem
+
+# 显示私钥文件信息
+openssl dsa -in dsaprivatekey.pem -text
+
+# 显示公钥和文件的信息
+openssl dsa -pubin -in dsapublickey.pem -text
+
+# dsa签名
+openssl dgst -sha256 -sign dsaprivatekey.pem -out signature.txt plain.txt
+
+# dsa验签
+openssl dgst -sha256 -verify dsapublickey.pem -signature signature.txt plain.txt
+
+# 生成ECDSA私钥
+openssl ecparam -name secp256k1 -genkey -out ecdsa_priv.pem
+
+# 显示ECDSA私钥信息
+openssl ec -in ecdsa_priv.pem -text -noout
+
+# 提取ECDSA公钥
+openssl ec -in ecdsa_priv.pem -pubout -out ecdsa_pub.pem
+
+# 显示ECDSA公钥信息
+openssl ec -in ecdsa_pub.pem -pubin -text -noout
+
+# 使用ECDSA签名
+openssl dgst -sha256 -sign ecdsa_priv.pem -out signature.txt plain.txt
+
+# ECDSA验签
+openssl dgst -sha256 -verify ecdsa_pub.pem -signature signature.txt plain.txt
+
+# 性能测试
+openssl speed aes-128-cbc
+
+# 性能测试，启用EVP模式
+openssl speed -evp aes-128-cbc
+
+# 生成私钥对和CSR
+openssl req -newkey rsa:1024 -nodes -keyout example_key.pem -out example_csr.pem
+
+# 生成自签名证书
+openssl x509 -signkey example_key.pem -in example_csr.pem -req -days 365 -out example_cert.pem
