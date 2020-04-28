@@ -12,7 +12,7 @@ logging.basicConfig(
 def worker(event):
     logging.debug('Waiting for redis ready...')
     event.wait()
-    logging.debug('Redis reday!')
+    logging.debug('Redis ready!')
     time.sleep(1)  # Simulate workload
 
 
@@ -25,5 +25,6 @@ t2.start()
 
 logging.debug('Check Redis....')
 time.sleep(3)  # Check redis...
+logging.debug('Redis service is OK now! notify all workers!')
 redis_ready.set()
 
