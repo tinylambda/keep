@@ -11,6 +11,7 @@ available_clocks = [
     # process_time() returns the combined processor time and system time.
     ('process_time', time.process_time),
     ('time', time.time),
+    ('clock', time.clock),
 ]
 
 
