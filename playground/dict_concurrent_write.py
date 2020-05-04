@@ -4,9 +4,9 @@ import threading
 DATA = {}
 
 
-def add_data(inc=1):
+def add_data(multiplier=1):
     for i in range(1, 11):
-        key = i + inc
+        key = i * multiplier
         print(f'{threading.current_thread().getName()} Adding: ', key)
         DATA[key] = key
 
