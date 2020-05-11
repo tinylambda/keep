@@ -1,6 +1,13 @@
+# https://docs.sqlalchemy.org/en/13/core/tutorial.html
+
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
-from sqlalchemy.sql import select, and_, or_, not_, text
+from sqlalchemy.sql import select, and_, or_, not_, text, table, literal_column, func, desc
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
+
+Base = declarative_base()
 
 
 metadata = MetaData()  # Define tables within it
@@ -177,9 +184,131 @@ for item in connection.execute(
     print(item)
 
 print('\nPre-established bound values: ')
-stmt = text("SELECT * FROM users WHERE users.name BETWEEN :x AND :y")
-stmt = stmt.bindparams(x="m", y="z")
-for item in connection.execute(stmt):
+s = text("SELECT * FROM users WHERE users.name BETWEEN :x AND :y")
+s = s.bindparams(x="m", y="z")
+for item in connection.execute(s):
     print(item)
 
+
+print('\nSpecify information about the result columns: ')
+s = text('SELECT id, name FROM users')
+s = s.columns(id=Integer, name=String)
+for item in connection.execute(s):
+    print(item)
+
+# s = text('SELECT id, name FROM users')
+# s = s.columns(users.c.id, users.c.name)
+# j = s.join(addresses, s.c.id == addresses.c.user_id)
+# new_s = select([s.c.id, addresses.c.id]).select_from(j).where(s.c.name == 'x')
+# for item in connection.execute(new_s):
+#     print(item)
+s = text(
+    'SELECT users.id, addresses.id, users.id, '
+    'users.name, addresses.email_address AS email '
+    'FROM users JOIN addresses ON users.id=addresses.user_id '
+    'WHERE users.id = 1'
+).columns(
+    users.c.id,
+    addresses.c.id,
+    addresses.c.user_id,
+    users.c.name,
+    addresses.c.email_address
+)
+for item in connection.execute(s):
+    print(item)
+
+print('\nUse more specific text with table(), literal_column() and column(): ')
+s = select([
+    literal_column('users.fullname', String) +
+    ', ' +
+    literal_column('addresses.email_address').label('title')
+]).where(
+    and_(
+        literal_column('users.id') == literal_column('addresses.user_id'),
+        text('users.name BETWEEN "m" and "z"'),
+        text(
+            '(addresses.email_address LIKE :x OR '
+            'addresses.email_address LIKE :y)'
+        )
+    )
+).select_from(table('users')).select_from(table('addresses'))
+
+for item in connection.execute(s, x='%@qq.com', y='%@aol.com'):
+    print(item)
+
+print('\nOrdering or Grouping by Label: ')
+s = select([
+    addresses.c.user_id,
+    func.count(addresses.c.id).label('num_addresses')
+]).group_by('user_id').order_by(desc('user_id'), 'num_addresses',)
+for item in connection.execute(s):
+    print(item)
+
+print('\nUsing aliases and subqueries: ')
+a1 = addresses.alias('a1')
+a2 = addresses.alias('a2')
+s = select([users]).where(
+    and_(
+        users.c.id == a1.c.user_id,
+        users.c.id == a2.c.user_id,
+        a1.c.email_address == 'felix@yahoo.com',
+        a2.c.email_address == 'felix@gmail.com'
+    )
+)
+for item in connection.execute(s):
+    print(item)
+
+
+print('\nUsing Joins: ')
+print(users.join(addresses))  # automatically detect the ON clause based on the ForeignKey
+print(
+    users.join(addresses, addresses.c.email_address.like(users.c.name + '%'))
+)
+
+s = select([users.c.fullname]).select_from(
+    users.join(addresses, addresses.c.email_address.like(users.c.name + '%'))
+)
+for item in connection.execute(s):
+    print(item)
+
+print('\nTable CTE:')
+users_cte = select([users.c.id, users.c.name]).where(users.c.name == 'felix').cte()
+s = select([addresses]).where(addresses.c.user_id == users_cte.c.id)
+for item in connection.execute(s):
+    print(item)
+
+
+print('\n\nPlay with session: ')
+# Create a configured Session class
+Session = sessionmaker(bind=engine, autoflush=False)
+
+# Create a Session object
+session = Session()
+
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    fullname = Column(String)
+
+    def __repr__(self):
+        return f'<User(name="{self.name}", fullname="{self.fullname}")>'
+
+
+demo_user_1 = User(name='demo1', fullname='Demo1')
+demo_user_2 = User(name='demo2', fullname='Demo2')
+session.add(demo_user_1)
+session.add(demo_user_2)
+
+# session.execute(users.insert(), [
+#     {'name': 'demo3', 'fullname': 'Demo3'},
+# ])
+
+for item in session.query(User):
+    print(item)
+# session.rollback()
+#
+for item in connection.execute(select([users])):
+    print(item)
 
