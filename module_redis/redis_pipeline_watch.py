@@ -2,8 +2,7 @@ import time
 import threading
 import redis
 
-
-redis_client = redis.Redis(password='rpassword')
+from module_redis import redis_client
 
 redis_client.set('balance', 100)
 

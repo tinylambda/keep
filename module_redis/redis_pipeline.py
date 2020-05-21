@@ -1,6 +1,4 @@
-import redis
-
-redis_client = redis.Redis(password='rpassword')
+from module_redis import redis_client
 
 with redis_client.pipeline(transaction=True) as pipeline:
     pipeline.multi()
