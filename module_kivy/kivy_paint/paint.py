@@ -2,14 +2,15 @@ from random import random
 
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.uix.button import Button
 from kivy.graphics import Color, Ellipse, Line
 
 
 class MyPaintWidget(Widget):
     def on_touch_down(self, touch):
         with self.canvas:
-            color = (random(), random(), random())
-            Color(*color)
+            color = (random(), 1., 1.)
+            Color(*color, mode='hsv')
             d = 30.
             Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
             touch.ud['line'] = Line(points=(touch.x, touch.y))
@@ -20,7 +21,16 @@ class MyPaintWidget(Widget):
 
 class MyPaintApp(App):
     def build(self):
-        return MyPaintWidget()
+        parent = Widget()
+        self.painter = MyPaintWidget()
+        clearnbtn = Button(text='Clear')
+        clearnbtn.bind(on_release=self.clear_canvas)
+        parent.add_widget(self.painter)
+        parent.add_widget(clearnbtn)
+        return parent
+
+    def clear_canvas(self, obj):
+        self.painter.canvas.clear()
 
 
 if __name__ == '__main__':
