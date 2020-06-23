@@ -9,6 +9,10 @@ from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 
 
+class WeatherRoot(BoxLayout):
+    pass
+
+
 class AddLocationForm(BoxLayout):
     search_input = ObjectProperty()
     search_results = ObjectProperty()
@@ -18,7 +22,6 @@ class AddLocationForm(BoxLayout):
         appid = '54f64871388416c8ff4a4b198787e8b1'
         search_template = 'http://api.openweathermap.org/data/2.5/find?q={}&type=like&appid={}'
         search_url = search_template.format(self.search_input.text, appid)
-        print(search_url)
         request = UrlRequest(search_url, self.found_location)
 
     def found_location(self, request, data):
