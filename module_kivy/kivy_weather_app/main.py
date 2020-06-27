@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
@@ -10,7 +11,10 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 
 
 class WeatherRoot(BoxLayout):
-    pass
+    def show_current_weather(self, location):
+        from kivy.uix.label import Label
+        self.clear_widgets()
+        self.add_widget(Label(text=location))
 
 
 class AddLocationForm(BoxLayout):
@@ -26,11 +30,12 @@ class AddLocationForm(BoxLayout):
 
     def found_location(self, request, data):
         cities = ['{} ({})'.format(d['name'], d['sys']['country']) for d in data['list']]
-        self.search_results.data = [{'text': str(x)} for x in cities]
+        self.search_results.data.clear()
+        self.search_results.data.extend([{'text': str(x)} for x in cities])
         print(f"self.search_results.data={self.search_results.data}")
 
 
-class SelectableLabel(RecycleDataViewBehavior, Label):
+class SelectableLabel(RecycleDataViewBehavior, Button, Label):
     """ Add selection support to the Label """
     index = None
     selected = BooleanProperty(False)
@@ -39,8 +44,7 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
     def refresh_view_attrs(self, rv, index, data):
         """ Catch and handle the view changes """
         self.index = index
-        return super(SelectableLabel, self).refresh_view_attrs(
-            rv, index, data)
+        return super(SelectableLabel, self).refresh_view_attrs(rv, index, data)
 
     def on_touch_down(self, touch):
         """ Add selection on touch down """
@@ -51,6 +55,7 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
 
     def apply_selection(self, rv, index, is_selected):
         """ Respond to the selection of items in the view. """
+        print('apply selection...')
         self.selected = is_selected
 
 
