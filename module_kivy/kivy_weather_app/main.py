@@ -8,13 +8,19 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, BooleanProperty
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.factory import Factory
 
 
 class WeatherRoot(BoxLayout):
     def show_current_weather(self, location):
-        from kivy.uix.label import Label
         self.clear_widgets()
-        self.add_widget(Label(text=location))
+        current_weather = Factory.CurrentWeather()
+        current_weather.location = location
+        self.add_widget(current_weather)
+
+    def show_add_location_form(self):
+        self.clear_widgets()
+        self.add_widget(AddLocationForm())
 
 
 class AddLocationForm(BoxLayout):

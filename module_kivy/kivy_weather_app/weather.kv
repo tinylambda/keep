@@ -1,6 +1,25 @@
 WeatherRoot:
     AddLocationForm
 
+<CurrentWeather@BoxLayout>:
+    location: ''
+    conditions: None
+    temp: None
+    temp_min: None
+    temp_max: None
+    orientation: 'vertical'
+    Label:
+        text: root.location
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: '40dp'
+        Button:
+            text: 'Add Location'
+            on_press: app.root.show_add_location_form()
+        Button:
+            text: 'Forecast'
+
 <SelectableLabel>:
     background_color: (0, 1, 0, 1)
     on_press: app.root.show_current_weather(self.text)
