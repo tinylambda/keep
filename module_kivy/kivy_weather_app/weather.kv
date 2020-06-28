@@ -34,6 +34,9 @@ WeatherRoot:
         TextInput:
             id: search_box
             size_hint_x: 50
+            focus: True
+            multiline: False
+            on_text_validate: root.search_location()
         Button:
             text: 'Search'
             size_hint_x: 25
