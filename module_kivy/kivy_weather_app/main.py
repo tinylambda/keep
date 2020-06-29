@@ -5,25 +5,20 @@ from kivy.uix.button import Button
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
-from kivy.properties import ObjectProperty, BooleanProperty
+from kivy.properties import ObjectProperty, BooleanProperty, ListProperty
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.factory import Factory
 
 
 class WeatherRoot(BoxLayout):
-    # def show_current_weather(self, location):
-    #     self.clear_widgets()
-    #     current_weather = Factory.CurrentWeather()
-    #     current_weather.location = location
-    #     self.add_widget(current_weather)
     current_weather = ObjectProperty()
 
     def show_current_weather(self, location=None):
         self.clear_widgets()
 
         if location is None and self.current_weather is None:
-            location = 'New York (US)'
+            location = ('New York', 'US')
 
         if location is not None:
             self.current_weather = Factory.CurrentWeather()
@@ -47,9 +42,9 @@ class AddLocationForm(BoxLayout):
         request = UrlRequest(search_url, self.found_location)
 
     def found_location(self, request, data):
-        cities = ['{} ({})'.format(d['name'], d['sys']['country']) for d in data['list']]
+        cities = [{'origin': (d['name'], d['sys']['country'])} for d in data['list']]
         self.search_results.data.clear()
-        self.search_results.data.extend([{'text': str(x)} for x in cities])
+        self.search_results.data.extend(cities)
         print(f"self.search_results.data={self.search_results.data}")
 
 
@@ -58,10 +53,14 @@ class SelectableLabel(RecycleDataViewBehavior, Button, Label):
     index = None
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
+    location = ListProperty()
 
     def refresh_view_attrs(self, rv, index, data):
         """ Catch and handle the view changes """
         self.index = index
+        data_origin = data.get('origin', ('None', 'None'))
+        self.location = data_origin
+        data.update({'text': f'{data_origin[0]} ({data_origin[1]})'})
         return super(SelectableLabel, self).refresh_view_attrs(rv, index, data)
 
     def on_touch_down(self, touch):

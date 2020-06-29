@@ -2,14 +2,14 @@ WeatherRoot:
     AddLocationForm
 
 <CurrentWeather@BoxLayout>:
-    location: ''
+    location: ['New York', 'US']
     conditions: None
     temp: None
     temp_min: None
     temp_max: None
     orientation: 'vertical'
     Label:
-        text: root.location
+        text: '{} ({})'.format(root.location[0], root.location[1])
     BoxLayout:
         orientation: 'horizontal'
         size_hint_y: None
@@ -21,8 +21,10 @@ WeatherRoot:
             text: 'Forecast'
 
 <SelectableLabel>:
+    height: '40dp'
+    size_hint_y: None
     background_color: (0, 1, 0, 1)
-    on_press: app.root.show_current_weather(self.text)
+    on_press: app.root.show_current_weather(self.location)
 
 <AddLocationForm>:
     orientation: 'vertical'
