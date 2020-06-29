@@ -5,10 +5,11 @@ from kivy.uix.button import Button
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
-from kivy.properties import ObjectProperty, BooleanProperty, ListProperty
+from kivy.properties import ObjectProperty, BooleanProperty, ListProperty, StringProperty, NumericProperty
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
-from kivy.factory import Factory
+
+WEATHER_APP_ID = '54f64871388416c8ff4a4b198787e8b1'
 
 
 class WeatherRoot(BoxLayout):
@@ -21,13 +22,33 @@ class WeatherRoot(BoxLayout):
             location = ('New York', 'US')
 
         if location is not None:
-            self.current_weather = Factory.CurrentWeather()
-            self.current_weather.location = location
+            self.current_weather = CurrentWeather(location=location)
+
+        self.current_weather.update_weather()
         self.add_widget(self.current_weather)
 
     def show_add_location_form(self):
         self.clear_widgets()
         self.add_widget(AddLocationForm())
+
+
+class CurrentWeather(BoxLayout):
+    location = ListProperty(['New York', 'US'])
+    conditions = StringProperty()
+    temp = NumericProperty()
+    temp_min = NumericProperty()
+    temp_max = NumericProperty()
+
+    def update_weather(self):
+        weather_template = 'http://api.openweathermap.org/data/2.5/weather?q={},{}&units=metric&appid={}'
+        weather_url = weather_template.format(*self.location, WEATHER_APP_ID)
+        request = UrlRequest(weather_url, self.weather_retrieved)
+
+    def weather_retrieved(self, request, data):
+        self.conditions = data['weather'][0]['description']
+        self.temp = data['main']['temp']
+        self.temp_min = data['main']['temp_min']
+        self.temp_max = data['main']['temp_max']
 
 
 class AddLocationForm(BoxLayout):
@@ -36,9 +57,8 @@ class AddLocationForm(BoxLayout):
 
     def search_location(self):
         print('The user searched for "{}"'.format(self.search_input.text))
-        appid = '54f64871388416c8ff4a4b198787e8b1'
         search_template = 'http://api.openweathermap.org/data/2.5/find?q={}&type=like&appid={}'
-        search_url = search_template.format(self.search_input.text, appid)
+        search_url = search_template.format(self.search_input.text, WEATHER_APP_ID)
         request = UrlRequest(search_url, self.found_location)
 
     def found_location(self, request, data):
