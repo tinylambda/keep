@@ -8,6 +8,7 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, BooleanProperty, ListProperty, StringProperty, NumericProperty
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.factory import Factory
 
 WEATHER_APP_ID = '54f64871388416c8ff4a4b198787e8b1'
 
@@ -32,9 +33,13 @@ class WeatherRoot(BoxLayout):
         self.add_widget(AddLocationForm())
 
 
+class Conditions(BoxLayout):
+    conditions = StringProperty()
+
+
 class CurrentWeather(BoxLayout):
     location = ListProperty(['New York', 'US'])
-    conditions = StringProperty()
+    conditions = ObjectProperty()
     temp = NumericProperty()
     temp_min = NumericProperty()
     temp_max = NumericProperty()
@@ -45,10 +50,19 @@ class CurrentWeather(BoxLayout):
         request = UrlRequest(weather_url, self.weather_retrieved)
 
     def weather_retrieved(self, request, data):
-        self.conditions = data['weather'][0]['description']
+        self.render_conditions(data['weather'][0]['description'])
         self.temp = data['main']['temp']
         self.temp_min = data['main']['temp_min']
         self.temp_max = data['main']['temp_max']
+
+    def render_conditions(self, conditions_description):
+        if 'clear' in conditions_description.lower():
+            conditions_widget = Factory.ClearConditions()
+        else:
+            conditions_widget = Factory.UnknownConditions()
+        conditions_widget.conditions = conditions_description
+        self.conditions.clear_widgets()
+        self.conditions.add_widget(conditions_widget)
 
 
 class AddLocationForm(BoxLayout):
