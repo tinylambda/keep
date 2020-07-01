@@ -35,6 +35,7 @@ class WeatherRoot(BoxLayout):
 class CurrentWeather(BoxLayout):
     location = ListProperty(['New York', 'US'])
     conditions = StringProperty()
+    conditions_image = StringProperty()
     temp = NumericProperty()
     temp_min = NumericProperty()
     temp_max = NumericProperty()
@@ -49,6 +50,7 @@ class CurrentWeather(BoxLayout):
         self.temp = data['main']['temp']
         self.temp_min = data['main']['temp_min']
         self.temp_max = data['main']['temp_max']
+        self.conditions_image = 'http://openweathermap.org/img/w/{}.png'.format(data['weather'][0]['icon'])
 
 
 class AddLocationForm(BoxLayout):
