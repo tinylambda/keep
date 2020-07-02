@@ -134,7 +134,23 @@ class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
     
 
 class WeatherApp(App):
-    pass
+    def build_config(self, config):
+        config.setdefaults('General', {'temp_type': 'Metric'})
+
+    def build_settings(self, settings):
+        settings.add_json_panel(
+            'Weather Settings', self.config, data='''
+            [
+                {
+                    "type": "options",
+                    "title": "Temperature System",
+                    "section": "General",
+                    "key": "temp_type",
+                    "options": ["Metric", "Imperial"]
+                }
+            ]
+            '''
+        )
 
 
 if __name__ == '__main__':
