@@ -1,5 +1,28 @@
 WeatherRoot:
-    AddLocationForm
+
+
+<Locations>:
+    orientation: 'vertical'
+    locations_list: id_locations_list
+    RecycleView:
+        id: id_locations_list
+        viewclass: 'SelectableLabel'
+        SelectableRecycleBoxLayout:
+            default_size: None, dp(26)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'
+            multiselect: True
+            touch_multiselect: True
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: '40dp'
+        Button:
+            text: 'Add Location'
+            on_press: app.root.show_add_location_form()
+
 
 <CurrentWeather>:
     orientation: 'vertical'
@@ -23,8 +46,8 @@ WeatherRoot:
         size_hint_y: None
         height: '40dp'
         Button:
-            text: 'Add Location'
-            on_press: app.root.show_add_location_form()
+            text: 'Locations'
+            on_press: app.root.show_locations()
         Button:
             text: 'Forecast'
 

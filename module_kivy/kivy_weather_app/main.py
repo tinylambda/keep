@@ -8,21 +8,46 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.properties import ObjectProperty, BooleanProperty, ListProperty, StringProperty, NumericProperty
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.factory import Factory
+from kivy.storage.jsonstore import JsonStore
 
 WEATHER_APP_ID = '54f64871388416c8ff4a4b198787e8b1'
 
 
 class WeatherRoot(BoxLayout):
     current_weather = ObjectProperty()
+    locations = ObjectProperty()
+
+    def __init__(self, **kwargs):
+        super(WeatherRoot, self).__init__(**kwargs)
+        self.store = JsonStore('weather_store.json')
+        # show weather of the current location
+        if self.store.exists('locations'):
+            current_location = self.store.get('locations')['current_location']
+            self.show_current_weather(current_location)
+        # show add location form
+        else:
+            self.show_add_location_form()
 
     def show_current_weather(self, location=None):
         self.clear_widgets()
+        if self.current_weather is None:
+            self.current_weather = CurrentWeather()
 
-        if location is None and self.current_weather is None:
-            location = ('New York', 'US')
+        if self.locations is None:
+            self.locations = Locations()
+            if self.store.exists('locations'):
+                locations = self.store.get('locations')['locations']
+                self.locations.locations_list.data.extend(locations)
 
         if location is not None:
-            self.current_weather = CurrentWeather(location=location)
+            self.current_weather.location = location
+            print(location, self.locations.locations_list.data, 'dddddddddd')
+            if location not in [item['origin'] for item in self.locations.locations_list.data]:
+                self.locations.locations_list.data.append({'origin': location})
+                self.store.put('locations',
+                               locations=list(self.locations.locations_list.data),
+                               current_location=location)
 
         self.current_weather.update_weather()
         self.add_widget(self.current_weather)
@@ -30,6 +55,14 @@ class WeatherRoot(BoxLayout):
     def show_add_location_form(self):
         self.clear_widgets()
         self.add_widget(AddLocationForm())
+
+    def show_locations(self):
+        self.clear_widgets()
+        self.add_widget(self.locations)
+
+
+class Locations(BoxLayout):
+    locations_list = ObjectProperty()
 
 
 class CurrentWeather(BoxLayout):
@@ -92,7 +125,6 @@ class SelectableLabel(RecycleDataViewBehavior, Button, Label):
 
     def apply_selection(self, rv, index, is_selected):
         """ Respond to the selection of items in the view. """
-        print('apply selection...')
         self.selected = is_selected
 
 
