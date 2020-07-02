@@ -73,8 +73,10 @@ class CurrentWeather(BoxLayout):
     temp_max = NumericProperty()
 
     def update_weather(self):
-        weather_template = 'http://api.openweathermap.org/data/2.5/weather?q={},{}&units=metric&appid={}'
-        weather_url = weather_template.format(*self.location, WEATHER_APP_ID)
+        config = WeatherApp.get_running_app().config
+        temp_type = config.getdefault('General', 'temp_type', 'metric').lower()
+        weather_template = 'http://api.openweathermap.org/data/2.5/weather?q={},{}&units={}&appid={}'
+        weather_url = weather_template.format(*self.location, temp_type, WEATHER_APP_ID)
         request = UrlRequest(weather_url, self.weather_retrieved)
 
     def weather_retrieved(self, request, data):
@@ -151,6 +153,13 @@ class WeatherApp(App):
             ]
             '''
         )
+
+    def on_config_change(self, config, section, key, value):
+        if config is self.config and key == 'temp_type':
+            try:
+                self.root.children[0].update_weather()
+            except AttributeError:
+                pass
 
 
 if __name__ == '__main__':
