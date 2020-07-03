@@ -1,3 +1,7 @@
+import datetime
+import urllib
+import urllib.parse
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
@@ -17,6 +21,7 @@ WEATHER_APP_ID = '54f64871388416c8ff4a4b198787e8b1'
 class WeatherRoot(BoxLayout):
     current_weather = ObjectProperty()
     locations = ObjectProperty()
+    forecast = ObjectProperty()
 
     def __init__(self, **kwargs):
         super(WeatherRoot, self).__init__(**kwargs)
@@ -42,7 +47,6 @@ class WeatherRoot(BoxLayout):
 
         if location is not None:
             self.current_weather.location = location
-            print(location, self.locations.locations_list.data, 'dddddddddd')
             if location not in [item['origin'] for item in self.locations.locations_list.data]:
                 self.locations.locations_list.data.append({'origin': location})
                 self.store.put('locations',
@@ -59,6 +63,42 @@ class WeatherRoot(BoxLayout):
     def show_locations(self):
         self.clear_widgets()
         self.add_widget(self.locations)
+
+    def show_forecast(self, location=None):
+        self.clear_widgets()
+        if self.forecast is None:
+            self.forecast = Factory.Forecast()
+
+        if location is not None:
+            self.forecast.location = location
+
+        self.forecast.update_weather()
+        self.add_widget(self.forecast)
+
+
+class Forecast(BoxLayout):
+    location = ListProperty(['Beijing', 'CN'])
+    forecast_container = ObjectProperty()
+
+    def update_weather(self):
+        config = WeatherApp.get_running_app().config
+        temp_type = config.getdefault('General', 'temp_type', 'metric').lower()
+        weather_template = 'http://api.openweathermap.org/data/2.5/' \
+                           'onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely,current&appid={}'
+        weather_url = weather_template.format(WEATHER_APP_ID)
+        print('Requesting: ', weather_url)
+        request = UrlRequest(weather_url, self.weather_retrieved)
+
+    def weather_retrieved(self, request, data):
+        self.forecast_container.clear_widgets()
+        for day in data['daily']:
+            label = Factory.ForecastLabel()
+            label.date = datetime.datetime.fromtimestamp(day['dt']).strftime('%a %b %d')
+            label.conditions = day['weather'][0]['description']
+            label.conditions_image = 'http://openweathermap.org/img/w/{}.png'.format(day['weather'][0]['icon'])
+            label.temp_min = day['temp']['min']
+            label.temp_max = day['temp']['max']
+            self.forecast_container.add_widget(label)
 
 
 class Locations(BoxLayout):

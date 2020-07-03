@@ -1,1 +1,1 @@
-{"locations": {"locations": [{"origin": ["Beijing", "CN"], "text": "Beijing (CN)"}, {"origin": ["Shanghai", "CN"], "text": "Shanghai (CN)"}, {"origin": ["Palo", "PH"]}], "current_location": ["Palo", "PH"]}}
+{"locations": {"locations": [{"origin": ["Beijing", "CN"], "text": "Beijing (CN)"}, {"origin": ["Shanghai", "CN"], "text": "Shanghai (CN)"}, {"origin": ["Palo", "PH"], "text": "Palo (PH)"}, {"origin": ["New York", "US"]}], "current_location": ["New York", "US"]}}

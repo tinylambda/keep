@@ -53,6 +53,7 @@ WeatherRoot:
             on_press: app.root.show_locations()
         Button:
             text: 'Forecast'
+            on_press: app.root.show_forecast(root.location)
 
 <SelectableLabel>:
     height: '40dp'
@@ -100,4 +101,55 @@ WeatherRoot:
         size_hint_y: None
         text: 'Cancel'
         on_press: app.root.show_current_weather(None)
+
+
+<ForecastLabel@BoxLayout>:
+    date: ''
+    conditions_image: ''
+    conditions: ''
+    temp_min: None
+    temp_max: None
+    canvas.before:
+        Color:
+            rgb: [0.2, 0.2, 0.2]
+        Line:
+            points: [self.pos[0], self.pos[1], self.width, self.pos[1]]
+    Label:
+        text: root.date
+    BoxLayout:
+        orientation: 'vertical'
+        AsyncImage:
+            source: root.conditions_image
+        Label:
+            text: root.conditions
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Low: {}'.format(root.temp_min)
+        Label:
+            text: 'Hight: {}'.format(root.temp_max)
+
+
+<Forecast>:
+    forecast_container: forecast_container
+    orientation: 'vertical'
+    Label:
+        size_hint_y: 0.1
+        font_size: '30dp'
+        text: '{} ({})'.format(root.location[0], root.location[1])
+    BoxLayout:
+        orientation: 'vertical'
+        id: forecast_container
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: '40dp'
+        Button:
+            text: 'Current'
+            on_press: app.root.show_current_weather(root.location)
+
+
+
+
+
 
