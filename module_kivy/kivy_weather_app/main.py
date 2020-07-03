@@ -15,6 +15,8 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.factory import Factory
 from kivy.storage.jsonstore import JsonStore
 
+from module_kivy.kivy_weather_app.gesture_box import GestureBox
+
 WEATHER_APP_ID = '54f64871388416c8ff4a4b198787e8b1'
 
 
@@ -76,7 +78,7 @@ class WeatherRoot(BoxLayout):
         self.add_widget(self.forecast)
 
 
-class Forecast(BoxLayout):
+class Forecast(GestureBox):
     location = ListProperty(['Beijing', 'CN'])
     forecast_container = ObjectProperty()
 
@@ -101,11 +103,11 @@ class Forecast(BoxLayout):
             self.forecast_container.add_widget(label)
 
 
-class Locations(BoxLayout):
+class Locations(GestureBox):
     locations_list = ObjectProperty()
 
 
-class CurrentWeather(BoxLayout):
+class CurrentWeather(GestureBox):
     location = ListProperty(['New York', 'US'])
     conditions = StringProperty()
     temp = NumericProperty()
