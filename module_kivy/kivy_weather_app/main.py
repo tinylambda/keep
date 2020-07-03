@@ -118,7 +118,11 @@ class CurrentWeather(GestureBox):
         config = WeatherApp.get_running_app().config
         temp_type = config.getdefault('General', 'temp_type', 'metric').lower()
         weather_template = 'http://api.openweathermap.org/data/2.5/weather?q={},{}&units={}&appid={}'
-        weather_url = weather_template.format(*self.location, temp_type, WEATHER_APP_ID)
+        weather_url = weather_template.format(
+            urllib.parse.quote(self.location[0]),
+            urllib.parse.quote(self.location[1]),
+            temp_type, WEATHER_APP_ID
+        )
         request = UrlRequest(weather_url, self.weather_retrieved)
 
     def weather_retrieved(self, request, data):
@@ -135,7 +139,10 @@ class AddLocationForm(BoxLayout):
     def search_location(self):
         print('The user searched for "{}"'.format(self.search_input.text))
         search_template = 'http://api.openweathermap.org/data/2.5/find?q={}&type=like&appid={}'
-        search_url = search_template.format(self.search_input.text, WEATHER_APP_ID)
+        search_url = search_template.format(
+            urllib.parse.quote(self.search_input.text),
+            WEATHER_APP_ID
+        )
         request = UrlRequest(search_url, self.found_location)
 
     def found_location(self, request, data):
