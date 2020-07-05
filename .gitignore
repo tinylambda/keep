@@ -127,3 +127,9 @@ static/tests/
 *.touch
 
 *.dat
+
+.buildozer
+
+*.apk
+
+*.json
