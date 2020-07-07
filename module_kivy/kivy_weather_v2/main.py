@@ -178,7 +178,7 @@ class WeatherApp(App):
 
     def on_pause(self):
         gps.stop()
-        print('On Pasuse....................................')
+        return True
 
     def on_stop(self):
         gps.stop()
