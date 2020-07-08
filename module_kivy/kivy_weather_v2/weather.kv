@@ -4,15 +4,39 @@
     current_weather_widget: current_weather_widget
     forecast_widget: forecast_widget
 
-    Carousel:
-        id: carousel_widget
-        direction: 'right'
-        Locations:
-            id: locations_widget
-        CurrentWeather:
-            id: current_weather_widget
-        Forecast:
-            id: forecast_widget
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'Kivy Weather'
+                    with_previous: False
+                ActionOverflow:
+                    ActionButton:
+                        text: 'Add Location'
+                        on_press: app.root.show_add_location_form_widget()
+                    ActionButton:
+                        text: 'Settings'
+                        on_press: app.open_settings()
+                ActionButton:
+                    text: 'Locations'
+                    on_press: app.root.carousel_widget.load_slide(app.root.locations_widget)
+                ActionButton:
+                    text: 'Current'
+                    on_press: app.root.carousel_widget.load_slide(app.root.current_weather_widget)
+                ActionButton:
+                    text: 'Forecast'
+                    on_press: app.root.carousel_widget.load_slide(app.root.forecast_widget)
+        Carousel:
+            id: carousel_widget
+            direction: 'right'
+            Locations:
+                id: locations_widget
+            CurrentWeather:
+                id: current_weather_widget
+            Forecast:
+                id: forecast_widget
 
 <Locations>:
     locations_list: locations_list
@@ -28,13 +52,6 @@
             orientation: 'vertical'
             multiselect: True
             touch_multiselect: True
-    BoxLayout:
-        orientation: 'horizontal'
-        Button:
-            size_hint_y: None
-            height: '40dp'
-            text: 'Add Location'
-            on_press: app.root.show_add_location_form_widget()
 
 <AddLocationForm>:
     search_input: search_input
@@ -97,28 +114,11 @@
             text: 'Low: {}'.format(root.temp_min)
         Label:
             text: 'High: {}'.format(root.temp_max)
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: None
-        height: '40dp'
-        Button:
-            text: 'Locations'
-            on_press: app.root.carousel_widget.load_slide(app.root.locations_widget)
-        Button:
-            text: 'Forecast'
-            on_press: app.root.carousel_widget.load_slide(app.root.forecast_widget)
 
 <Forecast>:
     orientation: 'vertical'
     Label:
         text: 'Forecast Here!'
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: None
-        height: '40dp'
-        Button:
-            text: 'Current'
-            on_press: app.root.show_current_weather(root.location)
 
 <SelectableLabel>:
     height: '40dp'
