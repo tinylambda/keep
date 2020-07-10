@@ -17,3 +17,4 @@ cython==0.29.20
 requests==2.24.0
 plyer==1.4.3
 buildozer==1.2.0
+pygame==1.9.6
