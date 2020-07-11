@@ -1,0 +1,40 @@
+<MyW>:
+    ActionBar:
+        pos_hint: {'top': 1}
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title: 'Action Bar'
+                with_previous: False
+            ActionOverflow:
+            ActionButton:
+                text: 'Btn0'
+            ActionButton:
+                text: 'Btn1'
+            ActionButton:
+                text: 'Btn2'
+            ActionButton:
+                text: 'Btn3'
+            ActionButton:
+                text: 'Btn4'
+            ActionGroup:
+                text: 'Group1'
+                ActionButton:
+                    text: 'Btn5'
+                ActionButton:
+                    text: 'Btn6'
+                ActionButton:
+                    text: 'Btn7'
+
+<MyW1>:
+    Button:
+        id: label1
+        size_hint: .2, .2
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        text: 'B1'
+    Button:
+        id: label2
+        size_hint: .1, .1
+        pos_hint: {'center_x': .1, 'center_y': .1}
+        text: 'B2'
+
