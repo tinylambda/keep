@@ -1,0 +1,17 @@
+<MyW>:
+    Label:
+        id: label1
+        pos: 300, 200
+        text: 'Hello'
+    Button:
+        id: button1
+        pos: 200, 300
+        text: 'Hello'
+        on_press: root.my_callback()
+    TextInput:
+        id: textinput1
+        pos: 200, 400
+        size: 300, 50
+        text: 'ddd'
+        on_focus: root.my_callback1(self.text)
+        
