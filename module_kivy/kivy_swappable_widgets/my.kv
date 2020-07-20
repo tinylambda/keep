@@ -1,0 +1,11 @@
+<MyW>:
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint_y: None
+        height: 30
+        id: buttons
+    ScreenManager:
+        id: sm
+
+<MButton>:
+    on_press: app.root.ids.sm.current = self.text
