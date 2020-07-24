@@ -10,6 +10,10 @@ class MyW(Widget):
         if 'pos' in touch.profile:
             self.ids.button1.pos = touch.pos
 
+    def on_touch_down(self, touch):
+        if 'button' in touch.profile:
+            self.ids.button1.text = touch.button
+
 
 class MyApp(App):
     def build(self):
