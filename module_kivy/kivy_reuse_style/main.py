@@ -5,6 +5,8 @@ from kivy.uix.boxlayout import BoxLayout
 
 
 class MyWidget1(BoxLayout):
+    writing = StringProperty('XYZ')
+
     def text(self, val):
         print('text input text is : {txt}'.format(txt=val))
 
