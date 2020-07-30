@@ -1,5 +1,8 @@
 from kivy.app import App
 from kivy.core.text import LabelBase
+from kivy.core.window import Window
+from kivy.utils import get_color_from_hex
+
 
 LabelBase.register(
     name='Roboto',
@@ -13,5 +16,6 @@ class ClockApp(App):
 
 
 if __name__ == '__main__':
+    Window.clearcolor = get_color_from_hex('#FF0080')
     ClockApp().run()
 
