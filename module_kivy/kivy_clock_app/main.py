@@ -9,19 +9,16 @@ from kivy.uix.boxlayout import BoxLayout
 from time import strftime
 
 
-class ClockLayout(BoxLayout):
-    time_prop = ObjectProperty(None)
-
-
 class ClockApp(App):
-    def update_time(self, nap):
-        self.root.time_prop.text = strftime('[b]%H[/b]:%M:%S')
+    pass
+    # def update_time(self, nap):
+    #     self.root.time_prop.text = strftime('[b]%H[/b]:%M:%S')
+    #
+    # def on_start(self):
+    #     Clock.schedule_interval(self.update_time, 1)
 
-    def on_start(self):
-        Clock.schedule_interval(self.update_time, 1)
-
-    def build(self):
-        return ClockLayout()
+    # def build(self):
+    #     return ClockLayout()
 
 
 if __name__ == '__main__':
