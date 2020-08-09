@@ -3,6 +3,11 @@
     font_size: 60
     markup: True
 
+<RobotoButton@Button>:
+    font_name: 'Roboto'
+    font_size: 25
+    bold: True
+
 BoxLayout:
     orientation: 'vertical'
     Label:
@@ -15,16 +20,10 @@ BoxLayout:
         spacing: 20
         size_hint: (1, None)
 
-        Button:
+        RobotoButton:
             text: 'Start'
-            font_name: 'Roboto'
-            font_size: 25
-            bold: True
-        Button:
+        RobotoButton:
             text: 'Reset'
-            font_name: 'Roboto'
-            font_size: 25
-            bold: True
     Label:
         id: stopwatch
         text: '00:00.[size=40]00[/size]'
