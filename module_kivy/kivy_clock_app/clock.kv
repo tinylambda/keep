@@ -10,20 +10,25 @@
 
 BoxLayout:
     orientation: 'vertical'
+
     Label:
         id: time
         text: '[b]00[/b]:00:00'
+
     BoxLayout:
+        size_hint_y: None
         height: 90
         orientation: 'horizontal'
         padding: 20
         spacing: 20
-        size_hint: (1, None)
 
         RobotoButton:
             text: 'Start'
+            on_press: app.start_stop()
+
         RobotoButton:
             text: 'Reset'
+            on_press: app.reset()
     Label:
         id: stopwatch
         text: '00:00.[size=40]00[/size]'
