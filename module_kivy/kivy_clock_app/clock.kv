@@ -23,6 +23,7 @@ BoxLayout:
         spacing: 20
 
         RobotoButton:
+            id: stopwatch
             text: 'Start'
             on_press: app.start_stop()
 
@@ -30,5 +31,5 @@ BoxLayout:
             text: 'Reset'
             on_press: app.reset()
     Label:
-        id: stopwatch
+        id: stopwatch_label
         text: '00:00.[size=40]00[/size]'
