@@ -19,3 +19,5 @@ plyer==1.4.3
 buildozer==1.2.0
 pygame==1.9.6
 psutil==5.7.2
+mapview==1.0.5
+websockets==8.1
