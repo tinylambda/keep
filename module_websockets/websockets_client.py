@@ -33,6 +33,7 @@ async def simple_echo_client(uri):
 
             if _input == 'bye':
                 bye = True
+                await websocket.close(code=1000, reason='Client Done')
 
         print('Bye')
 
