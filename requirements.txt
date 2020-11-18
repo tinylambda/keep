@@ -9,7 +9,7 @@ mysql-connector-python==8.0.20
 feedparser==5.2.1
 kivy==2.0.0rc3
 redis==3.5.1
-elasticsearch==7.7.0
+elasticsearch==7.10.0
 pillow==7.1.2
 filetype==1.0.7
 pandas==1.0.4
@@ -21,3 +21,4 @@ pygame==1.9.6
 psutil==5.7.2
 mapview==1.0.5
 websockets==8.1
+beeware==0.3.0

@@ -27,6 +27,12 @@ def cluster_nodes(c, **kwargs):
 
 
 @print_return_result
+def index_list(c, **kwargs):
+    r = c.indices.get('*')
+    return r
+
+
+@print_return_result
 def index_create(c, name, **kwargs):
     r = c.indices.create(name, **kwargs)
     return r
@@ -53,6 +59,12 @@ def index_put_alias(c, name, alias_name, **kwargs):
 @print_return_result
 def index_get_alias(c, name=None, alias_name=None, **kwargs):
     r = c.indices.get_alias(index=name, name=alias_name, **kwargs)
+    return r
+
+
+@print_return_result
+def index_alias_exists(c, name, index=None, **kwargs):
+    r = c.indices.exists_alias(name, index=index, **kwargs)
     return r
 
 
@@ -125,6 +137,12 @@ def index_get_mapping(c, name, **kwargs):
 @print_return_result
 def index_shrink(c, origin, dest, body, **kwargs):
     r = c.indices.shrink(origin, dest, body=body, **kwargs)
+    return r
+
+
+@print_return_result
+def index_rollover(c, alias_name, body=None, new_index=None, **kwargs):
+    r = c.indices.rollover(alias_name, body=body, new_index=new_index)
     return r
 
 
