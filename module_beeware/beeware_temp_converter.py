@@ -39,9 +39,8 @@ def build(app):
 
     c_input.style.update(flex=1)
     f_input.style.update(flex=1, padding_left=160)
-
     c_label.style.update(width=100, padding_left=10)
-    f_label.style.update(width=150, padding_left=10)
+    f_label.style.update(width=100, padding_left=10)
     join_label.style.update(width=150, padding_right=10)
 
     button.style.update(padding=15, flex=1)

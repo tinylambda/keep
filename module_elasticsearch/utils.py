@@ -153,9 +153,28 @@ def doc_index(c, name, doc_body, **kwargs):
 
 
 @print_return_result
+def doc_get(c, name, id_, **kwargs):
+    r = c.get(name, id_, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_get_source(c, name, id_, **kwargs):
+    r = c.get_source(name, id_, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_exists(c, name, id_, **kwargs):
+    r = c.exists(name, id_, **kwargs)
+    return r
+
+
+@print_return_result
 def doc_search(c, name, search_body=None, **kwargs):
     if search_body is None:
         search_body = {
+            'seq_no_primary_term': True,
             'query': {
                 'match_all': {}
             }
