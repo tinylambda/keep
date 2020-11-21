@@ -55,3 +55,5 @@ if __name__ == '__main__':
     doc_exists(elasticsearch_client, INDEX_NAME, 'xxx')
     doc_get_source(elasticsearch_client, INDEX_NAME, 'xxxxuuu777')
 
+    index_delete(elasticsearch_client, INDEX_NAME)
+

@@ -1,4 +1,5 @@
 import json
+import contextlib
 
 from module_elasticsearch import elasticsearch_client
 
@@ -171,6 +172,30 @@ def doc_exists(c, name, id_, **kwargs):
 
 
 @print_return_result
+def doc_delete(c, name, id_, **kwargs):
+    r = c.delete(name, id_, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_update(c, name, id_, update_body, **kwargs):
+    r = c.update(name, id_, update_body, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_bulk(c, bulk_body, **kwargs):
+    r = c.bulk(bulk_body, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_mget(c, mget_body, **kwargs):
+    r = c.mget(mget_body, **kwargs)
+    return r
+
+
+@print_return_result
 def doc_search(c, name, search_body=None, **kwargs):
     if search_body is None:
         search_body = {
@@ -181,6 +206,24 @@ def doc_search(c, name, search_body=None, **kwargs):
         }
     r = c.search(index=name, body=search_body, **kwargs)
     return r
+
+
+@contextlib.contextmanager
+def testing_index(c, index_name, **kwargs):
+    """
+    :param c: The Elasticsearch Client to use
+    :param index_name: The index's name to test
+    :return: None
+    """
+    # We first create a index named `index_name`
+    if index_exists(c, index_name):
+        index_delete(c, index_name)
+    index_create(c, index_name, **kwargs)
+    try:
+        yield
+    finally:
+        # finally we delete the index for testing
+        index_delete(c, index_name)
 
 
 if __name__ == '__main__':
