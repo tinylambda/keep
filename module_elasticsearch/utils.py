@@ -195,16 +195,35 @@ def doc_mget(c, mget_body, **kwargs):
     return r
 
 
-@print_return_result
-def doc_search(c, name, search_body=None, **kwargs):
-    if search_body is None:
-        search_body = {
+DEFAULT_SEARCH_BODY_WITH_SNPT = {
             'seq_no_primary_term': True,
             'query': {
                 'match_all': {}
             }
         }
+
+DEFAULT_SEARCH_BODY = {
+            'query': {
+                'match_all': {}
+            }
+        }
+
+
+@print_return_result
+def doc_search(c, name, search_body=DEFAULT_SEARCH_BODY_WITH_SNPT, **kwargs):
     r = c.search(index=name, body=search_body, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_count(c, name, search_body=DEFAULT_SEARCH_BODY, **kwargs):
+    r = c.count(index=name, body=search_body, **kwargs)
+    return r
+
+
+@print_return_result
+def doc_explain(c, name, id_, search_body=None, **kwargs):
+    r = c.explain(index=name, id=id_, body=search_body, **kwargs)
     return r
 
 
