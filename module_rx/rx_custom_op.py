@@ -5,7 +5,7 @@ from rx import operators as ops
 def length_more_than_5():
     return rx.pipe(
         ops.map(lambda s: len(s)),
-        ops.filter(lambda i: i>=5),
+        ops.filter(lambda i: i >= 5),
     )
 
 
