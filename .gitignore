@@ -133,3 +133,5 @@ static/tests/
 *.apk
 
 *.json
+
+*.bin
