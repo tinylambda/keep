@@ -135,3 +135,5 @@ static/tests/
 *.json
 
 *.bin
+
+*.gif
