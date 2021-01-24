@@ -1,6 +1,6 @@
 import abc
 
-from ch20_2 import Quantity
+from fp.ch20.ch20_2 import Quantity
 
 
 class AutoStorage:
