@@ -137,3 +137,5 @@ static/tests/
 *.bin
 
 *.gif
+
+*.proto
