@@ -1,4 +1,5 @@
 from module_protobuf.game.game_pb2 import Chat_msg
+from google.protobuf.json_format import MessageToJson
 
 
 if __name__ == '__main__':

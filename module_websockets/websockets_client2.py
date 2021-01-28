@@ -29,7 +29,7 @@ async def simple_ws(
             f(*args)
 
     loop = asyncio.get_event_loop()
-    async with websockets.connect(uri) as client_side_ws:
+    async with websockets.connect(uri, extra_headers=[('Authorization', 'Token xxxx')]) as client_side_ws:
         _callback(on_open)
         while True:
             try:
@@ -42,9 +42,10 @@ async def simple_ws(
                 await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
                 if input_task.done():
                     e = input_task.result()
-                    await client_side_ws.send(json.dumps({
+                    data = json.dumps({
                         'message': e.get('value')
-                    }))
+                    })
+                    await client_side_ws.send(data)
 
                 msg = '{}'
                 if ws_recv_task.done():
