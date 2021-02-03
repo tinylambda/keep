@@ -1,6 +1,6 @@
 happybase==1.2.0
 jupyter==1.0.0
-cryptography==2.8
+cryptography==3.2
 hdfs==2.5.8
 boto3==1.13.6
 sqlalchemy==1.3.16
