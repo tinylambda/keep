@@ -10,10 +10,15 @@ async def consume():
         group_id='my-group'
     )
     await consumer.start()
+    i = 0
     try:
         async for msg in consumer:
             print('consumed: ', msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
+            i += 1
+            if i % 100 == 0:
+                print(i)
     finally:
+        print('Finally: ', i)
         await consumer.stop()
 
 
