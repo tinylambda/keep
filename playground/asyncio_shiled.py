@@ -16,9 +16,11 @@ async def cancel_it(some_task):
 async def main():
     _loop = asyncio.get_event_loop()
     real_task = _loop.create_task(coro())
+    real_task.set_name('XXX task')
     shield = asyncio.shield(real_task)
     # cancel the shield in the background while we're waiting
     _loop.create_task(cancel_it(shield))
+    print(real_task.get_name())
     await real_task
 
     assert not real_task.cancelled()
