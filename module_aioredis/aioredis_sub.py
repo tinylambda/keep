@@ -1,13 +1,15 @@
 import asyncio
 import aioredis
 
+CHANNEL_NAME = 'api_def'
+
 
 async def handle_msg():
     sub = await aioredis.create_redis('redis://localhost', db=0, password='rpassword')
+    res = await sub.subscribe(CHANNEL_NAME)
+    ch = res[0]
     try:
-        while True:
-            res = await sub.subscribe('api_def')
-            ch = res[0]
+        while await ch.wait_message():
             msg = await ch.get()
             print('Got msg:', msg)
     finally:
