@@ -22,6 +22,8 @@ if __name__ == '__main__':
         mock(),
         mock(),
         mock(),
+        mock(),
+        mock()
     )
 
     mock()
