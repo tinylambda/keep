@@ -14,11 +14,11 @@ if __name__ == '__main__':
     tm.template = 'abcd/def'
     tm.content = 'hello'
 
-    cm.type = MessageType.TEXT
-
-    # cm.body = Any.pack(tm)
-
-    # print(cm.SerializeToString())
+    print(tm.SerializeToString())
+    print(tm)
+    print(
+        MessageToJson(tm)
+    )
 
 
 
