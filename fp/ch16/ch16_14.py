@@ -32,7 +32,7 @@ def main(data):
         for value in values:
             group.send(value)
         group.send(None)
-    print(results)
+    report(results)
 
 
 def report(results):
