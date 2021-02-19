@@ -8,6 +8,7 @@ async def main():
     pub = await aioredis.create_redis('redis://localhost', db=0, password='rpassword')
     for i in range(10):
         await pub.publish_json(CHANNEL_NAME, {'x': i})
+        await pub.publish_json(CHANNEL_NAME + '2', {'x': i * 100})
     pub.close()
     await pub.wait_closed()
 
