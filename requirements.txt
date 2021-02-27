@@ -32,3 +32,4 @@ aiokafka==0.7.0
 aioelasticsearch==0.7.0
 aiozmq==0.9.0
 simpy==4.0.1
+pyzmq==22.0.2
