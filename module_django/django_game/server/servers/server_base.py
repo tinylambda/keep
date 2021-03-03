@@ -79,22 +79,6 @@ class ServerBase:
         task.set_name('output')
         return task
 
-    # async def output(self, group_name: typing.AnyStr, result: typing.ByteString):
-    #     await self.channel_layer.group_send(group_name, {
-    #         'type': 'do_send',
-    #         'result': result,
-    #     })
-
-    # @classmethod
-    # def parse_task_input(cls, task_input: bytes):
-    #     return json.loads(task_input)
-    #
-    # async def create_task(self, task_args: typing.Dict):
-    #     pass
-    #
-    # async def resume_task(self, task_id: typing.AnyStr):
-    #     pass
-
     async def handle(self, task_input: bytes):
         extra_bytes, server, action, task_input_body = task_input.split(GameConsumer.PACK_DELIMITER)
 
@@ -148,11 +132,15 @@ class ServerBase:
                     task_name = task.get_name()
                     if task_name == 'input':
                         input_bytes: bytes = task.result()
-                        print('send content to test_groupname')
+                        extra_bytes, server_name, action, args = input_bytes.split(GameConsumer.PACK_DELIMITER)
+                        extra_dict = dict(urllib.parse.parse_qsl(extra_bytes.decode()))
+                        channel_name = extra_dict.get('channel_name')
+                        await self.channel_layer.group_add('testgroupxxxx', channel_name)
+                        print('send content to testgroupxxxx')
                         await self.channel_layer.group_send(
-                            'test_groupname', {
+                            'testgroupxxxx', {
                                 'type': 'do_send',
-                                'content': b'{"x":1, "y": 2}'
+                                'content': b'{"x":1, "y": 200}'
                             }
                         )
                         print('get input', input_bytes)
