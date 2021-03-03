@@ -139,6 +139,34 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'default': {
+            'format': '{levelname}\t{asctime}\t{pathname}\t{lineno:d}\t{process:d}\t{message}',
+            'style': '{',
+        }
+    },
+
+    'handlers': {
+        'console_log_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        }
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['console_log_handler'],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    }
+}
+
 SERVER_TASK_QUEUE = {
     'address': 'redis://localhost',
     'db': 14,

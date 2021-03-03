@@ -58,11 +58,10 @@ async def simple_ws(
                         task_name = task.get_name()
                         if task_name == 'input':
                             user_input = task.result().strip()
-                            user_input: typing.Dict = dict(urllib.parse.parse_qsl(user_input))
-                            user_input_bytes: bytes = json.dumps(user_input).encode()
-                            print('sending...')
-                            x = await client_side_ws.send(user_input_bytes)
-                            print('send result: ', x)
+                            # user_input: typing.Dict = dict(urllib.parse.parse_qsl(user_input))
+                            # user_input_bytes: bytes = json.dumps(user_input).encode()
+                            user_input_bytes: bytes = user_input.encode('utf-8')
+                            await client_side_ws.send(user_input_bytes)
                         elif task_name == 'recv':
                             msg_bytes: bytes = task.result()
                             msg = json.loads(msg_bytes)

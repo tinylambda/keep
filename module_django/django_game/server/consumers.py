@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import typing
 import urllib.parse
 
 
@@ -17,6 +18,7 @@ class GameConsumer(AsyncWebsocketConsumer):
         super(GameConsumer, self).__init__(*args, **kwargs)
         self.server_task_queue_service = None
         self._extra_bytes: bytes = None
+        self.logger = logging.getLogger('django')
 
     @property
     def extra_bytes(self) -> bytes:
@@ -35,6 +37,7 @@ class GameConsumer(AsyncWebsocketConsumer):
     
     async def connect(self):
         await self.accept()
+        await self.channel_layer.group_add('test_groupname', self.channel_name)
         self.server_task_queue_service = await aioredis.create_redis(**settings.SERVER_TASK_QUEUE)
 
     async def disconnect(self, code):
@@ -44,13 +47,14 @@ class GameConsumer(AsyncWebsocketConsumer):
         if bytes_data:
             server_name, _, _ = bytes_data.split(self.PACK_DELIMITER)
             packed_bytes_data = self.pack(bytes_data)
+            self.logger.info(f'send data to queue {server_name}')
             await self.server_task_queue_service.lpush(server_name, packed_bytes_data)
         else:
-            logging.error(f'client send null value to server')
+            self.logger.error(f'client send null value to server')
 
-    async def do_send(self, event):
-        result: bytes = event.get('result')
-        await self.send(bytes_data=result)
+    async def do_send(self, event: typing.Dict):
+        content: bytes = event.get('content')
+        await self.send(bytes_data=content)
 
     async def cleanup(self):
         self.server_task_queue_service.close()
