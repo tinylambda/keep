@@ -150,7 +150,7 @@ LOGGING = {
         }
     },
 
-    'handlers': {
+    'tasks': {
         'console_log_handler': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -160,7 +160,7 @@ LOGGING = {
 
     'loggers': {
         'django': {
-            'handlers': ['console_log_handler'],
+            'tasks': ['console_log_handler'],
             'level': 'INFO',
             'propagate': False,
         }

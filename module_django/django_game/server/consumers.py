@@ -17,31 +17,31 @@ class GameConsumer(AsyncWebsocketConsumer):
     def __init__(self, *args, **kwargs):
         super(GameConsumer, self).__init__(*args, **kwargs)
         self.server_task_queue_service = None
-        self._extra_bytes: bytes = None
+        self._header_bytes: bytes = None
         self.logger = logging.getLogger('django')
 
     @property
-    def extra_bytes(self) -> bytes:
-        if not self._extra_bytes:
-            extra_data = [
+    def header_bytes(self) -> bytes:
+        if not self._header_bytes:
+            header_data = [
                 ('channel_name', self.channel_name),
-                ('role_id', 1)
+                ('role_id', 1),
             ]
-            extra_string = urllib.parse.urlencode(extra_data)
-            self._extra_bytes = extra_string.encode('utf-8')
-        return self._extra_bytes
+            header_string = urllib.parse.urlencode(header_data)
+            self._header_bytes = header_string.encode('utf-8')
+        return self._header_bytes
 
     def pack(self, bytes_data: bytes):
-        packed_bytes = self.PACK_DELIMITER.join([self.extra_bytes, bytes_data])
+        packed_bytes = self.PACK_DELIMITER.join([self.header_bytes, bytes_data])
         return packed_bytes
     
     async def connect(self):
         await self.accept()
-        await self.channel_layer.group_add('test_groupname', self.channel_name)
         self.server_task_queue_service = await aioredis.create_redis(**settings.SERVER_TASK_QUEUE)
 
     async def disconnect(self, code):
         await self.cleanup()
+        await self.close()
 
     async def receive(self, text_data=None, bytes_data=None):
         if bytes_data:

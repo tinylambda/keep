@@ -13,12 +13,13 @@ from operator import itemgetter
 from channels.layers import get_channel_layer
 from django.conf import settings
 
+from .mixins.es import EntityESOperationMixin
 from ..consumers import GameConsumer
 
 
-class ServerBase:
+class ServerBase(EntityESOperationMixin):
     ID_NAME = 'id'
-    SERVER_TASK_CLASS = None
+    DB_NAME = 'default'
 
     def __init__(self, min_tick_interval=1.0):
         self.server_name = self.__class__.__name__
@@ -35,7 +36,7 @@ class ServerBase:
         self.channel_layer = get_channel_layer()
 
         self.server_task_queue_service = None
-        self.server_storage = None
+        self.storage = None
 
         self.server_started = asyncio.Future()
         self.server_closing = asyncio.Future()
@@ -56,7 +57,7 @@ class ServerBase:
 
     async def initialize(self):
         self.server_task_queue_service = await aioredis.create_redis(**settings.SERVER_TASK_QUEUE)
-        self.server_storage = aioelasticsearch.Elasticsearch(**settings.ES_STORAGE)
+        self.storage = aioelasticsearch.Elasticsearch(**settings.ES_STORAGE)
 
     async def get_input(self) -> typing.ByteString:
         try:
@@ -79,19 +80,21 @@ class ServerBase:
         task.set_name('output')
         return task
 
-    async def handle(self, task_input: bytes):
-        extra_bytes, server, action, task_input_body = task_input.split(GameConsumer.PACK_DELIMITER)
+    async def handle_task_input(self, task_input: bytes):
+        header_bytes, server, action, task_input_body = task_input.split(GameConsumer.PACK_DELIMITER)
 
-        extra_data: typing.Dict = dict(urllib.parse.parse_qsl(extra_bytes))
+        header_data: typing.Dict = dict(urllib.parse.parse_qsl(header_bytes))
         server_name = server.decode()
         assert self.server_name == server_name
         action_name = action.decode()
 
         task_input_dict: typing.Dict = self.parse_task_input(task_input_body)
 
-        if action_name == 'setup':
-            task_instance = self.SERVER_TASK_CLASS(extra_data, task_input_dict)
+        if action_name == 'create':
+            await self.create_new_task_data(**task_input_dict)
         else:
+            assert self.ID_NAME in task_input_dict
+
             task_id: typing.AnyStr = task_input_dict.get(self.ID_NAME)
 
             if task_id:
@@ -105,6 +108,23 @@ class ServerBase:
                     await task_instance.dispatch(action_name, task_input_dict)
             else:
                 logging.error(f'no {self.ID_NAME} supplied')
+
+    async def core_loop(self, task_data: typing.Dict, result_q: asyncio.Queue, output_q: asyncio.Queue):
+        """for every task data create a task to run this coroutine"""
+        pass
+
+    async def create_new_task_data(self, **kwargs) -> typing.AnyStr:
+        """return new created unique_id"""
+        pass
+
+    async def resume(self, unique_id):
+        if unique_id in self.managed_tasks:
+            return
+
+        async with self.managed_task_change_lock:
+            task_data: typing.Dict = await self.entity_get(unique_id=unique_id)
+            task_instance = self.loop.create_task(self.core_loop(task_data=task_data))
+            self.managed_tasks[unique_id] = task_instance
 
     @property
     def main_task_callables(self):
@@ -132,17 +152,6 @@ class ServerBase:
                     task_name = task.get_name()
                     if task_name == 'input':
                         input_bytes: bytes = task.result()
-                        extra_bytes, server_name, action, args = input_bytes.split(GameConsumer.PACK_DELIMITER)
-                        extra_dict = dict(urllib.parse.parse_qsl(extra_bytes.decode()))
-                        channel_name = extra_dict.get('channel_name')
-                        await self.channel_layer.group_add('testgroupxxxx', channel_name)
-                        print('send content to testgroupxxxx')
-                        await self.channel_layer.group_send(
-                            'testgroupxxxx', {
-                                'type': 'do_send',
-                                'content': b'{"x":1, "y": 200}'
-                            }
-                        )
                         print('get input', input_bytes)
                     elif task_name == 'output':
                         result: typing.Dict = task.result()
@@ -196,7 +205,7 @@ class ServerBase:
         await self.server_task_queue_service.wait_closed()
 
         logging.info('release storage client')
-        await self.server_storage.close()
+        await self.storage.close()
 
 
 

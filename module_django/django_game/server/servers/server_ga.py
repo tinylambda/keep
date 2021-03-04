@@ -2,5 +2,7 @@ from .server_base import ServerBase
 
 
 class ServerGa(ServerBase):
-    pass
+    ID_NAME = 'ga_id'
+    DB_NAME = 'ga'
+
 
