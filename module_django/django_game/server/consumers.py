@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import json
 import logging
 import typing
@@ -17,22 +18,21 @@ class GameConsumer(AsyncWebsocketConsumer):
     def __init__(self, *args, **kwargs):
         super(GameConsumer, self).__init__(*args, **kwargs)
         self.server_task_queue_service = None
-        self._header_bytes: bytes = None
+        self._static_header: typing.Dict = None
         self.logger = logging.getLogger('django')
 
     @property
-    def header_bytes(self) -> bytes:
-        if not self._header_bytes:
-            header_data = [
+    def static_header(self) -> typing.Dict:
+        if not self._static_header:
+            static_header_data = [
                 ('channel_name', self.channel_name),
                 ('role_id', 1),
             ]
-            header_string = urllib.parse.urlencode(header_data)
-            self._header_bytes = header_string.encode('utf-8')
-        return self._header_bytes
+            self._static_header = dict(static_header_data)
+        return self._static_header
 
-    def pack(self, bytes_data: bytes):
-        packed_bytes = self.PACK_DELIMITER.join([self.header_bytes, bytes_data])
+    def pack(self, header_bytes: bytes, body_bytes: bytes):
+        packed_bytes = self.PACK_DELIMITER.join([header_bytes, body_bytes])
         return packed_bytes
     
     async def connect(self):
@@ -45,8 +45,17 @@ class GameConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data=None, bytes_data=None):
         if bytes_data:
-            server_name, _, _ = bytes_data.split(self.PACK_DELIMITER)
-            packed_bytes_data = self.pack(bytes_data)
+            server_name, action_name, request_body = bytes_data.split(self.PACK_DELIMITER)
+
+            header: typing.Dict = {}
+            header.update(self.static_header)
+            header.update({
+                'server_name': server_name.decode(),
+                'action_name': action_name.decode(),
+            })
+            header_bytes: bytes = urllib.parse.urlencode(header).encode('utf-8')
+
+            packed_bytes_data = self.pack(header_bytes, request_body)
             self.logger.info(f'send data to queue {server_name}')
             await self.server_task_queue_service.lpush(server_name, packed_bytes_data)
         else:
