@@ -1,1 +1,2 @@
 grpcio-tools ~= 1.30
+pytest ~= 5.4

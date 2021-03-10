@@ -17,6 +17,8 @@ services:
       build:
         context: .
         dockerfile: recommendations/Dockerfile
+      environment:
+        PYTHONPATH: .
       image: recommendations
       networks:
         - microservices
