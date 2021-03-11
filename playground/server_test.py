@@ -60,14 +60,14 @@ class Task:
             user_input: typing.Dict = await self.input_q.get()
             action = user_input.get('action')
             if action:
-                user_input.pop(action)
+                user_input.pop('action')
             action_method = getattr(self, f'action_{action}')
             if action_method:
                 result = await action_method(user_input)
                 print('result is ', result)
 
     async def start(self):
-        print('starting server')
+        print('starting task')
         print('start all tick tasks')
 
         self.task_started.set_result(True)
