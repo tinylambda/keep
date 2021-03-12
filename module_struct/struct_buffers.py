@@ -12,6 +12,8 @@ print()
 print('ctypes string buffer')
 
 b = ctypes.create_string_buffer(s.size)
+print(b)
+
 print('Before: ', binascii.hexlify(b.raw))
 s.pack_into(b, 0, *values)
 print('After: ', binascii.hexlify(b.raw))
@@ -21,6 +23,8 @@ print()
 print('array')
 
 a = array.array('b', b'\0' * s.size)
+print(a)
+
 print('Before: ', binascii.hexlify(a))
 s.pack_into(a, 0, *values)
 print('After: ', binascii.hexlify(a))
