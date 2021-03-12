@@ -34,6 +34,10 @@ sender.join()
 print('Waiting for', receiver.name)
 # The signal.alarm(2) call near the end of the example prevents an infinite block,
 # since the receiver thread will never exit.
+print('before alarm signal')  # printed
 signal.alarm(2)
+print('after alarm signal')  # printed
 receiver.join()
+print('after join')  # now printed
+
 
