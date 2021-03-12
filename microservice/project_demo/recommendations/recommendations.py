@@ -51,7 +51,15 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     recommendations_pb2_grpc.add_RecommendationsServicer_to_server(RecommendationService(), server)
-    server.add_insecure_port('[::]:50051')
+
+    with open('server.key', 'rb') as fp:
+        server_key = fp.read()
+    with open('server.pem', 'rb') as fp:
+        server_cert = fp.read()
+
+    creds = grpc.ssl_server_credentials([(server_key, server_cert)])
+    server.add_secure_port('[::]:443', creds)
+    # server.add_insecure_port('[::]:50051')
     server.start()
 
     def handle_sigterm(*_):

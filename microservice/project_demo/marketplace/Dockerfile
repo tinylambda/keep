@@ -3,6 +3,7 @@ FROM python
 RUN mkdir /service
 COPY protobufs/ /service/protobufs/
 COPY marketplace/ /service/marketplace/
+COPY ca.pem /service/marketplace/
 WORKDIR /service/marketplace
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
