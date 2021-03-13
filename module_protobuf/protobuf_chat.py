@@ -2,7 +2,7 @@ from module_protobuf.chat.chat_pb2 import MessageText
 from module_protobuf.chat.chat_pb2 import MessageType
 from module_protobuf.chat.chat_pb2 import ChatMessage
 
-from google.protobuf.json_format import MessageToJson
+from google.protobuf.json_format import MessageToJson, MessageToDict
 
 
 if __name__ == '__main__':
@@ -16,8 +16,11 @@ if __name__ == '__main__':
 
     print(tm.SerializeToString())
     print(tm)
+    x = MessageToJson(tm)
+    y = MessageToDict(tm)
     print(
-        MessageToJson(tm)
+        x, type(x),
+        y, type(y)
     )
 
 
