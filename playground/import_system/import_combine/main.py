@@ -12,3 +12,9 @@ print(spam)
 
 importlib.reload(spam)
 
+
+sys.path.append('mypackage')
+import spam.custom
+
+spam.custom.test_func()
+
