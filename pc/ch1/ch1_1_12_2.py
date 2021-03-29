@@ -2,7 +2,7 @@ from collections import Counter
 
 if __name__ == '__main__':
     words = []
-    with open('ch1_1_7_2.py') as f:
+    with open('ch1_7_2.py') as f:
         for line in f:
             words.extend(line.split())
 
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     )
 
     more_words = []
-    with open('ch1_1_8_2.py') as f:
+    with open('ch1_8_2.py') as f:
         for line in f:
             more_words.extend(line.split())
 

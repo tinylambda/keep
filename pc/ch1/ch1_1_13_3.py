@@ -1,6 +1,6 @@
 from operator import itemgetter
 
-from pc.ch1.ch1_1_13_2 import rows
+from pc.ch1.ch1_13_2 import rows
 
 if __name__ == '__main__':
     rows_by_fname = sorted(rows, key=lambda r: r['fname'])

@@ -1,4 +1,4 @@
-from pc.ch1.ch1_1_8_2 import prices
+from pc.ch1.ch1_8_2 import prices
 
 
 print(min(prices))
