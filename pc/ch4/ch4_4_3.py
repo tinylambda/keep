@@ -23,6 +23,28 @@ class DepthFirstIterator:
             return next(self)
 
 
+class BreadthFirstIterator:
+    def __init__(self, start_node):
+        self._node = start_node
+        self._child_iters = [iter([self._node])]
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._child_iters:
+            try:
+                child_iter = self._child_iters[0]
+                nextchild = next(child_iter)
+                self._child_iters.append(iter(nextchild))
+                return nextchild
+            except StopIteration:
+                self._child_iters.pop(0)
+                return self.__next__()
+        else:
+            raise StopIteration
+
+
 class Node:
     def __init__(self, value):
         self._value = value
@@ -40,6 +62,9 @@ class Node:
     def depth_first(self):
         return DepthFirstIterator(self)
 
+    def breadth_first(self):
+        return BreadthFirstIterator(self)
+
 
 if __name__ == '__main__':
     root = Node(0)
@@ -47,10 +72,21 @@ if __name__ == '__main__':
     child2 = Node(2)
     root.add_child(child1)
     root.add_child(child2)
-    child1.add_child(Node(3))
-    child1.add_child(Node(4))
-    child2.add_child(Node(5))
+
+    child3 = Node(3)
+    child1.add_child(child3)
+    child4 = Node(4)
+    child1.add_child(child4)
+    child5 = Node(5)
+    child2.add_child(child5)
+    child6 = Node(6)
+    child3.add_child(child6)
 
     for item in root.depth_first():
+        print(item)
+
+    print('-' * 64)
+
+    for item in root.breadth_first():
         print(item)
 

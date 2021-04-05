@@ -17,6 +17,14 @@ class Node:
         for c in self:
             yield from c.depth_first()
 
+    def breadth_first(self):
+        q = [self]
+        while q:
+            n = q.pop(0)
+            yield n
+            for c in n:
+                q.append(c)
+
 
 if __name__ == '__main__':
     root = Node(0)
@@ -35,5 +43,10 @@ if __name__ == '__main__':
     child3.add_child(child6)
 
     for item in root.depth_first():
+        print(item)
+
+    print('-' * 64)
+
+    for item in root.breadth_first():
         print(item)
 
