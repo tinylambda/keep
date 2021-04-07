@@ -6,6 +6,7 @@ async def problem():
     await asyncio.sleep(1)
     logging.warning("going to raise an exception now!")
     raise RuntimeError("something went wrong")
+    print('will not touch here.')
 
 
 if __name__ == '__main__':
