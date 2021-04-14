@@ -8,12 +8,22 @@ class Point:
     y: float = 0.0
 
 
+@dataclass
 class GoodPoint(Point):
-    pass
+    z: int = 47
+
+
+class BadPoint(Point):
+    z: int = 55
 
 
 if __name__ == '__main__':
-    gp = GoodPoint()
+    gp = GoodPoint()  # include z
     d = asdict(gp)
     print(d)
+
+    bp = BadPoint()  # won't include z
+    d2 = asdict(bp)
+    print(d2)
+
 
