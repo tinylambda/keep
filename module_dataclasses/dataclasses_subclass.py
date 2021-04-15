@@ -1,3 +1,4 @@
+import dataclasses
 from dataclasses import dataclass
 from dataclasses import asdict
 
@@ -17,6 +18,10 @@ class BadPoint(Point):
     z: int = 55
 
 
+class Common:
+    pass
+
+
 if __name__ == '__main__':
     gp = GoodPoint()  # include z
     d = asdict(gp)
@@ -25,5 +30,9 @@ if __name__ == '__main__':
     bp = BadPoint()  # won't include z
     d2 = asdict(bp)
     print(d2)
+
+    print(dataclasses.is_dataclass(gp), dataclasses.is_dataclass(GoodPoint))
+    print(dataclasses.is_dataclass(bp), dataclasses.is_dataclass(BadPoint))
+    print(dataclasses.is_dataclass(Common()), dataclasses.is_dataclass(Common))
 
 
