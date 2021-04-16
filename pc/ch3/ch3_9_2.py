@@ -18,8 +18,10 @@ if __name__ == '__main__':
     print(ax * ay)
 
     print('spread function call to every element of array')
+
     def f(x):
         return 3 * x**2 - 2 * x + 7
+
     print(f(ax))
 
     print(np.sqrt(ax))
