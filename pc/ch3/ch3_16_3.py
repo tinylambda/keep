@@ -19,4 +19,3 @@ if __name__ == '__main__':
     later_utc = utc_d + timedelta(minutes=30)
     print(later_utc.astimezone(central))
 
-
