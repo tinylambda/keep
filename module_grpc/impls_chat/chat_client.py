@@ -51,12 +51,21 @@ class ChatClient:
                     if task_name == 'user_input':
                         user_input = task.result().strip()
                         logging.info(f'got user input -> {user_input}')
-                        channel = chat_pb2.Channel(name='chan1', senders_name='felix')
-                        message = chat_pb2.Message(sender='felix', message=user_input, channel=channel)
 
-                        messages = [message]
-                        ack = await self.stub.SendMessage(messages)
-                        logging.info(f'got server ack => {ack.status}')
+                        action, *remaining = user_input.split('|')
+                        if action == 'send':
+                            channel_name, senders_name, message = remaining
+                            channel = chat_pb2.Channel(name=channel_name, senders_name=senders_name)
+                            message = chat_pb2.Message(sender=senders_name, message=message, channel=channel)
+                            messages = [message]
+                            ack = await self.stub.SendMessage(messages)
+                            logging.info(f'got server ack => {ack.status}')
+                        elif action == 'join':
+                            channel_name, senders_name = remaining
+                            channel = chat_pb2.Channel(name=channel_name, senders_name=senders_name)
+                            responses = self.stub.JoinChannel(channel)
+                            async for response in responses:
+                                print(response)
                     else:
                         pass
                     tasks[i] = task_creation_callables[i]()
