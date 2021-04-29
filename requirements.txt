@@ -40,3 +40,4 @@ aiozmq==0.9.0
 simpy==4.0.1
 pyzmq==22.0.2
 apache-airflow==2.0.1
+ply==3.11
