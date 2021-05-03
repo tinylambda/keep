@@ -42,3 +42,4 @@ pyzmq==22.0.2
 apache-airflow==2.0.1
 ply==3.11
 pure-protobuf==2.0.1
+sanic==21.3.4
