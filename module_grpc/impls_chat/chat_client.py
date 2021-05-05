@@ -17,6 +17,12 @@ class ChatClient:
         self.loop = asyncio.get_event_loop()
         self.input_q = asyncio.Queue()
 
+        self.send_q = asyncio.Queue()
+        self.receive_q = asyncio.Queue()
+        self.join_q = asyncio.Queue()
+
+        self.joined_channels = set()
+
     def create_task(self, coro, name=None):
         def _handle_task_result(completed_task: asyncio.Task):
             try:
@@ -33,11 +39,41 @@ class ChatClient:
     def get_stdin_input(self):
         asyncio.ensure_future(self.input_q.put(sys.stdin.readline()))
 
+    async def produce_messages(self):
+        while True:
+            user_input = await self.send_q.get()
+            action, channel_name, senders_name, message = user_input.split('|')
+            channel = chat_pb2.Channel(name=channel_name, senders_name=senders_name)
+            message = chat_pb2.Message(sender=senders_name, message=message, channel=channel)
+            yield message
+
+    async def push_messages(self):
+        ack = await self.stub.SendMessage(self.produce_messages())
+        print('done push_messages', ack)
+
+    async def receive_messages(self):
+        while True:
+            response = await self.receive_q.get()
+            print('Receiving =>', response.message)
+
+    async def join_and_listen_channel(self, channel):
+        if channel.name in self.joined_channels:
+            print('can only listen the same channel once')
+            return
+        responses = self.stub.JoinChannel(channel)
+        self.joined_channels.add(channel.name)
+        print(type(responses), dir(responses))
+        async for response in responses:
+            print('good')
+            # await self.receive_q.put(response)
+
     async def start(self):
         self.loop.add_reader(sys.stdin, self.get_stdin_input)
         # The channel to listen for the message stream
         self.channel = grpc.aio.insecure_channel(f'{self.host}:{self.port}')
         self.stub = chat_pb2_grpc.ChatServiceStub(channel=self.channel)
+
+        self.create_task(self.push_messages(), 'push_messages')
         task_creation_callables = [
             lambda: self.create_task(self.input_q.get(), 'user_input'),
         ]
@@ -50,24 +86,15 @@ class ChatClient:
                 if task.done():
                     if task_name == 'user_input':
                         user_input = task.result().strip()
-                        logging.info(f'got user input -> {user_input}')
-
                         action, *remaining = user_input.split('|')
                         if action == 'send':
-                            channel_name, senders_name, message = remaining
-                            channel = chat_pb2.Channel(name=channel_name, senders_name=senders_name)
-                            message = chat_pb2.Message(sender=senders_name, message=message, channel=channel)
-                            messages = [message]
-                            ack = await self.stub.SendMessage(messages)
-                            logging.info(f'got server ack => {ack.status}')
+                            await self.send_q.put(user_input)
                         elif action == 'join':
                             channel_name, senders_name = remaining
                             channel = chat_pb2.Channel(name=channel_name, senders_name=senders_name)
-                            responses = self.stub.JoinChannel(channel)
-                            async for response in responses:
-                                print(response)
+                            self.create_task(self.join_and_listen_channel(channel), 'listen')
                     else:
-                        pass
+                        print('else')
                     tasks[i] = task_creation_callables[i]()
 
     async def stop(self):
