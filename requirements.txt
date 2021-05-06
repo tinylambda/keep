@@ -44,3 +44,5 @@ ply==3.11
 pure-protobuf==2.0.1
 sanic==21.3.4
 h11==0.12.0
+hyper==0.7.0
+trio==0.18.0
