@@ -1,7 +1,9 @@
 import asyncio
+import types
 
 
-@asyncio.coroutine
+# @asyncio.coroutine
+@types.coroutine
 def countdown(number, n):
     while n > 0:
         print('T-minus', n, '({})'.format(number))
