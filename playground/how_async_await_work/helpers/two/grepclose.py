@@ -19,5 +19,7 @@ if __name__ == '__main__':
     g.send('world')
     g.send('python go')
     g.send('bye')
+    # throw Exception from the yield expression
+    g.throw(RuntimeError, 'run time error you know')
     g.close()
 
