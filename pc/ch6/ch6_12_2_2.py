@@ -14,7 +14,7 @@ class StructureMeta(type):
                 byte_order = format[0]
                 format = format[1:]
 
-            format = byte_order = format
+            format = byte_order + format
             setattr(cls, fieldname, StructField(format, offset))
             offset += struct.calcsize(format)
         setattr(cls, 'struct_size', offset)
