@@ -50,7 +50,7 @@ hyper==0.7.0
 trio==0.18.0
 matplotlib==3.4.2
 sshtunnel==0.4.0
-sasl==0.2.1
+pure-sasl==0.6.2
 thrift==0.13.0
-thrift-sasl==0.4.2
+thrift-sasl==0.4.3a2
 PyHive==0.6.4
