@@ -52,5 +52,5 @@ matplotlib==3.4.2
 sshtunnel==0.4.0
 pure-sasl==0.6.2
 thrift==0.13.0
-thrift-sasl==0.4.3a2
+thrift-sasl==0.4.3
 PyHive==0.6.4
