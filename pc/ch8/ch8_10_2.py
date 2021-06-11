@@ -47,4 +47,8 @@ if __name__ == '__main__':
     print(c.area)
     print(vars(c))
 
+    c.area = 25
+    print(c.area)
+
+
 
