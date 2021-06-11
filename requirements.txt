@@ -27,7 +27,7 @@ buildozer==1.2.0
 pygame==2.0.1
 psutil==5.7.2
 mapview==1.0.5
-websockets==8.1
+websockets==9.1
 beeware==0.3.0
 rx==3.1.1
 openpyxl==3.0.5
