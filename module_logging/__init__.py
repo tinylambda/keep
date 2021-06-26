@@ -14,4 +14,3 @@ console_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
 
-
