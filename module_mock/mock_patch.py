@@ -1,8 +1,6 @@
-import sys
-
 from unittest.mock import patch
 
-import fp
+from books import fp
 
 
 @patch('fp.ch1.ch1_1.FrenchDeck')
