@@ -20,12 +20,14 @@ import zmq
 NBR_CLIENTS = 10
 NBR_WORKERS = 5
 
+
 def asbytes(obj):
     s = str(obj)
     if str is not bytes:
         # Python 3
         s = s.encode('ascii')
     return s
+
 
 def client_task(name, i):
     """Request-reply client using REQ socket"""
@@ -59,6 +61,7 @@ def client_task(name, i):
                 monitor.send_string(u"E: CLIENT EXIT - lost task %s" % task_id)
                 return
 
+
 def worker_task(name, i):
     """Worker using REQ socket to do LRU routing"""
     ctx = zmq.Context()
@@ -79,6 +82,7 @@ def worker_task(name, i):
         # Workers are busy for 0/1 seconds
         time.sleep(random.randint(0, 1))
         worker.send_multipart(msg)
+
 
 def main(myself, peers):
     print("I: preparing broker at %s..." % myself)
@@ -193,7 +197,6 @@ def main(myself, peers):
         # handle monitor message
         if monitor in events:
             print(monitor.recv_string())
-
 
         # Now route as many clients requests as we can handle
         # - If we have local capacity we poll both localfe and cloudfe
