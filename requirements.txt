@@ -56,3 +56,4 @@ thrift-sasl==0.4.3
 PyHive==0.6.4
 psycopg2-binary==2.9.1
 flask==2.0.1
+gnureadline==8.0.0
