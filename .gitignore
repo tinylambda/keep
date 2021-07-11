@@ -140,3 +140,5 @@ static/tests/
 
 #*.proto
 *.tar
+
+*.bz2
