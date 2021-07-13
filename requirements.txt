@@ -27,7 +27,7 @@ buildozer==1.2.0
 pygame==2.0.1
 psutil==5.7.2
 mapview==1.0.5
-websockets==9.1
+websockets==8.1
 beeware==0.3.0
 rx==3.1.1
 openpyxl==3.0.5
@@ -40,8 +40,6 @@ aiokafka==0.7.0
 aioelasticsearch==0.7.0
 aiozmq==0.9.0
 simpy==4.0.1
-pyzmq==22.0.2
-apache-airflow==2.0.2
 ply==3.11
 pure-protobuf==2.0.1
 sanic==21.3.4
@@ -59,3 +57,5 @@ flask==2.0.1
 gnureadline==8.0.0
 first==2.0.2
 hy==0.20.0
+docutils==0.15.2
+pyzmq==22.1.0
