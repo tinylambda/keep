@@ -59,3 +59,4 @@ first==2.0.2
 hy==0.20.0
 docutils==0.15.2
 pyzmq==22.1.0
+pyprof2calltree==1.4.5
