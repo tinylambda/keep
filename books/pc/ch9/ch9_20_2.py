@@ -1,4 +1,5 @@
 import inspect
+import time
 import types
 
 
@@ -31,7 +32,7 @@ class MultiMethod:
         _types = tuple(type(arg) for arg in args[1:])
         meth = self._methods.get(_types)
         if meth:
-            return meth(*args, **kwargs)
+            return meth(*args)
         else:
             raise TypeError('No matching method for types {}'.format(_types))
 
@@ -55,7 +56,7 @@ class MultiDict(dict):
                 mvalue = MultiMethod(key)
                 mvalue.register(current_value)
                 mvalue.register(value)
-                super().__setitem__(key, value)
+                super().__setitem__(key, mvalue)
         else:
             super().__setitem__(key, value)
 
@@ -78,9 +79,28 @@ class Spam(metaclass=MultiMeta):
         print('Bar 2:', _s, n, [type(_s), type(n)])
 
 
+class Date(metaclass=MultiMeta):
+    def __init__(self, year: int, month: int, day: int):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def __init__(self):
+        t = time.localtime()
+        self.__init__(t.tm_year, t.tm_mon, t.tm_mday)
+
+
 if __name__ == '__main__':
     s = Spam()
     s.bar(2, 3)
     s.bar('hello', 2)
     s.bar('hello')
-    s.bar(2, 'hello')  # should raise exception, but not, check later
+    try:
+        s.bar(2, 'hello')
+    except TypeError as e:
+        print(e)
+
+    d = Date(2012, 12, 21)
+    e = Date()
+    print(e.year, e.month, e.day)
+
