@@ -144,3 +144,5 @@ static/tests/
 *.bz2
 
 *.zip
+
+*.stats
