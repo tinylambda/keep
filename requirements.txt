@@ -61,3 +61,4 @@ docutils==0.15.2
 pyzmq==22.1.0
 pyprof2calltree==1.4.5
 memory_profiler==0.58.0
+async-timeout==3.0.1
