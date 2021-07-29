@@ -72,6 +72,8 @@ def main3():
         loop.create_task(publish(queue, 5))
         loop.create_task(consume(queue))
         loop.run_forever()
+    except KeyboardInterrupt:
+        logging.info('process interrupted')
     finally:
         loop.close()
         logging.info(f'successfully shutdown the Mayhem service.')
