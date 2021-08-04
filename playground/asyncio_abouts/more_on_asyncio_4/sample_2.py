@@ -40,7 +40,9 @@ async def consume(queue):
         msg = await queue.get()
         if msg is None:
             break
+        # process the msg
         logging.info(f'consumed {msg}')
+        # unhelpful simulation of i/o work
         await asyncio.sleep(random.random())
 
 
@@ -49,6 +51,15 @@ def main():
     queue = asyncio.Queue()
     asyncio.run(publish(queue, 5))
     asyncio.run(consume(queue))
+
+
+def main_old():
+    queue = asyncio.Queue()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(publish(queue, 5))
+    loop.run_until_complete(consume(queue))
+    loop.close()
+    logging.info('successfully shutdown the service')
 
 
 def main2():
@@ -81,5 +92,6 @@ def main3():
 
 if __name__ == '__main__':
     # main()
-    # main2()
-    main3()
+    # main_old()
+    main2()
+    # main3()
