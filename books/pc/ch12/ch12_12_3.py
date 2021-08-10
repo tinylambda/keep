@@ -49,7 +49,7 @@ class Scheduler:
                 if isinstance(r, YieldEvent):
                     r.handle_yield(self, task)
                 else:
-                    raise RuntimeError('unrecognized yiel event')
+                    raise RuntimeError('unrecognized yield event')
             except StopIteration:
                 self._numtasks -= 1
 
