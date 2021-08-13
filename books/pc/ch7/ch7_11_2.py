@@ -24,7 +24,7 @@ def inlined_async(func):
             result = result_queue.get()
             try:
                 a = f.send(result)
-                apply_async(a.func, a.args, callback=result_queue.put)
+                apply_async(a.func1, a.args, callback=result_queue.put)
             except StopIteration:
                 break
     return wrapper
