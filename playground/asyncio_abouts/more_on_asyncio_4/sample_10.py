@@ -1,5 +1,4 @@
 import asyncio
-import functools
 import logging
 import random
 import string
@@ -29,6 +28,7 @@ class PubSubMessage:
 
 
 async def cleanup(msg):
+    # unhelpful simulation of I/O work
     await asyncio.sleep(random.random())
     msg.acked = True
     logging.info(f'Done. Acked {msg}')
@@ -36,6 +36,7 @@ async def cleanup(msg):
 
 async def handle_message(msg):
     event = asyncio.Event()
+    # this task will block on event and yield control to the loop
     asyncio.create_task(extend(msg, event))
     await asyncio.gather(save(msg), restart_host(msg))
     event.set()
@@ -55,6 +56,7 @@ async def publish(queue):
 
 
 async def restart_host(msg):
+    # unhelpful simulation of I/O work
     await asyncio.sleep(random.random())
     msg.restarted = True
     logging.info(f"Restarted {msg.hostname}")

@@ -54,7 +54,9 @@ async def save(msg):
 
 
 async def cleanup(msg, event):
+    # this will block the rest of the coroutine until event.set is called
     await event.wait()
+    # unhelpful simulation of I/O work
     await asyncio.sleep(random.random())
     msg.acked = True
     logging.info(f"Done. Acked {msg}")
