@@ -30,6 +30,8 @@ async def main():
 
 async def shutdown(signal, loop):
     logging.info(f'received exit signal {signal.name}...')
+    logging.info('closing database connections')
+    logging.info('nacking outstanding messages')
     tasks = [t
              for t in asyncio.all_tasks()
              if t is not asyncio.current_task()
@@ -38,7 +40,7 @@ async def shutdown(signal, loop):
         if task.get_coro().__name__ == 'cant_stop_me':
             continue
         task.cancel()
-    logging.info('cancelling outstanding tasks')
+    logging.info(f'cancelling {len(tasks)} outstanding tasks')
     await asyncio.gather(*tasks, return_exceptions=True)
     logging.info('stopping loop')
     loop.stop()
