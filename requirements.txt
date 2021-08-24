@@ -72,3 +72,5 @@ thriftpy2~=0.4.14
 pytest~=5.4.3
 toga~=0.2.15
 PyYAML~=5.4.1
+pytest-asyncio==0.15.1
+pytest-mock==3.6.1
