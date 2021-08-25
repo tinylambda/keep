@@ -1,5 +1,5 @@
 import pytest
-from pytest_mock import mocker
+
 from playground.asyncio_abouts.more_on_asyncio_4 import sample_24
 
 
