@@ -74,3 +74,4 @@ toga~=0.2.15
 PyYAML~=5.4.1
 pytest-asyncio==0.15.1
 pytest-mock==3.6.1
+aiodebug==1.1.2
