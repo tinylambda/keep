@@ -3,9 +3,11 @@ import logging
 import random
 import signal
 import string
+import time
 import uuid
 
 import attr
+from aiodebug import log_slow_callbacks
 
 logging.basicConfig(
     level=logging.INFO,
@@ -56,7 +58,8 @@ async def restart_host(msg: PubSubMessage):
 
 
 async def save(msg: PubSubMessage):
-    await asyncio.sleep(random.random())
+    # await asyncio.sleep(random.random())  # <-------- NOTE
+    time.sleep(1 + random.random())
 
     if random.randrange(1, 5) == 3:
         raise Exception(f'could not save {msg}')
@@ -124,12 +127,14 @@ async def shutdown(loop, sig=None):
 async def monitor_tasks():
     while True:
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-        [t.print_stack(limit=5) for t in tasks]  # <------ NOTE
+        [t.print_stack(limit=5) for t in tasks]
         await asyncio.sleep(2)
 
 
 def main():
     loop = asyncio.get_event_loop()
+    log_slow_callbacks.enable(0.05)
+
     signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
     for s in signals:
         loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(loop, sig=s)))
@@ -138,7 +143,6 @@ def main():
     q = asyncio.Queue()
 
     try:
-        loop.create_task(monitor_tasks())
         loop.create_task(publish(q))
         loop.create_task(consume(q))
         loop.run_forever()
@@ -149,3 +153,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# PYTHONASYNCIODEBUG=1 python playground/asyncio_abouts/more_on_asyncio_4/sample_26.py
