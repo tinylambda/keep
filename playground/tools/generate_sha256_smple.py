@@ -3,7 +3,7 @@ import pathlib
 
 
 if __name__ == '__main__':
-    start = 15610427689
+    start = 15210407809
     N = 10000
     filename = pathlib.Path.home() / 'Downloads' / f'sha256_records_{N}.txt'
 
