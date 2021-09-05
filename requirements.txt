@@ -79,3 +79,4 @@ line-profiler==3.3.0
 aiologger==0.6.1
 grpcio==1.39.0
 grpcio-tools==1.39.0
+pypdf3==1.0.5
