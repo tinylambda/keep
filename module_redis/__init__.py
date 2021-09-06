@@ -1,5 +1,5 @@
 import redis
 
 
-redis_client = redis.Redis(password='rpassword')
+redis_client = redis.Redis(password='redispass')
 

@@ -50,4 +50,4 @@ def test3():
         mymodule.func2('y')
         mock2.assert_called_with('y')
 
-# pytest books/pc/ch14/ch14_2_2.py
+# pytest books/pc/ch14/ch14_1_4.py
