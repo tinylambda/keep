@@ -5,7 +5,6 @@ channels-redis==3.2.0
 celery==5.0.2
 django-celery-beat==2.1.0
 happybase==1.2.0
-jupyter==1.0.0
 cryptography==3.3.2
 hdfs==2.5.8
 boto3==1.13.6
@@ -80,3 +79,4 @@ aiologger==0.6.1
 grpcio==1.39.0
 grpcio-tools==1.39.0
 pypdf3==1.0.5
+jupyterlab==3.1.10
