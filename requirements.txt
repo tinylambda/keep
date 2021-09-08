@@ -16,7 +16,7 @@ feedparser==5.2.1
 kivy==2.0.0
 redis==3.5.1
 elasticsearch==7.10.0
-pillow==8.2.0
+pillow==8.3.2
 filetype==1.0.7
 pandas==1.2.1
 cython==0.29.20
