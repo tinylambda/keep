@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+message AbstractData {
+    string data_type = 1;
+    bytes data = 2;
+}
+
+message User {
+    string uid = 1;
+    int32 age = 2;
+}
+
+message Email {
+    string to_uid = 1;
+    string from_uid = 2;
+    string content = 3;
+}

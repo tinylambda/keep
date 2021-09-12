@@ -28,5 +28,3 @@ if __name__ == '__main__':
     print(_type, _msg)
     _obj = m[_type].FromString(_msg)
     print(_obj.type)
-
-
