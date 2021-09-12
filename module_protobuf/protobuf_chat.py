@@ -22,8 +22,3 @@ if __name__ == '__main__':
         x, type(x),
         y, type(y)
     )
-
-
-
-
-
