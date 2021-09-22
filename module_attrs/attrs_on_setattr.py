@@ -6,8 +6,10 @@ import attr
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-def check(*args, **kwargs):
-    logging.info('args: %s ,kwargs: %s', args, kwargs)
+def check(instance, attrib, new_value):
+    if new_value < 0:
+        raise RuntimeError('require %s >= 0' % attrib.name)
+    return new_value
 
 
 @attr.s(on_setattr=check)
@@ -17,6 +19,9 @@ class C:
 
 
 if __name__ == '__main__':
-    c = C(1, 2)
+    c = C(-1, 2)  # this is OK
     logging.info('%s', c)
-    c.x = 100
+    c.x = 20
+    logging.info('%s', c)
+    c.x = -1  # but this will trigger RuntimeError, seems weired.
+    logging.info('%s', c)

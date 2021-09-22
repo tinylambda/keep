@@ -19,4 +19,5 @@ class C:
 if __name__ == '__main__':
     c = C(42)
     logging.info('%s', c)
-    c1 = C(43)
+    c1 = C(43)  # this will trigger ValueError
+    logging.info('%s', c)
