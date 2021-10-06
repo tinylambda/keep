@@ -1,7 +1,6 @@
 import logging
 import sys
 import time
-import weakref
 
 import attr
 
