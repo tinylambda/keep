@@ -16,7 +16,7 @@ class D:
         self.x = x
 
 
-@attr.s(auto_exc=True)
+@attr.s(auto_exc=True, str=True)
 class Error(Exception):
     x = attr.ib()
     y = attr.ib(default=42, init=False)
