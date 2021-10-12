@@ -6,6 +6,7 @@ import attr
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
+# Setting cmp is equivalent to setting eq and order to the same value. Must not be mixed with eq or order.
 @attr.s
 class C:
     x = attr.ib(cmp=True)
