@@ -74,12 +74,21 @@ async def extend(msg: PubSubMessage, event: asyncio.Event):
         await asyncio.sleep(2)
 
 
+def handle_results(results, msg):
+    for result in results:
+        if isinstance(result, RestartFailed):
+            logging.error(f'retrying for failure to start: {msg.hostname}')
+        elif isinstance(result, Exception):
+            logging.error(f'handling general error: {result}')
+
+
 async def handle_message(msg: PubSubMessage):
     event = asyncio.Event()
     asyncio.create_task(extend(msg, event))
     asyncio.create_task(cleanup(msg, event))
     # the first raised exception is immediately propagated to the task that awaits on gather()
-    await asyncio.gather(save(msg), restart_host(msg))
+    results = await asyncio.gather(save(msg), restart_host(msg), return_exceptions=True)
+    handle_results(results, msg)
     event.set()
 
 
@@ -109,7 +118,7 @@ def handle_exception(loop, context):
     msg = context.get('exception', context['message'])
     logging.error(f'caught exception {msg}')
     logging.info('shutting down...')
-    asyncio.create_task(shutdown(loop))
+    # asyncio.create_task(shutdown(loop))
 
 
 def main():
