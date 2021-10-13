@@ -53,8 +53,9 @@ if __name__ == '__main__':
         loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(s, loop)))
 
     try:
-        loop.create_task(main())
-        loop.run_forever()
+        # loop.create_task(main())
+        # loop.run_forever()
+        loop.run_until_complete(main())
     finally:
         logging.info('successfully shutdown service')
         loop.close()
