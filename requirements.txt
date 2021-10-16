@@ -1,4 +1,4 @@
-django==3.2.6
+django==3.2.8
 daphne==3.0.1
 channels==3.0.3
 channels-redis==3.2.0
@@ -79,6 +79,6 @@ aiologger==0.6.1
 grpcio==1.39.0
 grpcio-tools==1.39.0
 pypdf3==1.0.5
-jupyterlab==3.1.10
+jupyterlab==3.2.0
 seaborn==0.11.2
 pycrypto==2.6.1
