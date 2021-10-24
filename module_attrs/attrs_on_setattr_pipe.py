@@ -2,21 +2,24 @@ import logging
 import sys
 
 import attr
-from attr import setters
-from attr.exceptions import FrozenAttributeError
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-@attr.s(on_setattr=setters.frozen)
+@attr.s(on_setattr=attr.setters.frozen)
 class C:
     x = attr.ib()
+    y = attr.ib(on_setattr=attr.setters.NO_OP)
 
 
 if __name__ == '__main__':
-    c = C(100)
+    c = C(100, 200)
     logging.info('%s', c)
+
+    c.y = 300
+    logging.info('%s', c)
+
     try:
-        c.x = 200  # trigger FrozenAttributeError
-    except FrozenAttributeError as e:
+        c.x = 200
+    except attr.exceptions.FrozenAttributeError:
         logging.error('it happened')
