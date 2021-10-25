@@ -1,7 +1,6 @@
 import logging
 import sys
 
-import attr
 import zmq
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
