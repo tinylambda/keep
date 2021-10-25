@@ -10,7 +10,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 if __name__ == '__main__':
     context = zmq.Context()
     socket = context.socket(zmq.REP)
-    socket.bind('tpc://*:5555')
+    socket.bind('tcp://*:5555')
 
     while True:
         # wait for next request from client
