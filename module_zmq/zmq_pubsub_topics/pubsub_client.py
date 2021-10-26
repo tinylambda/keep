@@ -8,10 +8,12 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 if __name__ == '__main__':
     FILTER = b'30085'
+    FILTER2 = b'30086'
     context = zmq.Context()
     subscriber = context.socket(zmq.SUB)
     subscriber.connect('tcp://localhost:5556')
     subscriber.setsockopt(zmq.SUBSCRIBE, FILTER)
+    subscriber.setsockopt(zmq.SUBSCRIBE, FILTER2)
 
     total_temperature = 0
     N = 100

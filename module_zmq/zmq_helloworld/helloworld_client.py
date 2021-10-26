@@ -9,7 +9,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 if __name__ == '__main__':
     context = zmq.Context()
 
-    logging.info('connecting to helloworld server...')
+    logging.info('connecting to zmq_helloworld server...')
     socket = context.socket(zmq.REQ)
     socket.connect('tcp://localhost:5555')
 
