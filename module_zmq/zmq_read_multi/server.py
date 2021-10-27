@@ -1,5 +1,6 @@
 import datetime
 import logging
+import random
 import sys
 import time
 
@@ -22,7 +23,7 @@ if __name__ == '__main__':
     while True:
         ts = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         publisher.send(f'{name}-{port}: {ts}'.encode('utf-8'))
-        time.sleep(0.1)
+        time.sleep(random.random())
 
 # python server.py py 5555
 # python server.py go 5556
