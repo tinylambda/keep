@@ -24,9 +24,9 @@ if __name__ == '__main__':
     while True:
         readers = poller.poll()
         logging.info('ready %s', len(readers))
-        for reader, item in readers:
+        for reader, mask in readers:
             message = reader.recv()
             if reader == py_reader:
-                logging.info('py[%s]: %s', item, message)
+                logging.info('py[%s]: %s', mask, message)
             elif reader == go_reader:
-                logging.info('go[%s]: %s', item, message)
+                logging.info('go[%s]: %s', mask, message)
