@@ -12,8 +12,6 @@ if __name__ == '__main__':
     frontend = context.socket(zmq.ROUTER)
     backend = context.socket(zmq.DEALER)
 
-    logging.info('%s', dir(frontend))
-
     frontend.bind('tcp://*:5559')
     backend.bind('tcp://*:5560')
 
