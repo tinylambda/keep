@@ -1,5 +1,4 @@
 import logging
-import random
 import sys
 import time
 
@@ -13,6 +12,9 @@ if __name__ == '__main__':
     context = zmq.Context()
     receiver = context.socket(zmq.PULL)
     receiver.bind(receiver_bind_to)
+
+    controller = context.socket(zmq.PUB)
+    controller.bind('tcp://*:5559')
 
     # wait for start of batch
     start_signal = receiver.recv()
@@ -30,3 +32,6 @@ if __name__ == '__main__':
             logging.info('.')
 
     logging.info('total elapsed time: %s msec', (time.perf_counter() - start_time) * 1000)
+
+    logging.info('notify all workers to quit')
+    controller.send(b'kill')
