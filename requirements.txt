@@ -82,3 +82,4 @@ pypdf3==1.0.5
 jupyterlab==3.2.0
 seaborn==0.11.2
 pycrypto==2.6.1
+aetcd3==0.1.0a7
