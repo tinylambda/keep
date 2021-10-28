@@ -6,6 +6,13 @@ import aetcd3
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
+"""
+use the following commands to change the key:
+# etcdctl put foo 5
+# etcdctl put foo 6
+# etcdctl put foo 5
+"""
+
 
 async def main():
     async with aetcd3.client() as client:
