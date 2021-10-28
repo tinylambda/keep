@@ -19,11 +19,9 @@ async def main():
         await client.put('/user_server/server_x', '')
         await client.put('/user_server/server_y', '')
 
-        it, cancel = await client.watch_prefix('/user_server/')
+        event = await client.watch_prefix_once('/user_server/')
 
-        async for event in it:
-            logging.info('detect event: %s', event)
-
+        logging.info('event is %s', event)
         logging.info('done')
 
 if __name__ == '__main__':
