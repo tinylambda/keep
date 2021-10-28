@@ -1,4 +1,6 @@
 import logging
+import os
+import signal
 import sys
 import time
 
@@ -12,6 +14,17 @@ if __name__ == '__main__':
     socket = context.socket(zmq.REP)
     socket.bind('tcp://*:5555')
 
+    interrupted = False
+
+    def callback(signum, stack):
+        global interrupted
+        interrupted = True
+
+    signal.signal(signal.SIGINT, callback)
+    signal.signal(signal.SIGTERM, callback)
+
+    logging.info('PID is %s', os.getpid())
+
     while True:
         # wait for next request from client
         message = socket.recv()
@@ -20,5 +33,10 @@ if __name__ == '__main__':
         # do some work
         time.sleep(1)
 
+        if interrupted:
+            logging.info('breaking loop')
+            break
+
         # send reply back to client
         socket.send(b'world')
+
