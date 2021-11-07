@@ -34,6 +34,16 @@ if __name__ == '__main__':
     identified.send(b'ROUTER socket uses REQ\'s socket identity')
     s_dump(sink)
 
+    sink.send(b'PEER2', zmq.SNDMORE)
+    sink.send(b'', zmq.SNDMORE)
+    sink.send(b'good')
+    s_dump(identified)
+
+    identified.send(b'hello')  # if commented out zmq.error.ZMQError: Operation cannot be accomplished in current state
+    sink.send(b'PEER2', zmq.SNDMORE)
+    sink.send(b'', zmq.SNDMORE)
+    sink.send(b'hello again')
+    s_dump(identified)
     # poller = zmq.Poller()
     # poller.register(sink, zmq.POLLIN)
     # while True:
