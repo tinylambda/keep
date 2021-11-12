@@ -25,9 +25,14 @@ def client_task():
     logging.info('sending: %s', message)
     client.send(message)
 
+    need_break: bool = random.random() < 0.5
+
     while True:
         poller.poll()
         msg = client.recv()
+        if need_break:
+            logging.info('client_task %s: break', identity)
+            break
         logging.info('%s: get message %s', identity, msg)
 
 
@@ -40,8 +45,9 @@ def server_worker(context: zmq.Context):
         identity = worker.recv()
         content = worker.recv()
 
-        logging.info('identity: %s, content: %s', identity, content)
+        logging.info('server_worker => identity: %s, content: %s', identity, content)
         replies = random.randint(0, 10)
+        logging.info('send %s replies to %s', replies, identity)
         for _ in range(replies):
             time.sleep(1)
             worker.send(identity, zmq.SNDMORE)
