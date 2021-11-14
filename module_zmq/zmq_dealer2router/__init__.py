@@ -10,30 +10,47 @@ import zmq
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
+def tick_task():
+    context = zmq.Context()
+    publisher = context.socket(zmq.PUB)
+    publisher.bind('tcp://*:7777')
+
+    while True:
+        publisher.send(b'K')
+        publisher.send(b'V')
+        time.sleep(1)
+
+
 def client_task():
     context = zmq.Context()
+    tick_source = context.socket(zmq.SUB)
+    tick_source.connect('tcp://localhost:7777')
+    tick_source.setsockopt(zmq.SUBSCRIBE, b'')
+
     client = context.socket(zmq.DEALER)
     identity = f'CLIENT_{uuid.uuid4().hex}'
     client.setsockopt(zmq.IDENTITY, identity.encode())
     client.connect('tcp://localhost:5570')
 
     poller = zmq.Poller()
+
+    poller.register(tick_source, zmq.POLLIN)
     poller.register(client, zmq.POLLIN)
 
     request_nbr = 0
-    message = f'{identity} request {request_nbr}'.encode()
-    logging.info('sending: %s', message)
-    client.send(message)
-
-    need_break: bool = random.random() < 0.5
-
     while True:
-        poller.poll()
-        msg = client.recv()
-        if need_break:
-            logging.info('client_task %s: break', identity)
-            break
-        logging.info('%s: get message %s', identity, msg)
+        socks = poller.poll()
+        for sock, mask in socks:
+            if sock is tick_source:
+                message = f'{identity} request {request_nbr}'.encode()
+                logging.info('sending: %s', message)
+                tick_source.recv()
+                tick_source.recv()
+                client.send(message)
+                request_nbr += 1
+            else:
+                msg = client.recv()
+                logging.info('%s: get message %s', identity, msg)
 
 
 def server_worker(context: zmq.Context):
@@ -45,9 +62,8 @@ def server_worker(context: zmq.Context):
         identity = worker.recv()
         content = worker.recv()
 
-        logging.info('server_worker => identity: %s, content: %s', identity, content)
         replies = random.randint(0, 10)
-        logging.info('send %s replies to %s', replies, identity)
+        logging.info('send %s replies to %s [%s]', replies, identity, content)
         for _ in range(replies):
             time.sleep(1)
             worker.send(identity, zmq.SNDMORE)
@@ -76,11 +92,13 @@ def server_task():
 
 
 if __name__ == '__main__':
+    threading.Thread(target=tick_task, daemon=True).start()
+
     threading.Thread(target=client_task, daemon=True).start()
     threading.Thread(target=client_task, daemon=True).start()
     threading.Thread(target=client_task, daemon=True).start()
 
     threading.Thread(target=server_task, daemon=True).start()
 
-    time.sleep(10)
+    time.sleep(100)
     logging.info('done')
