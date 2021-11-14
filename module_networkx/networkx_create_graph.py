@@ -33,4 +33,11 @@ if __name__ == '__main__':
     logging.info('add a list of edges: %s', G)
     G.add_edges_from([(1, 2), (1, 3)])
 
-    logging.info('final" %s', G)
+    logging.info('add edges from other graph')
+    G.add_edges_from(H.edges)
+
+    logging.info('G edges" %s', G.edges)
+    logging.info('H edges: %s', H.edges)
+
+    logging.info('G: %s', G)
+    logging.info('H: %s', H)
