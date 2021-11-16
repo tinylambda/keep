@@ -13,7 +13,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 def tick_task():
     context = zmq.Context()
     publisher = context.socket(zmq.PUB)
-    publisher.bind('tcp://*:7777')
+    publisher.bind('ipc://tick_go')
 
     while True:
         publisher.send(b'K')
@@ -24,7 +24,7 @@ def tick_task():
 def client_task():
     context = zmq.Context()
     tick_source = context.socket(zmq.SUB)
-    tick_source.connect('tcp://localhost:7777')
+    tick_source.connect('ipc://tick_go')
     tick_source.setsockopt(zmq.SUBSCRIBE, b'')
 
     client = context.socket(zmq.DEALER)
