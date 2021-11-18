@@ -85,3 +85,5 @@ pycrypto==2.6.1
 aetcd3==0.1.0a7
 chardet==4.0.0
 networkx==2.6.3
+cityhash==0.2.3.post9
+clickhouse-cityhash==1.0.2.3
