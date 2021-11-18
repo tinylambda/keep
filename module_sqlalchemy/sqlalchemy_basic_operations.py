@@ -1,6 +1,6 @@
 # https://docs.sqlalchemy.org/en/13/core/tutorial.html
 import sqlalchemy.orm
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, update
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
 from sqlalchemy.sql import select, and_, or_, not_, text, table, literal_column, func, desc
 from sqlalchemy.orm import sessionmaker
@@ -324,4 +324,14 @@ for item in session.query(User):
 
 print('Select after commit')
 for item in connection.execute(select([users])):
+    print(item)
+
+update_sql = update(User).where(User.id == 1).values(name='Felix')
+print(update_sql)
+print(update_sql.compile().params)
+print('Update!')
+session.execute(update_sql)
+
+print('Query after update')
+for item in session.query(User):
     print(item)

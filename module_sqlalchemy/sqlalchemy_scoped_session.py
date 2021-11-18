@@ -58,6 +58,16 @@ if __name__ == '__main__':
     for item in result:
         logging.info('Got: %s [%s]', item, type(item))
 
+    session.execute(users.update().where(users.c.id == 1).values(name='New Name'))
+
+    logging.info('Query by session')
+    for item in session.query(users):
+        logging.info('Got: %s', item)
+
+    logging.info('Query by connection')
+    for item in connection.execute(select(users)):
+        logging.info('Got: %s', item)
+
     logging.info('Rollback!')
     session.rollback()
 
@@ -68,3 +78,8 @@ if __name__ == '__main__':
     logging.info('Query by connection')
     for item in connection.execute(select(users)):
         logging.info('Got: %s', item)
+
+    update_sql_x = users.update().where(users.c.id == 1).values(name='Felix')
+    update_sql_y = update_sql_x.where(users.c.name == 'felix')
+    logging.info('update_sql_x = %s', update_sql_x)
+    logging.info('update_sql_y = %s', update_sql_y)
