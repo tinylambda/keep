@@ -1,5 +1,5 @@
 # https://docs.sqlalchemy.org/en/13/core/tutorial.html
-
+import sqlalchemy.orm
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
 from sqlalchemy.sql import select, and_, or_, not_, text, table, literal_column, func, desc
@@ -282,7 +282,7 @@ print('\n\nPlay with session: ')
 Session = sessionmaker(bind=engine, autoflush=False)
 
 # Create a Session object
-session = Session()
+session: sqlalchemy.orm.Session = Session()
 
 
 class User(Base):
