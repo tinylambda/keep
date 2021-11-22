@@ -43,11 +43,10 @@ if __name__ == '__main__':
     main_task_1 = threading.Thread(target=main_task, args=('Feeding data to ES', cdl))
     main_task_2 = threading.Thread(target=main_task, args=('Feeding data to Redis', cdl))
 
-    threads = [main_task_1, main_task_2, check_mysql, check_es, check_redis,]
+    threads = [main_task_1, main_task_2, check_mysql, check_es, check_redis]
     for t in threads:
         t.start()
     for t in threads:
         t.join()
 
     print('Done')
-

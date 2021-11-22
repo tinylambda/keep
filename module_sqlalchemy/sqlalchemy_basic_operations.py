@@ -1,6 +1,6 @@
 # https://docs.sqlalchemy.org/en/13/core/tutorial.html
-
-from sqlalchemy import create_engine
+import sqlalchemy.orm
+from sqlalchemy import create_engine, update
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
 from sqlalchemy.sql import select, and_, or_, not_, text, table, literal_column, func, desc
 from sqlalchemy.orm import sessionmaker
@@ -101,7 +101,6 @@ s = select([users.c.name, users.c.fullname])  # No id column here
 result = connection.execute(s)
 for row in result:
     print(row)
-
 
 print('\nWhat about a select relating to two tables (Cartesian product produced!): ')
 s = select([users, addresses])
@@ -272,7 +271,7 @@ for item in connection.execute(s):
     print(item)
 
 print('\nTable CTE:')
-users_cte = select([users.c.id, users.c.name]).where(users.c.name == 'felix').cte()
+users_cte = select([users.c.id, users.c.name]).where(users.c.name == 'felix').cte(name="my_name")
 s = select([addresses]).where(addresses.c.user_id == users_cte.c.id)
 for item in connection.execute(s):
     print(item)
@@ -283,7 +282,7 @@ print('\n\nPlay with session: ')
 Session = sessionmaker(bind=engine, autoflush=False)
 
 # Create a Session object
-session = Session()
+session: sqlalchemy.orm.Session = Session()
 
 
 class User(Base):
@@ -298,17 +297,41 @@ class User(Base):
 
 demo_user_1 = User(name='demo1', fullname='Demo1')
 demo_user_2 = User(name='demo2', fullname='Demo2')
+
+print('Add to session but do not commit[demo1, demo2]')
 session.add(demo_user_1)
 session.add(demo_user_2)
 
-# session.execute(users.insert(), [
-#     {'name': 'demo3', 'fullname': 'Demo3'},
-# ])
+print('Session.execute but not commit [demo3]')
+session.execute(users.insert(), [
+    {'name': 'demo3', 'fullname': 'Demo3'},
+])
 
+print('Query before commit')
 for item in session.query(User):
     print(item)
-# session.rollback()
-#
+# session.rollback()  # this will dismiss demo3
+
+print('Select before commit [demo3 exists]')
 for item in connection.execute(select([users])):
     print(item)
 
+session.commit()
+
+print('Query after commit')
+for item in session.query(User):
+    print(item)
+
+print('Select after commit')
+for item in connection.execute(select([users])):
+    print(item)
+
+update_sql = update(User).where(User.id == 1).values(name='Felix')
+print(update_sql)
+print(update_sql.compile().params)
+print('Update!')
+session.execute(update_sql)
+
+print('Query after update')
+for item in session.query(User):
+    print(item)
