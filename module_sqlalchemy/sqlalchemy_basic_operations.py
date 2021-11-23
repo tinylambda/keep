@@ -1,6 +1,6 @@
 # https://docs.sqlalchemy.org/en/13/core/tutorial.html
 import sqlalchemy.orm
-from sqlalchemy import create_engine, update
+from sqlalchemy import create_engine, update, delete
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
 from sqlalchemy.sql import select, and_, or_, not_, text, table, literal_column, func, desc
 from sqlalchemy.orm import sessionmaker
@@ -282,7 +282,7 @@ print('\n\nPlay with session: ')
 Session = sessionmaker(bind=engine, autoflush=False)
 
 # Create a Session object
-session: sqlalchemy.orm.Session = Session()
+session: sqlalchemy.orm.Session = Session(autocommit=False)
 
 
 class User(Base):
@@ -333,5 +333,23 @@ print('Update!')
 session.execute(update_sql)
 
 print('Query after update')
+for item in session.query(User):
+    print(item)
+
+print('Delete demo2')
+delete_sql = delete(User).where(User.name == 'demo2')
+print(delete_sql)
+print(delete_sql.compile().params)
+print('Delete!')
+session.execute(delete_sql)
+
+print('Query after delete')
+for item in session.query(User):
+    print(item)
+
+print('Rollback...')
+session.rollback()
+print('Query after rollback')
+# found that demo2 came back, if you want delete take effect, use session.commit() or session autocommit = True
 for item in session.query(User):
     print(item)
