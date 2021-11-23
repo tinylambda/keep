@@ -353,3 +353,15 @@ print('Query after rollback')
 # found that demo2 came back, if you want delete take effect, use session.commit() or session autocommit = True
 for item in session.query(User):
     print(item)
+
+print('Delete use table object')
+delete_sql = users.delete().where(users.c.name == 'demo2')
+print(delete_sql)
+print(delete_sql.compile().params)
+print('Delete!')
+session.execute(delete_sql)
+session.commit()
+
+print('Query after delete')
+for item in session.query(User):
+    print(item)
