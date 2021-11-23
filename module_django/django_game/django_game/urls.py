@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from home.views import UserView, SimpleView, UseCacheView, UseCacheView2
+
 urlpatterns = [
+    path('users/', UserView.as_view()),
+    path('simple/', SimpleView.as_view()),
+    path('usecache/', UseCacheView.as_view()),
+    path('usecache2/', UseCacheView2.as_view()),
     path('admin/', admin.site.urls),
 ]
