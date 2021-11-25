@@ -120,14 +120,3 @@ if __name__ == '__main__':
                 backend.send(request)
 
                 available_workers -= 1
-
-
-
-
-
-
-
-
-
-
-
