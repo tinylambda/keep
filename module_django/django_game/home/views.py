@@ -11,7 +11,7 @@ class UserView(ListView):
     def head(self, *args, **kwargs):
         last_user: User = self.get_queryset().latest('date_joined')
         response = HttpResponse(
-            headers={'Last-Modified': last_user.date_joined.strftime('%a, %d %b %Y %H:^M:%S GMT')}
+            headers={'Last-Modified': last_user.date_joined.strftime('%a, %d %b %Y %H:%M:%S GMT')}
         )
         return response
 
