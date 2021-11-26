@@ -1,4 +1,6 @@
 # https://docs.sqlalchemy.org/en/13/core/tutorial.html
+import logging
+
 import sqlalchemy.orm
 from sqlalchemy import create_engine, update, delete
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Sequence
@@ -364,4 +366,12 @@ session.commit()
 
 print('Query after delete')
 for item in session.query(User):
+    print(item)
+
+print('Use where OR')
+for item in session.query(User).where(or_(User.name == "felix", User.name == "jane")):
+    print(item)
+
+print('Use where IN')
+for item in session.query(User).where(User.name.in_(['felix', 'jane'])):
     print(item)
