@@ -1,0 +1,21 @@
+- name: table1
+  desc: table one
+  columns:
+    - col1:
+        type: string
+        desc: COL1
+        extra:
+          x: 100
+          y: 200
+    - col2:
+        type: int
+        desc: COL2
+        extra:
+          x: 1000
+          y: 2000
+- name: table2
+  desc: table two
+  columns:
+    - col100:
+        type: string
+        desc: COL 100

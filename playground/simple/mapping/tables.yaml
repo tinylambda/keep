@@ -1,0 +1,70 @@
+default.mapping_result:
+  desc: mapping result table
+  columns:
+    - name: user_id
+      type: bigint
+      desc: user_id
+    - name: biz_id
+      type: string
+      partitionColumn: true
+      desc: partition by this field
+default.mapping_result_delete:
+  desc: mapping result need to be deleted
+  columns:
+    - name: user_id
+      type: bigint
+      desc: user id
+    - name: biz_id
+      type: string
+      partitionColumn: true
+      desc: partition by this field
+    - name: version
+      type: string
+      partitionColumn: true
+      desc: delete version
+default.user_operations:
+  desc: user uploaded file upload here
+  columns:
+    - name: id_string
+      type: string
+      desc: use this field to mapping
+    - name: operation_id
+      type: string
+      partitionColumn: true
+      desc: this is the operation_id partition column
+default.mapping_result_s2:
+  desc: result table for another mapping system
+  columns:
+    - name: user_id
+      type: bigint
+      desc: another type of user_id
+    - name: biz_id
+      type: string
+      partitionColumn: true
+      desc: partition by this field
+default.mapping_datasource_1:
+  desc: one of the mapping datasource
+  columns:
+    - name: user_id
+      type: bigint
+      desc: user id
+    - name: device_id
+      type: string
+      desc: device id
+    - name: device_type
+      type: bigint.enum
+      desc: 1： iOS，2：Android
+      extra:
+        choices: 1, 2
+    - name: imei
+      type: string
+      desc: IMEI
+    - name: imeimd5
+      type: string
+      desc: IMEI_MD5
+    - name: p_date
+      type: string.date
+      partitionColumn: true
+      desc: etc. 20211125
+      extra:
+        date_format: yyyyMMdd

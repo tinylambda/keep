@@ -1,0 +1,24 @@
+user_upload_dataset:
+  desc: 用户上传数据
+  base_table: default.user_operations
+  key_column: id_string
+  input_filter_groups:
+    -
+      - op: '='
+        name: operation_id
+imei_mapping_dataset:
+  desc: IMEI匹配数据集
+  base_table: default.mapping_datasource_1
+  key_column: imei
+idfa_mapping_dataset:
+  desc: IDFA匹配数据集
+  base_table: default.mapping_datasource_1
+  key_column: imei
+imeimd5_mapping_dataset:
+  desc: IMEI_MD5匹配数据集
+  base_table: default.mapping_datasource_1
+  key_column: imeimd5
+idfamd5_mapping_dataset:
+  desc: IDFA_MD5匹配数据集
+  base_table: default.mapping_datasource_1
+  key_column: imeimd5
