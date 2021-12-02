@@ -2,10 +2,38 @@ user_upload_dataset:
   desc: 用户上传数据
   base_table: default.user_operations
   key_column: id_string
-  input_filter_groups:
+  read_filter:
     -
       - op: '='
         name: operation_id
+result_dataset_user_id:
+  desc: 结果数据集
+  base_table: default.mapping_result
+  key_column: user_id
+  read_filter:
+    -
+      - op: '='
+        name: biz_id
+  write_cond:
+    -
+      - op: '='
+        name: biz_id
+result_dataset_fakeid:
+  desc: fakeid结果数据集
+  base_table: default.mapping_result_s2
+  key_column: user_id
+  read_filter:
+    -
+      - op: '='
+        name: biz_id
+result_dataset_fakeid_encoded:
+  desc: fakeid_encoded结果数据集
+  base_table: default.mapping_result_s2
+  key_column: fakeid_encoded
+  read_filter:
+    -
+      - op: '='
+        name: biz_id
 imei_mapping_dataset:
   desc: IMEI匹配数据集
   base_table: default.mapping_datasource_1
@@ -22,3 +50,11 @@ idfamd5_mapping_dataset:
   desc: IDFA_MD5匹配数据集
   base_table: default.mapping_datasource_1
   key_column: imeimd5
+imei_multitype_mapping_dataset:
+  desc: 多类型的匹配数据集
+  base_table: default.mapping_datasource_multitype
+  key_column: id_value
+  read_filter:
+    -
+      - op: '='
+        name: id_type
