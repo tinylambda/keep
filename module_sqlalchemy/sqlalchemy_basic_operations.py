@@ -375,3 +375,13 @@ for item in session.query(User).where(or_(User.name == "felix", User.name == "ja
 print('Use where IN')
 for item in session.query(User).where(User.name.in_(['felix', 'jane'])):
     print(item)
+
+print('Use filter')
+for item in session.query(User)\
+        .filter(User.name != "felix")\
+        .filter(User.name != 'demo1'):
+    print(item)
+
+print('User filter by')
+for item in session.query(User).filter_by(name='felix'):
+    print(item)
