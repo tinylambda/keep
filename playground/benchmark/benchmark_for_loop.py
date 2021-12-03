@@ -4,16 +4,13 @@ import time
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
-
-class User:
-    def __init__(self, name: str, age: int):
-        self.name: str = name
-        self.age: int = age
-
-
 if __name__ == '__main__':
     n = 10000000
+    i = 0
+    s = 0
     start = time.perf_counter()
-    objects = [User('felix', 20) for i in range(n)]
+    while i < n:
+        s += 1
+        i += 1
     end = time.perf_counter()
     logging.info('cost %s', end - start)
