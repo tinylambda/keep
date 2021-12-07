@@ -1,23 +1,20 @@
 import logging
 import sys
 
+import attr
 import yaml
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
+@attr.s
 class Monster(yaml.YAMLObject):
     yaml_tag = '!Monster'
 
-    def __init__(self, name, hp, ac, attacks):
-        self.name = name
-        self.hp = hp
-        self.ac = ac
-        self.attacks = attacks
-
-    def __repr__(self):
-        return "%s(name=%r, hp=%r, ac=%r, attacks=%r)" \
-               % (self.__class__.__name__, self.name, self.hp, self.ac, self.attacks)
+    name = attr.ib()
+    hp = attr.ib()
+    ac = attr.ib()
+    attacks = attr.ib()
 
 
 if __name__ == '__main__':
@@ -29,13 +26,11 @@ if __name__ == '__main__':
     logging.info('%s', result)
 
     stream = '''!Monster
-ac: 16
-attacks:
-- BITE
-- HURT
-hp:
-- 2
-- 6
-name: Cave Spider'''
+    ac: 16
+    attacks:
+    - BITE
+    - HURT
+    hp: [2, 6]
+    name: Cave Spider'''
     result = yaml.unsafe_load(stream)
     logging.info('%s', result)

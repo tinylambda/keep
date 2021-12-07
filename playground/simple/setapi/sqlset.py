@@ -22,8 +22,11 @@ class SqlSet(SetApi):
         if not self.base_table.has_column(self.key_column):
             raise ValueError(f'table {self.base_table.name} has no column named {self.key_column.name}')
 
-    def _select(self, context: Dict):
-        self_columns: list[str] = [item.name for item in self.base_table.columns if not item.partition_column]
+    def _read_columns(self) -> list[str]:
+        return [item.name for item in self.base_table.columns if not item.partition_column]
+
+    def _select(self, context: Dict) -> str:
+        self_columns: list[str] = self._read_columns()
         return f'select {", ".join(self_columns)}'
 
     def _from(self, context: Dict):
@@ -39,7 +42,7 @@ class SqlSet(SetApi):
         try:
             value: str = context[name]
         except KeyError as e:
-            raise AttributeError(f'need to specify a value for {name}') from e
+            raise AttributeError(f'need to specify a value for {name} in context') from e
 
         column = self.base_table.get_column(name)
         if op in in_op_set:
@@ -95,29 +98,29 @@ if __name__ == '__main__':
 
     logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
-    table1 = Table('test_table', 'this is a good table', columns=[
-        Column('col1', SqlType.string, desc='this is a good column'),
-        Column('col2', SqlType.int, desc='this is also a good column'),
-        Column('p_date', SqlType.string, desc='this is also a good column', partition_column=True),
+    table1 = Table('ks_ad.orientation_operations', 'this is a good table', columns=[
+        Column('id_string', SqlType.string, desc='this is a good column'),
+        Column('operation_id', SqlType.string, desc='this is also a good column', partition_column=True),
     ])
 
     table2 = Table('second_table', 'this is a good table', columns=[
-        Column('colx', SqlType.string, desc='this is a good column'),
-        Column('coly', SqlType.int, desc='this is also a good column'),
+        Column('user_id', SqlType.string, desc='this is a good column'),
+        Column('imeimd5', SqlType.int, desc='this is also a good column'),
         Column('p_date', SqlType.float, desc='this is also a good column', partition_column=True),
     ])
 
-    s1: SqlSet = SqlSet(name='s1', desc='a good set', base_table=table1, key_column=table1.get_column('col1'),
-                        read_filter=[[{'op': '=', 'name': 'p_date'}, {'op': '=', 'name': 'p_date'}]], write_filter=[])
-    logging.info('%s', s1)
+    user_data_set: SqlSet = SqlSet(name='s1', desc='a good set', base_table=table1,
+                                   key_column=table1.get_column('id_string'),
+                                   read_filter=[[{'op': '=', 'name': 'operation_id'}]], write_filter=[])
+    logging.info('%s', user_data_set)
 
-    s2: SqlSet = SqlSet(name='s1', desc='a good set', base_table=table2, key_column=table2.get_column('colx'),
+    s2: SqlSet = SqlSet(name='s2', desc='a good set', base_table=table2, key_column=table2.get_column('imeimd5'),
                         read_filter=[[{}], [{}]], write_filter=[])
     logging.info('%s', s2)
 
     logging.info('%s', table1 == table2)
-    logging.info('%s', s1 == s2)
+    logging.info('%s', user_data_set == s2)
 
-    logging.info('%s', s1._select({}))
-    logging.info('%s', s1._from({}))
-    logging.info('%s', s1._where({'p_date': '201211202'}))
+    logging.info('%s', user_data_set._select({}))
+    logging.info('%s', user_data_set._from({}))
+    logging.info('%s', user_data_set._where({'operation_id': '100'}))
