@@ -1,9 +1,12 @@
-django==4.0rc1
+django==4.0
 daphne==3.0.2
 channels==3.0.4
 channels-redis==3.2.0
 celery==5.2.1
 django-celery-beat==2.2.1
+djangorestframework==3.12.4
+markdown==3.3.6
+django-filter==21.1
 happybase==1.2.0
 cryptography==3.3.2
 hdfs==2.5.8
@@ -83,8 +86,11 @@ jupyterlab==3.2.0
 seaborn==0.11.2
 pycrypto==2.6.1
 aetcd3==0.1.0a7
-chardet==4.0.0
+chardet==3.0.4
 networkx==2.6.3
 cityhash==0.2.3.post9
 clickhouse-cityhash==1.0.2.3
 tiptop==0.0.14
+httpie==2.6.0
+pygments==2.10.0
+urllib3==1.25
