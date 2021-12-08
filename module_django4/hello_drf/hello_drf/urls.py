@@ -21,14 +21,14 @@ from quickstart.views import UserViewSet, GroupViewSet
 
 from snippets.urls import urlpatterns as snippets_urlpatterns
 
-router = routers.DefaultRouter()
-router.register('users', UserViewSet)
-router.register('groups', GroupViewSet)
-
-router.urls.extend(snippets_urlpatterns)
+# router = routers.DefaultRouter()
+# router.register('users', UserViewSet)
+# router.register('groups', GroupViewSet)
+#
+# router.urls.extend(snippets_urlpatterns)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', include('snippets.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
 ]
