@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from snippets.models import Snippet
+from snippets.permissions import IsOwnerOrReadOnly
 from snippets.serializers import SnippetSerializer, UserSerializer
 
 
@@ -149,7 +150,6 @@ from snippets.serializers import SnippetSerializer, UserSerializer
 #     def delete(self, request, *args, **kwargs):
 #         return self.destroy(request, *args, **kwargs)
 
-@permission_classes((permissions.AllowAny,))
 class SnippetList(generics.ListCreateAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
@@ -159,11 +159,11 @@ class SnippetList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-@permission_classes((permissions.AllowAny, ))
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
 
 class UserList(generics.ListAPIView):
