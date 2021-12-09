@@ -94,3 +94,4 @@ tiptop==0.0.14
 httpie==2.6.0
 pygments==2.10.0
 urllib3==1.25
+qrcode==7.3.1
