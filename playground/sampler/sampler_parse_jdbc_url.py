@@ -9,4 +9,3 @@ if __name__ == '__main__':
 
     parsed = urlparse(url, scheme='jdbc:hive2')
     print(parsed)
-
