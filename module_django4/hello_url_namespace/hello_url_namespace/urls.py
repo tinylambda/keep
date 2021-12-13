@@ -1,7 +1,7 @@
-"""hello_django4 URL Configuration
+"""hello_url_namespace URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/dev/topics/http/urls/
+    https://docs.djangoproject.com/en/4.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -16,15 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from index.views import IndexView, UserListView, CacheView
-
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('userlist/', UserListView.as_view()),
-    path('cache/', CacheView.as_view()),
+    path('polls/', include('polls.urls')),
+    path('author-polls/', include(('polls.urls', 'polls'), namespace='author-polls')),
+    path('publisher-polls/', include(('polls.urls', 'polls'), namespace='publisher-pools')),
     path('admin/', admin.site.urls),
-
-    path('books/', include('urltest.urls')),
-
-    path('<username>/blog/', include('blog.urls'), {'foo': 'bar'}),
 ]
