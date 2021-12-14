@@ -27,4 +27,7 @@ urlpatterns = [
     path('books/', include('urltest.urls')),
 
     path('<username>/blog/', include('blog.urls'), {'foo': 'bar'}),
+
+    path('author-polls/', include(('polls.urls', 'polls'), namespace='author-polls')),
+    path('publisher-polls/', include(('polls.urls', 'polls'), namespace='publisher-polls')),
 ]

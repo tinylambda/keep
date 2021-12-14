@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
+import django.contrib.admin
 
 
 class UrlTestPathView(View):
