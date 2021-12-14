@@ -1,17 +1,39 @@
 from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponse, Http404
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import status, permissions, mixins, generics, renderers, viewsets
-from rest_framework.decorators import api_view, permission_classes, action
-from rest_framework.parsers import JSONParser
+from django.contrib.auth.password_validation import validate_password
+from django.core import validators
+from django.core.exceptions import ValidationError
+from rest_framework import permissions, renderers, viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
-from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
-from rest_framework.views import APIView
 
+from snippets.exceptions import ChangePasswordException
 from snippets.models import Snippet
-from snippets.permissions import IsOwnerOrReadOnly
+from snippets.permissions import IsOwnerOrReadOnly, IsAdminOrIsSelf
 from snippets.serializers import SnippetSerializer, UserSerializer
+# @permission_classes((permissions.AllowAny,))
+# class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+#     queryset = Snippet.objects.all()
+#     serializer_class = SnippetSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+#
+#
+# @permission_classes((permissions.AllowAny, ))
+# class SnippetDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin, generics.GenericAPIView):
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+#
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+#
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+from snippets.throttling import AnonRateLimit, UserRateLimit
 
 
 # @csrf_exempt
@@ -49,7 +71,6 @@ from snippets.serializers import SnippetSerializer, UserSerializer
 #     elif request.method == 'DELETE':
 #         snippet.delete()
 #         return HttpResponse(status=204)
-
 # USE @api_view
 # @api_view(['GET', 'POST'])
 # @permission_classes((permissions.AllowAny,))
@@ -85,7 +106,6 @@ from snippets.serializers import SnippetSerializer, UserSerializer
 #     elif request.method == 'DELETE':
 #         snippet.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
-
 # USE class based views
 # @permission_classes((permissions.AllowAny, ))
 # class SnippetList(APIView):
@@ -128,35 +148,23 @@ from snippets.serializers import SnippetSerializer, UserSerializer
 #         snippet.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# @permission_classes((permissions.AllowAny,))
-# class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-#     queryset = Snippet.objects.all()
-#     serializer_class = SnippetSerializer
-#
-#     def get(self, request, *args, **kwargs):
-#         return self.list(request, *args, **kwargs)
-#
-#     def post(self, request, *args, **kwargs):
-#         return self.create(request, *args, **kwargs)
-#
-#
-# @permission_classes((permissions.AllowAny, ))
-# class SnippetDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-#                     mixins.DestroyModelMixin, generics.GenericAPIView):
-#     def get(self, request, *args, **kwargs):
-#         return self.retrieve(request, *args, **kwargs)
-#
-#     def put(self, request, *args, **kwargs):
-#         return self.update(request, *args, **kwargs)
-#
-#     def delete(self, request, *args, **kwargs):
-#         return self.destroy(request, *args, **kwargs)
-from snippets.throttling import AnonRateLimit, UserRateLimit
-
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
+
+    @action(methods=['post'], detail=True, permission_classes=[IsAdminOrIsSelf],
+            url_path='change-password', url_name='change_password')
+    def set_password(self, request, pk=None):
+        user: User = self.get_object()
+        new_password = request.POST.get('new_password')
+        try:
+            validate_password(new_password)
+        except ValidationError as e:
+            raise ChangePasswordException(e.message, code=10001)
+        user.set_password(new_password)
+        user.save()
+        return Response(data=UserSerializer(user, context={'request': request}).data)
 
 
 class SnippetViewSet(viewsets.ModelViewSet):

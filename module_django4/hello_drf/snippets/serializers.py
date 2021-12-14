@@ -34,7 +34,8 @@ class SnippetSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
+    change_password = serializers.HyperlinkedIdentityField(view_name='user-change_password')
 
     class Meta:
         model = User
-        fields = ['url', 'id', 'username', 'snippets']
+        fields = ['url', 'id', 'username', 'snippets', 'change_password']
