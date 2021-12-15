@@ -14,3 +14,6 @@ class BugStatus(enum.IntEnum):
 print('Ordered by value: ')
 print('\n'.join(' ' + s.name for s in sorted(BugStatus)))
 
+print(BugStatus.new == 7)
+print(BugStatus.incomplete == 6)
+
