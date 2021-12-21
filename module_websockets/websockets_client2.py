@@ -47,7 +47,7 @@ async def simple_ws(
                     })
                     await client_side_ws.send(data)
 
-                msg = '{}'
+                msg = None
                 if ws_recv_task.done():
                     msg = ws_recv_task.result()
                     on_message(msg)
@@ -55,7 +55,11 @@ async def simple_ws(
                 for task in tasks:
                     task.cancel()
 
+                if not msg:
+                    continue
+
                 msg_dict: dict = json.loads(msg)
+                print('get message dict: ', msg_dict)
                 if msg_dict.get('message').strip() == 'bye':
                     break
             except Exception as e:
