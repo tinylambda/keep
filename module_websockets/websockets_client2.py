@@ -1,10 +1,9 @@
 import asyncio
 import json
 import sys
+from typing import Callable
 
 import websockets
-
-from typing import Callable
 
 
 def get_stdin(eq):
@@ -30,6 +29,7 @@ async def simple_ws(
 
     loop = asyncio.get_event_loop()
     async with websockets.connect(uri, extra_headers=[('Authorization', 'Token xxxx')]) as client_side_ws:
+        print(type(client_side_ws))
         _callback(on_open)
         while True:
             try:
@@ -45,7 +45,7 @@ async def simple_ws(
                     data = json.dumps({
                         'message': e.get('value')
                     })
-                    await client_side_ws.send(data)
+                    await client_side_ws.send(data.encode('utf-8'))
 
                 msg = None
                 if ws_recv_task.done():
@@ -61,6 +61,7 @@ async def simple_ws(
                 msg_dict: dict = json.loads(msg)
                 print('get message dict: ', msg_dict)
                 if msg_dict.get('message').strip() == 'bye':
+                    print('bye bye')
                     break
             except Exception as e:
                 on_error(e)
@@ -71,7 +72,7 @@ if __name__ == '__main__':
     events_q = asyncio.Queue()
     event_loop.add_reader(sys.stdin, get_stdin, events_q)
 
-    asyncio.get_event_loop().run_until_complete(simple_ws(
+    event_loop.run_until_complete(simple_ws(
         uri='ws://localhost:20000/ws/chat/cc/',
         on_open=lambda: print('open'),
         on_message=lambda msg: print('Received: ', msg),

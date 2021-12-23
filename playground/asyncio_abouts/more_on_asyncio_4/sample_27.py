@@ -97,7 +97,7 @@ async def handle_message(msg: PubSubMessage):
     asyncio.create_task(cleanup(msg, event))
 
     # remove return_exceptions=True for debugging purpose
-    results = await asyncio.gather(save(msg), restart_host(msg))
+    results = await asyncio.gather(save(msg), restart_host(msg), return_exceptions=True)
     handle_results(results, msg)
     event.set()
 
