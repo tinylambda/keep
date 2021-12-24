@@ -6,11 +6,13 @@ import time
 import aetcd3
 from aetcd3 import Lease
 
+from module_aetcd3 import ETCD_KWARGS
+
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
 async def main():
-    async with aetcd3.client() as client:
+    async with aetcd3.client(**ETCD_KWARGS) as client:
         # create a lease with 20 seconds
         lease: Lease = await client.lease(20)
         logging.info('lease id is %s', lease.id)
@@ -28,7 +30,7 @@ async def main():
             if foo_value is None:
                 logging.info('foo_value is None, break')
                 break
-            time.sleep(1)
+            await asyncio.sleep(1)
 
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(main())

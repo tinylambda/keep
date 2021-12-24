@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import sys
-import time
 
 import aetcd3
 from aetcd3 import Lease
