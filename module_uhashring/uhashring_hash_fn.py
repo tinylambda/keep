@@ -8,6 +8,7 @@ if __name__ == '__main__':
     hr.add_node('node4')
     target_node = hr.get_node('coconut')
     print(target_node)
+    print('server', hr.get_server('coconut'))
 
     hr.add_node('node5')
     target_node = hr.get_node('coconut')
