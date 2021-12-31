@@ -20,7 +20,8 @@ async def main():
         v = await client.get('foo')
         logging.info('value of foo is %s', v)
 
-        events_iterator, cancel = await client.watch('foo')
+        # events_iterator, cancel = await client.watch('foo')
+        events_iterator, cancel = await client.watch('foo', start_revision=1)
         event_times = 0
         async for event in events_iterator:
             logging.info('event is %s', event)
