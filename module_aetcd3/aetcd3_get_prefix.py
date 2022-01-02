@@ -16,8 +16,8 @@ to see what happens
 
 async def main():
     async with aetcd3.client() as client:
-        # await client.put('/user_server/server_x', '1')
-        # await client.put('/user_server/server_y', '2')
+        await client.put('/user_server/server_x', '1')
+        await client.put('/user_server/server_y', '2')
 
         # use get
         value, metadata = await client.get('/user_server/server_x')
