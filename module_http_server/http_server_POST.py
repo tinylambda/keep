@@ -31,13 +31,13 @@ class PostHandler(BaseHTTPRequestHandler):
         out.write('Form data:\n')
         for field in form.keys():
             field_item = form[field]
-            if field_item.added_filename:
+            if getattr(field_item, 'filename', None) is not None:
                 # The field contains an uploaded file
                 file_data = field_item.file.read()
                 file_len = len(file_data)
                 del file_data
                 out.write('\tUploaded {} as {!r} ({} bytes)\n'.format(
-                    field, field_item.added_filename, file_len
+                    field, field_item.filename, file_len
                 ))
             else:
                 out.write('\t{}={}\n'.format(field, form[field].value))
