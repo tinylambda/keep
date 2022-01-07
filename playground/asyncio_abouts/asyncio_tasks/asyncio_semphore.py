@@ -21,22 +21,21 @@ async def sem_release(sem: asyncio.Semaphore, times=3):
 
 
 async def sem_trigger(sem: asyncio.Semaphore, event: asyncio.Event, n):
-    ack_num = 0
-    while True:
+    while n > 0:
         await sem.acquire()
-        ack_num += 1
-        if ack_num == n:
-            event.set()
+        n -= 1
+    event.set()
 
 
 async def full_worker():
     loop = asyncio.get_event_loop()
     sig_event = asyncio.Event()
-    sem: asyncio.Semaphore = await fetch_sem(10)
-    logging.info('%s', sem.locked)
+    n = 5
+    sem: asyncio.Semaphore = await fetch_sem(n)
+    logging.info('%s', sem.locked())
     logging.info('wait to trigger ...')
-    loop.create_task(sem_trigger(sem, sig_event, 10))
-    loop.create_task(sem_release(sem, 10))
+    loop.create_task(sem_trigger(sem, sig_event, n))
+    loop.create_task(sem_release(sem, n))
 
     await sig_event.wait()
     logging.info('I can start work now!')

@@ -107,6 +107,6 @@ class BattleService(Service):
 
 if __name__ == '__main__':
     # simulate starting services on different servers
-    # some node will get all services by using get_prefix call
+    # some node will not get all services by using get_prefix call
     process_pool = concurrent.futures.ProcessPoolExecutor()
     results = process_pool.map(BattleService.start_in_process, (2, 2, 2, 2))
