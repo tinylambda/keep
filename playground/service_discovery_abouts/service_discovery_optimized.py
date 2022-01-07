@@ -9,7 +9,7 @@ import uuid
 import aetcd3
 import attr
 import zmq.asyncio
-from aetcd3 import Event, PutEvent, DeleteEvent
+from aetcd3 import Event, PutEvent, DeleteEvent, Lease
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
@@ -26,6 +26,8 @@ class BattleService:
     SERVICE_ROOT = '/test-services/'
     SERVICE_LOCK_ROOT = '/test-locks/services/'
     SERVICES = {}
+    SERVICE_TTL = 10
+    SERVICE_TTL_REFRESH_INTERVAL = 7
 
     zmq_context = attr.ib(default=attr.Factory(zmq.asyncio.Context))
     events_buffer = attr.ib(default=attr.Factory(list[Event]))
@@ -40,6 +42,7 @@ class BattleService:
     service_start_listen_service_directory_event = attr.ib(default=attr.Factory(asyncio.Event))
     asyncio_loop = attr.ib(default=attr.Factory(asyncio.get_event_loop))
     service_prepare_semaphore = attr.ib(default=None)
+    service_lease_id = attr.ib(default=None)
 
     def __attrs_post_init__(self):
         self.service_socket = self.zmq_context.socket(zmq.REP)
@@ -80,7 +83,7 @@ class BattleService:
         """receive request data"""
         return self.asyncio_loop.create_task(self.service_socket.recv())
 
-    def new_client_instance(self, host_ip, port):
+    def new_client_instance(self, host_ip, port, **kwargs):
         instance = self.zmq_context.socket(zmq.REQ)
         instance.connect(f'tcp://{host_ip}:{port}')
         return instance
@@ -145,7 +148,19 @@ class BattleService:
 
     async def register_self(self):
         async with aetcd3.client() as client:
-            await client.put(self.service_register_key, self.service_register_value)
+            lease: Lease = await client.lease(self.__class__.SERVICE_TTL)
+            self.service_lease_id = lease.id
+            await client.put(self.service_register_key, self.service_register_value, lease)
+
+    async def service_ttl_refresh(self):
+        await self.found_self_event.wait()
+
+        logging.info('start to refresh service ttl')
+        async with aetcd3.client() as client:
+            while not self.service_stop_event.is_set():
+                await asyncio.sleep(self.__class__.SERVICE_TTL_REFRESH_INTERVAL)
+                await client.refresh_lease(lease_id=self.service_lease_id)
+                logging.info('lease refreshed')
 
     async def service_say_hi(self):
         logging.info('service [%s] say hi to other service instances', self.service_register_key)
@@ -183,6 +198,7 @@ class BattleService:
     def run(self):
         self.asyncio_loop.create_task(self.core_loop())
         self.asyncio_loop.create_task(self.service_say_hi())
+        self.asyncio_loop.create_task(self.service_ttl_refresh())
         self.asyncio_loop.run_forever()
 
 
