@@ -2,5 +2,6 @@ import platform
 import sys
 
 if __name__ == '__main__':
-    print('interpreter: ', platform.architecture())
+    print('sys.executable: ', sys.executable)
+    print('interpreter (sys.executable): ', platform.architecture())
     print('/bin/ls: ', platform.architecture('/bin/ls'))
