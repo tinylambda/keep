@@ -1,4 +1,5 @@
 import logging
+import random
 import sys
 
 import zmq
@@ -13,10 +14,12 @@ if __name__ == '__main__':
     socket = context.socket(zmq.REQ)
     socket.connect('tcp://localhost:5555')
 
+    send_message = f'hello-{random.randint(0, 1000)}'.encode()
+
     for request in range(10):
-        logging.info('sending request %s', request)
-        socket.send(b'hello')
+        logging.info('sending request %s', send_message)
+        socket.send(send_message)
 
         # get the reply
-        message = socket.recv()
-        logging.info('received reply %s [%s]', request, message)
+        received_message = socket.recv()
+        logging.info('received reply %s [%s]', request, received_message)

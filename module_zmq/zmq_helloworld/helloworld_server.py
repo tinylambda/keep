@@ -1,5 +1,6 @@
 import logging
 import os
+import random
 import signal
 import sys
 import time
@@ -31,12 +32,12 @@ if __name__ == '__main__':
         logging.info('received request: %s', message)
 
         # do some work
-        time.sleep(1)
+        time.sleep(random.randint(4, 7))
 
         if interrupted:
             logging.info('breaking loop')
             break
 
-        # send reply back to client
-        socket.send(b'world')
+        # send reply to client
+        socket.send(b'your message is ' + message)
 
