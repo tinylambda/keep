@@ -26,13 +26,13 @@ if __name__ == '__main__':
         logging.info('readers: %s; socket closed?: %s', readers, socket.closed)
         if not readers:
             socket.close()
-            logging.info('Rconnecting to zmq_helloworld server...')
+            poller.unregister(socket)
+
+            logging.info('Reconnecting to zmq_helloworld server...')
             socket = context.socket(zmq.REQ)
             socket.connect('tcp://localhost:5555')
 
-            poller = zmq.Poller()
             poller.register(socket, zmq.POLLIN)
-            POLL_TIMEOUT = 3000
         else:
             # get the reply
             message = socket.recv()
