@@ -15,5 +15,3 @@ class EchoHandler(StreamRequestHandler):
 if __name__ == '__main__':
     serv = TCPServer(('', 15000), partial(EchoHandler, ack=b'Got: '))
     serv.serve_forever()
-
-
