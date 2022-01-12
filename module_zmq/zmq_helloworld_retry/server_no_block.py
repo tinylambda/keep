@@ -17,7 +17,7 @@ if __name__ == '__main__':
     socket = context.socket(zmq.ROUTER)
     # socket.setsockopt(zmq.RCVHWM, 5)
     # socket.setsockopt(zmq.SNDHWM, 5)
-    socket.bind('tcp://*:5555')
+    socket.bind('tcp://*:7777')
 
     interrupted = False
 
@@ -36,23 +36,25 @@ if __name__ == '__main__':
 
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=4)
     recv_lock = threading.Lock()
+    send_lock = threading.Lock()
 
     def worker(s):
         thread_name = threading.current_thread().name
         logging.info('waiting for socket (%s) msg in thread %s', s, thread_name)
 
-        def do(msg):
+        def do(msg, addr):
             logging.info('got msg: %s', msg)
             time.sleep(random.random())
             message = f'{thread_name} : '.encode() + msg
-            s.send(addr, zmq.SNDMORE)
-            s.send(message)
+            with send_lock:
+                s.send(addr, zmq.SNDMORE)
+                s.send(message)
 
         while True:
             with recv_lock:
                 addr = s.recv()
                 msg = s.recv()
-                threading.Thread(target=do, args=(msg, ), daemon=True).start()
+                threading.Thread(target=do, args=(msg, addr), daemon=True).start()
                 if interrupted:
                     break
 
