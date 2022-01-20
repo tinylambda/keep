@@ -12,6 +12,9 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 if __name__ == '__main__':
     context = zmq.Context()
+    context.setsockopt(zmq.LINGER, 10 * 1000)
+    print(dir(context))
+    print(context._sockets)
     socket = context.socket(zmq.REP)
     socket.bind('tcp://*:5555')
 
@@ -28,6 +31,7 @@ if __name__ == '__main__':
 
     while True:
         # wait for next request from client
+        print(context._sockets)
         message = socket.recv()
         logging.info('received request: %s', message)
 
