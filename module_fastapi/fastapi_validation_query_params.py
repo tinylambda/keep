@@ -34,4 +34,4 @@ async def read_items(
 
     return results
 
-
+# PYTHONPATH=module_fastapi uvicorn fastapi_validation_query_params:app --reload
