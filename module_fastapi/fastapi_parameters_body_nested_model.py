@@ -56,3 +56,6 @@ if __name__ == '__main__':
     print(item1.tags, id(item1.tags))
     print(item2.tags, id(item2.tags))
     assert id(item1.tags) != id(item2.tags)
+
+
+# PYTHONPATH=module_fastapi uvicorn fastapi_parameters_body_nested_model:app --reload
