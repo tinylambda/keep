@@ -103,3 +103,4 @@ papa==1.0.6
 uwsgi==2.0.20
 fastapi==0.73.0
 uvicorn==0.17.1
+pydantic==1.9.0
