@@ -6,6 +6,7 @@ import sys
 import time
 
 import zmq
+from zmq import ZMQError
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
@@ -16,7 +17,23 @@ if __name__ == '__main__':
     print(dir(context))
     print(context._sockets)
     socket = context.socket(zmq.REP)
-    socket.bind('tcp://*:5555')
+
+    times = 10
+    for i in range(10):
+        try:
+            socket.bind('tcp://*:5555')
+        except ZMQError as e:
+            if e.strerror == 'Address already in use':
+                time.sleep(1)
+                print('RETRYING...')
+                continue
+            else:
+                raise e
+        else:
+            break
+    else:
+        raise RuntimeError('Address already in use!!!!!! %s' % times)
+
 
     interrupted = False
 
