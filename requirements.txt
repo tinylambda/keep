@@ -82,7 +82,7 @@ aiologger==0.6.1
 grpcio==1.39.0
 grpcio-tools==1.39.0
 pypdf3==1.0.5
-jupyterlab==3.2.0
+jupyterlab==3.2.9
 seaborn==0.11.2
 pycrypto==2.6.1
 aetcd3==0.1.0a7
@@ -93,7 +93,7 @@ clickhouse-cityhash==1.0.2.3
 tiptop==0.0.14
 httpie==2.6.0
 pygments==2.10.0
-urllib3==1.26.5
+urllib3==1.26.8
 qrcode==7.3.1
 sqlparse==0.4.2
 uhashring==2.1
