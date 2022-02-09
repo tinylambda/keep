@@ -55,7 +55,8 @@ class BaseHandler(tornado.web.RequestHandler, ABC):
     def get_current_user(self) -> User:
         user_id = self.get_secure_cookie('user')
         if not user_id:
-            return self.backend.get(1)
+            # return self.backend.get(1)  # test without login
+            return None
         user_id = int(user_id)
         return self.backend.get(user_id)
 
