@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <form action="/form" method="POST">
+            {% module xsrf_form_html() %}
+            <input type="text" name="message">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -55,8 +55,8 @@ class BaseHandler(tornado.web.RequestHandler, ABC):
     def get_current_user(self) -> User:
         user_id = self.get_secure_cookie('user')
         if not user_id:
-            # return self.backend.get(1)  # test without login
-            return None
+            return self.backend.get(1)  # test without login
+            # return None
         user_id = int(user_id)
         return self.backend.get(user_id)
 
@@ -104,10 +104,7 @@ class StoryHandler(BaseHandler):
 
 class FormHandler(BaseHandler):
     def get(self):
-        self.write('<html><body><form action="/form" method="POST">'
-                   '<input type="text" name="message">'
-                   '<input type="submit" value="Submit">'
-                   '</form></body></html>')
+        self.render('form.html')
 
     def post(self):
         self.set_header('Content-Type', 'text/plain')
@@ -159,6 +156,7 @@ def make_app():
         compiled_template_cache=False,
         cookie_secret='abc123',
         ui_modules=ui_modules,
+        xsrf_cookies=True,
     )
 
 

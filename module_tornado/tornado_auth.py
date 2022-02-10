@@ -1,25 +1,32 @@
+from pathlib import Path
 from typing import Any
 
 import tornado.web
 from tornado.ioloop import IOLoop
 from tornado.routing import URLSpec
 
-from module_tornado.tornado_helloworld import BaseHandler
+from module_tornado.tornado_helloworld import BaseHandler, User
 
 
-class MainHandler(BaseHandler):
+class MyBaseHandler(BaseHandler):
+    def get_current_user(self) -> User:
+        user_id = self.get_secure_cookie('user')
+        if not user_id:
+            return None
+        user_id = int(user_id)
+        return self.backend.get(user_id)
+
+
+class MainHandler(MyBaseHandler):
     @tornado.web.authenticated
     def get(self):
         name = self.current_user.name
         self.write(f'Hello, {name}')
 
 
-class LoginHandler(BaseHandler):
+class LoginHandler(MyBaseHandler):
     def get(self):
-        self.write('<html><body><form action="/login" method="post">'
-                   'Name: <input type="text" name="user_id">'
-                   '<input type="submit" value="Sign in">'
-                   '</form></body></html>')
+        self.render('login.html')
 
     def post(self):
         user_id = int(self.get_argument('user_id'))
@@ -36,8 +43,10 @@ def make_app():
         URLSpec(r'/', MainHandler),
         URLSpec(r'/login', LoginHandler),
     ],
+        template_path=Path.cwd() / 'templates',
         cookie_secret='abc123',
         login_url='/login',
+        xsrf_cookies=True,
     )
     return application
 
