@@ -3,7 +3,7 @@ from pydantic import BaseModel, ValidationError, Field
 
 class Model(BaseModel):
     a: int
-    b: int = ...
+    b: int = ...  # will not work well with mypy
     c: int = Field(...)
 
 
