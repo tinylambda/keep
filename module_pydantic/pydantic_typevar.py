@@ -2,9 +2,10 @@ from typing import TypeVar
 
 from pydantic import BaseModel
 
-Foobar = TypeVar('Foobar')
-BoundFloat = TypeVar('BoundFloat')
+Foobar = TypeVar('Foobar')  # NOTE: default None
+BoundFloat = TypeVar('BoundFloat', bound=float)
 IntOrStr = TypeVar('IntOrStr', int, str)
+StrType = TypeVar('StrType')
 
 
 class Model(BaseModel):
