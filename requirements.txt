@@ -1,4 +1,4 @@
-django==4.0.1
+django==4.0.2
 daphne==3.0.2
 channels==3.0.4
 channels-redis==3.2.0
@@ -19,7 +19,7 @@ feedparser==5.2.1
 kivy==2.0.0
 redis==3.5.1
 elasticsearch==7.10.0
-pillow==9.0.0
+pillow==9.0.1
 filetype==1.0.7
 pandas==1.2.1
 cython==0.29.20
@@ -91,7 +91,7 @@ networkx==2.6.3
 cityhash==0.2.3.post9
 clickhouse-cityhash==1.0.2.3
 tiptop==0.0.14
-httpie==2.6.0
+httpie==3.1.0
 pygments==2.10.0
 urllib3==1.26.8
 qrcode==7.3.1
