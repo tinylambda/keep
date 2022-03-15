@@ -107,3 +107,4 @@ pydantic==1.9.0
 tornado==6.1
 scipy==1.8.0
 python-multipart==0.0.5
+starlette==0.17.1
