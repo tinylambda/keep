@@ -8,7 +8,7 @@ djangorestframework==3.12.4
 markdown==3.3.6
 django-filter==21.1
 happybase==1.2.0
-cryptography==3.3.2
+cryptography==36.0.2
 hdfs==2.5.8
 boto3==1.13.6
 sqlalchemy==1.4.15
