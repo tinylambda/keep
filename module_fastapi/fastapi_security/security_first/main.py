@@ -163,3 +163,5 @@ async def read_own_items(current_user: User = Depends(get_current_user)):
         {'item_id': 'foo', 'owner': current_user.username},
         {'item_id': 'bar', 'owner': current_user.username},
     ]
+
+# PYTHONPATH=module_fastapi uvicorn fastapi_security.security_first.main:app --reload
