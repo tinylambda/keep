@@ -146,3 +146,5 @@ static/tests/
 *.zip
 
 *.stats
+
+*.db

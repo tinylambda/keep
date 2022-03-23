@@ -382,6 +382,18 @@ for item in session.query(User)\
         .filter(User.name != 'demo1'):
     print(item)
 
-print('User filter by')
+print('Use filter by')
 for item in session.query(User).filter_by(name='felix'):
     print(item)
+
+
+print('Use offset and limit')
+for item in session.query(User).offset(0).limit(2).all():
+    print(item)
+
+
+for item in session.query(User).filter(User.id == -1).all():
+    print(item)
+
+print('Filter returns no records')
+print(session.query(User).filter(User.id == -1).first())
