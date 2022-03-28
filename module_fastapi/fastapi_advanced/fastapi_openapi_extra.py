@@ -74,4 +74,3 @@ async def create_item2(request: Request):
 
 
 # PYTHONPATH=module_fastapi/fastapi_advanced uvicorn fastapi_openapi_extra:app --reload
-
