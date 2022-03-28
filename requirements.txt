@@ -108,3 +108,4 @@ tornado==6.1
 scipy==1.8.0
 python-multipart==0.0.5
 starlette==0.17.1
+orjson==3.6.7
