@@ -63,7 +63,7 @@ async def read_item3(item_id: str):
         return {'id': 'foo', 'value': 'there goes my hero'}
     else:
         # raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item not found')
-        return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'message': 'Itesm not found'})
+        return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'message': 'Item is not found'})
 
 
 # PYTHONPATH=module_fastapi/fastapi_advanced uvicorn fastapi_additional_response:app --reload
