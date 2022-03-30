@@ -16,3 +16,5 @@ def create_cookie_direct():
     response = JSONResponse(content=content)
     response.set_cookie(key='s-key', value='s-value')
     return response
+
+# PYTHONPATH=module_fastapi/fastapi_advanced uvicorn fastapi_response_parameter:app --reload
