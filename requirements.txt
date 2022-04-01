@@ -111,3 +111,4 @@ starlette==0.17.1
 orjson==3.6.7
 databases==0.5.5
 aiosqlite==0.17.0
+jinja2==3.1.1
