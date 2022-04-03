@@ -1,0 +1,2 @@
+def worker():
+    print('Worker')
