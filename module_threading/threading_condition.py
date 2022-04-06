@@ -16,7 +16,7 @@ def producer(cond):
     logging.debug('Starting producer thread')
     with cond:
         logging.debug('Making resource available')
-        cond.notifyAll()
+        cond.notify_all()
 
 
 logging.basicConfig(
