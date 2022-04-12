@@ -11,14 +11,14 @@ def read(connection, mask):
     global keep_running
 
     client_address = connection.getpeername()
-    print('read({})'.format(client_address))
+    print('Read({})'.format(client_address))
     data = connection.recv(1024)
     if data:
         # A readable client socket has data
         connection.sendall(data)
     else:
         # Interpret empty result as closed connection
-        print('closing')
+        print('Closing')
         mysel.unregister(connection)
         connection.close()
         # Tell the main loop to stop
@@ -28,7 +28,7 @@ def read(connection, mask):
 def accept(sock, mask):
     """Callback for new connections"""
     new_connection, addr = sock.accept()
-    print('accept({})'.format(addr))
+    print('Accept({})'.format(addr))
     new_connection.setblocking(False)
     mysel.register(new_connection, selectors.EVENT_READ, read)
 
