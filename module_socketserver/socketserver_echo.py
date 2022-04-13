@@ -18,7 +18,7 @@ class EchoRequestHandler(socketserver.BaseRequestHandler):
         return socketserver.BaseRequestHandler.setup(self)
 
     def handle(self):
-        self.logger.debug('handle')
+        self.logger.debug('handle, with server %s (%s)', self.server, type(self.server))
 
         # Echo the back to the client
         data = self.request.recv(1024)
@@ -86,6 +86,20 @@ if __name__ == '__main__':
     s.connect((ip, port))
 
     message = 'Hello world'.encode()
+    logger.debug('Sending data: %s', message)
+    len_sent = s.send(message)
+
+    logger.debug('Waiting for response')
+    response = s.recv(len_sent)
+    logger.debug('Response from server: %r', response)
+    s.close()
+
+    logger.debug('Connecting to server')
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    logger.debug('Connecting to server')
+    s.connect((ip, port))
+
+    message = 'Hello world2'.encode()
     logger.debug('Sending data: %s', message)
     len_sent = s.send(message)
 
