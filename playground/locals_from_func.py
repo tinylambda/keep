@@ -9,7 +9,12 @@ class A:
 
     m = property(**myfunc())
 
+    @property
+    def n(self):
+        return 'def'
+
 
 if __name__ == '__main__':
     a = A()
     print(a.m)
+    print(a.n)
