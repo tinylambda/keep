@@ -1,3 +1,3 @@
 import time
 
-print('__init__.py', time.time())
+print(__file__, time.time())
