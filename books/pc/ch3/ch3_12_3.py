@@ -1,8 +1,6 @@
 from datetime import datetime
-from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
-
 
 if __name__ == '__main__':
     a = datetime(2012, 9, 23)
@@ -16,4 +14,3 @@ if __name__ == '__main__':
     d = relativedelta(b, a)
     print(d.months)
     print(d.days)
-
