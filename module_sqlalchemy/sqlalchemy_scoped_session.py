@@ -2,7 +2,17 @@ import logging
 import sys
 
 import sqlalchemy.orm
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Sequence, String, ForeignKey, select
+from sqlalchemy import (
+    create_engine,
+    MetaData,
+    Table,
+    Column,
+    Integer,
+    Sequence,
+    String,
+    ForeignKey,
+    select,
+)
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
@@ -12,14 +22,16 @@ Base = declarative_base()
 
 metadata = MetaData()  # Define tables within it
 users = Table(
-    'users', metadata,
+    'users',
+    metadata,
     Column('id', Integer, Sequence('user_id_seq'), primary_key=True),
     Column('name', String(50)),
     Column('fullname', String(50)),
 )
 
 addresses = Table(
-    'addresses', metadata,
+    'addresses',
+    metadata,
     Column('id', Integer, Sequence('addresses_id_seq'), primary_key=True),
     Column('user_id', None, ForeignKey('users.id')),
     Column('email_address', String(64), nullable=False),
@@ -28,8 +40,12 @@ addresses = Table(
 if __name__ == '__main__':
     # With `echo` enabled, we’ll see all the generated SQL produced
     engine = create_engine('sqlite:///:memory:', echo=True)
+    # https://stackoverflow.com/questions/6519546/scoped-sessionsessionmaker-or-plain-sessionmaker-in-sqlalchemy
+    # scoped session for thread safety
     Session = scoped_session(sessionmaker())
-    Session.configure(bind=engine, autocommit=False, autoflush=False, expire_on_commit=False)
+    Session.configure(
+        bind=engine, autocommit=False, autoflush=False, expire_on_commit=False
+    )
 
     logging.info('All tables in metadata now:')
     for table_obj in metadata.sorted_tables:
