@@ -34,12 +34,18 @@ def raise_get(url):
     raise IOError('Unable to fetch url %s' % url)
 
 
-@mock.patch('requests.get', get_fake_get(200, b'Python is a programming language for sure'))
+@mock.patch(
+    'requests.get',
+    get_fake_get(200, b'Python is a programming language for sure'),
+)
 def test_python_is():
     assert is_python_still_a_programming_language() is True
 
 
-@mock.patch('requests.get', get_fake_get(200, b'Python is no more a programming language'))
+@mock.patch(
+    'requests.get',
+    get_fake_get(200, b'Python is no more a programming language'),
+)
 def test_python_is_not():
     assert is_python_still_a_programming_language() is False
 
@@ -55,3 +61,20 @@ def test_ioerror():
     with pytest.raises(WhereIsPythonError):
         is_python_still_a_programming_language()
 
+
+def my_sum(a, b):
+    return a + b
+
+
+# Use mocker fixture
+def test_my_sum(mocker):
+    mocked_sum = mocker.patch(__name__ + '.sum', return_value=9)
+    assert mocked_sum(2, 3) == 9
+
+
+def test_my_sum2(mocker):
+    def crazy_sum(a, b):
+        return b + b
+
+    mocked_sum = mocker.patch(__name__ + '.sum', side_effect=crazy_sum)
+    assert mocked_sum(2, 3) == 6

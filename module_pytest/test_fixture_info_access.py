@@ -17,8 +17,7 @@ def test_case01():
 
 
 # pytest -vs module_pytest/test_fixture_info_access.py
-# Output:======================================================================================== test session starts ========================================================================================
-# platform darwin -- Python 3.9.1, pytest-5.4.3, py-1.10.0, pluggy-0.13.1 -- /Users/Felix/PycharmProjects/keep/venv/bin/python3
+# Output:================================================ test session starts ========================================
 # cachedir: .pytest_cache
 # rootdir: /Users/Felix/PycharmProjects/keep
 # plugins: anyio-3.3.1, asyncio-0.15.1, mock-3.6.1
