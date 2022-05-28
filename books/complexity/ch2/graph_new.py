@@ -146,3 +146,42 @@ if __name__ == '__main__':
     print(is_connected(complete))
     random_graph = make_random_graph(10, 0.1)
     print(is_connected(random_graph))
+
+    def prob_connected(n, p, iters=100):
+        tf = [is_connected(make_random_graph(n, p)) for i in range(iters)]
+        return np.mean(tf)
+
+    print(prob_connected(10, 0.23, iters=10000))
+
+    n = 10
+    pstar = np.log(n) / n
+    ps = np.logspace(-2.5, 0, 11)
+    ys = [prob_connected(n, p, 1000) for p in ps]
+    for p, y in zip(ps, ys):
+        print(p, y)
+
+    plt.axvline(pstar, color='gray')
+    plt.plot(ps, ys, color='green')
+    decorate(xlabel='Prob of edge (p)', ylabel='Prob connected', xscale='log')
+    savefig('figs/chap02-5')
+    plt.clf()
+
+    ns = [300, 100, 30]
+    ps = np.logspace(-2.5, 0, 11)
+    sns.set_palette('Blues_r', 4)
+    for n in ns:
+        print(n)
+        pstar = np.log(n) / n
+        plt.axvline(pstar, color='gray', alpha=0.3)
+        ys = [prob_connected(n, p) for p in ps]
+        plt.plot(ps, ys, label='n=%d' % n)
+
+    decorate(
+        xlabel='Prob of edge (p)',
+        ylabel='Prob connected',
+        xscale='log',
+        xlim=[ps[0], ps[-1]],
+        loc='upper left',
+    )
+    savefig('figs/chap02-6')
+    plt.clf()
