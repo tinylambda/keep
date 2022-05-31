@@ -15,10 +15,9 @@ def get_spam(name):
     return _spam_cache[name]
 
 
-if __name__ == '__main__':
-    a = get_spam('foo')
-    b = get_spam('bar')
+if __name__ == "__main__":
+    a = get_spam("foo")
+    b = get_spam("bar")
     print(a is b)
-    c = get_spam('foo')
+    c = get_spam("foo")
     print(a is c)
-

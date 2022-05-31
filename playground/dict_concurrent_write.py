@@ -7,12 +7,12 @@ DATA = {}
 def add_data(multiplier=1):
     for i in range(1, 11):
         key = i * multiplier
-        print(f'{threading.current_thread().getName()} Adding: ', key)
+        print(f"{threading.current_thread().getName()} Adding: ", key)
         DATA[key] = key
 
 
-t1 = threading.Thread(target=add_data, args=(1, ))
-t2 = threading.Thread(target=add_data, args=(100, ))
+t1 = threading.Thread(target=add_data, args=(1,))
+t2 = threading.Thread(target=add_data, args=(100,))
 
 threads = [t1, t2]
 for t in threads:
@@ -23,5 +23,4 @@ for t in threads:
 
 print(DATA)
 print(len(DATA))
-print('Done!')
-
+print("Done!")

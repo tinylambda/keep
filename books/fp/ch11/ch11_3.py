@@ -37,7 +37,7 @@ class Struggle2:
         return reversed(self.__data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     l = list(range(10))
     shuffle(l)
     print(l)
@@ -47,4 +47,3 @@ if __name__ == '__main__':
     s2 = Struggle2()
     print(s2[1])
     print(isinstance(s2, abc.Sequence))
-

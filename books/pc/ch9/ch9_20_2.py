@@ -5,6 +5,7 @@ import types
 
 class MultiMethod:
     """represents a single multimethod"""
+
     def __init__(self, name):
         self._methods = {}
         self.__name__ = name
@@ -15,12 +16,14 @@ class MultiMethod:
         # build a type signature from the method's annotations
         _types = []
         for name, param in sig.parameters.items():
-            if name == 'self':
+            if name == "self":
                 continue
             if param.annotation is inspect.Parameter.empty:
-                raise TypeError('Argument {} must be annotated with a type'.format(name))
+                raise TypeError(
+                    "Argument {} must be annotated with a type".format(name)
+                )
             if not isinstance(param.annotation, type):
-                raise TypeError('Argument {} annotation must be a type'.format(name))
+                raise TypeError("Argument {} annotation must be a type".format(name))
             if param.default is not inspect.Parameter.empty:
                 self._methods[tuple(_types)] = meth
             _types.append(param.annotation)
@@ -34,7 +37,7 @@ class MultiMethod:
         if meth:
             return meth(*args)
         else:
-            raise TypeError('No matching method for types {}'.format(_types))
+            raise TypeError("No matching method for types {}".format(_types))
 
     def __get__(self, instance, owner):
         """descriptor method needed to make calls work in a class"""
@@ -46,6 +49,7 @@ class MultiMethod:
 
 class MultiDict(dict):
     """special dictionary to build multimethod in a metaclass"""
+
     def __setitem__(self, key, value):
         if key in self:
             # if key already exists, it must be a multimethod or callable
@@ -63,6 +67,7 @@ class MultiDict(dict):
 
 class MultiMeta(type):
     """metaclass that allows multiple dispatch of methods"""
+
     def __new__(mcs, clsname, bases, clsdict):
         return type.__new__(mcs, clsname, bases, dict(clsdict))
 
@@ -73,10 +78,10 @@ class MultiMeta(type):
 
 class Spam(metaclass=MultiMeta):
     def bar(self, x: int, y: int):
-        print('Bar 1:', x, y, [type(x), type(y)])
+        print("Bar 1:", x, y, [type(x), type(y)])
 
     def bar(self, _s: str, n: int = 0):
-        print('Bar 2:', _s, n, [type(_s), type(n)])
+        print("Bar 2:", _s, n, [type(_s), type(n)])
 
 
 class Date(metaclass=MultiMeta):
@@ -90,17 +95,16 @@ class Date(metaclass=MultiMeta):
         self.__init__(t.tm_year, t.tm_mon, t.tm_mday)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Spam()
     s.bar(2, 3)
-    s.bar('hello', 2)
-    s.bar('hello')
+    s.bar("hello", 2)
+    s.bar("hello")
     try:
-        s.bar(2, 'hello')
+        s.bar(2, "hello")
     except TypeError as e:
         print(e)
 
     d = Date(2012, 12, 21)
     e = Date()
     print(e.year, e.month, e.day)
-

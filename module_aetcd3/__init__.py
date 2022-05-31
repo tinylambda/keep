@@ -1,4 +1,4 @@
 ETCD_KWARGS = {
-    'host': 'localhost',
-    'port': 2379,
+    "host": "localhost",
+    "port": 2379,
 }

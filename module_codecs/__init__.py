@@ -18,4 +18,3 @@
 # The most common encodings for Western languages are UTF-8 and UTF-16, which use sequences of one and two bytes
 # respectively to represent each code point. Other encodings can be more efficient for storing languages where most of
 # the characters are represented by code points that do not fit into two bytes.
-

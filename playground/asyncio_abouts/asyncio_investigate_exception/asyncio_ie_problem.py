@@ -6,27 +6,26 @@ async def problem():
     await asyncio.sleep(1)
     logging.warning("going to raise an exception now!")
     raise RuntimeError("something went wrong")
-    print('will not touch here.')
+    print("will not touch here.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logging.basicConfig(
-        format='%(asctime)s.%(msecs)03d %(filename)s:%(lineno)d %(levelname)s %(message)s',
+        format="%(asctime)s.%(msecs)03d %(filename)s:%(lineno)d %(levelname)s %(message)s",
         level=logging.INFO,
-        datefmt='%H:%M:%S'
+        datefmt="%H:%M:%S",
     )
 
     loop = asyncio.get_event_loop()
     logging.info("creating the problem task")
     task = loop.create_task(problem())
-    logging.info('created task = %r', task)
-    logging.info('running the loop')
+    logging.info("created task = %r", task)
+    logging.info("running the loop")
 
     try:
         loop.run_forever()
     except KeyboardInterrupt:
-        logging.info('closing the loop')
+        logging.info("closing the loop")
         loop.close()
 
-    logging.info('shutting down')
-
+    logging.info("shutting down")

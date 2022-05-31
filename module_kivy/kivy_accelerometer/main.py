@@ -13,25 +13,27 @@ class Accel(Widget):
     def get_acceleration(self, dt):
         val = accelerometer.acceleration
 
-        self.ids.label1.text = 'X: ' + str(val[0])
-        self.ids.label2.text = 'Y: ' + str(val[1])
-        self.ids.label3.text = 'Z: ' + str(val[2])
+        self.ids.label1.text = "X: " + str(val[0])
+        self.ids.label2.text = "Y: " + str(val[1])
+        self.ids.label3.text = "Z: " + str(val[2])
 
     def pressed1(self):
         try:
             if not self.sensorEnabled:
                 accelerometer.enable()
-                Clock.schedule_interval(self.get_acceleration, 1 / 20.)
+                Clock.schedule_interval(self.get_acceleration, 1 / 20.0)
                 self.sensorEnabled = True
-                self.ids.button1.text = 'Stop'
+                self.ids.button1.text = "Stop"
             else:
                 accelerometer.disable()
                 Clock.unschedule(self.get_acceleration)
                 self.sensorEnabled = False
-                self.ids.button1.text = 'Start'
+                self.ids.button1.text = "Start"
         except NotImplementedError:
-            import traceback; traceback.print_exc()
-            self.ids.status.text = 'Accelerometer is not supported for your platform'
+            import traceback
+
+            traceback.print_exc()
+            self.ids.status.text = "Accelerometer is not supported for your platform"
 
 
 class MyApp(App):
@@ -39,6 +41,5 @@ class MyApp(App):
         return Accel()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

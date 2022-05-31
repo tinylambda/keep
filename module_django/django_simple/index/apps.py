@@ -6,8 +6,8 @@ print(__file__, time.time())
 
 
 class IndexConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'index'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "index"
 
     def ready(self):
-        print(self, 'ready', time.time())
+        print(self, "ready", time.time())

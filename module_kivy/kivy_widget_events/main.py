@@ -6,7 +6,7 @@ from kivy.uix.button import Button
 class MyW(Widget):
     def __init__(self, **kwargs):
         super(MyW, self).__init__(**kwargs)
-        btn = Button(text='click me')
+        btn = Button(text="click me")
         btn.bind(on_press=self.on_press_callback, state=self.state_callback)
         self.add_widget(btn)
 
@@ -14,7 +14,7 @@ class MyW(Widget):
         print(obj, value)
 
     def on_press_callback(self, obj):
-        self.ids.label1.text = 'press on button'
+        self.ids.label1.text = "press on button"
 
 
 class MyApp(App):
@@ -22,6 +22,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

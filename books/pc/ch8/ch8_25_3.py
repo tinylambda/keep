@@ -13,12 +13,11 @@ class Spam:
             return self
 
     def __init__(self, name):
-        print('initializing Spam')
+        print("initializing Spam")
         self.name = name
 
 
-if __name__ == '__main__':
-    s = Spam('Felix')
-    t = Spam('Felix')
+if __name__ == "__main__":
+    s = Spam("Felix")
+    t = Spam("Felix")
     print(s is t)
-

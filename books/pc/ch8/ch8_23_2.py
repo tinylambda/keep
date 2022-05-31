@@ -5,10 +5,10 @@ class Node:
     def __init__(self, value):
         self.value = value
         self._parent = None
-        self.children =[]
+        self.children = []
 
     def __repr__(self):
-        return 'Node({!r:})'.format(self.value)
+        return "Node({!r:})".format(self.value)
 
     @property
     def parent(self):
@@ -23,11 +23,10 @@ class Node:
         child.parent = self
 
 
-if __name__ == '__main__':
-    root = Node('parent')
-    c1 = Node('child')
+if __name__ == "__main__":
+    root = Node("parent")
+    c1 = Node("child")
     root.add_child(c1)
     print(c1.parent)
     del root
     print(c1.parent)
-

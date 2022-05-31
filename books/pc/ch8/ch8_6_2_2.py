@@ -7,17 +7,17 @@ class Person:
 
     def set_first_name(self, value):
         if not isinstance(value, str):
-            raise TypeError('expected a string')
+            raise TypeError("expected a string")
         self._first_name = value
 
     def del_first_name(self):
-        raise AttributeError('cannot delete attribute')
+        raise AttributeError("cannot delete attribute")
 
     name = property(get_first_name, set_first_name, del_first_name)
 
 
-if __name__ == '__main__':
-    p = Person('Pan')
+if __name__ == "__main__":
+    p = Person("Pan")
     print(p.name)
     try:
         p.name = 42

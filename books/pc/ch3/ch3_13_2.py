@@ -2,8 +2,16 @@ from datetime import datetime
 from datetime import timedelta
 
 
-if __name__ == '__main__':
-    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+if __name__ == "__main__":
+    weekdays = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
 
     def get_previous_byday(dayname, start_date=None):
         if start_date is None:
@@ -18,9 +26,8 @@ if __name__ == '__main__':
         return target_date
 
     print(datetime.today())
-    print(get_previous_byday('Monday'))
-    print(get_previous_byday('Tuesday'))
-    print(get_previous_byday('Friday'))
+    print(get_previous_byday("Monday"))
+    print(get_previous_byday("Tuesday"))
+    print(get_previous_byday("Friday"))
 
-    print(get_previous_byday('Sunday', datetime(2012, 12, 21)))
-
+    print(get_previous_byday("Sunday", datetime(2012, 12, 21)))

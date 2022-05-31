@@ -8,9 +8,8 @@ def register(f):
 
 @register
 def foo():
-    return 'bar'
+    return "bar"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(_functions)
-

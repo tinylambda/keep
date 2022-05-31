@@ -12,12 +12,12 @@ class C:
     x = attr.ib(validator=attr.validators.instance_of(str))
 
 
-if __name__ == '__main__':
-    c = C('199')
-    logging.info('%s', c)
+if __name__ == "__main__":
+    c = C("199")
+    logging.info("%s", c)
 
     try:
         c = C(199)
-        logging.info('%s', c)
+        logging.info("%s", c)
     except TypeError as e:
-        logging.error('it happened')
+        logging.error("it happened")

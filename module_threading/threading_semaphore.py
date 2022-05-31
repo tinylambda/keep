@@ -13,16 +13,16 @@ class ActivePool:
     def make_active(self, name):
         with self.lock:
             self.active.append(name)
-            logging.debug('Running: %s', self.active)
+            logging.debug("Running: %s", self.active)
 
     def make_inactive(self, name):
         with self.lock:
             self.active.remove(name)
-            logging.debug('Running: %s', self.active)
+            logging.debug("Running: %s", self.active)
 
 
 def worker(s, pool):
-    logging.debug('Waiting to join the pool')
+    logging.debug("Waiting to join the pool")
     with s:
         name = threading.current_thread().name
         pool.make_active(name)
@@ -31,18 +31,11 @@ def worker(s, pool):
 
 
 logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s (%(threadName)-2s) %(message)s'
+    level=logging.DEBUG, format="%(asctime)s (%(threadName)-2s) %(message)s"
 )
 
 pool = ActivePool()
 s = threading.Semaphore(2)
 for i in range(4):
-    t = threading.Thread(
-        target=worker,
-        name=str(i),
-        args=(s, pool)
-    )
+    t = threading.Thread(target=worker, name=str(i), args=(s, pool))
     t.start()
-
-

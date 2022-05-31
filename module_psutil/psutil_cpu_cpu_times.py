@@ -7,11 +7,11 @@ import psutil
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 
-if __name__ == '__main__':
-    logging.info('Default: ')
+if __name__ == "__main__":
+    logging.info("Default: ")
     pprint.pprint(psutil.cpu_times())
 
-    logging.info('percpu = True: ')
+    logging.info("percpu = True: ")
     pprint.pprint(psutil.cpu_times(percpu=True))
 
     # user: time spent by normal processes executing in user mode; on Linux this also includes guest time
@@ -36,6 +36,3 @@ if __name__ == '__main__':
 
     # guest_nice (Linux 3.2.0+): time spent running a niced guest
     # (virtual CPU for guest operating systems under the control of the Linux kernel)
-
-
-

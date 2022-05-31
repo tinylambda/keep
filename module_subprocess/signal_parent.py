@@ -5,13 +5,13 @@ import time
 import sys
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     proc = subprocess.Popen(
-        ['python3', 'signal_child.py'],
+        ["python3", "signal_child.py"],
     )
-    print('PARENT: Pausing before sending signal...')
+    print("PARENT: Pausing before sending signal...")
     sys.stdout.flush()
     time.sleep(1)
-    print('PARENT: Signaling child')
+    print("PARENT: Signaling child")
     sys.stdout.flush()
     os.kill(proc.pid, signal.SIGUSR1)

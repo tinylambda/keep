@@ -3,24 +3,23 @@ import contextlib
 
 class Door:
     def __init__(self):
-        print('__init__()')
-        self.status = 'open'
+        print("__init__()")
+        self.status = "open"
 
     def close(self):
-        print('close()')
-        self.status = 'closed'
+        print("close()")
+        self.status = "closed"
 
 
-print('Normal example: ')
+print("Normal example: ")
 with contextlib.closing(Door()) as door:
-    print('inside with statement: {}'.format(door.status))
-print('outside with statement: {}'.format(door.status))
+    print("inside with statement: {}".format(door.status))
+print("outside with statement: {}".format(door.status))
 
-print('\nError handling example: ')
+print("\nError handling example: ")
 try:
     with contextlib.closing(Door()) as door:
-        print('raising from inside with statement')
-        raise RuntimeError('error message')
+        print("raising from inside with statement")
+        raise RuntimeError("error message")
 except Exception as err:
-    print('Had an error: ', err)
-
+    print("Had an error: ", err)

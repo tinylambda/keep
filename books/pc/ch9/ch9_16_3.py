@@ -8,7 +8,7 @@ def make_sig(*names):
 
 class StructureMeta(type):
     def __new__(mcs, clsname, bases, clsdict):
-        clsdict['__signature__'] = make_sig(*clsdict.get('_fields', []))
+        clsdict["__signature__"] = make_sig(*clsdict.get("_fields", []))
         return super().__new__(mcs, clsname, bases, clsdict)
 
 
@@ -22,15 +22,15 @@ class Structure(metaclass=StructureMeta):
 
 
 class Stock(Structure):
-    _fields = ['name', 'shares', 'price']
+    _fields = ["name", "shares", "price"]
 
 
 class Point(Structure):
-    _fields = ['x', 'y']
+    _fields = ["x", "y"]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import inspect
+
     print(inspect.signature(Stock))
     print(inspect.signature(Point))
-

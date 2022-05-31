@@ -6,35 +6,32 @@ import time
 
 
 def blocks(n):
-    log = logging.getLogger('blocks {}'.format(n))
-    log.info('running')
+    log = logging.getLogger("blocks {}".format(n))
+    log.info("running")
     time.sleep(0.1)
-    log.info('done')
-    return n ** 2
+    log.info("done")
+    return n**2
 
 
 async def run_blocking_tasks(executor):
-    log = logging.getLogger('run_blocking_tasks')
-    log.info('starting')
+    log = logging.getLogger("run_blocking_tasks")
+    log.info("starting")
 
-    log.info('creating executor tasks')
+    log.info("creating executor tasks")
     loop = asyncio.get_event_loop()
-    blocking_tasks = [
-        loop.run_in_executor(executor, blocks, i)
-        for i in range(6)
-    ]
-    log.info('waiting for executor tasks')
+    blocking_tasks = [loop.run_in_executor(executor, blocks, i) for i in range(6)]
+    log.info("waiting for executor tasks")
     completed, pending = await asyncio.wait(blocking_tasks)
     results = [t.result() for t in completed]
-    log.info('results: [!r]'.format(results))
+    log.info("results: [!r]".format(results))
 
-    log.info('exiting')
+    log.info("exiting")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format='%(threadName)10s %(name)18s: %(message)s',
+        format="%(threadName)10s %(name)18s: %(message)s",
         stream=sys.stderr,
     )
 
@@ -42,9 +39,6 @@ if __name__ == '__main__':
 
     event_loop = asyncio.get_event_loop()
     try:
-        event_loop.run_until_complete(
-            run_blocking_tasks(executor)
-        )
+        event_loop.run_until_complete(run_blocking_tasks(executor))
     finally:
         event_loop.close()
-

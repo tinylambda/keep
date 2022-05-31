@@ -1,6 +1,6 @@
-if __name__ == '__main__':
-    colors = ['black', 'white']
-    sizes = ['S', 'M', 'L']
+if __name__ == "__main__":
+    colors = ["black", "white"]
+    sizes = ["S", "M", "L"]
 
     tshirts = [(color, size) for color in colors for size in sizes]
     print(tshirts)
@@ -11,4 +11,3 @@ if __name__ == '__main__':
 
     tshirts = [(color, size) for size in sizes for color in colors]
     print(tshirts)
-

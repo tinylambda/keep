@@ -13,6 +13,5 @@ class FarmBuild(Build):
     age = 1001
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
-

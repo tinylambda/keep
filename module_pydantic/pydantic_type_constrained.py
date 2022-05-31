@@ -1,7 +1,24 @@
 from decimal import Decimal
 
-from pydantic import BaseModel, conbytes, constr, conint, PositiveInt, NegativeInt, NonNegativeInt, NonPositiveInt, \
-    confloat, PositiveFloat, NegativeFloat, NonNegativeFloat, NonPositiveFloat, conlist, conset, condecimal, Field
+from pydantic import (
+    BaseModel,
+    conbytes,
+    constr,
+    conint,
+    PositiveInt,
+    NegativeInt,
+    NonNegativeInt,
+    NonPositiveInt,
+    confloat,
+    PositiveFloat,
+    NegativeFloat,
+    NonNegativeFloat,
+    NonPositiveFloat,
+    conlist,
+    conset,
+    condecimal,
+    Field,
+)
 
 
 class Model(BaseModel):
@@ -11,7 +28,7 @@ class Model(BaseModel):
 
     lower_str: constr(to_lower=True)
     short_str: constr(min_length=2, max_length=10)
-    regex_str: constr(regex=r'^apple (pie|tart|sandwich)$')
+    regex_str: constr(regex=r"^apple (pie|tart|sandwich)$")
     strip_str: constr(strip_whitespace=True)
 
     big_int: conint(gt=1000, lt=1024)
@@ -35,20 +52,20 @@ class Model(BaseModel):
     decimal_positive: condecimal(gt=0)
     decimal_negative: condecimal(lt=0)
     decimal_max_digits_and_places: condecimal(max_digits=2, decimal_places=2)
-    mod_decimal: condecimal(multiple_of=Decimal('0.25'))
+    mod_decimal: condecimal(multiple_of=Decimal("0.25"))
 
     bigger_int: int = Field(..., gt=10000)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = Model(
-        lower_bytes=b'ABC',
-        short_bytes=b'AB',
-        strip_bytes=b' abcd123 ',
-        lower_str='ABC',
-        short_str='ab',
-        regex_str='apple tart',
-        strip_str='  hello world  ',
+        lower_bytes=b"ABC",
+        short_bytes=b"AB",
+        strip_bytes=b" abcd123 ",
+        lower_str="ABC",
+        short_str="ab",
+        regex_str="apple tart",
+        strip_str="  hello world  ",
         big_int=1001,
         mod_int=-15,
         pos_int=1,

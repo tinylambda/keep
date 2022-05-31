@@ -16,18 +16,17 @@ class CodeAnalyzer(ast.NodeVisitor):
             self.deleted.add(node.id)
 
 
-if __name__ == '__main__':
-    code = '''
+if __name__ == "__main__":
+    code = """
 for i in range(10):
     print(i)
 del i
-    '''
-    top = ast.parse(code, mode='exec')
+    """
+    top = ast.parse(code, mode="exec")
     c = CodeAnalyzer()
     c.visit(top)
-    print('loaded: ', c.loaded)
-    print('stored: ', c.stored)
-    print('deleted: ', c.deleted)
+    print("loaded: ", c.loaded)
+    print("stored: ", c.stored)
+    print("deleted: ", c.deleted)
 
-    exec(compile(top, '<stdin>', 'exec'))
-
+    exec(compile(top, "<stdin>", "exec"))

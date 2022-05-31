@@ -18,8 +18,8 @@ change the value by commands:
 to see what happens
 """
 
-SERVICE_REGISTRY_PREFIX = '/test-services/'
-SERVICE_TYPES = ['battle', 'role', 'account', 'assemble', 'npc']
+SERVICE_REGISTRY_PREFIX = "/test-services/"
+SERVICE_TYPES = ["battle", "role", "account", "assemble", "npc"]
 
 
 async def register_service(key, value):
@@ -34,13 +34,20 @@ async def start_service(service_type, i):
 
     service_id = uuid.uuid4().hex
     register_key = os.path.join(SERVICE_REGISTRY_PREFIX, service_type, service_id)
-    register_value = json.dumps({
-        'ip': 'localhost',
-        'port': port,
-    })
+    register_value = json.dumps(
+        {
+            "ip": "localhost",
+            "port": port,
+        }
+    )
 
-    logging.info('service [] started: %s, listening on port: %s, '
-                 'is ready to serve requests, now register self to etcd [%s]', i, port, register_key)
+    logging.info(
+        "service [] started: %s, listening on port: %s, "
+        "is ready to serve requests, now register self to etcd [%s]",
+        i,
+        port,
+        register_key,
+    )
     await register_service(register_key, register_value)
 
 
@@ -57,12 +64,12 @@ async def service_caller(service_type):
     async with aetcd3.client() as client:
         service_prefix = os.path.join(SERVICE_REGISTRY_PREFIX, service_type)
 
-        logging.info('initialize current_services of type %s', service_type)
+        logging.info("initialize current_services of type %s", service_type)
         async for value, metadata in client.get_prefix(service_prefix):
             instance_config = json.loads(value)
             current_services[metadata.key] = instance_config
 
-        logging.info('watch service change of type %s', service_type)
+        logging.info("watch service change of type %s", service_type)
         it, cancel = await client.watch_prefix(service_prefix)
         async for event in it:
             if isinstance(event, PutEvent):
@@ -70,15 +77,17 @@ async def service_caller(service_type):
             elif isinstance(event, DeleteEvent):
                 del current_services[event.key]
 
-            logging.info('current services of type %s is %s', service_type, current_services)
+            logging.info(
+                "current services of type %s is %s", service_type, current_services
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.create_task(service_creator(100))
-    loop.create_task(service_caller('battle'))
-    loop.create_task(service_caller('role'))
-    loop.create_task(service_caller('npc'))
-    loop.create_task(service_caller('account'))
-    loop.create_task(service_caller('assemble'))
+    loop.create_task(service_caller("battle"))
+    loop.create_task(service_caller("role"))
+    loop.create_task(service_caller("npc"))
+    loop.create_task(service_caller("account"))
+    loop.create_task(service_caller("assemble"))
     loop.run_forever()

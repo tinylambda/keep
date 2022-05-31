@@ -49,7 +49,7 @@ class Scheduler:
                 if isinstance(r, YieldEvent):
                     r.handle_yield(self, task)
                 else:
-                    raise RuntimeError('unrecognized yield event')
+                    raise RuntimeError("unrecognized yield event")
             except StopIteration:
                 self._numtasks -= 1
 
@@ -109,7 +109,7 @@ class Socket:
         return getattr(self._sock, item)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from socket import socket, AF_INET, SOCK_STREAM
 
     def readline(sock):
@@ -119,9 +119,9 @@ if __name__ == '__main__':
             if not c:
                 break
             chars.append(c)
-            if c == b'\n':
+            if c == b"\n":
                 break
-        return b''.join(chars)
+        return b"".join(chars)
 
     class EchoServer:
         def __init__(self, addr, sched):
@@ -134,7 +134,7 @@ if __name__ == '__main__':
             s.listen(5)
             while True:
                 c, a = yield s.accept()
-                print('Got connection from', a)
+                print("Got connection from", a)
                 self.sched.new(self.client_handler(Socket(c)))
 
         def client_handler(self, client):
@@ -142,15 +142,13 @@ if __name__ == '__main__':
                 line = yield from readline(client)
                 if not line:
                     break
-                line = b'GOT: ' + line
+                line = b"GOT: " + line
                 while line:
                     nsent = yield client.send(line)
                     line = line[nsent:]
             client.close()
-            print('Client closed')
-
+            print("Client closed")
 
     sched = Scheduler()
-    EchoServer(('', 16000), sched)
+    EchoServer(("", 16000), sched)
     sched.run()
-

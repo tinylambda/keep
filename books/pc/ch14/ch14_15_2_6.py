@@ -15,10 +15,10 @@ class A:
         self._y = value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A(1, 2)
-    x = timeit.timeit('a.x', 'from __main__ import a')
+    x = timeit.timeit("a.x", "from __main__ import a")
     print(x)
 
-    y = timeit.timeit('a.y', 'from __main__ import a')
+    y = timeit.timeit("a.y", "from __main__ import a")
     print(y)

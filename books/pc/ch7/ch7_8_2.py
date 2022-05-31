@@ -2,7 +2,7 @@ def spam(a, b, c, d):
     print(a, b, c, d)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from functools import partial
 
     s1 = partial(spam, 1)
@@ -17,5 +17,3 @@ if __name__ == '__main__':
     s3(3)
     s3(4)
     s3(5)
-
-

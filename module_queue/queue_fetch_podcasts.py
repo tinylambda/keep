@@ -10,49 +10,44 @@ import feedparser
 num_fetch_threads = 2
 enclosure_queue = Queue()
 
-feed_urls = [
-    'http://talkpython.fm/episodes/rss'
-]
+feed_urls = ["http://talkpython.fm/episodes/rss"]
 
 
 def message(s):
-    print('{}: {}'.format(threading.current_thread().name, s))
+    print("{}: {}".format(threading.current_thread().name, s))
 
 
 def download_enclosure(q):
     while True:
-        message('looking for the next enclosure')
+        message("looking for the next enclosure")
         url = q.get()
-        filename = url.rpartition('/')[-1]
-        message('downloading {}'.format(filename))
+        filename = url.rpartition("/")[-1]
+        message("downloading {}".format(filename))
         response = urllib.request.urlopen(url)
         data = response.read()
-        message('writing to {}'.format(filename))
-        with open(f'/tmp/{filename}', 'wb') as outfile:
+        message("writing to {}".format(filename))
+        with open(f"/tmp/{filename}", "wb") as outfile:
             outfile.write(data)
         q.task_done()
 
 
 for i in range(num_fetch_threads):
     worker = threading.Thread(
-        target=download_enclosure,
-        args=(enclosure_queue, ),
-        name='worker-{}'.format(i)
+        target=download_enclosure, args=(enclosure_queue,), name="worker-{}".format(i)
     )
     worker.setDaemon(True)
     worker.start()
 
 
 for url in feed_urls:
-    response = feedparser.parse(url, agent='fetch_podcasts.py')
-    for entry in response['entries'][:5]:
-        for enclosure in entry.get('enclosures', []):
-            parsed_url = urlparse(enclosure['url'])
-            message('queuing {}'.format(parsed_url.path.rpartition('/')[-1]))
-            enclosure_queue.put(enclosure['url'])
+    response = feedparser.parse(url, agent="fetch_podcasts.py")
+    for entry in response["entries"][:5]:
+        for enclosure in entry.get("enclosures", []):
+            parsed_url = urlparse(enclosure["url"])
+            message("queuing {}".format(parsed_url.path.rpartition("/")[-1]))
+            enclosure_queue.put(enclosure["url"])
 
 
-message('main threading waiting')
+message("main threading waiting")
 enclosure_queue.join()
-message('done')
-
+message("done")

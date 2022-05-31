@@ -4,7 +4,7 @@ import time
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = 10000000
     i = 0
     s = 0
@@ -13,4 +13,4 @@ if __name__ == '__main__':
         s += 1
         i += 1
     end = time.perf_counter()
-    logging.info('cost %s', end - start)
+    logging.info("cost %s", end - start)

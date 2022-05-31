@@ -1,5 +1,5 @@
-if __name__ == '__main__':
-    s = 'ABC'
+if __name__ == "__main__":
+    s = "ABC"
     for char in s:
         print(char)
 
@@ -10,4 +10,3 @@ if __name__ == '__main__':
         except StopIteration:
             del it
             break
-

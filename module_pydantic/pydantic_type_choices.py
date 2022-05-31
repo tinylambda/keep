@@ -4,8 +4,8 @@ from pydantic import BaseModel, ValidationError
 
 
 class FruitEnum(str, Enum):
-    pear = 'pear'
-    banana = 'banana'
+    pear = "pear"
+    banana = "banana"
 
 
 class ToolEnum(IntEnum):
@@ -18,11 +18,11 @@ class CookingModel(BaseModel):
     tool: ToolEnum = ToolEnum.spanner
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(CookingModel())
-    print(CookingModel(tool=2, fruit='banana'))
+    print(CookingModel(tool=2, fruit="banana"))
 
     try:
-        CookingModel(fruit='other')
+        CookingModel(fruit="other")
     except ValidationError as e:
         print(e)

@@ -3,7 +3,7 @@ import time
 
 
 # Data to use to calculate sha1 checksums
-data = open(__file__, 'rb').read()
+data = open(__file__, "rb").read()
 
 loop_start = time.perf_counter()
 
@@ -16,7 +16,4 @@ for i in range(5):
     now = time.perf_counter()
     loop_elapsed = now - loop_start
     iter_elapsed = now - iter_start
-    print(time.ctime(), ': {:0.3f} {:0.3f}'.format(
-        iter_elapsed, loop_elapsed
-    ))
-
+    print(time.ctime(), ": {:0.3f} {:0.3f}".format(iter_elapsed, loop_elapsed))

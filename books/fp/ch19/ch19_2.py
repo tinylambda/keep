@@ -9,7 +9,7 @@ class FrozenJson:
         self.__data = dict()
         for k, v in mapping.items():
             if keyword.iskeyword(k):
-                k += '_'
+                k += "_"
             self.__data[k] = v
 
     def __getattr__(self, item):
@@ -28,31 +28,21 @@ class FrozenJson:
             return obj
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raw_feed = load()
     feed = FrozenJson(raw_feed)
-    print(
-        len(feed.Schedule.speakers)
-    )
-    print(
-        sorted(feed.Schedule.keys())
-    )
+    print(len(feed.Schedule.speakers))
+    print(sorted(feed.Schedule.keys()))
 
     for key, value in sorted(feed.Schedule.items()):
-        print('{:3} {}'.format(len(value), key))
+        print("{:3} {}".format(len(value), key))
 
-    print(
-        feed.Schedule
-    )
+    print(feed.Schedule)
 
-    print(
-        feed.Schedule.speakers[-1].name
-    )
+    print(feed.Schedule.speakers[-1].name)
 
     talk = feed.Schedule.events[40]
-    print(
-        talk.name
-    )
+    print(talk.name)
 
     print(talk.speakers)
     print(talk.flavor)

@@ -15,9 +15,8 @@ async def add(use_lock):
 
 async def main(use_lock):
     tasks = [add(use_lock) for _ in range(10000)]
-    await asyncio.gather(
-        *tasks
-    )
+    await asyncio.gather(*tasks)
+
 
 event_loop = asyncio.get_event_loop()
 try:
@@ -26,4 +25,3 @@ try:
     print(s)
 finally:
     event_loop.close()
-

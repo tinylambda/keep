@@ -2,7 +2,7 @@ class NoMixedCaseMeta(type):
     def __new__(mcs, clsname, bases, clsdict):
         for name in clsdict:
             if name.lower() != name:
-                raise TypeError(f'bad attribute name: {name}')
+                raise TypeError(f"bad attribute name: {name}")
         return super().__new__(mcs, clsname, bases, clsdict)
 
 
@@ -18,4 +18,3 @@ class A(Root):
 class B(Root):
     def fooBar(self):
         pass
-

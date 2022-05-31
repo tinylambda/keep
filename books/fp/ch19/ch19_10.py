@@ -1,20 +1,19 @@
 class Class:
-    data = 'the class data attr'
+    data = "the class data attr"
 
     @property
     def prop(self):
-        return 'the prop value'
+        return "the prop value"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     obj = Class()
     print(vars(obj))
 
     print(obj.data)
 
-    obj.data = 'bar'
+    obj.data = "bar"
     print(vars(obj))
     print(obj.data)
 
     print(Class.data)
-

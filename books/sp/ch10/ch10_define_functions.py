@@ -7,18 +7,19 @@ def x():
 
 dis.dis(x)
 
-print('-' * 64)
+print("-" * 64)
 
 
 def x():
     def y():
         return 42
+
     return y()
 
 
 dis.dis(x)
 
-print('-' * 64)
+print("-" * 64)
 
 
 def x():
@@ -26,8 +27,8 @@ def x():
 
     def y():
         return a
+
     return y()
 
 
 dis.dis(x)
-

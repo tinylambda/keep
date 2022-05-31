@@ -2,10 +2,10 @@ import multiprocessing
 
 
 def worker():
-    print('Worker')
+    print("Worker")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     jobs = []
     for i in range(5):
         p = multiprocessing.Process(target=worker)

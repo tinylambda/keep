@@ -8,8 +8,8 @@ class Item(BaseModel):
     name: str
 
 
-if __name__ == '__main__':
-    item_data = [{'id': 1, 'name': 'My Item'}]
+if __name__ == "__main__":
+    item_data = [{"id": 1, "name": "My Item"}]
     items = parse_obj_as(List[Item], item_data)
     print(items)
 

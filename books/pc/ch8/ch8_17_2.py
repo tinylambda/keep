@@ -5,7 +5,7 @@ class Date:
         self.day = day
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     d = Date.__new__(Date)
     print(d)
 
@@ -14,9 +14,8 @@ if __name__ == '__main__':
     except AttributeError as e:
         print(e)
 
-    data = {'year': 2012, 'month': 8, 'day': 29}
+    data = {"year": 2012, "month": 8, "day": 29}
     for key, value in data.items():
         setattr(d, key, value)
 
     print(d.year, d.month)
-

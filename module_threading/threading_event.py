@@ -4,36 +4,32 @@ import time
 
 
 def wait_for_event(e):
-    logging.debug('wait_for_event starting')
+    logging.debug("wait_for_event starting")
     event_is_set = e.wait()
-    logging.debug('event set: %s', event_is_set)
+    logging.debug("event set: %s", event_is_set)
 
 
 def wait_for_event_timeout(e, t):
     while not e.is_set():
-        logging.debug('wait_for_event_timeout staring')
+        logging.debug("wait_for_event_timeout staring")
         event_is_set = e.wait(t)
-        logging.debug('event set: %s', event_is_set)
+        logging.debug("event set: %s", event_is_set)
         if event_is_set:
-            logging.debug('processing event')
+            logging.debug("processing event")
         else:
-            logging.debug('doing other work')
+            logging.debug("doing other work")
 
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='(%(threadName)-10s) %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format="(%(threadName)-10s) %(message)s")
 
 e = threading.Event()
-t1 = threading.Thread(name='block', target=wait_for_event, args=(e, ))
+t1 = threading.Thread(name="block", target=wait_for_event, args=(e,))
 t1.start()
 
-t2 = threading.Thread(name='nonblock', target=wait_for_event_timeout, args=(e, 2))
+t2 = threading.Thread(name="nonblock", target=wait_for_event_timeout, args=(e, 2))
 t2.start()
 
-logging.debug('Waiting before calling Event.set()')
+logging.debug("Waiting before calling Event.set()")
 time.sleep(10)
 e.set()
-logging.debug('Event is set')
-
+logging.debug("Event is set")

@@ -16,10 +16,10 @@ class Item(BaseModel):
     description: Optional[str]
 
 
-@app.put('/items/{id}')
+@app.put("/items/{id}")
 async def update_item(id: str, item: Item):
     json_compatible_item_data = jsonable_encoder(item)
-    print(json_compatible_item_data, '!')
+    print(json_compatible_item_data, "!")
     fake_db[id] = json_compatible_item_data
 
 

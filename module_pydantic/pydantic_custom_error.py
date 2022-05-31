@@ -4,14 +4,14 @@ from pydantic import BaseModel, validator, ValidationError
 class Model(BaseModel):
     foo: str
 
-    @validator('foo')
+    @validator("foo")
     def value_must_equal_bar(cls, v):
-        if v != 'bar':
+        if v != "bar":
             raise ValueError('value must be "bar"')
         return v
 
 
 try:
-    Model(foo='ber')
+    Model(foo="ber")
 except ValidationError as e:
     print(e.errors())

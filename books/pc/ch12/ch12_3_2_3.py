@@ -19,6 +19,3 @@ class PriorityQueue:
             while len(self._queue) == 0:
                 self._cv.wait()
             return heapq.heappop(self._queue)[-1]
-
-
-

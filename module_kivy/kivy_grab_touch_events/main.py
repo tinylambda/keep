@@ -10,11 +10,11 @@ class MyW(Widget):
 
     def on_touch_up(self, touch):
         if touch.grab_current is self:
-            self.ids.label1.text = 'Click on the screen but over the Button'
+            self.ids.label1.text = "Click on the screen but over the Button"
             touch.ungrab(self)
             return True
         else:
-            self.ids.label1.text = 'Click on the screen'
+            self.ids.label1.text = "Click on the screen"
 
 
 class MyApp(App):
@@ -22,6 +22,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

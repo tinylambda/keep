@@ -3,7 +3,7 @@ import datetime
 from dateutil import tz
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     now = datetime.datetime.utcnow()
     print(now.isoformat())
 

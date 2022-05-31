@@ -3,11 +3,11 @@ class AnswerDict(dict):
         return 42
 
 
-if __name__ == '__main__':
-    ad = AnswerDict(a='foo')
-    print(ad['a'])
+if __name__ == "__main__":
+    ad = AnswerDict(a="foo")
+    print(ad["a"])
 
     d = {}
     d.update(ad)
     print(d)
-    print(d['a'])
+    print(d["a"])

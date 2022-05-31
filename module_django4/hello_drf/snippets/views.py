@@ -10,6 +10,7 @@ from snippets.exceptions import ChangePasswordException
 from snippets.models import Snippet
 from snippets.permissions import IsOwnerOrReadOnly, IsAdminOrIsSelf
 from snippets.serializers import SnippetSerializer, UserSerializer
+
 # @permission_classes((permissions.AllowAny,))
 # class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
 #     queryset = Snippet.objects.all()
@@ -150,21 +151,26 @@ from snippets.throttling import AnonRateLimit, UserRateLimit
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = User.objects.all().order_by('id')
+    queryset = User.objects.all().order_by("id")
     serializer_class = UserSerializer
 
-    @action(methods=['post'], detail=True, permission_classes=[IsAdminOrIsSelf],
-            url_path='change-password', url_name='change_password')
+    @action(
+        methods=["post"],
+        detail=True,
+        permission_classes=[IsAdminOrIsSelf],
+        url_path="change-password",
+        url_name="change_password",
+    )
     def set_password(self, request, pk=None):
         user: User = self.get_object()
-        new_password = request.POST.get('new_password')
+        new_password = request.POST.get("new_password")
         try:
             validate_password(new_password)
         except ValidationError as e:
             raise ChangePasswordException(e.message, code=10001)
         user.set_password(new_password)
         user.save()
-        return Response(data=UserSerializer(user, context={'request': request}).data)
+        return Response(data=UserSerializer(user, context={"request": request}).data)
 
 
 class SnippetViewSet(viewsets.ModelViewSet):
@@ -188,5 +194,3 @@ class SnippetViewSet(viewsets.ModelViewSet):
 #         'users': reverse('user-list', request=request, format=format),
 #         'snippets': reverse('snippet-list', request=request, format=format)
 #     })
-
-

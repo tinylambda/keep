@@ -12,7 +12,7 @@ class StaticMapping(Mapping):
         ix = bisect.bisect_left(self._keys, key)
         if ix != len(self._keys) and self._keys[ix] == key:
             return self._data[ix][1]
-        raise ValueError('{0!r} not found'.format(key))
+        raise ValueError("{0!r} not found".format(key))
 
     def __iter__(self):
         return iter(self._keys)
@@ -26,10 +26,8 @@ def numbers():
         yield i
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ns = numbers()
     ns_2_tuple = ((item, item) for item in ns)
     smap = StaticMapping(ns_2_tuple)
     print(smap[18], smap[20])
-
-

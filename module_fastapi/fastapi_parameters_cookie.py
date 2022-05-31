@@ -5,9 +5,9 @@ from fastapi import FastAPI, Cookie
 app = FastAPI()
 
 
-@app.get('/items')
+@app.get("/items")
 async def read_items(ads_id: Optional[str] = Cookie(None)):
-    return {'ads_id': ads_id}
+    return {"ads_id": ads_id}
 
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_parameters_cookie:app --reload

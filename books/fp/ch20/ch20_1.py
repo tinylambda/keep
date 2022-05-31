@@ -6,12 +6,12 @@ class Quantity:
         if value > 0:
             instance.__dict__[self.storage_name] = value
         else:
-            raise ValueError('value must be > 0')
+            raise ValueError("value must be > 0")
 
 
 class LineItem:
-    weight = Quantity('weight')
-    price = Quantity('price')
+    weight = Quantity("weight")
+    price = Quantity("price")
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -22,6 +22,5 @@ class LineItem:
         return self.weight * self.price
 
 
-if __name__ == '__main__':
-    truffle = LineItem('White truffle', 100, 0)
-
+if __name__ == "__main__":
+    truffle = LineItem("White truffle", 100, 0)

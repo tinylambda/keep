@@ -10,7 +10,7 @@ class Typed:
 
     def __set__(self, instance, value):
         if not isinstance(value, self.expected_type):
-            raise TypeError('expected ', str(self.expected_type))
+            raise TypeError("expected ", str(self.expected_type))
         instance.__dict__[self.name] = value
 
     def __delete__(self, instance):
@@ -22,6 +22,7 @@ def typeassert(**kwargs):
         for name, expected_type in kwargs.items():
             setattr(cls, name, Typed(name, expected_type))
         return cls
+
     return decorator
 
 
@@ -33,7 +34,6 @@ class Stock:
         self.price = price
 
 
-if __name__ == '__main__':
-    s = Stock('hi', 100, 10.1)
-    s2 = Stock('hi', 100, 'good')  # error
-
+if __name__ == "__main__":
+    s = Stock("hi", 100, 10.1)
+    s2 = Stock("hi", 100, "good")  # error

@@ -1,12 +1,11 @@
 def gen_AB():
-    print('start')
-    yield 'A'
-    print('continue')
-    yield 'B'
-    print('end')
+    print("start")
+    yield "A"
+    print("continue")
+    yield "B"
+    print("end")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for c in gen_AB():
-        print('-->', c)
-
+        print("-->", c)

@@ -5,7 +5,7 @@ def mygenerator():
     yield 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(inspect.isgeneratorfunction(mygenerator))
     print(inspect.isgeneratorfunction(sum))
 
@@ -21,4 +21,3 @@ if __name__ == '__main__':
     except StopIteration:
         pass
     print(inspect.getgeneratorstate(gen))
-

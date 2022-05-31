@@ -18,9 +18,9 @@ def find_callatz(n: int):
         value_seq.append(n)
         if n == 1:
             break
-    return ','.join(map(str, value_seq))
+    return ",".join(map(str, value_seq))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for num in range(1, 100):
         logging.info(find_callatz(num))

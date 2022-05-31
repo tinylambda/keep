@@ -8,7 +8,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 def check(instance, attrib, new_value):
     if new_value < 0:
-        raise RuntimeError('require %s >= 0' % attrib.name)
+        raise RuntimeError("require %s >= 0" % attrib.name)
     return new_value
 
 
@@ -18,7 +18,7 @@ class C:
     y = attr.ib()
 
 
-if __name__ == '__main__':
-    logging.info('%s', attr.fields(C).x)
+if __name__ == "__main__":
+    logging.info("%s", attr.fields(C).x)
     c = C(-1, 2)  # error
-    logging.info('%s', c)
+    logging.info("%s", c)

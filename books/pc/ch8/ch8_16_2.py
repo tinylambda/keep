@@ -17,6 +17,6 @@ class NewDate(Date):
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     today = Date.today()
     new_today = NewDate.today()

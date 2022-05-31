@@ -7,11 +7,11 @@ from kivy.uix.widget import Widget
 # is not dispatched throughout the widget tree.
 class MyW(Widget):
     def on_touch_move(self, touch):
-        if 'pos' in touch.profile:
+        if "pos" in touch.profile:
             self.ids.button1.pos = touch.pos
 
     def on_touch_down(self, touch):
-        if 'button' in touch.profile:
+        if "button" in touch.profile:
             self.ids.button1.text = touch.button
 
 
@@ -20,6 +20,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

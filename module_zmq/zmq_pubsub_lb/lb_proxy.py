@@ -16,13 +16,13 @@ start a subscriber connected to 8100
 # python module_zmq/zmq_pubsub_lb/reader_from_proxy.py
 """
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
     frontend = context.socket(zmq.XSUB)
-    frontend.connect('tcp://localhost:5556')
+    frontend.connect("tcp://localhost:5556")
 
     backend = context.socket(zmq.XPUB)
-    backend.bind('tcp://*:8100')
+    backend.bind("tcp://*:8100")
 
-    logging.info('constructing proxy')
+    logging.info("constructing proxy")
     zmq.proxy(frontend, backend)

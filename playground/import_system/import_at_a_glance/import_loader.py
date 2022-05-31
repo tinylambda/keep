@@ -25,13 +25,12 @@ class ExampleFinder(MetaPathFinder):
     def find_spec(
         self, fullname: str, path, target: Optional[types.ModuleType] = ...
     ) -> Optional[ModuleSpec]:
-        return ModuleSpec('module', ExampleLoader())
+        return ModuleSpec("module", ExampleLoader())
 
 
 sys.meta_path = [ExampleFinder()]
 
 import module
+
 print(module)
 print(module.x, module.y)
-
-

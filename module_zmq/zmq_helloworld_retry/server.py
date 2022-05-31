@@ -9,10 +9,10 @@ import zmq
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
     socket = context.socket(zmq.ROUTER)
-    socket.bind('tcp://*:5555')
+    socket.bind("tcp://*:5555")
 
     interrupted = False
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, callback)
     signal.signal(signal.SIGTERM, callback)
 
-    logging.info('PID is %s', os.getpid())
+    logging.info("PID is %s", os.getpid())
 
     poller = zmq.Poller()
     poller.register(socket, zmq.POLLIN)
@@ -36,19 +36,16 @@ if __name__ == '__main__':
             addr = socket.recv()
             empty = socket.recv()
             message = socket.recv()
-            logging.info('received request: %s', message)
+            logging.info("received request: %s", message)
 
             # do some work
             time.sleep(1)
 
             # send reply back to client
             socket.send(addr, zmq.SNDMORE)
-            socket.send(b'', zmq.SNDMORE)
-            socket.send(b'world')
+            socket.send(b"", zmq.SNDMORE)
+            socket.send(b"world")
 
         if interrupted:
-            logging.info('breaking loop')
+            logging.info("breaking loop")
             break
-
-
-

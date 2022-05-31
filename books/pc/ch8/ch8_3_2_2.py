@@ -18,12 +18,12 @@ class LazyConnection:
         self.connections.pop().close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from functools import partial
-    conn = LazyConnection(('www.python.org', 80))
+
+    conn = LazyConnection(("www.python.org", 80))
     with conn as s1:
         with conn as s2:
             print(s2, conn.connections)
         print(s1, conn.connections)
-    print('done', conn.connections)
-
+    print("done", conn.connections)

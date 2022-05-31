@@ -1,6 +1,6 @@
 class Data:
     def __del__(self):
-        print('Data.__del__')
+        print("Data.__del__")
 
 
 class Node:
@@ -14,7 +14,7 @@ class Node:
         child.parent = self
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Data()
     del a
 
@@ -24,4 +24,3 @@ if __name__ == '__main__':
     a = Node()
     a.add_child(Node())
     del a
-

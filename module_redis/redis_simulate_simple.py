@@ -17,10 +17,8 @@ class SimulateSimple:
         return self.redis_client.set(key, value)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = SimulateSimple(redis_client)
-    print(s['x'])
-    s['x'] = {}
-    print(s['x'])
-
-
+    print(s["x"])
+    s["x"] = {}
+    print(s["x"])

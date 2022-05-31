@@ -6,7 +6,7 @@ class A:
     def tasks(self):
         if not self._tasks:
             for item in dir(self):
-                if item.startswith('task_'):
+                if item.startswith("task_"):
                     item_value = getattr(self, item)
                     if callable(item_value):
                         self._tasks.append(item_value)
@@ -25,10 +25,8 @@ class A:
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A()
     print(a.tasks)
     for item in a.tasks:
         print(item())
-
-

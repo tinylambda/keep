@@ -3,25 +3,24 @@ import contextlib
 
 @contextlib.contextmanager
 def make_context():
-    print('entering')
+    print("entering")
     try:
         yield {}
     except RuntimeError as err:
-        print('ERROR: ', err)
+        print("ERROR: ", err)
     finally:
-        print('exiting')
+        print("exiting")
 
 
-print('Normal: ')
+print("Normal: ")
 with make_context() as value:
-    print('inside with statement: ', value)
+    print("inside with statement: ", value)
 
 
-print('Handle error: ')
+print("Handle error: ")
 with make_context() as value:
-    raise RuntimeError('showing example of handling an error')
+    raise RuntimeError("showing example of handling an error")
 
-print('\nUnhandled error: ')
+print("\nUnhandled error: ")
 with make_context() as value:
-    raise ValueError('this exception is not handled')
-
+    raise ValueError("this exception is not handled")

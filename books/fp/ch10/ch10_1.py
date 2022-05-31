@@ -4,7 +4,7 @@ import math
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
@@ -14,14 +14,14 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)
-        components = components[components.find('['):-1]
-        return 'Vector({})'.format(components)
+        components = components[components.find("[") : -1]
+        return "Vector({})".format(components)
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) + bytes(self._components))
+        return bytes([ord(self.typecode)]) + bytes(self._components)
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -39,7 +39,7 @@ class Vector:
         return cls(memv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     v = Vector([3.1, 4.2])
     print(v)
 
@@ -48,4 +48,3 @@ if __name__ == '__main__':
 
     v = Vector(range(1000))
     print(v)
-

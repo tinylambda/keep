@@ -13,11 +13,10 @@ class C:
         return self.x + 1
 
 
-if __name__ == '__main__':
-    c = C(x=100, y='hello')
+if __name__ == "__main__":
+    c = C(x=100, y="hello")
     print(c)
     c_copy = replace(c, x=1000)
     print(c_copy)
     print(c.add_one())
     print(c_copy.add_one())
-

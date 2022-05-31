@@ -1,22 +1,22 @@
 class A:
     @classmethod
     def method(cls):
-        print('go')
+        print("go")
 
 
 class B:
     def method(self):
-        print('go')
+        print("go")
+
     method = classmethod(method)
 
 
 class C:
     def method(self):
-        print('go')
+        print("go")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     A.method()
     B.method()
     C.method()  # this will raise TypeError
-

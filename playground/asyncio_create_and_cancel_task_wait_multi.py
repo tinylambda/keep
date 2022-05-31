@@ -5,7 +5,7 @@ tasks = []
 
 async def handler():
     while True:
-        print('Sleeping...')
+        print("Sleeping...")
         await asyncio.sleep(1)
 
 
@@ -30,14 +30,15 @@ async def main():
     await wait_many_dispatch()
 
     for t in tasks:
-        print('cancelling')
+        print("cancelling")
         loop.call_soon(canceller, t)
 
     print(1)
     await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
     print(2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
 
     # for t in tasks:
@@ -51,12 +52,11 @@ if __name__ == '__main__':
             try:
                 await t
             except asyncio.CancelledError:
-                print('here...')
+                print("here...")
 
     loop.run_until_complete(main())
-    print('.....')
+    print(".....")
 
     loop.run_until_complete(test1())
 
     loop.close()
-

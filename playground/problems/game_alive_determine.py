@@ -86,7 +86,7 @@ class Table:
         return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     example_input_1 = [[0, 1, 0], [1, 2, 1], [0, 1, 0]]  # x=1, y=1 False
     example_input_2 = [[0, 1, 0], [1, 2, 1], [0, 0, 0]]  # x=1, y=1 True
 

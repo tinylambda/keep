@@ -1,7 +1,6 @@
-print('after split')
+print("after split")
 
 
 class A:
     def spam(self):
-        print('A.spam')
-
+        print("A.spam")

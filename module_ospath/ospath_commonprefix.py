@@ -1,13 +1,14 @@
 import os.path
 
-paths = ['/one/two/three/four',
-         '/one/two/threefold',
-         '/one/two/three/',
-         ]
+paths = [
+    "/one/two/three/four",
+    "/one/two/threefold",
+    "/one/two/three/",
+]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for path in paths:
-        print('PATH:', path)
+        print("PATH:", path)
 
     print()
-    print('PREFIX:', os.path.commonprefix(paths))
+    print("PREFIX:", os.path.commonprefix(paths))

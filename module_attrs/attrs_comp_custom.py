@@ -12,5 +12,5 @@ class C:
     y = attr.ib(eq=False)
 
 
-if __name__ == '__main__':
-    logging.info('%s', C(1, 2) == C(1, 3))  # should be True
+if __name__ == "__main__":
+    logging.info("%s", C(1, 2) == C(1, 3))  # should be True

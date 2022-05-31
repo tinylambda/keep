@@ -1,6 +1,9 @@
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
-from fastapi.exception_handlers import http_exception_handler, request_validation_exception_handler
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -11,13 +14,13 @@ app = FastAPI()
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request, exc):
-    print(f'OMG! An HTTP error: {repr(exc)}')
+    print(f"OMG! An HTTP error: {repr(exc)}")
     return await http_exception_handler(request, exc)
 
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
-    print(f'OMG! The client sent invalid data: {exc}')
+    print(f"OMG! The client sent invalid data: {exc}")
     return await request_validation_exception_handler(request, exc)
 
 
@@ -36,7 +39,7 @@ class Item(BaseModel):
     size: int
 
 
-@app.post('/items/')
+@app.post("/items/")
 async def create_item(item: Item):
     return item
 

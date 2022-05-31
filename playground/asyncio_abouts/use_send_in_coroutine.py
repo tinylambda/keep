@@ -34,7 +34,7 @@ class Scheduler:
         return newtask.tid
 
     def exit(self, task):
-        print('Task %d terminated' % task.tid)
+        print("Task %d terminated" % task.tid)
         del self.taskmap[task.tid]
 
     def schedule(self, task):
@@ -68,19 +68,19 @@ class YieldControl(SystemCall):
         self.sched.schedule(self.task)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # a target
     async def foo():
         mytid = await GetTid()
         for i in range(3):
-            print('I am foo', mytid)
+            print("I am foo", mytid)
             await YieldControl()
 
     # another target
     async def bar():
         mytid = await GetTid()
         for i in range(5):
-            print('I am bar', mytid)
+            print("I am bar", mytid)
             await YieldControl()
 
     sched = Scheduler()

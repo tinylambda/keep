@@ -89,8 +89,7 @@ async def shutdown(signal, loop):
     logging.info(f"Received exit signal {signal.name}...")
     logging.info("Closing database connections")
     logging.info("Nacking outstanding messages")
-    tasks = [t for t in asyncio.all_tasks() if t is not
-             asyncio.current_task()]
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
 
     [task.cancel() for task in tasks]
 
@@ -104,8 +103,7 @@ def main():
     loop = asyncio.get_event_loop()
     signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
     for s in signals:
-        loop.add_signal_handler(
-            s, lambda s=s: asyncio.create_task(shutdown(s, loop)))
+        loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(s, loop)))
     queue = asyncio.Queue()
 
     try:

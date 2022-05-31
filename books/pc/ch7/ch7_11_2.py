@@ -27,6 +27,7 @@ def inlined_async(func):
                 apply_async(a.func1, a.args, callback=result_queue.put)
             except StopIteration:
                 break
+
     return wrapper
 
 
@@ -38,14 +39,13 @@ def add(x, y):
 def test():
     r = yield Async(add, (2, 3))
     print(r)
-    r = yield Async(add, ('hello', 'world'))
+    r = yield Async(add, ("hello", "world"))
     print(r)
     for n in range(10):
         r = yield Async(add, (n, n))
         print(r)
-    print('Goodbye')
+    print("Goodbye")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test()
-

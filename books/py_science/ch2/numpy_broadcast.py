@@ -1,6 +1,6 @@
 import numpy as np
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = np.arange(0, 60, 10).reshape(-1, 1)
     print(a, a.shape)
 
@@ -22,6 +22,6 @@ if __name__ == '__main__':
     y = np.array([2, 3, 8])
 
     gy, gx = np.ix_(y, x)
-    print('gx', gx)
-    print('gy', gy)
-    print('gx + gy', gx + gy)
+    print("gx", gx)
+    print("gy", gy)
+    print("gx + gy", gx + gy)

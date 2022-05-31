@@ -15,7 +15,7 @@ class B:
         self.__private = 0
 
     def __private_method(self):
-        print('__private_method in B')
+        print("__private_method in B")
 
     def public_method(self):
         pass
@@ -27,13 +27,12 @@ class C(B):
         self.__private = 1
 
     def __private_method(self):
-        print('__private_method in C')
+        print("__private_method in C")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C()
     print(dir(c))
 
     print(c._C__private)
     print(c._B__private)  # keep original value 0
-

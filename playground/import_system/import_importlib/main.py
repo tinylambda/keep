@@ -1,7 +1,7 @@
 import importlib
 
 
-math = importlib.import_module('math')
+math = importlib.import_module("math")
 print(math.sin(2))
 
 # mod = importlib.import_module('urllib.request')
@@ -10,6 +10,6 @@ print(math.sin(2))
 
 
 from playground.import_system import import_importlib
-b = importlib.import_module('.b', package=import_importlib.__package__)
-print(b)
 
+b = importlib.import_module(".b", package=import_importlib.__package__)
+print(b)

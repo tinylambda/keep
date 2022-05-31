@@ -1,5 +1,4 @@
 from module1 import printer
 
 
-printer('Hello world!')
-
+printer("Hello world!")

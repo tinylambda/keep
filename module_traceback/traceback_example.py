@@ -15,4 +15,3 @@ def call_function(f, recursion_level=2):
         return call_function(f, recursion_level - 1)
     else:
         return f()
-

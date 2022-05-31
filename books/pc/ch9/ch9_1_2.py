@@ -8,12 +8,14 @@ def timethis(func):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        print(func.__name__, end-start)
+        print(func.__name__, end - start)
         return result
+
     return wrapper
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     @timethis
     def countdown(n):
         while n > 0:
@@ -21,4 +23,3 @@ if __name__ == '__main__':
 
     countdown(10000)
     countdown(10000000)
-

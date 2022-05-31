@@ -8,17 +8,8 @@ class Demo:
         return args
 
 
-if __name__ == '__main__':
-    print(
-        Demo.klassmeth()
-    )
-    print(
-        Demo.klassmeth('spam')
-    )
-    print(
-        Demo.staticmeth()
-    )
-    print(
-        Demo.staticmeth('spam')
-    )
-
+if __name__ == "__main__":
+    print(Demo.klassmeth())
+    print(Demo.klassmeth("spam"))
+    print(Demo.staticmeth())
+    print(Demo.staticmeth("spam"))

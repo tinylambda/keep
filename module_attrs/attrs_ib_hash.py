@@ -12,10 +12,10 @@ class C:
     y = attr.ib(hash=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c1 = C(100, 200)
     c2 = C(100, 300)
     c3 = C(101, 200)
 
-    logging.info('%s', hash(c1) == hash(c2))  # True
-    logging.info('%s', hash(c1) == hash(c3))  # False
+    logging.info("%s", hash(c1) == hash(c2))  # True
+    logging.info("%s", hash(c1) == hash(c3))  # False

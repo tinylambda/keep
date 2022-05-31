@@ -6,7 +6,7 @@ import time
 class EventHandler:
     def fileno(self):
         """return the associated file descriptor"""
-        raise NotImplemented('must implement')
+        raise NotImplemented("must implement")
 
     def wants_to_receive(self):
         """return True if receiving is allowed"""
@@ -27,7 +27,7 @@ class EventHandler:
 
 def event_loop(handlers: list[EventHandler]):
     while True:
-        print('one loop')
+        print("one loop")
         wants_recv = [h for h in handlers if h.wants_to_receive()]
         wants_send = [h for h in handlers if h.wants_to_send()]
         can_recv, can_send, _ = select.select(wants_recv, wants_send, [])
@@ -54,7 +54,7 @@ class UDPServer(EventHandler):
 class UDPTimeServer(UDPServer):
     def handle_receive(self):
         msg, addr = self.sock.recvfrom(1)
-        self.sock.sendto(time.ctime().encode('ascii'), addr)
+        self.sock.sendto(time.ctime().encode("ascii"), addr)
 
 
 class UDPEchoServer(UDPServer):
@@ -63,6 +63,6 @@ class UDPEchoServer(UDPServer):
         self.sock.sendto(msg, addr)
 
 
-if __name__ == '__main__':
-    handlers = [UDPTimeServer(('', 14000)), UDPEchoServer(('', 15000))]
+if __name__ == "__main__":
+    handlers = [UDPTimeServer(("", 14000)), UDPEchoServer(("", 15000))]
     event_loop(handlers)

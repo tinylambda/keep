@@ -1,3 +1,3 @@
 import pydantic
 
-print('compiled: ', pydantic.compiled)
+print("compiled: ", pydantic.compiled)

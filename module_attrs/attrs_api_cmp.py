@@ -18,18 +18,17 @@ class C2:
     y = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c_1 = C(100, 100)
     c_2 = C(100, 100)
     c_3 = C(100, 200)
 
-    logging.info('%s', c_1 == c_2)
-    logging.info('%s', c_1 == c_3)
+    logging.info("%s", c_1 == c_2)
+    logging.info("%s", c_1 == c_3)
 
     c_1 = C2(100, 100)
     c_2 = C2(100, 100)
     c_3 = C2(100, 200)
 
-    logging.info('%s', c_1 == c_2)
-    logging.info('%s', c_1 == c_3)
-
+    logging.info("%s", c_1 == c_2)
+    logging.info("%s", c_1 == c_3)

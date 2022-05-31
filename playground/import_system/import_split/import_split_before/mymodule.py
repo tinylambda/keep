@@ -1,9 +1,8 @@
 class A:
     def spam(self):
-        print('A.spam')
+        print("A.spam")
 
 
 class B(A):
     def bar(self):
-        print('B.bar')
-
+        print("B.bar")

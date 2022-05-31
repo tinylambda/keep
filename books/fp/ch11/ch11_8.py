@@ -10,7 +10,7 @@ class TomboList(list):
             position = randrange(len(self))
             return self.pop(position)
         else:
-            raise LookupError('pop from emtpy TomboList')
+            raise LookupError("pop from emtpy TomboList")
 
     load = list.extend
 
@@ -21,13 +21,8 @@ class TomboList(list):
         return tuple(sorted(self))
 
 
-if __name__ == '__main__':
-    print(
-        issubclass(TomboList, Tombola)
-    )
+if __name__ == "__main__":
+    print(issubclass(TomboList, Tombola))
 
     t = TomboList(range(100))
-    print(
-        isinstance(t, Tombola)
-    )
-
+    print(isinstance(t, Tombola))

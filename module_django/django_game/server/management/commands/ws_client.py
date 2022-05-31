@@ -17,13 +17,14 @@ def get_stdin_data(q):
 
 
 async def simple_ws(
-        uri: typing.AnyStr,
-        on_open: typing.Callable = None,
-        on_message: typing.Callable = None,
-        on_error: typing.Callable = None,
-        q: asyncio.Queue = None,
+    uri: typing.AnyStr,
+    on_open: typing.Callable = None,
+    on_message: typing.Callable = None,
+    on_error: typing.Callable = None,
+    q: asyncio.Queue = None,
 ):
     """a simple WebSocket client"""
+
     def call_function(f, *args):
         if f:
             f(*args)
@@ -35,12 +36,12 @@ async def simple_ws(
 
         def create_input_task():
             _task = loop.create_task(q.get())
-            _task.set_name('input')
+            _task.set_name("input")
             return _task
 
         def create_recv_task():
             _task = loop.create_task(client_side_ws.recv())
-            _task.set_name('recv')
+            _task.set_name("recv")
             return _task
 
         task_creation_callables = [
@@ -56,18 +57,18 @@ async def simple_ws(
                 for i, task in enumerate(tasks):
                     if task.done():
                         task_name = task.get_name()
-                        if task_name == 'input':
+                        if task_name == "input":
                             user_input = task.result().strip()
-                            user_input_bytes: bytes = user_input.encode('utf-8')
+                            user_input_bytes: bytes = user_input.encode("utf-8")
                             await client_side_ws.send(user_input_bytes)
-                        elif task_name == 'recv':
+                        elif task_name == "recv":
                             msg_bytes: bytes = task.result()
                             msg = json.loads(msg_bytes)
                             call_function(on_message, msg)
 
                             if msg is not None:
-                                content = msg.get('content')
-                                if content and content.strip() == 'bye':
+                                content = msg.get("content")
+                                if content and content.strip() == "bye":
                                     break
 
                         tasks[i] = task_creation_callables[i]()
@@ -84,19 +85,19 @@ async def simple_ws(
 
 
 class Command(BaseCommand):
-    help = 'Start a chat client'
+    help = "Start a chat client"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'ws_url',
-            nargs='?',
-            help='WebSocket url',
+            "ws_url",
+            nargs="?",
+            help="WebSocket url",
             type=str,
-            default='ws://127.0.0.1:8000/ws/game/'
+            default="ws://127.0.0.1:8000/ws/game/",
         )
 
     def handle(self, *args, **options):
-        ws_url = options['ws_url']
+        ws_url = options["ws_url"]
 
         loop = asyncio.get_event_loop()
         q = asyncio.Queue()
@@ -106,13 +107,12 @@ class Command(BaseCommand):
             loop.run_until_complete(
                 simple_ws(
                     uri=ws_url,
-                    on_open=lambda: print('connected'),
-                    on_message=lambda msg: print('Received: ', msg),
-                    on_error=lambda e: print('Error: ', e),
+                    on_open=lambda: print("connected"),
+                    on_message=lambda msg: print("Received: ", msg),
+                    on_error=lambda e: print("Error: ", e),
                     q=q,
                 )
             )
         except KeyboardInterrupt:
             pass
         self.stdout.write(self.style.SUCCESS("Done"))
-

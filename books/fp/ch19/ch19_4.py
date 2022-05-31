@@ -18,7 +18,7 @@ class FrozenJSON:
         self.__data = mapping
         for k, v in mapping.items():
             if keyword.iskeyword(k):
-                k += '_'
+                k += "_"
             self.__data[k] = v
 
     def __getattr__(self, item):
@@ -28,6 +28,6 @@ class FrozenJSON:
             return FrozenJSON(self.__data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     feed = load()
     FrozenJSON(feed)

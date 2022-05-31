@@ -11,9 +11,10 @@ async def main():
     for t in done:
         try:
             if t is task_f:
-                print(f'the result of f() is {await task_f}')
+                print(f"the result of f() is {await task_f}")
         except Exception as e:
-            print(f'f() failed with {repr(e)}')
+            print(f"f() failed with {repr(e)}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     asyncio.run(main())

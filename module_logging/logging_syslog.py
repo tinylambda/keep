@@ -8,12 +8,12 @@ LOG_DATE_FMT = r"%Y-%m-%d %H:%M:%S"
 LOG_DATE_SYSLOG_FMT = r"%b %d %H:%M:%S"
 
 
-if __name__ == '__main__':
-    logger = logging.getLogger('test')
+if __name__ == "__main__":
+    logger = logging.getLogger("test")
 
-    syslog_url = 'syslog://localhost:514?test'
+    syslog_url = "syslog://localhost:514?test"
 
-    assert syslog_url.startswith('syslog://')
+    assert syslog_url.startswith("syslog://")
 
     info = urlparse(syslog_url)
     facility = LOG_USER
@@ -31,4 +31,4 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     logger.handlers = [handler]
 
-    logger.info('GOOD')
+    logger.info("GOOD")

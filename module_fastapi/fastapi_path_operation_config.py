@@ -8,8 +8,8 @@ app = FastAPI()
 
 
 class Tags(Enum):
-    items = 'items'
-    users = 'users'
+    items = "items"
+    users = "users"
 
 
 class Item(BaseModel):
@@ -22,13 +22,13 @@ class Item(BaseModel):
 
 # @app.post('/items/', response_model=Item, status_code=status.HTTP_201_CREATED, tags=['items'])
 @app.post(
-    '/items/',
+    "/items/",
     response_model=Item,
     status_code=status.HTTP_201_CREATED,
     tags=[Tags.items],
-    summary='Create an item',
+    summary="Create an item",
     # description='Create an item with all the information, name, description, price',
-    response_description='The created item',
+    response_description="The created item",
     deprecated=True,
 )
 async def create_item(item: Item):
@@ -45,14 +45,15 @@ async def create_item(item: Item):
 
 
 # @app.get('/items/', tags=['items'])
-@app.get('/items/', tags=[Tags.items])
+@app.get("/items/", tags=[Tags.items])
 async def read_items():
-    return [{'name': 'Foo', 'price': 42}]
+    return [{"name": "Foo", "price": 42}]
 
 
 # @app.get('/users/', tags=['users'])
-@app.get('/users/', tags=[Tags.users])
+@app.get("/users/", tags=[Tags.users])
 async def read_users():
-    return {'username': 'johndoe'}
+    return {"username": "johndoe"}
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_path_operation_config:app --reload

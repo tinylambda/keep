@@ -16,6 +16,6 @@ class C:
         self.z = self.x + self.y
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     obj = C(x=1, y=2)
-    logging.info('%s', obj)
+    logging.info("%s", obj)

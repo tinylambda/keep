@@ -12,10 +12,11 @@ class InventoryItem:
         return self.unit_price * self.quantity_on_hand
 
 
-if __name__ == '__main__':
-    item = InventoryItem('item1', 5.6, 10)
+if __name__ == "__main__":
+    item = InventoryItem("item1", 5.6, 10)
     print(dataclasses.astuple(item))
 
-    item = InventoryItem(name='item2', unit_price=5.7, quantity_on_hand=10)  # keyword args also works
+    item = InventoryItem(
+        name="item2", unit_price=5.7, quantity_on_hand=10
+    )  # keyword args also works
     print(dataclasses.astuple(item))
-

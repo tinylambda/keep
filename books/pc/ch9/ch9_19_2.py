@@ -14,21 +14,21 @@ class StructTuple(tuple, metaclass=StructTupleMeta):
 
     def __new__(cls, *args, **kwargs):
         if len(args) != len(cls._fields):
-            raise ValueError('{} arguments required'.format(len(cls._fields)))
+            raise ValueError("{} arguments required".format(len(cls._fields)))
         return super().__new__(cls, args)
 
 
 class Stock(StructTuple):
-    _fields = ['name', 'shares', 'price']
+    _fields = ["name", "shares", "price"]
 
 
 class Point(StructTuple):
-    _fields = ['x', 'y']
+    _fields = ["x", "y"]
 
 
-if __name__ == '__main__':
-    s = Stock('HUAWEI', 50, 91.1)
-    s2 = Stock('TET', 100, 100.0)
+if __name__ == "__main__":
+    s = Stock("HUAWEI", 50, 91.1)
+    s2 = Stock("TET", 100, 100.0)
     print(id(s.__class__))
     print(id(s2.__class__))
     print(s)
@@ -39,4 +39,3 @@ if __name__ == '__main__':
         s.shares = 23
     except AttributeError as e:
         print(e)
-

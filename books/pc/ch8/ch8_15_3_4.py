@@ -18,7 +18,7 @@ class ListLike:
         del self._items[key]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = ListLike()
     a.append(2)
     a.insert(0, 1)
@@ -33,4 +33,3 @@ if __name__ == '__main__':
         print(a[0])
     except TypeError as e:
         print(e)
-

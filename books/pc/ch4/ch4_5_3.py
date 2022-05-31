@@ -15,13 +15,12 @@ class CountDown:
             n += 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cd = CountDown(start=10)
     for item in cd:
         print(item)
 
-    print('-' * 64)
+    print("-" * 64)
 
     for item in reversed(cd):
         print(item)
-

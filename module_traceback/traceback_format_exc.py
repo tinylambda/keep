@@ -10,4 +10,3 @@ except Exception as err:
     # Can be used to extract exception and send it through HTTP API
     s = traceback.format_exc()
     print(s)
-

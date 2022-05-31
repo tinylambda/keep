@@ -1,7 +1,7 @@
 import fileinput
 import sys
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from_base = sys.argv[1]
     to_base = sys.argv[2]
     files = sys.argv[3:]

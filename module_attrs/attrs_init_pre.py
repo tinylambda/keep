@@ -14,6 +14,6 @@ class C:
         super().__init__()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(42)
-    logging.info('%s', c)
+    logging.info("%s", c)

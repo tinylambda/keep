@@ -6,16 +6,16 @@ import zmq
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
 
     py_reader = context.socket(zmq.SUB)
-    py_reader.connect('tcp://localhost:5555')
-    py_reader.setsockopt(zmq.SUBSCRIBE, b'')
+    py_reader.connect("tcp://localhost:5555")
+    py_reader.setsockopt(zmq.SUBSCRIBE, b"")
 
     go_reader = context.socket(zmq.SUB)
-    go_reader.connect('tcp://localhost:5556')
-    go_reader.setsockopt(zmq.SUBSCRIBE, b'')
+    go_reader.connect("tcp://localhost:5556")
+    go_reader.setsockopt(zmq.SUBSCRIBE, b"")
 
     poller = zmq.Poller()
     poller.register(py_reader, zmq.POLLIN)
@@ -23,10 +23,10 @@ if __name__ == '__main__':
 
     while True:
         readers = poller.poll()
-        logging.info('ready %s', len(readers))
+        logging.info("ready %s", len(readers))
         for reader, mask in readers:
             message = reader.recv()
             if reader == py_reader:
-                logging.info('py[%s]: %s', mask, message)
+                logging.info("py[%s]: %s", mask, message)
             elif reader == go_reader:
-                logging.info('go[%s]: %s', mask, message)
+                logging.info("go[%s]: %s", mask, message)

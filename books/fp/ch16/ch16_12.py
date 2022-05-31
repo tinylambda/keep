@@ -1,7 +1,7 @@
 from books.fp.ch16.ch16_11 import averager
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     coro_avg = averager()
     next(coro_avg)
     coro_avg.send(10)
@@ -12,7 +12,4 @@ if __name__ == '__main__':
     except StopIteration as exc:
         result = exc.value
 
-    print(
-        result
-    )
-
+    print(result)

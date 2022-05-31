@@ -2,14 +2,14 @@ import fileinput
 import re
 import sys
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pattern = re.compile(sys.argv[1])
     for line in fileinput.input(sys.argv[2:]):
         if pattern.search(line):
             if fileinput.isstdin():
-                fmt = '{lineno}:{line}'
+                fmt = "{lineno}:{line}"
             else:
-                fmt = '{filename}:{lineno}:{line}'
+                fmt = "{filename}:{lineno}:{line}"
             print(
                 fmt.format(
                     filename=fileinput.filename(),

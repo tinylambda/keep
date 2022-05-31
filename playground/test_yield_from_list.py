@@ -5,6 +5,6 @@ def g():
     yield from x
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for item in g():
         print(item)

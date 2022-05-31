@@ -11,11 +11,15 @@ def broadcast(targets):
             target.send(item)
 
 
-if __name__ == '__main__':
-    with open('/tmp/test.log') as f:
-        follow(f, broadcast([
-            grep('python', printer()),
-            grep('ply', printer()),
-            grep('swig', printer())
-        ]))
-
+if __name__ == "__main__":
+    with open("/tmp/test.log") as f:
+        follow(
+            f,
+            broadcast(
+                [
+                    grep("python", printer()),
+                    grep("ply", printer()),
+                    grep("swig", printer()),
+                ]
+            ),
+        )

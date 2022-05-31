@@ -7,13 +7,13 @@ def jumping_range(up_to):
         index += jump
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     iterator = jumping_range(5)
     print(next(iterator))
     print(next(iterator))
     print(iterator.send(2))
     print(next(iterator))
     print(iterator.send(-1))
-    print('-' * 64)
+    print("-" * 64)
     for x in iterator:
         print(x)

@@ -6,14 +6,14 @@ DATA = []
 
 def add_data():
     for i in range(10):
-        print('Adding: ', i)
+        print("Adding: ", i)
         DATA.append(i)
         time.sleep(1)
 
 
 def get_data():
     time.sleep(5)
-    print('Access shared data: ')
+    print("Access shared data: ")
     for i in DATA:
         print(i)
 
@@ -29,5 +29,4 @@ for thread in threads:
 for thread in threads:
     thread.join()
 
-print('Done!')
-
+print("Done!")

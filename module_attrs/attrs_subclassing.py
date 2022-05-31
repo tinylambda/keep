@@ -24,7 +24,7 @@ class C(A, B):
     c = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     i = C(1, 2, 3)
-    logging.info('%s', i)
-    logging.info('%s', i.get_a())
+    logging.info("%s", i)
+    logging.info("%s", i.get_a())

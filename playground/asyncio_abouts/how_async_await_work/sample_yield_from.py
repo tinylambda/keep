@@ -6,6 +6,7 @@ def lazy_range(up_to):
         while index < up_to:
             yield index
             index += 1
+
     yield from gratuitous_refactor()
 
 
@@ -26,11 +27,11 @@ def top():
     return (yield from middle())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for i in lazy_range(3):
         print(i)
 
-    print('-' * 64)
+    print("-" * 64)
 
     gen = top()
     value = next(gen)
@@ -39,13 +40,13 @@ if __name__ == '__main__':
     try:
         value = gen.send(value * 10)
     except StopIteration as exc:
-        print('got 1')
+        print("got 1")
         value = exc.value
     print(value)
 
     try:
         value = gen.send(value * 10)
     except StopIteration as exc:
-        print('got 2')
+        print("got 2")
         value = exc.value
     print(value)

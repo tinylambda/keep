@@ -9,26 +9,26 @@ class FooBar(BaseModel):
 
 
 class Gender(str, Enum):
-    male = 'male'
-    female = 'female'
-    other = 'other'
-    not_given = 'not_given'
+    male = "male"
+    female = "female"
+    other = "other"
+    not_given = "not_given"
 
 
 class MainModel(BaseModel):
     foo_bar: FooBar = Field(...)
-    gender: Gender = Field(None, alias='Gender')
+    gender: Gender = Field(None, alias="Gender")
     snap: int = Field(
         42,
-        title='The Snap',
-        description='this is the value of snap',
+        title="The Snap",
+        description="this is the value of snap",
         gt=30,
         lt=50,
     )
 
     class Config:
-        title = 'Main'
+        title = "Main"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(MainModel.schema_json(indent=2))

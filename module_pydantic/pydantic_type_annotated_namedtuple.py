@@ -12,10 +12,10 @@ class Model(BaseModel):
     p: Point
 
 
-if __name__ == '__main__':
-    print(Model(p=('1', '2')))
+if __name__ == "__main__":
+    print(Model(p=("1", "2")))
 
     try:
-        Model(p=('1.3', '2'))
+        Model(p=("1.3", "2"))
     except ValidationError as e:
         print(e)

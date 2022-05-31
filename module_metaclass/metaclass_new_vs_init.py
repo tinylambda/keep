@@ -10,15 +10,15 @@ class MetaOne(type):
         """
         cls = type.__new__(mcs, name, bases, cls_dict)
         i = cls()
-        print('cls is ', i)
+        print("cls is ", i)
         return i
 
     def __init__(cls, what, bases=None, d=None):
-        print('init...')
+        print("init...")
         print(what, bases, d)
 
     def __call__(cls, *args, **kwargs):
-        print('in __call__', args, kwargs)
+        print("in __call__", args, kwargs)
         return cls
 
 
@@ -28,7 +28,7 @@ class MetaTwo(type):
         __init__ is usually after the object has been created so as to initialize it.
         """
         obj = super(MetaTwo, cls).__init__(name, bases, cls_dict)
-        print('obj is ', obj)
+        print("obj is ", obj)
         return obj
 
 
@@ -37,4 +37,3 @@ class A(metaclass=MetaOne):
 
 
 A()
-

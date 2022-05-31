@@ -1,1 +1,1 @@
-DATA = 'DATA B'
+DATA = "DATA B"

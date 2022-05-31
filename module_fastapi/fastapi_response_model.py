@@ -34,13 +34,13 @@ class UserOut(BaseModel):
     full_name: Optional[str] = None
 
 
-@app.post('/items/', response_model=Item)
+@app.post("/items/", response_model=Item)
 async def create_item(item: Item):
     return item
 
 
 @app.get(
-    '/items/{item_id}',
+    "/items/{item_id}",
     response_model=Item,
     response_model_exclude_unset=True,
     # response_model_exclude_defaults=True,
@@ -52,13 +52,14 @@ async def read_item(item_id: str):
     return items[item_id]
 
 
-@app.post('/user/', response_model=UserIn)
+@app.post("/user/", response_model=UserIn)
 async def create_user(user: UserIn):
     return user
 
 
-@app.post('/user2/', response_model=UserOut)
+@app.post("/user2/", response_model=UserOut)
 async def create_user2(user: UserIn):
     return user
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_response_model:app --reload

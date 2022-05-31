@@ -14,4 +14,3 @@ class BugStatus(enum.Enum):
     # This will trigger an error with unique applied
     by_design = 4
     closed = 1
-

@@ -15,14 +15,14 @@ class TimeAwareModel(BaseModel):
 
 
 class Model(BaseModel):
-    _class_var: ClassVar[str] = 'class var value'
-    _private_attr: str = 'private attr value'
+    _class_var: ClassVar[str] = "class var value"
+    _private_attr: str = "private attr value"
 
     class Config:
         underscore_attrs_are_private = True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = TimeAwareModel()
     print(m._processed_at)
     print(m._secret_value)

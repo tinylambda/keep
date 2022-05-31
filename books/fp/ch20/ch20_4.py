@@ -10,7 +10,7 @@ class AutoStorage:
         cls = self.__class__
         prefix = cls.__name__
         index = cls.__counter
-        self.storage_name = '_{}#{}'.format(prefix, index)
+        self.storage_name = "_{}#{}".format(prefix, index)
         cls.__counter += 1
 
     def __get__(self, instance, owner):
@@ -37,7 +37,7 @@ class NoBlank(Validated):
     def validate(self, instance, value):
         value = value.strip()
         if len(value) == 0:
-            raise ValueError('value cannot be empty or blank')
+            raise ValueError("value cannot be empty or blank")
         return value
 
 
@@ -55,6 +55,5 @@ class LineItem:
         return self.weight * self.price
 
 
-if __name__ == '__main__':
-    li = LineItem('x', 20, 19.2)
-
+if __name__ == "__main__":
+    li = LineItem("x", 20, 19.2)

@@ -21,6 +21,6 @@ class C1:
     x = attr.ib(factory=list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c1 = C1()
-    logging.info('%s', c1)
+    logging.info("%s", c1)

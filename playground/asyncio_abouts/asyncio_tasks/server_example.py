@@ -13,7 +13,7 @@ class HandlerTask:
 
 
 class ServerExample:
-    MIN_TICK_INTERVAL = 1.
+    MIN_TICK_INTERVAL = 1.0
 
     def __init__(self):
         self.loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
@@ -37,14 +37,14 @@ class ServerExample:
         if not self._worker_id:
             random_bytes = os.urandom(16)
             random_string = random_bytes.decode()
-            self._worker_id = f'{self.__class__.__name__}_{random_string}'
+            self._worker_id = f"{self.__class__.__name__}_{random_string}"
         return self._worker_id
 
     @property
     def all_tick_callables(self):
         if not self._all_tick_callables:
             for item in dir(self):
-                if item.startswith('tick_'):
+                if item.startswith("tick_"):
                     item_value = getattr(self, item)
                     if callable(item_value):
                         self._all_tick_callables.append(item_value)
@@ -66,10 +66,7 @@ class ServerExample:
         while not self.server_closing.done():
             self.last_tick_time = self.loop.time()
 
-            tick_tasks = [
-                self.loop.create_task(f())
-                for f in self.all_tick_callables
-            ]
+            tick_tasks = [self.loop.create_task(f()) for f in self.all_tick_callables]
 
             tick_tasks_start = self.loop.time()
             await asyncio.wait(tick_tasks, return_when=asyncio.ALL_COMPLETED)
@@ -94,7 +91,8 @@ class ServerExample:
         self.server_closed.set_result(True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     async def run_server():
         server = ServerExample()
         server.start()
@@ -110,4 +108,3 @@ if __name__ == '__main__':
     #     # print('stopping server')
     #     # asyncio.run(stop_server())
     #     # print('server stopped')
-

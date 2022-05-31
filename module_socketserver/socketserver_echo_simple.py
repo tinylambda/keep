@@ -7,11 +7,11 @@ class EchoRequestHandler(socketserver.BaseRequestHandler):
         self.request.send(data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import socket
     import threading
 
-    address = ('localhost', 0)
+    address = ("localhost", 0)
     server = socketserver.TCPServer(address, EchoRequestHandler)
     ip, port = server.server_address
 
@@ -22,12 +22,12 @@ if __name__ == '__main__':
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, port))
 
-    message = 'Hello world'.encode()
-    print('Sending {!r}'.format(message))
+    message = "Hello world".encode()
+    print("Sending {!r}".format(message))
     len_sent = s.send(message)
 
     response = s.recv(len_sent)
-    print('Received: {!r}'.format(response))
+    print("Received: {!r}".format(response))
 
     server.shutdown()
     s.close()

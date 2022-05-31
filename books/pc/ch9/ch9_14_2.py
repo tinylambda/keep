@@ -9,7 +9,7 @@ class Typed:
 
     def __set__(self, instance, value):
         if not isinstance(value, self._expected_type):
-            raise TypeError(f'expected {self._expected_type}')
+            raise TypeError(f"expected {self._expected_type}")
         instance.__dict__[self._name] = value
 
 
@@ -33,7 +33,7 @@ class OrderedMeta(type):
             if isinstance(value, Typed):
                 value._name = name
                 order.append(name)
-        d['_order'] = order
+        d["_order"] = order
         return type.__new__(mcs, clsname, bases, d)
 
     @classmethod
@@ -43,7 +43,7 @@ class OrderedMeta(type):
 
 class Structure(metaclass=OrderedMeta):
     def as_csv(self):
-        return ','.join(str(getattr(self, name)) for name in self._order)
+        return ",".join(str(getattr(self, name)) for name in self._order)
 
 
 class Stock(Structure):
@@ -57,10 +57,9 @@ class Stock(Structure):
         self.price = price
 
 
-if __name__ == '__main__':
-    s = Stock('HUAWEI', 100, 5000.20)
+if __name__ == "__main__":
+    s = Stock("HUAWEI", 100, 5000.20)
     print(s.name)
     print(s.as_csv())
 
-    s = Stock('HUAWEI', 'a lot', 5000.20)  # trigger error
-
+    s = Stock("HUAWEI", "a lot", 5000.20)  # trigger error

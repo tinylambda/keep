@@ -20,6 +20,5 @@ class Stock(metaclass=CheckedMeta):
         self.price = price
 
 
-if __name__ == '__main__':
-    s = Stock('ABCD', 77, 99.1)
-
+if __name__ == "__main__":
+    s = Stock("ABCD", 77, 99.1)

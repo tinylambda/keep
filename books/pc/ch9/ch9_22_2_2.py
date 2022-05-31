@@ -12,7 +12,7 @@ def list_transaction(orig_list):
         orig_list[:] = working
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     items = [1, 2, 3]
     with list_transaction(items) as working:
         working.append(4)
@@ -22,6 +22,5 @@ if __name__ == '__main__':
     with list_transaction(items) as working:
         working.append(6)
         working.append(7)
-        raise RuntimeError('oops')
+        raise RuntimeError("oops")
     print(items)
-

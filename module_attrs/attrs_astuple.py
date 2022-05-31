@@ -12,6 +12,6 @@ class Foo:
     b = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     foo = Foo(2, 3)
-    logging.info('%s', attr.astuple(foo))
+    logging.info("%s", attr.astuple(foo))

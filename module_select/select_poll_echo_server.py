@@ -17,8 +17,8 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setblocking(False)
 
 # Bind the socket to the port
-server_address = ('localhost', 10000)
-print('Starting up on {} port {}'.format(*server_address), file=sys.stderr)
+server_address = ("localhost", 10000)
+print("Starting up on {} port {}".format(*server_address), file=sys.stderr)
 server.bind(server_address)
 
 # Listen for incoming connections
@@ -31,12 +31,7 @@ message_queues = {}
 TIMEOUT = 1000
 
 # Commonly used flag sets
-READ_ONLY = (
-    select.POLLIN |
-    select.POLLPRI |
-    select.POLLHUP |
-    select.POLLERR
-)
+READ_ONLY = select.POLLIN | select.POLLPRI | select.POLLHUP | select.POLLERR
 READ_WRITE = READ_ONLY | select.POLLOUT
 
 
@@ -51,7 +46,7 @@ fd_to_socket = {
 
 while True:
     # Wait for at least one of the sockets to be ready for processing
-    print('Waiting for the next event', file=sys.stderr)
+    print("Waiting for the next event", file=sys.stderr)
     events = poller.poll(TIMEOUT)
     for fd, flag in events:
         # Retrieve the actual socket from its file descriptor
@@ -62,7 +57,7 @@ while True:
             if s is server:
                 # A readable socket is ready to accept a connection
                 connection, client_address = s.accept()
-                print('Connection', client_address, file=sys.stderr)
+                print("Connection", client_address, file=sys.stderr)
                 connection.setblocking(False)
                 fd_to_socket[connection.fileno()] = connection
                 poller.register(connection, READ_ONLY)
@@ -73,13 +68,16 @@ while True:
                 data = s.recv(1024)
                 if data:
                     # A readable client socket has data
-                    print('Received {!r} from {}'.format(data, s.getpeername()), file=sys.stderr)
+                    print(
+                        "Received {!r} from {}".format(data, s.getpeername()),
+                        file=sys.stderr,
+                    )
                     message_queues[s].put(data)
                     # Add output channel for response
                     poller.modify(s, READ_WRITE)
                 else:
                     # Interpret empty result as closed connection
-                    print('Closing', client_address, file=sys.stderr)
+                    print("Closing", client_address, file=sys.stderr)
                     # Stop listening for input on the connection
                     poller.unregister(s)
                     s.close()
@@ -88,7 +86,7 @@ while True:
                     del message_queues[s]
         elif flag & select.POLLHUP:
             # Client hung up
-            print('Closing', client_address, '(HUP)', file=sys.stderr)
+            print("Closing", client_address, "(HUP)", file=sys.stderr)
             # Stop listening for input on the connection
             poller.unregister(s)
             s.close()
@@ -98,13 +96,16 @@ while True:
                 next_msg = message_queues[s].get_nowait()
             except queue.Empty:
                 # No messages waiting so stop checking
-                print(s.getpeername(), 'queue empty', file=sys.stderr)
+                print(s.getpeername(), "queue empty", file=sys.stderr)
                 poller.modify(s, READ_ONLY)
             else:
-                print('Sending {!r} to {}'.format(next_msg, s.getpeername()), file=sys.stderr)
+                print(
+                    "Sending {!r} to {}".format(next_msg, s.getpeername()),
+                    file=sys.stderr,
+                )
                 s.send(next_msg)
         elif flag & select.POLLERR:
-            print('Exception on', s.getpeername(), file=sys.stderr)
+            print("Exception on", s.getpeername(), file=sys.stderr)
             # Stop listening for input on the connection
             poller.unregister(s)
             s.close()

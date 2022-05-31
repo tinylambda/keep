@@ -10,20 +10,23 @@ class MyObject:
         self.papa = Papa()
 
     def start_stuff(self):
-        self.papa.make_socket('uwsgi')
-        with open('/tmp/uwsgi.ini', 'w') as f:
+        self.papa.make_socket("uwsgi")
+        with open("/tmp/uwsgi.ini", "w") as f:
             pass
 
         self.papa.make_process(
-            'uwsgi', 'uwsgi',
-            args=('--ini', 'uwsgi.ini', '--socket', 'fd://$(socket.uwsgi.fileno)'),
-            working_dir='/tmp', env=os.environ)
+            "uwsgi",
+            "uwsgi",
+            args=("--ini", "uwsgi.ini", "--socket", "fd://$(socket.uwsgi.fileno)"),
+            working_dir="/tmp",
+            env=os.environ,
+        )
 
     def close(self):
         self.papa.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     my_object = None
 
     try:
@@ -40,4 +43,3 @@ if __name__ == '__main__':
         pprint.pprint(papa.list_values())
 
     show_papa()
-    

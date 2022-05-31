@@ -12,13 +12,12 @@ class DictProtocol:
         return item in self.real_data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dp = DictProtocol()
-    dp['a'] = 100
-    dp['b'] = 200
+    dp["a"] = 100
+    dp["b"] = 200
 
-    print(dp['a'])
-    print(dp['b'])
+    print(dp["a"])
+    print(dp["b"])
 
-    print('a' in dp)
-
+    print("a" in dp)

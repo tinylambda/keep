@@ -11,13 +11,12 @@ class Singleton(type):
 
 class Spam(metaclass=Singleton):
     def __init__(self):
-        print('creating spam')
+        print("creating spam")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Spam()
     b = Spam()
     print(a is b)
     c = Spam()
     print(a is c)
-

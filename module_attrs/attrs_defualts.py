@@ -27,20 +27,20 @@ class ConnectionPool:
             return self.pool.pop()
         except IndexError:
             if self.debug:
-                logging.debug('new connection!')
+                logging.debug("new connection!")
             return Connection.connect(self.db_string)
 
     def free_connection(self, conn):
         if self.debug:
-            logging.debug('connection returned!')
+            logging.debug("connection returned!")
         self.pool.appendleft(conn)
 
 
-if __name__ == '__main__':
-    cp = ConnectionPool('postgres://localhost')
-    logging.info('%s', cp)
+if __name__ == "__main__":
+    cp = ConnectionPool("postgres://localhost")
+    logging.info("%s", cp)
 
     conn = cp.get_connection()
-    logging.info('%s', conn)
+    logging.info("%s", conn)
     cp.free_connection(conn)
-    logging.info('%s', cp)
+    logging.info("%s", cp)

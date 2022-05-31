@@ -3,14 +3,14 @@ class LazyDB:
         self.exists = 5
 
     def __getattr__(self, item):
-        value = 'Value for %s' % item
+        value = "Value for %s" % item
         setattr(self, item, value)
         return value
 
 
 class LoggingLazyDB(LazyDB):
     def __getattr__(self, item):
-        print('Called __getattr__(%s)' % item)
+        print("Called __getattr__(%s)" % item)
         return super(LoggingLazyDB, self).__getattr__(item)
 
 
@@ -19,20 +19,20 @@ class ValidatingDB(object):
         self.exists = 5
 
     def __getattribute__(self, item):
-        print('Called __getattribute__(%s)' % item)
+        print("Called __getattribute__(%s)" % item)
         try:
             return super(ValidatingDB, self).__getattribute__(item)
         except AttributeError:
-            value = 'Value for %s' % item
+            value = "Value for %s" % item
             setattr(self, item, value)
             return value
 
 
 class MissingPropertyDB:
     def __getattr__(self, item):
-        if item == 'bad_name':
-            raise AttributeError('%s is missing' % item)
-        
+        if item == "bad_name":
+            raise AttributeError("%s is missing" % item)
+
 
 class SavingDB:
     def __setattr__(self, key, value):
@@ -41,7 +41,7 @@ class SavingDB:
 
 class LoggingSavingDB(SavingDB):
     def __setattr__(self, key, value):
-        print('Called __setattr__(%s, %r)' % (key, value))
+        print("Called __setattr__(%s, %r)" % (key, value))
         super(LoggingSavingDB, self).__setattr__(key, value)
 
 
@@ -50,7 +50,7 @@ class BrokenDictionaryDB:
         self._data = {}
 
     def __getattribute__(self, item):
-        print('Called __getattribute__(%s)' % item)
+        print("Called __getattribute__(%s)" % item)
         return self._data[item]
 
 
@@ -59,11 +59,11 @@ class DictionaryDB:
         self._data = data
 
     def __getattribute__(self, item):
-        data_dict = super(DictionaryDB, self).__getattribute__('_data')
+        data_dict = super(DictionaryDB, self).__getattribute__("_data")
         return data_dict[item]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # data = LazyDB()
     # print('Before: ', data.__dict__)
     # print('foo: ', data.foo)
@@ -99,6 +99,5 @@ if __name__ == '__main__':
     # data.foo = 7
     # print('Finally: ', data.__dict__)
 
-    data = BrokenDictionaryDB({'foo': 3})
+    data = BrokenDictionaryDB({"foo": 3})
     data.foo
-

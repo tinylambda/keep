@@ -13,6 +13,5 @@ class MyApp(App):
         return app_root
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

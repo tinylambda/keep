@@ -1,4 +1,3 @@
-
 def aritprog_gen(begin, step, end=None):
     result = type(begin + step)(begin)
     forever = end is None
@@ -9,30 +8,22 @@ def aritprog_gen(begin, step, end=None):
         result = begin + step * index
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ap = aritprog_gen(0, 1, 3)
-    print(
-        list(ap)
-    )
+    print(list(ap))
 
-    ap = aritprog_gen(0, .5, 3)
-    print(
-        list(ap)
-    )
+    ap = aritprog_gen(0, 0.5, 3)
+    print(list(ap))
 
-    ap = aritprog_gen(0, 1/3, 1)
-    print(
-        list(ap)
-    )
+    ap = aritprog_gen(0, 1 / 3, 1)
+    print(list(ap))
 
     from fractions import Fraction
+
     ap = aritprog_gen(0, Fraction(1, 3), 1)
-    print(
-        list(ap)
-    )
+    print(list(ap))
 
     from decimal import Decimal
-    ap = aritprog_gen(0, Decimal('.1'), .3)
-    print(
-        list(ap)
-    )
+
+    ap = aritprog_gen(0, Decimal(".1"), 0.3)
+    print(list(ap))

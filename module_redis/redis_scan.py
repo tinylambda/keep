@@ -6,7 +6,7 @@ from module_redis import redis_client
 
 
 def do_scan(match=None, _type=None):
-    print(f'Scan with match={match} and _type={_type}')
+    print(f"Scan with match={match} and _type={_type}")
     next_cursor = 0
     counter = 0
     while True:
@@ -21,13 +21,13 @@ def do_scan(match=None, _type=None):
         if next_cursor == 0:
             break
 
-    print(counter, end='\n\n')
+    print(counter, end="\n\n")
 
 
 do_scan()
-do_scan(match='key_*')
+do_scan(match="key_*")
 
-info = redis_client.info('Server')
+info = redis_client.info("Server")
 
-if info.get('redis_version') >= '6.0.0':
-    do_scan(_type='ZSET')
+if info.get("redis_version") >= "6.0.0":
+    do_scan(_type="ZSET")

@@ -5,10 +5,10 @@ from kivy.uix.textinput import TextInput
 
 class MyW(Widget):
     def my_callback(self):
-        self.ids.label1.text = 'Click!'
+        self.ids.label1.text = "Click!"
 
     def my_callback1(self, inpt):
-        self.ids.label1.text = 'Enter !' + str(inpt)
+        self.ids.label1.text = "Enter !" + str(inpt)
 
 
 class MyApp(App):
@@ -16,7 +16,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-
-

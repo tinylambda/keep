@@ -12,4 +12,3 @@ class MyClass(metaclass=Meta):
 
 mc = MyClass()
 print(mc, type(mc))
-

@@ -21,7 +21,7 @@ class ExampleLoader(Loader):
 
 class ExampleFinder(MetaPathFinder):
     def find_spec(self, fullname, path, target=None):
-        return ModuleSpec('module', ExampleLoader())
+        return ModuleSpec("module", ExampleLoader())
 
 
 def example_hook(path):
@@ -36,4 +36,3 @@ import module
 
 print(module, module.x, module.y)
 print(module.__spec__)
-

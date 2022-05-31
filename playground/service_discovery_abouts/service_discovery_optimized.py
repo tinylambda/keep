@@ -23,8 +23,8 @@ to see what happens
 
 @attr.s
 class BattleService:
-    SERVICE_ROOT = '/test-services/'
-    SERVICE_LOCK_ROOT = '/test-locks/services/'
+    SERVICE_ROOT = "/test-services/"
+    SERVICE_LOCK_ROOT = "/test-locks/services/"
     SERVICES = {}
     SERVICE_TTL = 10
     SERVICE_TTL_REFRESH_INTERVAL = 7
@@ -39,24 +39,27 @@ class BattleService:
     service_stop_event = attr.ib(default=attr.Factory(asyncio.Event))
     found_self_event = attr.ib(default=attr.Factory(asyncio.Event))
     start_core_loop_event = attr.ib(default=attr.Factory(asyncio.Event))
-    service_start_listen_service_directory_event = attr.ib(default=attr.Factory(asyncio.Event))
+    service_start_listen_service_directory_event = attr.ib(
+        default=attr.Factory(asyncio.Event)
+    )
     asyncio_loop = attr.ib(default=attr.Factory(asyncio.get_event_loop))
     service_prepare_semaphore = attr.ib(default=None)
     service_lease_id = attr.ib(default=None)
 
     def __attrs_post_init__(self):
         self.service_socket = self.zmq_context.socket(zmq.REP)
-        self.service_port = self.service_socket.bind_to_random_port('tcp://*',
-                                                                    min_port=49152,
-                                                                    max_port=65535,
-                                                                    max_tries=64)
-        self.service_state = 'registering'
+        self.service_port = self.service_socket.bind_to_random_port(
+            "tcp://*", min_port=49152, max_port=65535, max_tries=64
+        )
+        self.service_state = "registering"
         unique_id = uuid.uuid4().hex
         self.service_register_key = os.path.join(self.service_directory, unique_id)
-        self.service_register_value = json.dumps({
-            'host_ip': self.host_ip,
-            'port': self.service_port,
-        })
+        self.service_register_value = json.dumps(
+            {
+                "host_ip": self.host_ip,
+                "port": self.service_port,
+            }
+        )
 
     @property
     def service_directory(self):
@@ -70,11 +73,11 @@ class BattleService:
     def host_ip(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
-            s.connect(('10.255.255.255', 1))
+            s.connect(("10.255.255.255", 1))
             ip = s.getsockname()[0]
         except Exception as e:
-            logging.debug('Error when try to get local ip address', exc_info=e)
-            ip = '127.0.0.1'
+            logging.debug("Error when try to get local ip address", exc_info=e)
+            ip = "127.0.0.1"
         finally:
             s.close()
         return ip
@@ -85,13 +88,13 @@ class BattleService:
 
     def new_client_instance(self, host_ip, port, **kwargs):
         instance = self.zmq_context.socket(zmq.REQ)
-        instance.connect(f'tcp://{host_ip}:{port}')
+        instance.connect(f"tcp://{host_ip}:{port}")
         return instance
 
     def service_cache_add(self, key, value):
         value_dict = json.loads(value)
         instance = self.new_client_instance(**value_dict)
-        value_dict.update({'instance': instance})
+        value_dict.update({"instance": instance})
         self.__class__.SERVICES[key] = value_dict
 
     def service_cache_del(self, key):
@@ -100,7 +103,7 @@ class BattleService:
 
     def apply_event(self, event: Event):
         key = event.key
-        if self.service_state == 'registering':
+        if self.service_state == "registering":
             if key == self.service_register_key.encode():
                 self.found_self_event.set()
             self.events_buffer.append(event)
@@ -138,8 +141,8 @@ class BattleService:
                         if self.service_stop_event.is_set():
                             break
             except Exception as e:
-                logging.info('exception happened will retry', exc_info=e)
-        logging.info('stop listening service directory')
+                logging.info("exception happened will retry", exc_info=e)
+        logging.info("stop listening service directory")
 
     async def fetch_all_service_instances(self):
         async with aetcd3.client() as client:
@@ -150,48 +153,58 @@ class BattleService:
         async with aetcd3.client() as client:
             lease: Lease = await client.lease(self.__class__.SERVICE_TTL)
             self.service_lease_id = lease.id
-            await client.put(self.service_register_key, self.service_register_value, lease)
+            await client.put(
+                self.service_register_key, self.service_register_value, lease
+            )
 
     async def service_ttl_refresh(self):
         await self.found_self_event.wait()
 
-        logging.info('start to refresh service ttl')
+        logging.info("start to refresh service ttl")
         async with aetcd3.client() as client:
             while not self.service_stop_event.is_set():
                 await asyncio.sleep(self.__class__.SERVICE_TTL_REFRESH_INTERVAL)
                 await client.refresh_lease(lease_id=self.service_lease_id)
-                logging.info('lease refreshed')
+                logging.info("lease refreshed")
 
     async def service_say_hi(self):
-        logging.info('service [%s] say hi to other service instances', self.service_register_key)
+        logging.info(
+            "service [%s] say hi to other service instances", self.service_register_key
+        )
         async with aetcd3.client() as client:
             async with client.lock(self.service_lock):
                 self.asyncio_loop.create_task(self.listen_service_directory())
                 await self.service_start_listen_service_directory_event.wait()
-                logging.info('service_start_listen_service_directory_event set')
+                logging.info("service_start_listen_service_directory_event set")
                 await self.fetch_all_service_instances()
                 await self.register_self()
 
                 n_other_services = len(self.__class__.SERVICES)
-                self.service_prepare_semaphore = await self.get_semaphore(n_other_services)
+                self.service_prepare_semaphore = await self.get_semaphore(
+                    n_other_services
+                )
                 self.start_core_loop_event.set()
 
                 all_confirmed_event = asyncio.Event()
-                await self.semaphore_trigger(self.service_prepare_semaphore, all_confirmed_event, n_other_services)
+                await self.semaphore_trigger(
+                    self.service_prepare_semaphore,
+                    all_confirmed_event,
+                    n_other_services,
+                )
                 await all_confirmed_event.wait()
 
                 await self.found_self_event.wait()
-                self.service_state = 'registered'
+                self.service_state = "registered"
                 self.apply_buffered_events()
-                logging.info('service_say_hi complete!')
+                logging.info("service_say_hi complete!")
 
     async def core_loop(self):
-        logging.info('core loop: waiting !')
+        logging.info("core loop: waiting !")
         await self.start_core_loop_event.wait()
-        logging.info('core loop: start !')
+        logging.info("core loop: start !")
         # simulate other services confirmation
         while not self.service_stop_event.is_set():
-            logging.info('waiting request...')
+            logging.info("waiting request...")
             await asyncio.sleep(1)
             self.service_prepare_semaphore.release()
 
@@ -202,6 +215,6 @@ class BattleService:
         self.asyncio_loop.run_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = BattleService()
     s.run()

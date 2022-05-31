@@ -1,6 +1,6 @@
 import bobo
 
 
-@bobo.query('/')
+@bobo.query("/")
 def hello(person):
-    return 'Hello %s!' % person
+    return "Hello %s!" % person

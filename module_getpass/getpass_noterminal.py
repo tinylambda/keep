@@ -3,10 +3,9 @@ import sys
 
 
 if sys.stdin.isatty():
-    p = getpass.getpass('using getpass: ')
+    p = getpass.getpass("using getpass: ")
 else:
-    print('using readline')
+    print("using readline")
     p = sys.stdin.readline().rstrip()
 
-print('read: ', p)
-
+print("read: ", p)

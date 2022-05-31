@@ -25,11 +25,11 @@ class Tombola(abc.ABC):
         return tuple(sorted(items))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     class Fake(Tombola):
         def pick(self):
             return 13
 
     print(Fake)
     f = Fake()  # Error
-

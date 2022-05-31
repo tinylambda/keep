@@ -5,7 +5,7 @@ import numbers
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
@@ -15,14 +15,14 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)
-        components = components[components.find('['):-1]
-        return 'Vector({})'.format(components)
+        components = components[components.find("[") : -1]
+        return "Vector({})".format(components)
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) + bytes(self._components))
+        return bytes([ord(self.typecode)]) + bytes(self._components)
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -49,11 +49,11 @@ class Vector:
         elif isinstance(item, numbers.Integral):
             return self._components[item]
         else:
-            msg = '{cls.__name__} indices must be integers'
+            msg = "{cls.__name__} indices must be integers"
             raise TypeError(msg.format(cls=cls))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     v = Vector([3.1, 4.2])
     print(v)
 
@@ -63,9 +63,7 @@ if __name__ == '__main__':
     v = Vector(range(100))
     print(v)
 
-    print(
-        len(v)
-    )
+    print(len(v))
     print(
         v[0],
         v[1],
@@ -73,17 +71,7 @@ if __name__ == '__main__':
     )
     print(v[3:5])
 
-    print(
-        v[-1]
-    )
-    print(
-        v[1:4]
-    )
-    print(
-        v[-1:]
-    )
-    print(
-        v[1, 2]
-    )
-
-
+    print(v[-1])
+    print(v[1:4])
+    print(v[-1:])
+    print(v[1, 2])

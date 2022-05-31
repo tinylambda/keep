@@ -8,10 +8,9 @@ class A:
         return self.x
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A()
     print(a.test())
 
     a.x = 2000
     print(a.x, A.x)
-

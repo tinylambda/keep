@@ -15,22 +15,11 @@ def dedupe2(items, key=None):
             seen.add(val)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = [1, 5, 2, 1, 9, 1, 5, 10]
-    print(
-        list(dedupe(a))
-    )
+    print(list(dedupe(a)))
 
-    b = [
-        {'x': 1, 'y': 2},
-        {'x': 1, 'y': 3},
-        {'x': 1, 'y': 2},
-        {'x': 2, 'y': 1}
-    ]
-    print(
-        list(dedupe2(b, key=lambda d: (d['x'], d['y'])))
-    )
+    b = [{"x": 1, "y": 2}, {"x": 1, "y": 3}, {"x": 1, "y": 2}, {"x": 2, "y": 1}]
+    print(list(dedupe2(b, key=lambda d: (d["x"], d["y"]))))
 
-    print(
-        list(dedupe2(b, key=lambda d: d['x']))
-    )
+    print(list(dedupe2(b, key=lambda d: d["x"])))

@@ -22,7 +22,7 @@ class Common:
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     gp = GoodPoint()  # include z
     d = asdict(gp)
     print(d)
@@ -34,5 +34,3 @@ if __name__ == '__main__':
     print(dataclasses.is_dataclass(gp), dataclasses.is_dataclass(GoodPoint))
     print(dataclasses.is_dataclass(bp), dataclasses.is_dataclass(BadPoint))
     print(dataclasses.is_dataclass(Common()), dataclasses.is_dataclass(Common))
-
-

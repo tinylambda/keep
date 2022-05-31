@@ -9,13 +9,13 @@ class ProjectLaborType(bytes, Enum):
         obj.full = (value, text)
         return obj
 
-    Flooring = (1, 'Flooring')
+    Flooring = (1, "Flooring")
 
 
 PROJECT_LABOR_TYPE_MAP = dict([o.full for o in ProjectLaborType])
 PROJECT_LABOR_TYPE_MAP_REVERSE = dict([(o.text, o.value) for o in ProjectLaborType])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(PROJECT_LABOR_TYPE_MAP)
     print(PROJECT_LABOR_TYPE_MAP_REVERSE)

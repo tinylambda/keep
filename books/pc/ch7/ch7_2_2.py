@@ -9,14 +9,13 @@ def minimum(*values, clip=None):
     return m
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     recv(1024, block=True)
 
     try:
         recv(1024, True)
     except TypeError:
-        print('go type error')
+        print("go type error")
 
     print(minimum(1, 5, 2, -5, 10))
     print(minimum(1, 5, 2, -5, 10, clip=0))
-

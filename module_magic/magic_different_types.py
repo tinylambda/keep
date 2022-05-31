@@ -7,8 +7,7 @@ class A:
             self.value += other
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A(100)
     a + 100
     print(a.value)
-

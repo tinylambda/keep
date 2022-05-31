@@ -10,10 +10,9 @@ class timethis:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         end = time.time()
-        print('{}: {}'.format(self.label, end - self.start))
+        print("{}: {}".format(self.label, end - self.start))
 
 
-with timethis('counting'):
+with timethis("counting"):
     for i in range(1000000):
         pass
-

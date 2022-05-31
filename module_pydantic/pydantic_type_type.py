@@ -25,7 +25,7 @@ class LenientSimpleModel(BaseModel):
     any_class_goes: Type
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(SimpleModel(just_subclasses=Foo))
     print(SimpleModel(just_subclasses=Bar))
 

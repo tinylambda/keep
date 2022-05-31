@@ -4,8 +4,4 @@ from pprint import pprint
 import module_inspect.example as example
 
 
-pprint(inspect.getmembers(
-    example.B,
-    inspect.isfunction
-))
-
+pprint(inspect.getmembers(example.B, inspect.isfunction))

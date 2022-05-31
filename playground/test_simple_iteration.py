@@ -7,5 +7,4 @@ for i in range(10000000000):
     if i % 100000000 == 0:
         print(i)
 
-print('cost time', time.time() - start, 'secs')
-
+print("cost time", time.time() - start, "secs")

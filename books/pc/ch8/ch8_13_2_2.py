@@ -10,6 +10,7 @@ def check_attributes(**kwargs):
             else:
                 setattr(cls, key, value(key))
         return cls
+
     return decorate
 
 
@@ -21,6 +22,5 @@ class Stock:
         self.price = price
 
 
-if __name__ == '__main__':
-    s = Stock('ABCD', 77, 99.2)
-
+if __name__ == "__main__":
+    s = Stock("ABCD", 77, 99.2)

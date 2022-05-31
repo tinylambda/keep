@@ -7,8 +7,8 @@ import attr
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s,%(msecs)d %(levelname)s: %(message)s',
-    datefmt='%H:%M:%S'
+    format="%(asctime)s,%(msecs)d %(levelname)s: %(message)s",
+    datefmt="%H:%M:%S",
 )
 
 
@@ -19,18 +19,18 @@ class PubSubMessage:
     hostname = attr.ib(repr=False, init=False)
 
     def __attrs_post_init__(self):
-        self.hostname = f'{self.instance_name}.example.net'
+        self.hostname = f"{self.instance_name}.example.net"
 
 
 async def publish(queue, n):
     choices = string.ascii_lowercase + string.digits
 
     for x in range(1, n + 1):
-        host_id = ''.join(random.choices(choices, k=4))
-        instance_name = f'cattle-{host_id}'
+        host_id = "".join(random.choices(choices, k=4))
+        instance_name = f"cattle-{host_id}"
         msg = PubSubMessage(message_id=x, instance_name=instance_name)
         await queue.put(msg)
-        logging.info(f'published {x} of {n} messages')
+        logging.info(f"published {x} of {n} messages")
     await queue.put(None)
 
 
@@ -41,7 +41,7 @@ async def consume(queue):
         if msg is None:
             break
         # process the msg
-        logging.info(f'consumed {msg}')
+        logging.info(f"consumed {msg}")
         # unhelpful simulation of i/o work
         await asyncio.sleep(random.random())
 
@@ -59,7 +59,7 @@ def main_old():
     loop.run_until_complete(publish(queue, 5))
     loop.run_until_complete(consume(queue))
     loop.close()
-    logging.info('successfully shutdown the service')
+    logging.info("successfully shutdown the service")
 
 
 def main2():
@@ -70,7 +70,7 @@ def main2():
     loop.create_task(consume(queue))
     loop.run_forever()
     loop.close()
-    logging.info(f'successfully shutdown the Mayhem service.')
+    logging.info(f"successfully shutdown the Mayhem service.")
 
 
 def main3():
@@ -84,13 +84,13 @@ def main3():
         loop.create_task(consume(queue))
         loop.run_forever()
     except KeyboardInterrupt:
-        logging.info('process interrupted')
+        logging.info("process interrupted")
     finally:
         loop.close()
-        logging.info(f'successfully shutdown the Mayhem service.')
+        logging.info(f"successfully shutdown the Mayhem service.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # main()
     # main_old()
     main2()

@@ -22,16 +22,20 @@ import psycopg2.extensions
 import select
 
 
-if __name__ == '__main__':
-    conn = psycopg2.connect(database='mydatabase', user='postgres', password='postgrespass', host='localhost')
+if __name__ == "__main__":
+    conn = psycopg2.connect(
+        database="mydatabase",
+        user="postgres",
+        password="postgrespass",
+        host="localhost",
+    )
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
     curs = conn.cursor()
-    curs.execute('LISTEN channel_1;')
+    curs.execute("LISTEN channel_1;")
 
     while True:
         select.select([conn], [], [])
         conn.poll()
         while conn.notifies:
             notify = conn.notifies.pop()
-            print('Got NOTIFY:', notify.pid, notify.channel, notify.payload)
-
+            print("Got NOTIFY:", notify.pid, notify.channel, notify.payload)

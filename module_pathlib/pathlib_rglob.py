@@ -1,8 +1,8 @@
 import pathlib
 
 
-p = pathlib.Path('..')
+p = pathlib.Path("..")
 
 print(p.resolve())
-for f in p.rglob('pathlib_*.py'):
+for f in p.rglob("pathlib_*.py"):
     print(f)

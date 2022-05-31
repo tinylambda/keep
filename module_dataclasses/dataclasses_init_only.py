@@ -16,10 +16,9 @@ class C:
 
     def __post_init__(self, database: DatabaseType):
         if self.j is None and database is not None:
-            self.j = database.lookup('j')
+            self.j = database.lookup("j")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(10, database=DatabaseType())
     print(c)
-

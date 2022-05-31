@@ -28,6 +28,5 @@ def ac_connected():
     return psutil.sensors_battery().power_plugged
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(ip_address())
-

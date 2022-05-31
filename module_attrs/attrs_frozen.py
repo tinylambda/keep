@@ -11,6 +11,6 @@ class C:
     x = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     i = C(1)
     i.x = 2  # error

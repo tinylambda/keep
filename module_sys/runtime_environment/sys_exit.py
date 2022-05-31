@@ -1,7 +1,7 @@
 import sys
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit_code = int(sys.argv[1])
     sys.exit(exit_code)
 

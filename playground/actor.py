@@ -33,7 +33,7 @@ class Actor:
         try:
             self.run()
         except ActorExit:
-            print('Exit, bye')
+            print("Exit, bye")
         finally:
             self._terminated.set()
 
@@ -49,14 +49,13 @@ class PrintActor(Actor):
     def run(self):
         while True:
             msg = self.recv()
-            print('Got: ', msg)
+            print("Got: ", msg)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = PrintActor()
     p.start()
-    p.send('hello')
-    p.send('world')
+    p.send("hello")
+    p.send("world")
     p.close()
     p.join()
-

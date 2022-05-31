@@ -30,7 +30,7 @@ class Worker(Actor):
             r.set_result(func(*args, **kwargs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     worker = Worker()
     worker.start()
     result = worker.submit(pow, 2, 3)

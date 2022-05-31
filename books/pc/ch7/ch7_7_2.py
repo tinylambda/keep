@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = 10
     a = lambda y: x + y
     x = 20
@@ -10,7 +10,7 @@ if __name__ == '__main__':
     x = 3
     print(a(10))
 
-    print('-' * 64)
+    print("-" * 64)
 
     x = 10
     a = lambda y, x=x: x + y
@@ -18,4 +18,3 @@ if __name__ == '__main__':
     b = lambda y, x=x: x + y
     print(a(10))
     print(b(10))
-

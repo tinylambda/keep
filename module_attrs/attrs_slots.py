@@ -12,6 +12,6 @@ class Coordinates:
     y = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = Coordinates(1, 2)
-    logging.info('%s', dir(c))
+    logging.info("%s", dir(c))

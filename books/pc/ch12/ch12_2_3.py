@@ -27,25 +27,24 @@ class PeriodTimer:
                 self._cv.wait()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ptimer = PeriodTimer(5)
     ptimer.start()
 
     def countdown(nticks):
         while nticks > 0:
             ptimer.wait_for_tick()
-            print('T-minus', nticks)
+            print("T-minus", nticks)
             nticks -= 1
 
     def countup(last):
         n = 0
         while n < last:
             ptimer.wait_for_tick()
-            print('counting', n)
+            print("counting", n)
             n += 1
 
-    threading.Thread(target=countdown, args=(10, )).start()
-    threading.Thread(target=countup, args=(5, )).start()
+    threading.Thread(target=countdown, args=(10,)).start()
+    threading.Thread(target=countup, args=(5,)).start()
 
-    print('main done')
-
+    print("main done")

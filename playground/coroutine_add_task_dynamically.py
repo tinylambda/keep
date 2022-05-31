@@ -3,7 +3,7 @@ import asyncio
 
 async def t(i):
     while True:
-        print(f'in task {i}...')
+        print(f"in task {i}...")
         await asyncio.sleep(1)
 
 
@@ -15,7 +15,7 @@ async def main():
         await asyncio.wait(initial_tasks, return_when=asyncio.FIRST_COMPLETED)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
     loop.close()

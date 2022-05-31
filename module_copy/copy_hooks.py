@@ -14,17 +14,16 @@ class MyClass:
         return self.name > other.name
 
     def __copy__(self):
-        print('__copy__()')
+        print("__copy__()")
         return MyClass(self.name)
 
     def __deepcopy__(self, memodict={}):
         # The memo dictionary is used to keep track of the
         # values that have been copied already, so as to avoid infinite recursion.
-        print('__deepcopy__({})'.format(memodict))
+        print("__deepcopy__({})".format(memodict))
         return MyClass(copy.deepcopy(self.name, memodict))
 
 
-a = MyClass('a')
+a = MyClass("a")
 sc = copy.copy(a)
 dc = copy.deepcopy(a)
-

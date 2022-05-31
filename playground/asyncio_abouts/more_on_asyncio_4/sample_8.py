@@ -29,7 +29,7 @@ class PubSubMessage:
 
 def cleanup(msg, fut):
     msg.acked = True
-    logging.info(f'Done. Acked {msg}')
+    logging.info(f"Done. Acked {msg}")
 
 
 async def handle_message(msg):

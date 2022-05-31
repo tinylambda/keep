@@ -33,9 +33,9 @@ class Person(BaseModel):
         orm_mode = True
 
 
-bones = PetCls(name='Bones', species='dog')
-orion = PetCls(name='Orion', species='cat')
-anna = PersonCls(name='Anna', age=20, pets=[bones, orion])
+bones = PetCls(name="Bones", species="dog")
+orion = PetCls(name="Orion", species="cat")
+anna = PersonCls(name="Anna", age=20, pets=[bones, orion])
 
 anna_model = Person.from_orm(anna)
 print(anna_model)

@@ -1,22 +1,22 @@
 class A:
     def ping(self):
-        print('ping:', self)
+        print("ping:", self)
 
 
 class B(A):
     def pong(self):
-        print('pong:', self)
+        print("pong:", self)
 
 
 class C(A):
     def pong(self):
-        print('PONG:', self)
+        print("PONG:", self)
 
 
 class D(B, C):
     def ping(self):
         super().ping()
-        print('post-ping:', self)
+        print("post-ping:", self)
 
     def pingpong(self):
         self.ping()
@@ -27,7 +27,7 @@ class D(B, C):
         C.pong(self)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     d = D()
     d.pong()
     C.pong(d)
@@ -37,6 +37,5 @@ if __name__ == '__main__':
 
     d.ping()
 
-    print('d.pingpong(): ')
+    print("d.pingpong(): ")
     d.pingpong()
-

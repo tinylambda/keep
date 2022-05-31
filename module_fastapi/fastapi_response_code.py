@@ -25,8 +25,9 @@ app = FastAPI()
 
 # @app.post('/items/', status_code=201)
 # @app.post('/items/', status_code=HTTPStatus.CREATED)
-@app.post('/items/', status_code=status.HTTP_201_CREATED)
+@app.post("/items/", status_code=status.HTTP_201_CREATED)
 async def create_item(name: str):
-    return {'name': name}
+    return {"name": name}
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_response_code:app --reload

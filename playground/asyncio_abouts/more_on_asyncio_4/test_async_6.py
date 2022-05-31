@@ -18,7 +18,7 @@ def event_loop(event_loop, mocker):
 
     yield new_loop
 
-    getattr(new_loop, '_close')()
+    getattr(new_loop, "_close")()
 
 
 @pytest.fixture
@@ -32,23 +32,36 @@ def create_mock_coro(mocker, monkeypatch):
         if to_patch:
             monkeypatch.setattr(to_patch, _coro)
         return mock, _coro
+
     return _create_mock_patch_coro
 
 
 @pytest.fixture
 def mock_queue(mocker, monkeypatch):
     queue = mocker.Mock()
-    monkeypatch.setattr(sample_24.asyncio, 'Queue', queue)
+    monkeypatch.setattr(sample_24.asyncio, "Queue", queue)
     return queue.return_value
 
 
-@pytest.mark.parametrize('tested_signal', ('SIGINT', 'SIGTERM', 'SIGHUP', 'SIGUSR1'))
-def test_main(tested_signal, create_mock_coro, event_loop: asyncio.AbstractEventLoop, mock_queue, mocker):
+@pytest.mark.parametrize("tested_signal", ("SIGINT", "SIGTERM", "SIGHUP", "SIGUSR1"))
+def test_main(
+    tested_signal,
+    create_mock_coro,
+    event_loop: asyncio.AbstractEventLoop,
+    mock_queue,
+    mocker,
+):
     tested_signal = getattr(signal, tested_signal)
-    mock_consume, _ = create_mock_coro('playground.asyncio_abouts.more_on_asyncio_4.sample_24.consume')
-    mock_publish, _ = create_mock_coro('playground.asyncio_abouts.more_on_asyncio_4.sample_24.publish')
+    mock_consume, _ = create_mock_coro(
+        "playground.asyncio_abouts.more_on_asyncio_4.sample_24.consume"
+    )
+    mock_publish, _ = create_mock_coro(
+        "playground.asyncio_abouts.more_on_asyncio_4.sample_24.publish"
+    )
     # mock out 'asyncio.gather' that 'shutdown' calls instead of 'shutdown' itself
-    mock_asyncio_gather, _ = create_mock_coro('playground.asyncio_abouts.more_on_asyncio_4.sample_24.asyncio.gather')
+    mock_asyncio_gather, _ = create_mock_coro(
+        "playground.asyncio_abouts.more_on_asyncio_4.sample_24.asyncio.gather"
+    )
 
     mock_shutdown = mocker.Mock()
 

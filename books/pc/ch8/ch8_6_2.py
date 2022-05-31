@@ -9,16 +9,16 @@ class Person:
     @first_name.setter
     def first_name(self, value):
         if not isinstance(value, str):
-            raise TypeError('expected a string')
+            raise TypeError("expected a string")
         self._first_name = value
 
     @first_name.deleter
     def first_name(self):
-        raise AttributeError('cannot delete attribute')
+        raise AttributeError("cannot delete attribute")
 
 
-if __name__ == '__main__':
-    a = Person('Guido')
+if __name__ == "__main__":
+    a = Person("Guido")
     print(a.first_name)
     try:
         a.first_name = 42
@@ -29,4 +29,3 @@ if __name__ == '__main__':
         del a.first_name
     except Exception as e:
         print(e)
-

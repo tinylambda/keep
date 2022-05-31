@@ -27,13 +27,15 @@ for idx in range(1, 6):
     for _ in range(5):
         sale = Sale(quantity=random.randrange(5, 100))
         sales.append(sale)
-    product = Product(id=str(idx), name='Product %s' % idx, sales=sales)
+    product = Product(id=str(idx), name="Product %s" % idx, sales=sales)
     products.append(product)
 
 
 workbook = Workbook()
 sheet = workbook.active
-sheet.append(['product Id', 'product name', 'month 1', 'month 2', 'month 3', 'month4', 'month 5'])
+sheet.append(
+    ["product Id", "product name", "month 1", "month 2", "month 3", "month4", "month 5"]
+)
 for product in products:
     data = [product.id, product.name]
     for sale in product.sales:
@@ -49,7 +51,7 @@ data = Reference(
     max_col=7,
 )
 chart.add_data(data, titles_from_data=True, from_rows=True)
-sheet.add_chart(chart, 'B8')
+sheet.add_chart(chart, "B8")
 
 cats = Reference(
     worksheet=sheet,
@@ -63,6 +65,5 @@ chart.x_axis.title = "Months"
 chart.y_axis.title = "Sales (per unit)"
 
 
-filepath = pathlib.Path.home().joinpath('Downloads/test13.xlsx')
+filepath = pathlib.Path.home().joinpath("Downloads/test13.xlsx")
 workbook.save(filepath)
-

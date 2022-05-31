@@ -13,7 +13,9 @@ class NestedStruct:
         if instance is None:
             return self
         else:
-            data = instance._buffer[self.offset: self.offset + self.struct_type.struct_size]
+            data = instance._buffer[
+                self.offset : self.offset + self.struct_type.struct_size
+            ]
             result = self.struct_type(data)
             setattr(instance, self.name, result)
             return result
@@ -21,22 +23,22 @@ class NestedStruct:
 
 class StructureMeta(type):
     def __init__(cls, clsname, bases, clsdict):
-        fields = getattr(cls, '_fields_', [])
-        byte_order = ''
+        fields = getattr(cls, "_fields_", [])
+        byte_order = ""
         offset = 0
         for format, fieldname in fields:
             if isinstance(format, StructureMeta):
                 setattr(cls, fieldname, NestedStruct(fieldname, format, offset))
                 offset += format.struct_size
             else:
-                if format.startswith(('<', '>', '!', '@')):
+                if format.startswith(("<", ">", "!", "@")):
                     byte_order = format[0]
                     format = format[1:]
 
                 format = byte_order + format
                 setattr(cls, fieldname, StructField(format, offset))
                 offset += struct.calcsize(format)
-        setattr(cls, 'struct_size', offset)
+        setattr(cls, "struct_size", offset)
 
 
 class Structure(metaclass=StructureMeta):
@@ -49,23 +51,20 @@ class Structure(metaclass=StructureMeta):
 
 
 class Point(Structure):
-    _fields_ = [
-        ('<d', 'x'),
-        ('d', 'y')
-    ]
+    _fields_ = [("<d", "x"), ("d", "y")]
 
 
 class PolyHeader(Structure):
     _fields_ = [
-        ('<i', 'file_code'),
-        (Point, 'min'),
-        (Point, 'max'),
-        ('i', 'num_polys'),
+        ("<i", "file_code"),
+        (Point, "min"),
+        (Point, "max"),
+        ("i", "num_polys"),
     ]
 
 
-if __name__ == '__main__':
-    with open('/tmp/polys.bin', 'rb') as f:
+if __name__ == "__main__":
+    with open("/tmp/polys.bin", "rb") as f:
         phead = PolyHeader.from_file(f)
         print(phead.file_code == 0x1234)
         print(phead.min)
@@ -74,4 +73,3 @@ if __name__ == '__main__':
         print(phead.max.x)
         print(phead.max.y)
         print(phead.num_polys)
-

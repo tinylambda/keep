@@ -11,5 +11,5 @@ class C:
     x = attr.ib()
 
 
-if __name__ == '__main__':
-    logging.info('%s', attr.fields(C).x)  # Read-only representation of an attribute.
+if __name__ == "__main__":
+    logging.info("%s", attr.fields(C).x)  # Read-only representation of an attribute.

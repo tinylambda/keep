@@ -19,11 +19,11 @@ class A:
         self.y = y
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(1, 2)
     a = A(3, 4)
-    logging.info('%s', attr.asdict(c))
+    logging.info("%s", attr.asdict(c))
     try:
-        logging.info('%s', attr.asdict(a))
+        logging.info("%s", attr.asdict(a))
     except NotAnAttrsClassError as e:
-        logging.error('not an attrs class error', exc_info=e)
+        logging.error("not an attrs class error", exc_info=e)

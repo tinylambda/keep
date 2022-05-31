@@ -8,11 +8,8 @@ class Averager:
         return total / len(self.series)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     avg = Averager()
-    print(
-        avg(10)
-    )
+    print(avg(10))
     print(avg(11))
     print(avg(12))
-

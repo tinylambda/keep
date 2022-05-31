@@ -5,21 +5,21 @@ import time
 
 async def simple_coro():
     await asyncio.sleep(2)
-    print('simple coro done')
+    print("simple coro done")
 
 
 async def main_coro():
     i = 0
     while True:
-        print(f'main coro: {i}')
+        print(f"main coro: {i}")
         await asyncio.sleep(1)
         i += 1
 
 
 def sync_metric(i):
-    print('sync metric', i)
+    print("sync metric", i)
     time.sleep(4)
-    return 'OK'
+    return "OK"
 
 
 def main():
@@ -33,6 +33,5 @@ def main():
     loop.run_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

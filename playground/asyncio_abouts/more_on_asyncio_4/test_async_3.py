@@ -14,19 +14,22 @@ def create_mock_coro(mocker, monkeypatch):
         if to_patch:
             monkeypatch.setattr(to_patch, _coro)
         return mock, _coro
+
     return _create_mock_patch_coro
 
 
 @pytest.fixture
 def mock_sleep(create_mock_coro):
     # will not need the returned coroutine here
-    mock, _ = create_mock_coro(to_patch='playground.asyncio_abouts.more_on_asyncio_4.sample_24.asyncio.sleep')
+    mock, _ = create_mock_coro(
+        to_patch="playground.asyncio_abouts.more_on_asyncio_4.sample_24.asyncio.sleep"
+    )
     return mock
 
 
 @pytest.fixture
 def message():
-    return sample_24.PubSubMessage(message_id='1234', instance_name='mayhem_test')
+    return sample_24.PubSubMessage(message_id="1234", instance_name="mayhem_test")
 
 
 @pytest.mark.asyncio

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = np.random.randn(2, 3)
     print(data)
 
@@ -13,4 +13,3 @@ if __name__ == '__main__':
 
     print(data.shape)
     print(data.dtype)
-    

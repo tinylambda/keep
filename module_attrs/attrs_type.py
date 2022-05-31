@@ -12,6 +12,6 @@ class C:
     y: int = attr.ib()
 
 
-if __name__ == '__main__':
-    logging.info('%s', attr.fields(C).x.type)
-    logging.info('%s', attr.fields(C).y.type)
+if __name__ == "__main__":
+    logging.info("%s", attr.fields(C).x.type)
+    logging.info("%s", attr.fields(C).y.type)

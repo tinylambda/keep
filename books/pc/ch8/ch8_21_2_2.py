@@ -1,13 +1,13 @@
 class NodeVisitor:
     def visit(self, node):
-        methname = f'visit_{type(node).__name__}'
+        methname = f"visit_{type(node).__name__}"
         meth = getattr(self, methname, None)
         if meth is None:
             meth = self.generic_visit
         return meth(node)
 
     def generic_visit(self, node):
-        raise RuntimeError('No {} method'.format('visit_' + type(node).__name__))
+        raise RuntimeError("No {} method".format("visit_" + type(node).__name__))
 
 
 class Evaluator(NodeVisitor):
@@ -30,7 +30,7 @@ class Evaluator(NodeVisitor):
         return -node.operand
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from ch8_21_2 import *
 
     t1 = Sub(Number(3), Number(4))
@@ -40,4 +40,3 @@ if __name__ == '__main__':
 
     e = Evaluator()
     print(e.visit(t4))
-

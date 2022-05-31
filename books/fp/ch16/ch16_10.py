@@ -3,20 +3,20 @@ class DemoException(Exception):
 
 
 def demo_finally():
-    print('-> coroutine started')
+    print("-> coroutine started")
     try:
         while True:
             try:
                 x = yield
             except DemoException:
-                print('*** DemoException  handled, Continuing...')
+                print("*** DemoException  handled, Continuing...")
             else:
-                print('-> coroutine received: {!r}'.format(x))
+                print("-> coroutine received: {!r}".format(x))
     finally:
-        print('coroutine ending')
+        print("coroutine ending")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     coro = demo_finally()
     next(coro)
     coro.send(11)
@@ -24,9 +24,7 @@ if __name__ == '__main__':
     coro.close()
 
     from inspect import getgeneratorstate
-    print(
-        getgeneratorstate(coro)
-    )
+
+    print(getgeneratorstate(coro))
 
     coro.throw(ZeroDivisionError)
-

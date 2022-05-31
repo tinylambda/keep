@@ -9,7 +9,7 @@ class Student:
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s1 = Student()
     s1.set_age = types.MethodType(set_age, s1)
     s1.set_age(22)
@@ -18,4 +18,3 @@ if __name__ == '__main__':
     s2 = Student()
     s2.set_age(23)
     print(s2.age)
-

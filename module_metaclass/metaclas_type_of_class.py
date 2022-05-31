@@ -15,4 +15,3 @@ print(type(type))
 # x is an instance of class Foo
 # Foo is an instance of the type metaclass
 # type is also an instance of the type metaclass, so it is an instance of itself
-

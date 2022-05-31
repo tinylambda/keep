@@ -22,19 +22,19 @@ class Error(Exception):
     y = attr.ib(default=42, init=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(private=87)
-    logging.info('c: %s', c)
-    logging.info('c._private: %s', getattr(c, '_private'))
+    logging.info("c: %s", c)
+    logging.info("c._private: %s", getattr(c, "_private"))
 
     d = D(87)
-    logging.info('d: %s', d)
-    logging.info('d.x: %s', d.x)
-    D = attr.s(these={'x': attr.ib()}, init=False)(D)
+    logging.info("d: %s", d)
+    logging.info("d.x: %s", d.x)
+    D = attr.s(these={"x": attr.ib()}, init=False)(D)
     d = D(87)
-    logging.info('d: %s', d)
-    logging.info('d.x: %s', d.x)
+    logging.info("d: %s", d)
+    logging.info("d.x: %s", d.x)
 
-    e = Error('foo')
-    logging.info('e: %s', e)
-    raise Error('foo')
+    e = Error("foo")
+    logging.info("e: %s", e)
+    raise Error("foo")

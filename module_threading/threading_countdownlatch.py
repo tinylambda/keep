@@ -16,32 +16,36 @@ class CountDownLatch:
 
     def wait(self):
         with self.condition:
-            while self.count > 0:  # always check count to prevent depending tasks wrongly notifyAll
-                print('Still wait!')
+            while (
+                self.count > 0
+            ):  # always check count to prevent depending tasks wrongly notifyAll
+                print("Still wait!")
                 self.condition.wait()
 
 
 def check_task(what, count_down_latch):
-    print(f'Checking for {what}...')
+    print(f"Checking for {what}...")
     time.sleep(random.randint(0, 5))
-    print(f'done for checking {what}')
+    print(f"done for checking {what}")
     count_down_latch.count_down()
 
 
 def main_task(what, count_down_latch):
-    print(f'({what}) waiting for check tasks to complete')
+    print(f"({what}) waiting for check tasks to complete")
     count_down_latch.wait()
-    print(f'({what}) can go on now!')
+    print(f"({what}) can go on now!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cdl = CountDownLatch(3)
-    check_redis = threading.Thread(target=check_task, args=('Redis', cdl))
-    check_mysql = threading.Thread(target=check_task, args=('MySQL', cdl))
-    check_es = threading.Thread(target=check_task, args=('ES', cdl))
+    check_redis = threading.Thread(target=check_task, args=("Redis", cdl))
+    check_mysql = threading.Thread(target=check_task, args=("MySQL", cdl))
+    check_es = threading.Thread(target=check_task, args=("ES", cdl))
 
-    main_task_1 = threading.Thread(target=main_task, args=('Feeding data to ES', cdl))
-    main_task_2 = threading.Thread(target=main_task, args=('Feeding data to Redis', cdl))
+    main_task_1 = threading.Thread(target=main_task, args=("Feeding data to ES", cdl))
+    main_task_2 = threading.Thread(
+        target=main_task, args=("Feeding data to Redis", cdl)
+    )
 
     threads = [main_task_1, main_task_2, check_mysql, check_es, check_redis]
     for t in threads:
@@ -49,4 +53,4 @@ if __name__ == '__main__':
     for t in threads:
         t.join()
 
-    print('Done')
+    print("Done")

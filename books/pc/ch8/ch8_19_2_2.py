@@ -39,11 +39,11 @@ class ConnectionState:
 class ClosedConnectionState(ConnectionState):
     @staticmethod
     def read(conn):
-        raise RuntimeError('Not open')
+        raise RuntimeError("Not open")
 
     @staticmethod
     def write(conn, data):
-        raise RuntimeError('Not open')
+        raise RuntimeError("Not open")
 
     @staticmethod
     def open(conn):
@@ -51,28 +51,28 @@ class ClosedConnectionState(ConnectionState):
 
     @staticmethod
     def close(conn):
-        raise RuntimeError('Already closed')
+        raise RuntimeError("Already closed")
 
 
 class OpenConnectionState(ConnectionState):
     @staticmethod
     def read(conn):
-        print('reading')
+        print("reading")
 
     @staticmethod
     def write(conn, data):
-        print('writing')
+        print("writing")
 
     @staticmethod
     def open(conn):
-        raise RuntimeError('Already open')
+        raise RuntimeError("Already open")
 
     @staticmethod
     def close(conn):
         conn.new_state(ClosedConnectionState)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = Connection()
     print(c._state)
     try:
@@ -83,8 +83,7 @@ if __name__ == '__main__':
     c.open()
     print(c._state)
     c.read()
-    c.write('hello')
+    c.write("hello")
 
     c.close()
     print(c._state)
-

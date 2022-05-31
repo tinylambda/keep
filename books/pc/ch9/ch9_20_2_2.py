@@ -11,8 +11,9 @@ class multimethod:
         def register(func):
             ndefaults = len(func.__defaults__) if func.__defaults__ else 0
             for n in range(ndefaults + 1):
-                self._methods[_types[:len(_types) - n]] = func
+                self._methods[_types[: len(_types) - n]] = func
             return self
+
         return register
 
     def __call__(self, *args):
@@ -30,25 +31,25 @@ class multimethod:
             return self
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     class Spam:
         @multimethod
         def bar(self, *args):
-            raise TypeError('no matching method for bar')
+            raise TypeError("no matching method for bar")
 
         @bar.match(int, int)
         def bar(self, x, y):
-            print('bar 1:', x, y)
+            print("bar 1:", x, y)
 
         @bar.match(str, int)
         def bar(self, _s, n=0):
-            print('bar 2:', _s, n)
+            print("bar 2:", _s, n)
 
     s = Spam()
     s.bar(1, 2)
-    s.bar('hello', 100)
+    s.bar("hello", 100)
     try:
-        s.bar(100, 'hello')
+        s.bar(100, "hello")
     except Exception as e:
         print(e)
-

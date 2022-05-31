@@ -9,13 +9,17 @@ from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 
 
-class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout):
+class SelectableRecycleBoxLayout(
+    FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout
+):
     """Adds selection and focus behavior to the view."""
+
     pass
 
 
 class SelectableLabel(RecycleDataViewBehavior, Label):
     """Add selection support to the Label."""
+
     index = None
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
@@ -36,18 +40,15 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
         """Respond to the selection of items in the view."""
         self.selected = is_selected
         if is_selected:
-            print('selection changed to {0}'.format(rv.data[index]))
+            print("selection changed to {0}".format(rv.data[index]))
         else:
-            print('selection removed for {0}'.format(rv.data[index]))
+            print("selection removed for {0}".format(rv.data[index]))
 
 
 class RV(RecycleView):
     def __init__(self, **kwargs):
         super(RV, self).__init__(**kwargs)
-        self.data = [
-            {'text': str(x)}
-            for x in range(100)
-        ]
+        self.data = [{"text": str(x)} for x in range(100)]
 
 
 class TestApp(App):
@@ -55,6 +56,5 @@ class TestApp(App):
         return RV()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     TestApp().run()
-

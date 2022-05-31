@@ -18,7 +18,7 @@ async def performance_test(ws_uri=None, n=100):
     for i in range(n):
         msg = json.dumps(
             {
-                'message': f'MESSAGE {i}',
+                "message": f"MESSAGE {i}",
             }
         )
 
@@ -28,8 +28,8 @@ async def performance_test(ws_uri=None, n=100):
     await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start = time.time()
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(performance_test('ws://localhost:20000/ws/chat/cc/', 2000))
-    print(f'Done after {time.time() - start} seconds')
+    loop.run_until_complete(performance_test("ws://localhost:20000/ws/chat/cc/", 2000))
+    print(f"Done after {time.time() - start} seconds")

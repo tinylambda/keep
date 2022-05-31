@@ -12,10 +12,7 @@ class C:
         self.c = self.a + self.b
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(1.0, 2.0)
     print(c)
     print(c.c)
-
-
-

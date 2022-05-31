@@ -15,12 +15,11 @@ class LineHistory:
         self.history.clear()
 
 
-if __name__ == '__main__':
-    with open('/etc/passwd') as f:
+if __name__ == "__main__":
+    with open("/etc/passwd") as f:
         lines = LineHistory(f)
         for line in lines:
-            if 'root' in line:
-                print('got one')
+            if "root" in line:
+                print("got one")
                 for lineno, hline in lines.history:
-                    print('{}:{}'.format(lineno, hline), end='')
-
+                    print("{}:{}".format(lineno, hline), end="")

@@ -6,15 +6,12 @@ class NonFatalError(Exception):
 
 
 def non_idempotent_operation():
-    raise NonFatalError(
-        'The operation failed because of existing state'
-    )
+    raise NonFatalError("The operation failed because of existing state")
 
 
 with contextlib.suppress(NonFatalError):
-    print('trying non-idempotent operation')
+    print("trying non-idempotent operation")
     non_idempotent_operation()
-    print('succeeded!')
+    print("succeeded!")
 
-print('done')
-
+print("done")

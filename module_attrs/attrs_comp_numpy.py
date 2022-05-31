@@ -13,8 +13,8 @@ class C:
     an_array = attr.ib(eq=attr.cmp_using(eq=numpy.array_equal))
 
 
-if __name__ == '__main__':
-    c1 = C(array('i', [1, 2, 3]))
-    c2 = C(array('i', [1, 2, 3]))
+if __name__ == "__main__":
+    c1 = C(array("i", [1, 2, 3]))
+    c2 = C(array("i", [1, 2, 3]))
 
-    logging.info('%s', c1 == c2)
+    logging.info("%s", c1 == c2)

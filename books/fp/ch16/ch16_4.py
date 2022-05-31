@@ -9,17 +9,10 @@ def averager():
         average = total / count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     coro_avg = averager()
     next(coro_avg)
-    print(
-        coro_avg.send(10)
-    )
-    print(
-        coro_avg.send(30)
-    )
+    print(coro_avg.send(10))
+    print(coro_avg.send(30))
 
-    print(
-        coro_avg.send(5)
-    )
-
+    print(coro_avg.send(5))

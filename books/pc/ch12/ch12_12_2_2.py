@@ -24,24 +24,24 @@ class ActorScheduler:
                 pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     def printer():
         while True:
             msg = yield
-            print('Got:', msg)
+            print("Got:", msg)
 
     def counter(sched):
         while True:
             n = yield
             if n == 0:
                 break
-            sched.send('printer', n)
-            sched.send('counter', n-1)
+            sched.send("printer", n)
+            sched.send("counter", n - 1)
 
     sched = ActorScheduler()
-    sched.new_actor('printer', printer())
-    sched.new_actor('counter', counter(sched))
+    sched.new_actor("printer", printer())
+    sched.new_actor("counter", counter(sched))
 
-    sched.send('counter', 1000)
+    sched.send("counter", 1000)
     sched.run()
-

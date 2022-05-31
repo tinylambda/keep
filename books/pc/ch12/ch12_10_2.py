@@ -55,13 +55,13 @@ class PrintActor(Actor):
     def run(self):
         while True:
             msg = self.recv()
-            print('got: ', msg)
+            print("got: ", msg)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = PrintActor()
     p.start()
-    p.send('hello')
-    p.send('world')
+    p.send("hello")
+    p.send("world")
     p.close()
     p.join()

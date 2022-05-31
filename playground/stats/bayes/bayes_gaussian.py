@@ -3,7 +3,7 @@ import numpy as np
 from scipy import stats
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     mu_params = [-1, 0, 1]
     sd_params = [0.5, 1, 1.5]
 
@@ -16,9 +16,14 @@ if __name__ == '__main__':
             y = stats.norm(mu, sd).pdf(x)
             ax[i, j].plot(x, y)
             help(ax[i, j].plot)
-            ax[i, j].plot(0, 0, label='$\\mu$ = {:3.2f}\n$\\sigma$ = {:3.2f}'.format(mu, sd), alpha=0)
+            ax[i, j].plot(
+                0,
+                0,
+                label="$\\mu$ = {:3.2f}\n$\\sigma$ = {:3.2f}".format(mu, sd),
+                alpha=0,
+            )
             ax[i, j].legend(fontsize=12)
-    ax[2, 1].set_xlabel('$x$', fontsize=16)
-    ax[1, 0].set_ylabel('$pdf(x)$', fontsize=16)
+    ax[2, 1].set_xlabel("$x$", fontsize=16)
+    ax[1, 0].set_ylabel("$pdf(x)$", fontsize=16)
     plt.tight_layout()
     plt.show()

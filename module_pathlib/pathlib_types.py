@@ -3,7 +3,7 @@ import os
 import pathlib
 
 
-root = pathlib.Path('test_files')
+root = pathlib.Path("test_files")
 # Clean up from previous runs.
 if root.exists():
     for f in root.iterdir():
@@ -12,25 +12,19 @@ else:
     root.mkdir()
 
 # Create test files
-(root / 'file').write_text(
-    'This is a regular file', encoding='utf-8'
-)
-(root / 'symlink').symlink_to('file')
-os.mkfifo(str(root / 'fifo'))
+(root / "file").write_text("This is a regular file", encoding="utf-8")
+(root / "symlink").symlink_to("file")
+os.mkfifo(str(root / "fifo"))
 
 # Check the file types
 to_scan = itertools.chain(
-    root.iterdir(),
-    [
-        pathlib.Path('/dev/disk0'),
-        pathlib.Path('/dev/console')
-    ]
+    root.iterdir(), [pathlib.Path("/dev/disk0"), pathlib.Path("/dev/console")]
 )
 
-hfmt = '{:18s}' + (' {:>5}' * 6)
-print(hfmt.format('Name', 'File', 'Dir', 'Link', 'FIFO', 'Block', 'Character'))
+hfmt = "{:18s}" + (" {:>5}" * 6)
+print(hfmt.format("Name", "File", "Dir", "Link", "FIFO", "Block", "Character"))
 
-fmt = '{:20s} ' + ('{!r:>5} ' * 6)
+fmt = "{:20s} " + ("{!r:>5} " * 6)
 for f in to_scan:
     print(
         fmt.format(
@@ -43,4 +37,3 @@ for f in to_scan:
             f.is_char_device(),
         )
     )
-

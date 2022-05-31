@@ -20,16 +20,16 @@ class Structure:
 
 
 class PolyHeader(Structure):
-    file_code = StructField('<i', 0)
-    min_x = StructField('<d', 4)
-    min_y = StructField('<d', 12)
-    max_x = StructField('<d', 20)
-    max_y = StructField('<d', 28)
-    num_polys = StructField('<i', 36)
+    file_code = StructField("<i", 0)
+    min_x = StructField("<d", 4)
+    min_y = StructField("<d", 12)
+    max_x = StructField("<d", 20)
+    max_y = StructField("<d", 28)
+    num_polys = StructField("<i", 36)
 
 
-if __name__ == '__main__':
-    with open('/tmp/polys.bin', 'rb') as f:
+if __name__ == "__main__":
+    with open("/tmp/polys.bin", "rb") as f:
         phead = PolyHeader(f.read(40))
         print(phead.file_code == 0x1234)
         print(phead.min_x)
@@ -37,4 +37,3 @@ if __name__ == '__main__':
         print(phead.max_x)
         print(phead.max_y)
         print(phead.num_polys)
-

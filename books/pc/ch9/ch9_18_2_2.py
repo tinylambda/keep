@@ -13,16 +13,17 @@ def cost(self):
 
 
 cls_dict = {
-    '__init__': __init__,
-    'cost': cost,
+    "__init__": __init__,
+    "cost": cost,
 }
 
 
-Stock = types.new_class('Stock', (), {'metaclass': abc.ABCMeta}, lambda ns: ns.update(cls_dict))
+Stock = types.new_class(
+    "Stock", (), {"metaclass": abc.ABCMeta}, lambda ns: ns.update(cls_dict)
+)
 Stock.__module__ = __name__
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(Stock)
     print(type(Stock))
-

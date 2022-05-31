@@ -1,12 +1,12 @@
 from collections import namedtuple
 
-ALIVE = '*'
-EMPTY = '-'
+ALIVE = "*"
+EMPTY = "-"
 TICK = object()
 
 
-Query = namedtuple('Query', ('y', 'x'))
-Transition = namedtuple('Transition', ('y', 'x', 'state'))
+Query = namedtuple("Query", ("y", "x"))
+Transition = namedtuple("Transition", ("y", "x", "state"))
 
 
 def count_neighbors(y, x):
@@ -61,9 +61,9 @@ class Grid:
         self.rows[y % self.height][x % self.width] = state
 
     def __str__(self):
-        line_fmt = '{}' * self.width
+        line_fmt = "{}" * self.width
         lines = [line_fmt.format(*item) for item in self.rows]
-        return '\n'.join(lines)
+        return "\n".join(lines)
 
 
 def simulate(height: int, width: int):
@@ -87,7 +87,7 @@ def live_a_generation(grid: Grid, sim):
     return progeny
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     grid = Grid(5, 9)
     grid.assign(0, 3, ALIVE)
     grid.assign(0, 4, ALIVE)
@@ -97,4 +97,4 @@ if __name__ == '__main__':
     for i in range(50):
         print(grid)
         grid = live_a_generation(grid, sim)
-        print('O' * grid.width)
+        print("O" * grid.width)

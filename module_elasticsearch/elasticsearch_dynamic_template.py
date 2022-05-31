@@ -4,7 +4,7 @@ from module_elasticsearch import elasticsearch_client
 from module_elasticsearch import INDEX_FOR_TESTING_TEMPLATE
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # # Create index
     # r = elasticsearch_client.indices.create(INDEX_FOR_TESTING_TEMPLATE)
     # print(json.dumps(r, indent=4))
@@ -36,11 +36,11 @@ if __name__ == '__main__':
     # print(json.dumps(r, indent=4))
 
     doc = {
-        'name': 'Mate 40 Pro 5G RS Design',
-        'number': 17686554,
-        'ds': '2020-11-11',
-        's2': '11-11-2020',
-        'more': 1,
+        "name": "Mate 40 Pro 5G RS Design",
+        "number": 17686554,
+        "ds": "2020-11-11",
+        "s2": "11-11-2020",
+        "more": 1,
     }
     elasticsearch_client.index(INDEX_FOR_TESTING_TEMPLATE, body=doc)
 
@@ -58,8 +58,3 @@ if __name__ == '__main__':
     #     ]
     # }, index=INDEX_FOR_TESTING_TEMPLATE)
     # print(json.dumps(r, indent=4))
-
-
-
-
-

@@ -7,5 +7,5 @@ import psutil
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
-    pprint.pprint(psutil.disk_usage('/'))
+if __name__ == "__main__":
+    pprint.pprint(psutil.disk_usage("/"))

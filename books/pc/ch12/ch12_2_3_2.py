@@ -3,10 +3,10 @@ import threading
 
 def worker(n, sema):
     sema.acquire()
-    print('Working', n)
+    print("Working", n)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sema = threading.Semaphore(0)
     nworkers = 10
     threads = []
@@ -21,5 +21,4 @@ if __name__ == '__main__':
     for _ in range(nworkers):
         sema.release()
 
-    print('done')
-
+    print("done")

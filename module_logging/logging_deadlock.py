@@ -3,7 +3,7 @@ import logging.handlers
 import sys
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
 
@@ -17,10 +17,7 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     root_logger.handlers = [handler]
 
-    root_logger.info('GOOD')
-    logging.getLogger().info('GOOD')
+    root_logger.info("GOOD")
+    logging.getLogger().info("GOOD")
 
-    logging.getLogger('circus').info('GOOD')
-
-
-
+    logging.getLogger("circus").info("GOOD")

@@ -1,6 +1,6 @@
 import asyncio
 
-from coroutines import  f, g
+from coroutines import f, g
 
 
 async def main():
@@ -13,5 +13,5 @@ async def main():
     print(result_f, result_g)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

@@ -51,11 +51,11 @@ class BaseItem(BaseModel):
 
 
 class CarItem(BaseItem):
-    type = 'car'
+    type = "car"
 
 
 class PlaneItem(BaseItem):
-    type = 'plane'
+    type = "plane"
     size: int
 
 
@@ -81,36 +81,35 @@ items2 = [
 
 
 def fake_password_hasher(raw_password: str):
-    return 'supersecret' + raw_password
+    return "supersecret" + raw_password
 
 
 def fake_save_user(user_in: UserIn):
     hashed_password = fake_password_hasher(user_in.password)
     user_in_db = UserInDB(**user_in.dict(), hashed_password=hashed_password)
-    print('User saved! ..not really')
+    print("User saved! ..not really")
     return user_in_db
 
 
-@app.post('/user/', response_model=UserOut)
+@app.post("/user/", response_model=UserOut)
 async def create_user(user_in: UserIn):
     user_saved = fake_save_user(user_in)
     return user_saved
 
 
-@app.get('/items/{item_id}', response_model=Union[PlaneItem, CarItem])
+@app.get("/items/{item_id}", response_model=Union[PlaneItem, CarItem])
 async def read_item(item_id: str):
     return items[item_id]
 
 
-@app.get('/items/', response_model=List[Item])
+@app.get("/items/", response_model=List[Item])
 async def read_items():
     return items2
 
 
-@app.get('/keyword-weights/', response_model=Dict[str, float])
+@app.get("/keyword-weights/", response_model=Dict[str, float])
 async def read_keyword_weights():
-    return {'foo': 2.3, 'bar': 4.5}
+    return {"foo": 2.3, "bar": 4.5}
 
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_extra_models:app --reload
-

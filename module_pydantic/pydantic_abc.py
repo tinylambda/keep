@@ -14,6 +14,6 @@ class FooBarModel(BaseModel, abc.ABC):
 
 try:
     # abstract class with abstract method cannot be initialized
-    foobar = FooBarModel(a='hello', b=100)
+    foobar = FooBarModel(a="hello", b=100)
 except TypeError as e:
     print(e)

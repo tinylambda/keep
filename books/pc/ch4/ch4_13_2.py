@@ -13,12 +13,12 @@ def gen_find(filepat, top):
 
 def gen_opener(filenames):
     for filename in filenames:
-        if filename.endswith('.gz'):
-            f = gzip.open(filename, 'rt')
-        elif filename.endswith('.bz2'):
-            f = bz2.open(filename, 'rt')
+        if filename.endswith(".gz"):
+            f = gzip.open(filename, "rt")
+        elif filename.endswith(".bz2"):
+            f = bz2.open(filename, "rt")
         else:
-            f = open(filename, 'rt')
+            f = open(filename, "rt")
         yield f
         f.close()
 
@@ -35,13 +35,10 @@ def gen_grep(pattern, lines):
             yield line
 
 
-if __name__ == '__main__':
-    pyfiles = gen_find('*.py', '../')
+if __name__ == "__main__":
+    pyfiles = gen_find("*.py", "../")
     opened_pyfiles = gen_opener(pyfiles)
     lines = gen_concatenate(opened_pyfiles)
-    os_import_lines = gen_grep('import os', lines)
+    os_import_lines = gen_grep("import os", lines)
     for line in os_import_lines:
         print(line)
-
-
-

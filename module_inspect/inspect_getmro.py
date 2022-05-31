@@ -15,11 +15,10 @@ class BFirst(example.B, C):
     pass
 
 
-print('BFirst: ')
+print("BFirst: ")
 for c in inspect.getmro(BFirst):
-    print('{}'.format(c.__name__))
+    print("{}".format(c.__name__))
 print()
-print('CFirst')
+print("CFirst")
 for c in inspect.getmro(CFirst):
-    print('{}'.format(c.__name__))
-
+    print("{}".format(c.__name__))

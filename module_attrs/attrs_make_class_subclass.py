@@ -11,7 +11,7 @@ class D:
         return True
 
 
-C = attr.make_class('C', {}, bases=(D, ), order=False)
+C = attr.make_class("C", {}, bases=(D,), order=False)
 
-if __name__ == '__main__':
-    logging.info('%s', isinstance(C(), D))
+if __name__ == "__main__":
+    logging.info("%s", isinstance(C(), D))

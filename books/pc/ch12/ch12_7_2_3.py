@@ -11,10 +11,10 @@ def fetch_url(url):
     return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pool = ThreadPoolExecutor(10)
-    a = pool.submit(fetch_url, 'http://www.python.org')
-    b = pool.submit(fetch_url, 'http://www.pypy.org')
+    a = pool.submit(fetch_url, "http://www.python.org")
+    b = pool.submit(fetch_url, "http://www.pypy.org")
 
     x = a.result()
     y = b.result()

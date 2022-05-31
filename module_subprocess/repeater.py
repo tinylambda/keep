@@ -1,7 +1,7 @@
 import sys
 import time
 
-sys.stderr.write('repeater.py: starting\n')
+sys.stderr.write("repeater.py: starting\n")
 sys.stderr.flush()
 
 while True:
@@ -13,5 +13,5 @@ while True:
     sys.stdout.flush()
     time.sleep(0.5)
 
-sys.stderr.write('repeater.py: exiting\n')
+sys.stderr.write("repeater.py: exiting\n")
 sys.stderr.flush()

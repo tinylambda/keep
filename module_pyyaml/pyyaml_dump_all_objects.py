@@ -14,11 +14,11 @@ class Hero:
     sp = attr.ib()
 
 
-if __name__ == '__main__':
-    felix = Hero('Felix', hp=1200, sp=0)
+if __name__ == "__main__":
+    felix = Hero("Felix", hp=1200, sp=0)
     result = yaml.dump(felix)
-    logging.info('%s', result)
+    logging.info("%s", result)
 
-    fanny = Hero('Fanny', hp=1200000, sp=0)
+    fanny = Hero("Fanny", hp=1200000, sp=0)
     result = yaml.dump_all([felix, fanny], explicit_start=True)
-    logging.info('%s', result)
+    logging.info("%s", result)

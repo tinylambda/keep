@@ -12,21 +12,21 @@ class CountdownTask:
 
     def run(self, n):
         while self._running and n > 0:
-            print('T-minus', n)
+            print("T-minus", n)
             n -= 1
             time.sleep(2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = CountdownTask()
-    t = Thread(target=c.run, args=(10, ))
+    t = Thread(target=c.run, args=(10,))
     t.start()
 
     time.sleep(2)
-    print('terminate thread')
+    print("terminate thread")
     c.terminate()
 
-    print('terminated')
+    print("terminated")
 
     t.join()
-    print('done')
+    print("done")

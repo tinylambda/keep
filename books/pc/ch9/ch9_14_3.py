@@ -8,14 +8,14 @@ class NoDupOrderedDict(OrderedDict):
 
     def __setitem__(self, key, value):
         if key in self:
-            raise TypeError(f'{key} already defined in {self.clsname}')
+            raise TypeError(f"{key} already defined in {self.clsname}")
         super().__setitem__(key, value)
 
 
 class OrderedMeta(type):
     def __new__(mcs, clsname, bases, clsdict):
         d = dict(clsdict)
-        d['_order'] = [name for name in clsdict if name[0] != '_']
+        d["_order"] = [name for name in clsdict if name[0] != "_"]
         return type.__new__(mcs, clsname, bases, d)
 
     @classmethod
@@ -29,4 +29,3 @@ class A(metaclass=OrderedMeta):
 
     def spam(self):
         pass
-

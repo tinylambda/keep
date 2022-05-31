@@ -7,10 +7,10 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
 def on_terminate(proc):
-    print('process {} terminated with exit code {}'.format(proc, proc.returncode))
+    print("process {} terminated with exit code {}".format(proc, proc.returncode))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     procs = psutil.Process().children()
 
     for p in procs:

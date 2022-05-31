@@ -3,4 +3,3 @@ class BlueprintMeta(type):
         print(name, bases, class_dict)
         cls = type.__new__(mcs, name, bases, class_dict)
         return cls
-

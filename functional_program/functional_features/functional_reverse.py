@@ -13,7 +13,6 @@ def to_base(x: int, b: int) -> Iterator[int]:
     return reversed(tuple(digits(x, b)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = to_base(8, 2)
     print(list(a))
-

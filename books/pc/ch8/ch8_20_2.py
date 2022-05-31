@@ -7,20 +7,21 @@ class Point:
         self.y = y
 
     def __repr__(self):
-        return 'Point({!r:}, {!r:})'.format(self.x, self.y)
+        return "Point({!r:}, {!r:})".format(self.x, self.y)
 
     def distance(self, x, y):
         return math.hypot(self.x - x, self.y - y)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = Point(2, 3)
-    d = getattr(p, 'distance')(0, 0)
+    d = getattr(p, "distance")(0, 0)
     print(d)
 
     # another way
     import operator
-    d = operator.methodcaller('distance', 0, 0)(p)
+
+    d = operator.methodcaller("distance", 0, 0)(p)
     print(d)
 
     points = [
@@ -32,6 +33,5 @@ if __name__ == '__main__':
         Point(3, 2),
     ]
 
-    points.sort(key=operator.methodcaller('distance', 0, 0))
+    points.sort(key=operator.methodcaller("distance", 0, 0))
     print(points)
-

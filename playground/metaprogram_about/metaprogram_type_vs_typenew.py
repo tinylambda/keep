@@ -6,7 +6,7 @@ class MetaA(type):
 
     def __init__(cls, name, bases, class_dict):
         # this will be executed
-        print('MetaA.__init__')
+        print("MetaA.__init__")
         super(MetaA, cls).__init__(name, bases, class_dict)
 
 
@@ -18,7 +18,7 @@ class MetaB(type):
 
     def __init__(cls, name, bases, class_dict):
         # this will not be executed
-        print('MetaB.__init__')
+        print("MetaB.__init__")
         super(MetaB, cls).__init__(name, bases, class_dict)
 
 

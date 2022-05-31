@@ -7,11 +7,10 @@ def grep(pattern, lines):
             yield line
 
 
-if __name__ == '__main__':
-    with open('/tmp/test.log') as logfile:
+if __name__ == "__main__":
+    with open("/tmp/test.log") as logfile:
         loglines = follow(logfile)
-        pylines = grep('python', loglines)
+        pylines = grep("python", loglines)
 
         for line in pylines:
             print(line)
-

@@ -9,15 +9,19 @@ class UserView(ListView):
     model = User
 
     def head(self, *args, **kwargs):
-        last_user: User = self.get_queryset().latest('date_joined')
+        last_user: User = self.get_queryset().latest("date_joined")
         response = HttpResponse(
-            headers={'Last-Modified': last_user.date_joined.strftime('%a, %d %b %Y %H:%M:%S GMT')}
+            headers={
+                "Last-Modified": last_user.date_joined.strftime(
+                    "%a, %d %b %Y %H:%M:%S GMT"
+                )
+            }
         )
         return response
 
 
 class SimpleView(TemplateView):
-    template_name = 'simple.html'
+    template_name = "simple.html"
 
 
 class UseCacheView(View):
@@ -27,17 +31,17 @@ class UseCacheView(View):
         return users
 
     def get(self, request):
-        users = cache.get('users')
+        users = cache.get("users")
         if users is None:
             users = self.get_current_users()
-            cache.set('users', users, 100)
+            cache.set("users", users, 100)
 
-        users = cache.get('users')
-        return HttpResponse(', '.join([user.username for user in users]))
+        users = cache.get("users")
+        return HttpResponse(", ".join([user.username for user in users]))
 
 
 class UseCacheView2(View):
-    DB_CACHE = caches['db_cache']
+    DB_CACHE = caches["db_cache"]
 
     @classmethod
     def get_current_users(cls):
@@ -45,11 +49,10 @@ class UseCacheView2(View):
         return users
 
     def get(self, request):
-        users = self.DB_CACHE.get('users')
+        users = self.DB_CACHE.get("users")
         if users is None:
             users = self.get_current_users()
-            self.DB_CACHE.set('users', users, 100)
+            self.DB_CACHE.set("users", users, 100)
 
-        users = self.DB_CACHE.get('users')
-        return HttpResponse(', '.join([user.username for user in users]))
-
+        users = self.DB_CACHE.get("users")
+        return HttpResponse(", ".join([user.username for user in users]))

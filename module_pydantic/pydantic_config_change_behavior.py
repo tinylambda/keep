@@ -12,4 +12,3 @@ class MyClass:
 
 class Model(BaseModel):
     x: MyClass
-

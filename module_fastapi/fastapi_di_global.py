@@ -15,16 +15,17 @@ async def verify_key(x_key: str = Header(...)):
 app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)])
 
 
-@app.get('/items/')
+@app.get("/items/")
 async def read_items():
     return [
-        {'item': 'Portal Gun'},
-        {'item': 'Plumbus'},
+        {"item": "Portal Gun"},
+        {"item": "Plumbus"},
     ]
 
 
 @app.get("/users/")
 async def read_users():
     return [{"username": "Rick"}, {"username": "Morty"}]
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_di_global:app --reload

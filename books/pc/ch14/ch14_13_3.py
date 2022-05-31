@@ -8,8 +8,9 @@ def timethis(func):
         start = time.process_time()
         r = func(*args, **kwargs)
         end = time.process_time()
-        print(f'{func.__module__}.{func.__name__} : {end - start}')
+        print(f"{func.__module__}.{func.__name__} : {end - start}")
         return r
+
     return wrapper
 
 
@@ -19,5 +20,5 @@ def countdown(n):
         n -= 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     countdown(10000000)

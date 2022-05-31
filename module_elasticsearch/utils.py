@@ -7,11 +7,16 @@ from module_elasticsearch import elasticsearch_client
 def print_return_result(f):
     def wrapper(*args, **kwargs):
         r = f(*args, **kwargs)
-        args_string = ', '.join(map(str, args))
-        kwargs_string = ', '.join([f'{k}={str(v)}' for k, v in kwargs.items()])
-        all_args_string = ', '.join([args_string, kwargs_string])
-        print(f'{f.__name__}({all_args_string}) >>> \n', json.dumps(r, indent=4), end='\n' * 2)
+        args_string = ", ".join(map(str, args))
+        kwargs_string = ", ".join([f"{k}={str(v)}" for k, v in kwargs.items()])
+        all_args_string = ", ".join([args_string, kwargs_string])
+        print(
+            f"{f.__name__}({all_args_string}) >>> \n",
+            json.dumps(r, indent=4),
+            end="\n" * 2,
+        )
         return r
+
     return wrapper
 
 
@@ -29,7 +34,7 @@ def cluster_nodes(c, **kwargs):
 
 @print_return_result
 def index_list(c, **kwargs):
-    r = c.indices.get('*')
+    r = c.indices.get("*")
     return r
 
 
@@ -196,17 +201,11 @@ def doc_mget(c, mget_body, **kwargs):
 
 
 DEFAULT_SEARCH_BODY_WITH_SNPT = {
-            'seq_no_primary_term': True,
-            'query': {
-                'match_all': {}
-            }
-        }
+    "seq_no_primary_term": True,
+    "query": {"match_all": {}},
+}
 
-DEFAULT_SEARCH_BODY = {
-            'query': {
-                'match_all': {}
-            }
-        }
+DEFAULT_SEARCH_BODY = {"query": {"match_all": {}}}
 
 
 @print_return_result
@@ -245,8 +244,7 @@ def testing_index(c, index_name, **kwargs):
         index_delete(c, index_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cluster_health(elasticsearch_client)
-    if not index_exists(elasticsearch_client, 'myindex'):
-        index_create(elasticsearch_client, 'myindex')
-
+    if not index_exists(elasticsearch_client, "myindex"):
+        index_create(elasticsearch_client, "myindex")

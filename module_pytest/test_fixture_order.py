@@ -6,17 +6,17 @@ import pytest
 
 @pytest.fixture()
 def fixture01(request):
-    print('\nIn fixture...')
+    print("\nIn fixture...")
 
     def fin():
-        print('\nFinalized...')
+        print("\nFinalized...")
 
     request.addfinalizer(fin)
 
 
-@pytest.mark.usefixtures('fixture01')
+@pytest.mark.usefixtures("fixture01")
 def test_case01():
-    print('\nI am the test_case01')
+    print("\nI am the test_case01")
 
 
 # pytest -vs module_pytest/test_fixture_order.py

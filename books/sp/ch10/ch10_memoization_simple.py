@@ -9,7 +9,7 @@ def memoized_sin(x):
     return _SIN_MEMOIZATION_VALUES[x]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(memoized_sin(1))
     print(_SIN_MEMOIZATION_VALUES)
     print(memoized_sin(2))

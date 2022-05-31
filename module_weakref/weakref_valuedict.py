@@ -12,40 +12,39 @@ class ExpensiveObject:
         self.name = name
 
     def __repr__(self):
-        return 'ExpensiveObject({})'.format(self.name)
+        return "ExpensiveObject({})".format(self.name)
 
     def __del__(self):
-        print('(Deleting {})'.format(self))
+        print("(Deleting {})".format(self))
 
 
 def demo(cache_factory):
     all_refs = {}
-    print('CACHE TYPE: ', cache_factory)
+    print("CACHE TYPE: ", cache_factory)
     cache = cache_factory()
-    for name in ['one', 'two', 'three']:
+    for name in ["one", "two", "three"]:
         o = ExpensiveObject(name)
         cache[name] = o
         all_refs[name] = o
         del o
 
-    print('all_refs = ', end=' ')
+    print("all_refs = ", end=" ")
     pprint(all_refs)
-    print('\nBefore, cache contains: ', list(cache.keys()))
+    print("\nBefore, cache contains: ", list(cache.keys()))
     for name, value in cache.items():
-        print('{} = {}'.format(name, value))
+        print("{} = {}".format(name, value))
         del value
 
-    print('\nCleanup: ')
+    print("\nCleanup: ")
     del all_refs
     gc.collect()
 
-    print('\nAfter, cache contains: ', list(cache.keys()))
+    print("\nAfter, cache contains: ", list(cache.keys()))
     for name, value in cache.items():
-        print('{} = {}'.format(name, value))
-    print('demo returning')
+        print("{} = {}".format(name, value))
+    print("demo returning")
 
 
 demo(dict)
 print()
 demo(weakref.WeakValueDictionary)
-

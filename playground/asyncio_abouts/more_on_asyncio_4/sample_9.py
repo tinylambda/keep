@@ -29,7 +29,7 @@ class PubSubMessage:
 async def cleanup(msg):
     await asyncio.sleep(random.random())
     msg.acked = True
-    logging.info(f'Done. Acked {msg}')
+    logging.info(f"Done. Acked {msg}")
 
 
 async def handle_message(msg):

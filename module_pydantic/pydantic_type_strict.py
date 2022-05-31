@@ -1,4 +1,11 @@
-from pydantic import BaseModel, StrictBytes, ValidationError, StrictInt, confloat, StrictBool
+from pydantic import (
+    BaseModel,
+    StrictBytes,
+    ValidationError,
+    StrictInt,
+    confloat,
+    StrictBool,
+)
 
 
 class StrictBytesModel(BaseModel):
@@ -20,9 +27,9 @@ class StrictBoolModel(BaseModel):
     normal_bool: bool
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
-        m = StrictBytesModel(strict_bytes='hello world', normal_bytes='hello world')
+        m = StrictBytesModel(strict_bytes="hello world", normal_bytes="hello world")
     except ValidationError as e:
         print(e)
 
@@ -42,6 +49,6 @@ if __name__ == '__main__':
         print(e)
 
     try:
-        m = StrictBoolModel(strict_bool='False', normal_bool='False')
+        m = StrictBoolModel(strict_bool="False", normal_bool="False")
     except ValidationError as e:
         print(e)

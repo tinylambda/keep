@@ -74,6 +74,7 @@ class Meta(type):
         x.attr = 100
         return x
 
+
 # The definition header class Meta(type): specifies that Meta derives from type. Since type is a metaclass,
 # that makes Meta a metaclass as well.
 # Note that a custom __new__() method has been defined for Meta. It wasn't possible to do that to the type metaclass
@@ -186,6 +187,7 @@ print(X.attr, Y.attr, Z.attr)
 def decorator(cls):
     class NewClass(cls):
         attr = 100
+
     return NewClass
 
 
@@ -217,4 +219,3 @@ print(X.attr, Y.attr, Z.attr)
 #     print(type(MyMeta))
 #     print(type(MyClass))
 #     print(type(MySubClass))
-

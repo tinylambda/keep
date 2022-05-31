@@ -1,5 +1,5 @@
-if __name__ == '__main__':
-    fruits = ['grape', 'raspberry', 'apple', 'banana']
+if __name__ == "__main__":
+    fruits = ["grape", "raspberry", "apple", "banana"]
     print(sorted(fruits))
     print(fruits)
 
@@ -9,4 +9,3 @@ if __name__ == '__main__':
 
     fruits.sort()
     print(fruits)
-

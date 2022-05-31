@@ -16,7 +16,7 @@ class B:
     x = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a1 = A(100)
     a2 = A(200)
 
@@ -26,5 +26,5 @@ if __name__ == '__main__':
 
     b1 = B(100)
     b2 = B(200)
-    logging.info('%s', b1 > b2)
-    logging.info('%s', b1 < b2)
+    logging.info("%s", b1 > b2)
+    logging.info("%s", b1 < b2)

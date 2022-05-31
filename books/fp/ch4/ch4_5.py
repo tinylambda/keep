@@ -1,8 +1,8 @@
 import struct
 
-if __name__ == '__main__':
-    fmt = '<3s3sHH'
-    with open('test.gif', 'rb') as fp:
+if __name__ == "__main__":
+    fmt = "<3s3sHH"
+    with open("test.gif", "rb") as fp:
         img = memoryview(fp.read())
 
     header = img[:10]
@@ -13,4 +13,3 @@ if __name__ == '__main__':
 
     del header
     del img
-

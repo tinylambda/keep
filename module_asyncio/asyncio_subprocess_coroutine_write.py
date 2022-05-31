@@ -3,27 +3,29 @@ import asyncio.subprocess
 
 
 async def to_upper(input):
-    print('in to_upper')
+    print("in to_upper")
 
     create = asyncio.create_subprocess_exec(
-        'tr', '[:lower:]', '[:upper:]',
+        "tr",
+        "[:lower:]",
+        "[:upper:]",
         stdout=asyncio.subprocess.PIPE,
         stdin=asyncio.subprocess.PIPE,
     )
-    print('launching process')
+    print("launching process")
     proc = await create
-    print('pid: {}'.format(proc.pid))
+    print("pid: {}".format(proc.pid))
 
-    print('communicating with process')
+    print("communicating with process")
     stdout, stderr = await proc.communicate(input.encode())
     await proc.wait()
 
     return_code = proc.returncode
-    print('return code {}'.format(return_code))
+    print("return code {}".format(return_code))
     if not return_code:
         results = bytes(stdout).decode()
     else:
-        results = ''
+        results = ""
 
     return return_code, results
 
@@ -35,15 +37,12 @@ to all caps.
 
 event_loop = asyncio.get_event_loop()
 try:
-    return_code, results = event_loop.run_until_complete(
-        to_upper(MESSAGE)
-    )
+    return_code, results = event_loop.run_until_complete(to_upper(MESSAGE))
 finally:
     event_loop.close()
 
 if return_code:
-    print('error exit {}'.format(return_code))
+    print("error exit {}".format(return_code))
 else:
-    print('Original: {!r}'.format(MESSAGE))
-    print('Changed: {!r}'.format(results))
-
+    print("Original: {!r}".format(MESSAGE))
+    print("Changed: {!r}".format(results))

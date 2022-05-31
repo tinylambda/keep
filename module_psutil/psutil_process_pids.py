@@ -6,5 +6,5 @@ import psutil
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
-    logging.info('%s', psutil.pids())
+if __name__ == "__main__":
+    logging.info("%s", psutil.pids())

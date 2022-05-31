@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 
-Result = namedtuple('Result', 'count average')
+Result = namedtuple("Result", "count average")
 
 
 def averager():
@@ -18,20 +18,11 @@ def averager():
     return Result(count, average)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     coro_avg = averager()
     next(coro_avg)
 
-    print(
-        coro_avg.send(10)
-    )
-    print(
-        coro_avg.send(30)
-    )
-    print(
-        coro_avg.send(6.5)
-    )
-    print(
-        coro_avg.send(None)
-    )
-
+    print(coro_avg.send(10))
+    print(coro_avg.send(30))
+    print(coro_avg.send(6.5))
+    print(coro_avg.send(None))

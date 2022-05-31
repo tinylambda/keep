@@ -6,11 +6,11 @@ logging.basicConfig(level=logging.INFO)
 class LoggedAgeAccess:
     def __get__(self, instance, owner):
         value = instance._age
-        logging.info('Accessing %r giving %r', 'age', value)
+        logging.info("Accessing %r giving %r", "age", value)
         return value
 
     def __set__(self, instance, value):
-        logging.info('Updating %r to %r', 'age', value)
+        logging.info("Updating %r to %r", "age", value)
         instance._age = value
 
 
@@ -28,9 +28,9 @@ class Person:
         self.age += 1
 
 
-if __name__ == '__main__':
-    mary = Person('Mary M', 30)
-    dave = Person('David D', 40)
+if __name__ == "__main__":
+    mary = Person("Mary M", 30)
+    dave = Person("David D", 40)
 
     print(vars(mary))
     print(vars(dave))
@@ -40,4 +40,3 @@ if __name__ == '__main__':
 
     print(dave.name)
     print(dave.age)
-

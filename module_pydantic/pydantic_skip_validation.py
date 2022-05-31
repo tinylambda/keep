@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     id: int
     age: int
-    name: str = 'John Doe'
+    name: str = "John Doe"
 
 
 original_user = User(id=123, age=32)
@@ -17,5 +17,5 @@ new_user = User.construct(_fields_set=fields_set, **user_data)
 print(repr(new_user))
 print(new_user.__fields_set__)
 
-bad_user = User.construct(id='dog')
+bad_user = User.construct(id="dog")
 print(repr(bad_user))

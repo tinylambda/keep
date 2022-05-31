@@ -11,6 +11,6 @@ class C:
     complex = attr.ib(type=list[list[dict]])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(complex=[[{}, {}], [{}, {}]])
-    logging.info('%s', c)
+    logging.info("%s", c)

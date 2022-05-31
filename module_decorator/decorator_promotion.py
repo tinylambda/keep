@@ -16,7 +16,7 @@ def bulk_item(order):
     discount = 0
     for item in order.cart:
         if item.quantity >= 20:
-            discount += item.total() * .1
+            discount += item.total() * 0.1
 
 
 @promotion
@@ -28,4 +28,3 @@ def large_order(order):
 
 def best_promo(order):
     return max(promo(order) for promo in promos)
-

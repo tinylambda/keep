@@ -1,6 +1,5 @@
-print('I am spam')
+print("I am spam")
 
 
 def hello(name):
-    print('Hello %s' % name)
-
+    print("Hello %s" % name)

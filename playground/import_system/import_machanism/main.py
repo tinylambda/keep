@@ -7,7 +7,7 @@ pprint(sys.meta_path)
 
 class Finder:
     def find_module(self, fullname, path):
-        print('looking for', fullname, path)
+        print("looking for", fullname, path)
         return None
 
 
@@ -19,7 +19,7 @@ import threading
 
 import xml.etree.ElementTree
 
-print('*' * 32)
+print("*" * 32)
 
 del sys.meta_path[0]
 sys.meta_path.append(Finder())

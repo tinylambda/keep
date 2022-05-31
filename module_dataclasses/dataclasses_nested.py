@@ -1,6 +1,7 @@
 import dataclasses
 from dataclasses import dataclass
 
+
 @dataclass
 class Picture:
     url: str
@@ -18,8 +19,7 @@ class InventoryItem:
         return self.unit_price * self.quantity_on_hand
 
 
-if __name__ == '__main__':
-    picture_info = Picture('http://www.example.com/a.png', 'png')
-    inventory_item = InventoryItem('test', 3.4, picture_info, 10)
+if __name__ == "__main__":
+    picture_info = Picture("http://www.example.com/a.png", "png")
+    inventory_item = InventoryItem("test", 3.4, picture_info, 10)
     print(dataclasses.asdict(inventory_item))
-

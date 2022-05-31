@@ -10,9 +10,9 @@ def compute():
 def worker():
     context_inside = zmq.Context()
     worker_receiver = context_inside.socket(zmq.PULL)
-    worker_receiver.connect('tcp://0.0.0.0:5555')
+    worker_receiver.connect("tcp://0.0.0.0:5555")
     result_sender = context_inside.socket(zmq.PUSH)
-    result_sender.connect('tcp://0.0.0.0:5556')
+    result_sender.connect("tcp://0.0.0.0:5556")
     poller = zmq.Poller()
     poller.register(worker_receiver, zmq.POLLIN)
 
@@ -23,14 +23,14 @@ def worker():
             result_sender.send_pyobj(obj())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
     # build a channel to send work to be done
     work_sender = context.socket(zmq.PUSH)
-    work_sender.bind('tcp://0.0.0.0:5555')
+    work_sender.bind("tcp://0.0.0.0:5555")
     # build a channel to receive computed results
     result_receiver = context.socket(zmq.PULL)
-    result_receiver.bind('tcp://0.0.0.0:5556')
+    result_receiver.bind("tcp://0.0.0.0:5556")
     # start 8 workers
     processes = []
     for _ in range(8):
@@ -50,5 +50,4 @@ if __name__ == '__main__':
     # terminate all processes
     for p in processes:
         p.terminate()
-    print('results: %s', results)
-
+    print("results: %s", results)

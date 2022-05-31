@@ -34,34 +34,38 @@ tags_metadata = [
 
 
 app = FastAPI(
-    title='Good API',
+    title="Good API",
     description=description,
-    version='0.0.1',
-    terms_of_service='http://localhost/terms/',
+    version="0.0.1",
+    terms_of_service="http://localhost/terms/",
     contact={
-        'name': 'Felix',
-        'url': 'http://localhost/contact',
-        'email': 'felix@localhost.com',
+        "name": "Felix",
+        "url": "http://localhost/contact",
+        "email": "felix@localhost.com",
     },
     license_info={
-        'name': 'Apache 2.0',
-        'url': 'https://www.apache.org/licenses/LICENSE-2.0.html',
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
     openapi_tags=tags_metadata,
-    openapi_url='/api/v1/openapi.json',
-    docs_url='/documentation',
+    openapi_url="/api/v1/openapi.json",
+    docs_url="/documentation",
     redoc_url=None,
 )
 
 
-@app.get('/items/', tags=['items'])
+@app.get("/items/", tags=["items"])
 async def read_items():
-    return [{'name': 'Katana'}, ]
+    return [
+        {"name": "Katana"},
+    ]
 
 
-@app.get('/users/', tags=['users'])
+@app.get("/users/", tags=["users"])
 async def get_users():
-    return [{'name': 'Felix'}, ]
+    return [
+        {"name": "Felix"},
+    ]
 
 
-app.mount('/static', StaticFiles(directory='/tmp'), name='static')
+app.mount("/static", StaticFiles(directory="/tmp"), name="static")

@@ -4,9 +4,9 @@ from openpyxl import Workbook
 from openpyxl.chart import BarChart, Reference
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     workbook = Workbook()
-    sheet = workbook.create_sheet('Sample Sheet')
+    sheet = workbook.create_sheet("Sample Sheet")
     rows = [
         ["Product", "Online", "Store"],
         [1, 30, 45],
@@ -30,8 +30,7 @@ if __name__ == '__main__':
         max_col=3,
     )
     chart.add_data(data, titles_from_data=True)
-    sheet.add_chart(chart, 'E2')
+    sheet.add_chart(chart, "E2")
 
-    filepath = pathlib.Path.home().joinpath('Downloads/test9.xlsx')
+    filepath = pathlib.Path.home().joinpath("Downloads/test9.xlsx")
     workbook.save(filepath)
-

@@ -10,7 +10,7 @@ class SomeClass:
         self.x = v
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = SomeClass()
     c.method(1000000)
 

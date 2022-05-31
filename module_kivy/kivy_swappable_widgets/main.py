@@ -6,7 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 
 
-letters = ['txt 1', 'txt 2', 'txt 3', 'txt 4', 'txt 5', 'txt 6']
+letters = ["txt 1", "txt 2", "txt 3", "txt 4", "txt 5", "txt 6"]
 
 
 class MButton(Button):
@@ -28,7 +28,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-
-

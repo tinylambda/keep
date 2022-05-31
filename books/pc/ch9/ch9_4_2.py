@@ -3,9 +3,9 @@ import logging
 
 
 logging.basicConfig(
-    format='%(asctime)s - %(levelname)s:%(message)s',
+    format="%(asctime)s - %(levelname)s:%(message)s",
     level=logging.DEBUG,
-    datefmt='%m/%d/%Y %I:%M:%S %p'
+    datefmt="%m/%d/%Y %I:%M:%S %p",
 )
 
 
@@ -19,7 +19,9 @@ def logged(level, name=None, message=None):
         def wrapper(*args, **kwargs):
             log.log(level, logmsg)
             return func(*args, **kwargs)
+
         return wrapper
+
     return decorate
 
 
@@ -28,11 +30,11 @@ def add(x, y):
     return x + y
 
 
-@logged(logging.CRITICAL, 'example')
+@logged(logging.CRITICAL, "example")
 def spam():
-    print('spam')
+    print("spam")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     add(1, 2)
     spam()

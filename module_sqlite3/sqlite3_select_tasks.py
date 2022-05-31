@@ -1,16 +1,22 @@
 import sqlite3
 
 
-if __name__ == '__main__':
-    db_filename = 'todo.db'
+if __name__ == "__main__":
+    db_filename = "todo.db"
     with sqlite3.connect(db_filename) as conn:
         cursor = conn.cursor()
-        cursor.execute('''
+        cursor.execute(
+            """
         select id, priority, details, status, deadline
         from task
         where project = 'pymotw'
-        ''')
+        """
+        )
 
         for row in cursor.fetchall():
             task_id, priority, details, status, deadline = row
-            print('{:2d} [{:d}] {:<25} [{:<8}] ({})'.format(task_id, priority, details, status, deadline))
+            print(
+                "{:2d} [{:d}] {:<25} [{:<8}] ({})".format(
+                    task_id, priority, details, status, deadline
+                )
+            )

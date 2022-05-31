@@ -15,24 +15,25 @@ class SharedCounter:
             self._value -= delta
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from multiprocessing.dummy import Pool
 
     pool = Pool(8)
     sc = SharedCounter()
     pool.map(lambda x: sc.incr(), range(1000))
-    print(getattr(sc, '_value'))
+    print(getattr(sc, "_value"))
 
-    print('-' * 64)
+    print("-" * 64)
 
     sc = SharedCounter()
     for _ in range(1000):
         sc.incr()
-    print(getattr(sc, '_value'))
+    print(getattr(sc, "_value"))
 
     from concurrent.futures import ThreadPoolExecutor
+
     executor = ThreadPoolExecutor(max_workers=8)
     sc = SharedCounter()
     executor.map(lambda x: sc.incr(), range(1000))
     executor.shutdown(wait=True)
-    print(getattr(sc, '_value'))
+    print(getattr(sc, "_value"))

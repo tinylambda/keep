@@ -17,7 +17,7 @@ class SortedItems(collections.abc.Sequence, ABC):
         bisect.insort(self._items, item)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     items = SortedItems([5, 1, 3])
     print(list(items))
 

@@ -18,7 +18,7 @@ class D:
         self.x.append(element)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     o1 = C()
     o2 = C()
     o1.add(1)
@@ -35,4 +35,3 @@ if __name__ == '__main__':
     print(d2.x)
 
     assert d1.x is not d2.x
-

@@ -11,9 +11,9 @@ class User:
         self.age: int = age
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = 10000000
     start = time.perf_counter()
-    objects = [User('felix', 20) for i in range(n)]
+    objects = [User("felix", 20) for i in range(n)]
     end = time.perf_counter()
-    logging.info('cost %s', end - start)
+    logging.info("cost %s", end - start)

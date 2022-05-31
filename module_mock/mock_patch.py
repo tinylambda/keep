@@ -3,8 +3,8 @@ from unittest.mock import patch
 from books import fp
 
 
-@patch('fp.ch1.ch1_1.FrenchDeck')
-@patch('fp.ch1.ch1_1.Card')
+@patch("fp.ch1.ch1_1.FrenchDeck")
+@patch("fp.ch1.ch1_1.Card")
 def test(MockClass1, MockClass2):
     fp.ch1.ch1_1.Card([], [])
     fp.ch1.ch1_1.FrenchDeck()
@@ -14,6 +14,5 @@ def test(MockClass1, MockClass2):
     # assert MockClass2.called
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test()
-

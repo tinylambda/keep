@@ -13,8 +13,7 @@ class Pets(BaseModel):
         return self.__root__[item]
 
 
-if __name__ == '__main__':
-    pets = Pets.parse_obj(['dog', 'cat'])
+if __name__ == "__main__":
+    pets = Pets.parse_obj(["dog", "cat"])
     print(pets[0])
     print([pet for pet in pets])
-    

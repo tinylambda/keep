@@ -10,7 +10,7 @@ import attr
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s,%(msecs)d %(levelname)s: %(message)s",
-    datefmt='%H:%M:%S',
+    datefmt="%H:%M:%S",
 )
 
 
@@ -29,7 +29,7 @@ class PubSubMessage:
     extended_cnt = attr.ib(repr=False, default=0)
 
     def __attrs_post_init__(self):
-        self.hostname = f'{self.instance_name}.example.net'
+        self.hostname = f"{self.instance_name}.example.net"
 
 
 async def publish(queue):
@@ -38,10 +38,10 @@ async def publish(queue):
     while True:
         msg_id = str(uuid.uuid4())
         host_id = "".join(random.choices(choices, k=4))
-        instance_name = f'cattle-{host_id}'
+        instance_name = f"cattle-{host_id}"
         msg = PubSubMessage(message_id=msg_id, instance_name=instance_name)
         asyncio.create_task(queue.put(msg))
-        logging.debug(f'published message {msg}')
+        logging.debug(f"published message {msg}")
         await asyncio.sleep(random.random())
 
 
@@ -50,7 +50,7 @@ async def restart_host(msg: PubSubMessage):
     if random.randrange(1, 5) == 3:
         raise RestartFailed(f"could not restart {msg.hostname}")
     msg.restarted = True
-    logging.info(f'restarted {msg.hostname}')
+    logging.info(f"restarted {msg.hostname}")
 
 
 async def save(msg: PubSubMessage):
@@ -58,28 +58,28 @@ async def save(msg: PubSubMessage):
     if random.randrange(1, 5) == 3:
         raise Exception(f"Could not save {msg}")
     msg.saved = True
-    logging.info(f'saved {msg} into database')
+    logging.info(f"saved {msg} into database")
 
 
 async def cleanup(msg: PubSubMessage, event: asyncio.Event):
     await event.wait()
     msg.acked = True
-    logging.info(f'done, acked {msg}')
+    logging.info(f"done, acked {msg}")
 
 
 async def extend(msg: PubSubMessage, event: asyncio.Event):
     while not event.is_set():
         msg.extended_cnt += 1
-        logging.info(f'extended deadline by 3 seconds for {msg}')
+        logging.info(f"extended deadline by 3 seconds for {msg}")
         await asyncio.sleep(2)
 
 
 def handle_results(results, msg):
     for result in results:
         if isinstance(result, RestartFailed):
-            logging.error(f'retrying for failure to start: {msg.hostname}')
+            logging.error(f"retrying for failure to start: {msg.hostname}")
         elif isinstance(result, Exception):
-            logging.error(f'handling general error: {result}')
+            logging.error(f"handling general error: {result}")
 
 
 async def handle_message(msg: PubSubMessage):
@@ -97,27 +97,27 @@ async def consume(queue):
         msg = await queue.get()
         # if random.randrange(1, 5) == 3:
         #     raise Exception(f"could not consume {msg}")
-        logging.info(f'consumed {msg}')
+        logging.info(f"consumed {msg}")
         asyncio.create_task(handle_message(msg))
 
 
 async def shutdown(loop, signal=None):
     if signal:
-        logging.info(f'received exit signal {signal.name}')
-    logging.info('closing database connections')
-    logging.info('nacking outstanding messages')
+        logging.info(f"received exit signal {signal.name}")
+    logging.info("closing database connections")
+    logging.info("nacking outstanding messages")
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
     [task.cancel() for task in tasks]
-    logging.info(f'cancelling {len(tasks)} outstanding tasks')
+    logging.info(f"cancelling {len(tasks)} outstanding tasks")
     await asyncio.gather(*tasks, return_exceptions=True)
-    logging.info('flushing metrics')
+    logging.info("flushing metrics")
     loop.stop()
 
 
 def handle_exception(loop, context):
-    msg = context.get('exception', context['message'])
-    logging.error(f'caught exception {msg}')
-    logging.info('shutting down...')
+    msg = context.get("exception", context["message"])
+    logging.error(f"caught exception {msg}")
+    logging.info("shutting down...")
     # asyncio.create_task(shutdown(loop))
 
 
@@ -135,8 +135,8 @@ def main():
         loop.run_forever()
     finally:
         loop.close()
-        logging.info('successfully shutdown the service')
+        logging.info("successfully shutdown the service")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

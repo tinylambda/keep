@@ -13,7 +13,7 @@ class Bar(BaseModel):
     callback: Callable[[int, int], int]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = Foo(callback=lambda x: 2 * x)
     print(m)
     print(m.callback(100))

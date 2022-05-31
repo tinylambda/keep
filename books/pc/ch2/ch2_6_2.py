@@ -1,12 +1,12 @@
 import re
 
 
-if __name__ == '__main__':
-    text = 'UPPER PYTHON, lower python, Mixed Python'
-    result = re.findall('python', text, flags=re.IGNORECASE)
+if __name__ == "__main__":
+    text = "UPPER PYTHON, lower python, Mixed Python"
+    result = re.findall("python", text, flags=re.IGNORECASE)
     print(result)
 
-    result = re.sub('python', 'snake', text, flags=re.IGNORECASE)
+    result = re.sub("python", "snake", text, flags=re.IGNORECASE)
     print(result)
 
     def matchcase(word):
@@ -20,8 +20,8 @@ if __name__ == '__main__':
                 return word.capitalize()
             else:
                 return word
+
         return replace
 
-    result = re.sub('python', matchcase('snake'), text, flags=re.IGNORECASE)
+    result = re.sub("python", matchcase("snake"), text, flags=re.IGNORECASE)
     print(result)
-

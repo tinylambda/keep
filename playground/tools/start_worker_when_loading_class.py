@@ -6,7 +6,5 @@ class ServerMeta(type):
 
 
 class Server(metaclass=ServerMeta):
-    NAME = 'BASE'
+    NAME = "BASE"
     pass
-
-

@@ -4,8 +4,8 @@ import shelve
 from ch19_1 import load
 
 
-DB_NAME = 'data/schedule1_db'
-CONFERENCE = 'conference.115'
+DB_NAME = "data/schedule1_db"
+CONFERENCE = "conference.115"
 
 
 class Record:
@@ -15,27 +15,21 @@ class Record:
 
 def load_db(db):
     raw_data = load()
-    warnings.warn('loading ' + DB_NAME)
-    for collection, rec_list in raw_data['Schedule'].items():
+    warnings.warn("loading " + DB_NAME)
+    for collection, rec_list in raw_data["Schedule"].items():
         record_type = collection[:-1]
         for record in rec_list:
-            key = '{}.{}'.format(record_type, record['serial'])
-            record['serial'] = key
+            key = "{}.{}".format(record_type, record["serial"])
+            record["serial"] = key
             db[key] = Record(**record)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     db = shelve.open(DB_NAME)
     if CONFERENCE not in db:
         load_db(db)
 
-    speaker = db['speaker.3471']
-    print(
-        type(speaker)
-    )
-    print(
-        speaker.name, speaker.twitter
-    )
+    speaker = db["speaker.3471"]
+    print(type(speaker))
+    print(speaker.name, speaker.twitter)
     db.close()
-
-

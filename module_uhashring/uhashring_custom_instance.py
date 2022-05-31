@@ -8,34 +8,30 @@ from uhashring import HashRing
 
 class MyService:
     def send(self, value):
-        print(f'sending value {value}')
+        print(f"sending value {value}")
 
 
 nodes = {
-    'node1': {
-            'hostname': 'node1.fqdn',
-            'instance': MyService(),
-            'port': 6379,
-            'vnodes': 40,
-            'weight': 1
-        },
-    'node2': {
-            'hostname': 'node2.fqdn',
-            'instance': MyService(),
-            'port': 6379,
-            'vnodes': 40
-        },
-    'node3': {
-            'hostname': 'node3.fqdn',
-            'instance': MyService(),
-            'port': 6379
-        }
-    }
+    "node1": {
+        "hostname": "node1.fqdn",
+        "instance": MyService(),
+        "port": 6379,
+        "vnodes": 40,
+        "weight": 1,
+    },
+    "node2": {
+        "hostname": "node2.fqdn",
+        "instance": MyService(),
+        "port": 6379,
+        "vnodes": 40,
+    },
+    "node3": {"hostname": "node3.fqdn", "instance": MyService(), "port": 6379},
+}
 
 # create a new consistent hash ring with the nodes
 hr = HashRing(nodes)
-hr['coconut0'].send(10)
-hr['coconut1'].send(50)
-hr['coconut2'].send(100)
+hr["coconut0"].send(10)
+hr["coconut1"].send(50)
+hr["coconut2"].send(100)
 
-print(hr.get_node_port('coconut0'))
+print(hr.get_node_port("coconut0"))

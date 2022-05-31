@@ -25,7 +25,7 @@ def asbytes(obj):
     s = str(obj)
     if str is not bytes:
         # Python 3
-        s = s.encode('ascii')
+        s = s.encode("ascii")
     return s
 
 
@@ -33,7 +33,7 @@ def client_task(name, i):
     """Request-reply client using REQ socket"""
     ctx = zmq.Context()
     client = ctx.socket(zmq.REQ)
-    client.identity = (u"Client-%s-%s" % (name, i)).encode('ascii')
+    client.identity = ("Client-%s-%s" % (name, i)).encode("ascii")
     client.connect("ipc://%s-localfe.ipc" % name)
     monitor = ctx.socket(zmq.PUSH)
     monitor.connect("ipc://%s-monitor.ipc" % name)
@@ -44,21 +44,21 @@ def client_task(name, i):
         time.sleep(random.randint(0, 5))
         for _ in range(random.randint(0, 15)):
             # send request with random hex ID
-            task_id = u"%04X" % random.randint(0, 10000)
+            task_id = "%04X" % random.randint(0, 10000)
             client.send_string(task_id)
 
             # wait max 10 seconds for a reply, then complain
             try:
                 events = dict(poller.poll(10000))
             except zmq.ZMQError:
-                return # interrupted
+                return  # interrupted
 
             if events:
                 reply = client.recv_string()
                 assert reply == task_id, "expected %s, got %s" % (task_id, reply)
                 monitor.send_string(reply)
             else:
-                monitor.send_string(u"E: CLIENT EXIT - lost task %s" % task_id)
+                monitor.send_string("E: CLIENT EXIT - lost task %s" % task_id)
                 return
 
 
@@ -66,7 +66,7 @@ def worker_task(name, i):
     """Worker using REQ socket to do LRU routing"""
     ctx = zmq.Context()
     worker = ctx.socket(zmq.REQ)
-    worker.identity = ("Worker-%s-%s" % (name, i)).encode('ascii')
+    worker.identity = ("Worker-%s-%s" % (name, i)).encode("ascii")
     worker.connect("ipc://%s-localbe.ipc" % name)
 
     # Tell broker we're ready for work
@@ -172,7 +172,7 @@ def main(myself, peers):
             local_capacity += 1
 
             # If it's READY, don't route the message any further
-            if msg[-1] == b'READY':
+            if msg[-1] == b"READY":
                 msg = None
         elif cloudbe in events:
             msg = cloudbe.recv_multipart()
@@ -218,22 +218,21 @@ def main(myself, peers):
                 break  # No work, go back to backends
 
             if local_capacity:
-                msg = [workers.pop(0), b''] + msg
+                msg = [workers.pop(0), b""] + msg
                 localbe.send_multipart(msg)
                 local_capacity -= 1
             else:
                 # Route to random broker peer
-                msg = [random.choice(peers), b''] + msg
+                msg = [random.choice(peers), b""] + msg
                 cloudbe.send_multipart(msg)
         if local_capacity != previous:
             statebe.send_multipart([myself, asbytes(local_capacity)])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) >= 2:
         myself = asbytes(sys.argv[1])
-        main(myself, peers=[ asbytes(a) for a in sys.argv[2:] ])
+        main(myself, peers=[asbytes(a) for a in sys.argv[2:]])
     else:
         print("Usage: peering3.py <me> [<peer_1> [... <peer_N>]]")
         sys.exit(1)
-

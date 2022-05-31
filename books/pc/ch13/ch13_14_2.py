@@ -4,7 +4,7 @@ import os
 
 
 def time_exceeded(signo, frame):
-    print('time is up')
+    print("time is up")
     raise SystemExit(1)
 
 
@@ -19,11 +19,11 @@ def limit_memory(maxsize):
     resource.setrlimit(resource.RLIMIT_AS, (maxsize, hard))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     limit_memory(100)
     l = []
     while True:
-        l.append('s')
+        l.append("s")
         print(len(l))
 
     set_max_runtime(10)

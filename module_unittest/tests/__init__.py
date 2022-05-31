@@ -1,6 +1,6 @@
 def setUp():
-    print('in setup')
+    print("in setup")
 
 
 def tearDown():
-    print('in tearDown')
+    print("in tearDown")

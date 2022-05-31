@@ -12,7 +12,7 @@ class Empty:
     pass
 
 
-if __name__ == '__main__':
-    logging.info('%s', Empty())
-    logging.info('%s', Empty() == Empty())  # True
-    logging.info('%s', Empty() is Empty())  # False
+if __name__ == "__main__":
+    logging.info("%s", Empty())
+    logging.info("%s", Empty() == Empty())  # True
+    logging.info("%s", Empty() is Empty())  # False

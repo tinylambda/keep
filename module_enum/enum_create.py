@@ -11,6 +11,6 @@ class BugStatus(enum.Enum):
     fix_released = 1
 
 
-print('\nMember name: {}'.format(BugStatus.wont_fix.name))
-print('Member value: {}'.format(BugStatus.wont_fix.value))
-print('Type: {}'.format(type(BugStatus.wont_fix)))
+print("\nMember name: {}".format(BugStatus.wont_fix.name))
+print("Member value: {}".format(BugStatus.wont_fix.value))
+print("Type: {}".format(type(BugStatus.wont_fix)))

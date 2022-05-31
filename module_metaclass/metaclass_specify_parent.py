@@ -3,14 +3,13 @@ class DataCamp:
 
 
 PythonClass = type(
-    'PythonClass',
-    (DataCamp, ),
+    "PythonClass",
+    (DataCamp,),
     {
-        'start_date': 'August 2018',
-        'instructor': 'John Doe',
-    }
+        "start_date": "August 2018",
+        "instructor": "John Doe",
+    },
 )
 
 print(PythonClass)
 print(issubclass(PythonClass, DataCamp))
-

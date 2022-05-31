@@ -17,9 +17,8 @@ class B:
         return getattr(self._a, item)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     b = B()
     b.foo()
     b.bar()
     b.spam(100)
-

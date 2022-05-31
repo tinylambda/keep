@@ -8,6 +8,5 @@ class MapApp(App):
         return MapView(zoom=11, lat=50.6394, lon=3.057)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MapApp().run()
-

@@ -24,8 +24,7 @@ class Spam:
         return Spam.manager.get_spam(self.name)
 
 
-if __name__ == '__main__':
-    a = Spam('foo')
-    b = Spam('foo')
+if __name__ == "__main__":
+    a = Spam("foo")
+    b = Spam("foo")
     print(a is b)
-

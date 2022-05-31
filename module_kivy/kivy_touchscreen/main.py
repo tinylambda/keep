@@ -4,10 +4,10 @@ from kivy.uix.widget import Widget
 
 class MyW(Widget):
     def on_touch_down(self, touch):
-        if 'button' in touch.profile:
+        if "button" in touch.profile:
             self.ids.button1.text = touch.button
 
-        if 'pressure' in touch.profile:
+        if "pressure" in touch.profile:
             self.ids.label1.text = str(touch.pressure)
 
 
@@ -16,6 +16,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

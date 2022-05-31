@@ -1,7 +1,7 @@
 from collections import deque
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dq = deque(range(10), maxlen=10)
     print(dq)
     dq.rotate(3)

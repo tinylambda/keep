@@ -22,14 +22,14 @@ class SimpleCompleter:
 
 
 def input_loop():
-    line = ''
-    while line != 'stop':
+    line = ""
+    while line != "stop":
         line = input('Prompt ("stop" to quit):')
-        print('Dispatch {}'.format(line))
+        print("Dispatch {}".format(line))
 
 
-OPTIONS = ['start', 'stop', 'list', 'print']
+OPTIONS = ["start", "stop", "list", "print"]
 readline.set_completer(SimpleCompleter(OPTIONS).complete)
-readline.parse_and_bind('tab: complete')
+readline.parse_and_bind("tab: complete")
 
 input_loop()

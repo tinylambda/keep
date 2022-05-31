@@ -6,989 +6,1685 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='game.proto',
-  package='',
-  syntax='proto3',
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ngame.proto\"\x92\x01\n\tUser_base\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0b\n\x03ico\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0b\n\x03vip\x18\x04 \x01(\x05\x12\x0b\n\x03job\x18\x05 \x01(\x05\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x0b\n\x03sex\x18\x07 \x01(\x05\x12\n\n\x02lv\x18\x08 \x01(\x05\x12\r\n\x05\x66rame\x18\t \x01(\x05\x12\r\n\x05title\x18\n \x01(\x05\"\x95\x01\n\x08\x43hat_msg\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\x12\x0b\n\x03tpl\x18\x03 \x01(\t\x12\n\n\x02ts\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\r\x12\x10\n\x08voicelen\x18\x06 \x01(\r\x12\x10\n\x08voiceuri\x18\x07 \x01(\t\x12\x11\n\tvoicename\x18\x08 \x01(\t\x12\x0e\n\x06\x62ubble\x18\t \x01(\t\"N\n\x0f\x43hat__chat__c2s\x12\n\n\x02\x66r\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12\x16\n\x03msg\x18\x03 \x01(\x0b\x32\t.Chat_msg\x12\x0b\n\x03shv\x18\x04 \x01(\x11\"\x96\x01\n\x0f\x43hat__chat__s2c\x12\n\n\x02\x66r\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12\x16\n\x03msg\x18\x03 \x01(\x0b\x32\t.Chat_msg\x12\x17\n\x03usr\x18\x04 \x01(\x0b\x32\n.User_base\x12\x0b\n\x03shv\x18\x05 \x01(\x11\x12\x0c\n\x04type\x18\x06 \x01(\x11\x12\r\n\x05grade\x18\x07 \x01(\x11\x12\x10\n\x08loginUid\x18\x08 \x01(\t\"\"\n\x12\x43hat__history__c2s\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\"B\n\x12\x43hat__history__s2c\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\x12\x1e\n\x04msgs\x18\x02 \x03(\x0b\x32\x10.Chat__chat__s2c\"\x1f\n\x0f\x43hat__join__c2s\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\"/\n\x0f\x43hat__join__s2c\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05\"&\n\x14\x43hat__create_ch__c2s\x12\x0e\n\x06\x63hname\x18\x01 \x01(\t\"Q\n\x14\x43hat__create_ch__s2c\x12\x0e\n\x06\x63hname\x18\x01 \x01(\t\x12\x0c\n\x04\x63hid\x18\x02 \x01(\t\x12\x1b\n\x07\x63reater\x18\x03 \x01(\x0b\x32\n.User_base\"2\n\x12System__error__s2c\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0e\n\x06\x65rrmsg\x18\x02 \x01(\t\"\x19\n\x17System__heart_beat__c2s\"\x19\n\x17System__heart_beat__s2c\"\"\n\x13System__online__c2s\x12\x0b\n\x03uid\x18\x01 \x01(\t\"2\n\x13System__online__s2c\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05\"$\n\x15Marquee__marquee__s2c\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\xa6\x01\n\x13\x46lower__flower__s2c\x12\x0c\n\x04\x66lid\x18\x01 \x01(\x05\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\x0c\n\x04\x66uid\x18\x03 \x01(\t\x12\r\n\x05\x66name\x18\x04 \x01(\t\x12\x0c\n\x04\x66svr\x18\x05 \x01(\t\x12\x0e\n\x06\x66svrnm\x18\x06 \x01(\t\x12\x0c\n\x04tuid\x18\x07 \x01(\t\x12\r\n\x05tname\x18\x08 \x01(\t\x12\x0c\n\x04tsvr\x18\t \x01(\t\x12\x0e\n\x06tsvrnm\x18\n \x01(\tb\x06proto3'
+    name="game.proto",
+    package="",
+    syntax="proto3",
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+    serialized_pb=b'\n\ngame.proto"\x92\x01\n\tUser_base\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0b\n\x03ico\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0b\n\x03vip\x18\x04 \x01(\x05\x12\x0b\n\x03job\x18\x05 \x01(\x05\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x0b\n\x03sex\x18\x07 \x01(\x05\x12\n\n\x02lv\x18\x08 \x01(\x05\x12\r\n\x05\x66rame\x18\t \x01(\x05\x12\r\n\x05title\x18\n \x01(\x05"\x95\x01\n\x08\x43hat_msg\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\r\x12\x0b\n\x03tpl\x18\x03 \x01(\t\x12\n\n\x02ts\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\r\x12\x10\n\x08voicelen\x18\x06 \x01(\r\x12\x10\n\x08voiceuri\x18\x07 \x01(\t\x12\x11\n\tvoicename\x18\x08 \x01(\t\x12\x0e\n\x06\x62ubble\x18\t \x01(\t"N\n\x0f\x43hat__chat__c2s\x12\n\n\x02\x66r\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12\x16\n\x03msg\x18\x03 \x01(\x0b\x32\t.Chat_msg\x12\x0b\n\x03shv\x18\x04 \x01(\x11"\x96\x01\n\x0f\x43hat__chat__s2c\x12\n\n\x02\x66r\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12\x16\n\x03msg\x18\x03 \x01(\x0b\x32\t.Chat_msg\x12\x17\n\x03usr\x18\x04 \x01(\x0b\x32\n.User_base\x12\x0b\n\x03shv\x18\x05 \x01(\x11\x12\x0c\n\x04type\x18\x06 \x01(\x11\x12\r\n\x05grade\x18\x07 \x01(\x11\x12\x10\n\x08loginUid\x18\x08 \x01(\t""\n\x12\x43hat__history__c2s\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t"B\n\x12\x43hat__history__s2c\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\x12\x1e\n\x04msgs\x18\x02 \x03(\x0b\x32\x10.Chat__chat__s2c"\x1f\n\x0f\x43hat__join__c2s\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t"/\n\x0f\x43hat__join__s2c\x12\x0c\n\x04\x63hid\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05"&\n\x14\x43hat__create_ch__c2s\x12\x0e\n\x06\x63hname\x18\x01 \x01(\t"Q\n\x14\x43hat__create_ch__s2c\x12\x0e\n\x06\x63hname\x18\x01 \x01(\t\x12\x0c\n\x04\x63hid\x18\x02 \x01(\t\x12\x1b\n\x07\x63reater\x18\x03 \x01(\x0b\x32\n.User_base"2\n\x12System__error__s2c\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0e\n\x06\x65rrmsg\x18\x02 \x01(\t"\x19\n\x17System__heart_beat__c2s"\x19\n\x17System__heart_beat__s2c""\n\x13System__online__c2s\x12\x0b\n\x03uid\x18\x01 \x01(\t"2\n\x13System__online__s2c\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x05"$\n\x15Marquee__marquee__s2c\x12\x0b\n\x03msg\x18\x01 \x01(\t"\xa6\x01\n\x13\x46lower__flower__s2c\x12\x0c\n\x04\x66lid\x18\x01 \x01(\x05\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\x0c\n\x04\x66uid\x18\x03 \x01(\t\x12\r\n\x05\x66name\x18\x04 \x01(\t\x12\x0c\n\x04\x66svr\x18\x05 \x01(\t\x12\x0e\n\x06\x66svrnm\x18\x06 \x01(\t\x12\x0c\n\x04tuid\x18\x07 \x01(\t\x12\r\n\x05tname\x18\x08 \x01(\t\x12\x0c\n\x04tsvr\x18\t \x01(\t\x12\x0e\n\x06tsvrnm\x18\n \x01(\tb\x06proto3',
 )
 
 
-
-
 _USER_BASE = _descriptor.Descriptor(
-  name='User_base',
-  full_name='User_base',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='uid', full_name='User_base.uid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ico', full_name='User_base.ico', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='User_base.name', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='vip', full_name='User_base.vip', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='job', full_name='User_base.job', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='city', full_name='User_base.city', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sex', full_name='User_base.sex', index=6,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='lv', full_name='User_base.lv', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='frame', full_name='User_base.frame', index=8,
-      number=9, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='title', full_name='User_base.title', index=9,
-      number=10, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=15,
-  serialized_end=161,
+    name="User_base",
+    full_name="User_base",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="uid",
+            full_name="User_base.uid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="ico",
+            full_name="User_base.ico",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="User_base.name",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="vip",
+            full_name="User_base.vip",
+            index=3,
+            number=4,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="job",
+            full_name="User_base.job",
+            index=4,
+            number=5,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="city",
+            full_name="User_base.city",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sex",
+            full_name="User_base.sex",
+            index=6,
+            number=7,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="lv",
+            full_name="User_base.lv",
+            index=7,
+            number=8,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="frame",
+            full_name="User_base.frame",
+            index=8,
+            number=9,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="title",
+            full_name="User_base.title",
+            index=9,
+            number=10,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=15,
+    serialized_end=161,
 )
 
 
 _CHAT_MSG = _descriptor.Descriptor(
-  name='Chat_msg',
-  full_name='Chat_msg',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='content', full_name='Chat_msg.content', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='Chat_msg.id', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tpl', full_name='Chat_msg.tpl', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ts', full_name='Chat_msg.ts', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='Chat_msg.type', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='voicelen', full_name='Chat_msg.voicelen', index=5,
-      number=6, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='voiceuri', full_name='Chat_msg.voiceuri', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='voicename', full_name='Chat_msg.voicename', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='bubble', full_name='Chat_msg.bubble', index=8,
-      number=9, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=164,
-  serialized_end=313,
+    name="Chat_msg",
+    full_name="Chat_msg",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="content",
+            full_name="Chat_msg.content",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="id",
+            full_name="Chat_msg.id",
+            index=1,
+            number=2,
+            type=13,
+            cpp_type=3,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tpl",
+            full_name="Chat_msg.tpl",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="ts",
+            full_name="Chat_msg.ts",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="type",
+            full_name="Chat_msg.type",
+            index=4,
+            number=5,
+            type=13,
+            cpp_type=3,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="voicelen",
+            full_name="Chat_msg.voicelen",
+            index=5,
+            number=6,
+            type=13,
+            cpp_type=3,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="voiceuri",
+            full_name="Chat_msg.voiceuri",
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="voicename",
+            full_name="Chat_msg.voicename",
+            index=7,
+            number=8,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="bubble",
+            full_name="Chat_msg.bubble",
+            index=8,
+            number=9,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=164,
+    serialized_end=313,
 )
 
 
 _CHAT__CHAT__C2S = _descriptor.Descriptor(
-  name='Chat__chat__c2s',
-  full_name='Chat__chat__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='fr', full_name='Chat__chat__c2s.fr', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='to', full_name='Chat__chat__c2s.to', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='msg', full_name='Chat__chat__c2s.msg', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='shv', full_name='Chat__chat__c2s.shv', index=3,
-      number=4, type=17, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=315,
-  serialized_end=393,
+    name="Chat__chat__c2s",
+    full_name="Chat__chat__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="fr",
+            full_name="Chat__chat__c2s.fr",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="to",
+            full_name="Chat__chat__c2s.to",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="msg",
+            full_name="Chat__chat__c2s.msg",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="shv",
+            full_name="Chat__chat__c2s.shv",
+            index=3,
+            number=4,
+            type=17,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=315,
+    serialized_end=393,
 )
 
 
 _CHAT__CHAT__S2C = _descriptor.Descriptor(
-  name='Chat__chat__s2c',
-  full_name='Chat__chat__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='fr', full_name='Chat__chat__s2c.fr', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='to', full_name='Chat__chat__s2c.to', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='msg', full_name='Chat__chat__s2c.msg', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='usr', full_name='Chat__chat__s2c.usr', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='shv', full_name='Chat__chat__s2c.shv', index=4,
-      number=5, type=17, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='Chat__chat__s2c.type', index=5,
-      number=6, type=17, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='grade', full_name='Chat__chat__s2c.grade', index=6,
-      number=7, type=17, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='loginUid', full_name='Chat__chat__s2c.loginUid', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=396,
-  serialized_end=546,
+    name="Chat__chat__s2c",
+    full_name="Chat__chat__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="fr",
+            full_name="Chat__chat__s2c.fr",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="to",
+            full_name="Chat__chat__s2c.to",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="msg",
+            full_name="Chat__chat__s2c.msg",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="usr",
+            full_name="Chat__chat__s2c.usr",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="shv",
+            full_name="Chat__chat__s2c.shv",
+            index=4,
+            number=5,
+            type=17,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="type",
+            full_name="Chat__chat__s2c.type",
+            index=5,
+            number=6,
+            type=17,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="grade",
+            full_name="Chat__chat__s2c.grade",
+            index=6,
+            number=7,
+            type=17,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="loginUid",
+            full_name="Chat__chat__s2c.loginUid",
+            index=7,
+            number=8,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=396,
+    serialized_end=546,
 )
 
 
 _CHAT__HISTORY__C2S = _descriptor.Descriptor(
-  name='Chat__history__c2s',
-  full_name='Chat__history__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chid', full_name='Chat__history__c2s.chid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=548,
-  serialized_end=582,
+    name="Chat__history__c2s",
+    full_name="Chat__history__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chid",
+            full_name="Chat__history__c2s.chid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=548,
+    serialized_end=582,
 )
 
 
 _CHAT__HISTORY__S2C = _descriptor.Descriptor(
-  name='Chat__history__s2c',
-  full_name='Chat__history__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chid', full_name='Chat__history__s2c.chid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='msgs', full_name='Chat__history__s2c.msgs', index=1,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=584,
-  serialized_end=650,
+    name="Chat__history__s2c",
+    full_name="Chat__history__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chid",
+            full_name="Chat__history__s2c.chid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="msgs",
+            full_name="Chat__history__s2c.msgs",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=584,
+    serialized_end=650,
 )
 
 
 _CHAT__JOIN__C2S = _descriptor.Descriptor(
-  name='Chat__join__c2s',
-  full_name='Chat__join__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chid', full_name='Chat__join__c2s.chid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=652,
-  serialized_end=683,
+    name="Chat__join__c2s",
+    full_name="Chat__join__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chid",
+            full_name="Chat__join__c2s.chid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=652,
+    serialized_end=683,
 )
 
 
 _CHAT__JOIN__S2C = _descriptor.Descriptor(
-  name='Chat__join__s2c',
-  full_name='Chat__join__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chid', full_name='Chat__join__s2c.chid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='status', full_name='Chat__join__s2c.status', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=685,
-  serialized_end=732,
+    name="Chat__join__s2c",
+    full_name="Chat__join__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chid",
+            full_name="Chat__join__s2c.chid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="status",
+            full_name="Chat__join__s2c.status",
+            index=1,
+            number=2,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=685,
+    serialized_end=732,
 )
 
 
 _CHAT__CREATE_CH__C2S = _descriptor.Descriptor(
-  name='Chat__create_ch__c2s',
-  full_name='Chat__create_ch__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chname', full_name='Chat__create_ch__c2s.chname', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=734,
-  serialized_end=772,
+    name="Chat__create_ch__c2s",
+    full_name="Chat__create_ch__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chname",
+            full_name="Chat__create_ch__c2s.chname",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=734,
+    serialized_end=772,
 )
 
 
 _CHAT__CREATE_CH__S2C = _descriptor.Descriptor(
-  name='Chat__create_ch__s2c',
-  full_name='Chat__create_ch__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='chname', full_name='Chat__create_ch__s2c.chname', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='chid', full_name='Chat__create_ch__s2c.chid', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='creater', full_name='Chat__create_ch__s2c.creater', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=774,
-  serialized_end=855,
+    name="Chat__create_ch__s2c",
+    full_name="Chat__create_ch__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="chname",
+            full_name="Chat__create_ch__s2c.chname",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="chid",
+            full_name="Chat__create_ch__s2c.chid",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="creater",
+            full_name="Chat__create_ch__s2c.creater",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=774,
+    serialized_end=855,
 )
 
 
 _SYSTEM__ERROR__S2C = _descriptor.Descriptor(
-  name='System__error__s2c',
-  full_name='System__error__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='code', full_name='System__error__s2c.code', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='errmsg', full_name='System__error__s2c.errmsg', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=857,
-  serialized_end=907,
+    name="System__error__s2c",
+    full_name="System__error__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="code",
+            full_name="System__error__s2c.code",
+            index=0,
+            number=1,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="errmsg",
+            full_name="System__error__s2c.errmsg",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=857,
+    serialized_end=907,
 )
 
 
 _SYSTEM__HEART_BEAT__C2S = _descriptor.Descriptor(
-  name='System__heart_beat__c2s',
-  full_name='System__heart_beat__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=909,
-  serialized_end=934,
+    name="System__heart_beat__c2s",
+    full_name="System__heart_beat__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=909,
+    serialized_end=934,
 )
 
 
 _SYSTEM__HEART_BEAT__S2C = _descriptor.Descriptor(
-  name='System__heart_beat__s2c',
-  full_name='System__heart_beat__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=936,
-  serialized_end=961,
+    name="System__heart_beat__s2c",
+    full_name="System__heart_beat__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=936,
+    serialized_end=961,
 )
 
 
 _SYSTEM__ONLINE__C2S = _descriptor.Descriptor(
-  name='System__online__c2s',
-  full_name='System__online__c2s',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='uid', full_name='System__online__c2s.uid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=963,
-  serialized_end=997,
+    name="System__online__c2s",
+    full_name="System__online__c2s",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="uid",
+            full_name="System__online__c2s.uid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=963,
+    serialized_end=997,
 )
 
 
 _SYSTEM__ONLINE__S2C = _descriptor.Descriptor(
-  name='System__online__s2c',
-  full_name='System__online__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='uid', full_name='System__online__s2c.uid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='status', full_name='System__online__s2c.status', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=999,
-  serialized_end=1049,
+    name="System__online__s2c",
+    full_name="System__online__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="uid",
+            full_name="System__online__s2c.uid",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="status",
+            full_name="System__online__s2c.status",
+            index=1,
+            number=2,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=999,
+    serialized_end=1049,
 )
 
 
 _MARQUEE__MARQUEE__S2C = _descriptor.Descriptor(
-  name='Marquee__marquee__s2c',
-  full_name='Marquee__marquee__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='msg', full_name='Marquee__marquee__s2c.msg', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1051,
-  serialized_end=1087,
+    name="Marquee__marquee__s2c",
+    full_name="Marquee__marquee__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="msg",
+            full_name="Marquee__marquee__s2c.msg",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1051,
+    serialized_end=1087,
 )
 
 
 _FLOWER__FLOWER__S2C = _descriptor.Descriptor(
-  name='Flower__flower__s2c',
-  full_name='Flower__flower__s2c',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='flid', full_name='Flower__flower__s2c.flid', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='num', full_name='Flower__flower__s2c.num', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fuid', full_name='Flower__flower__s2c.fuid', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fname', full_name='Flower__flower__s2c.fname', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fsvr', full_name='Flower__flower__s2c.fsvr', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fsvrnm', full_name='Flower__flower__s2c.fsvrnm', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tuid', full_name='Flower__flower__s2c.tuid', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tname', full_name='Flower__flower__s2c.tname', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tsvr', full_name='Flower__flower__s2c.tsvr', index=8,
-      number=9, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tsvrnm', full_name='Flower__flower__s2c.tsvrnm', index=9,
-      number=10, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1090,
-  serialized_end=1256,
+    name="Flower__flower__s2c",
+    full_name="Flower__flower__s2c",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="flid",
+            full_name="Flower__flower__s2c.flid",
+            index=0,
+            number=1,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="num",
+            full_name="Flower__flower__s2c.num",
+            index=1,
+            number=2,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="fuid",
+            full_name="Flower__flower__s2c.fuid",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="fname",
+            full_name="Flower__flower__s2c.fname",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="fsvr",
+            full_name="Flower__flower__s2c.fsvr",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="fsvrnm",
+            full_name="Flower__flower__s2c.fsvrnm",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tuid",
+            full_name="Flower__flower__s2c.tuid",
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tname",
+            full_name="Flower__flower__s2c.tname",
+            index=7,
+            number=8,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tsvr",
+            full_name="Flower__flower__s2c.tsvr",
+            index=8,
+            number=9,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tsvrnm",
+            full_name="Flower__flower__s2c.tsvrnm",
+            index=9,
+            number=10,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1090,
+    serialized_end=1256,
 )
 
-_CHAT__CHAT__C2S.fields_by_name['msg'].message_type = _CHAT_MSG
-_CHAT__CHAT__S2C.fields_by_name['msg'].message_type = _CHAT_MSG
-_CHAT__CHAT__S2C.fields_by_name['usr'].message_type = _USER_BASE
-_CHAT__HISTORY__S2C.fields_by_name['msgs'].message_type = _CHAT__CHAT__S2C
-_CHAT__CREATE_CH__S2C.fields_by_name['creater'].message_type = _USER_BASE
-DESCRIPTOR.message_types_by_name['User_base'] = _USER_BASE
-DESCRIPTOR.message_types_by_name['Chat_msg'] = _CHAT_MSG
-DESCRIPTOR.message_types_by_name['Chat__chat__c2s'] = _CHAT__CHAT__C2S
-DESCRIPTOR.message_types_by_name['Chat__chat__s2c'] = _CHAT__CHAT__S2C
-DESCRIPTOR.message_types_by_name['Chat__history__c2s'] = _CHAT__HISTORY__C2S
-DESCRIPTOR.message_types_by_name['Chat__history__s2c'] = _CHAT__HISTORY__S2C
-DESCRIPTOR.message_types_by_name['Chat__join__c2s'] = _CHAT__JOIN__C2S
-DESCRIPTOR.message_types_by_name['Chat__join__s2c'] = _CHAT__JOIN__S2C
-DESCRIPTOR.message_types_by_name['Chat__create_ch__c2s'] = _CHAT__CREATE_CH__C2S
-DESCRIPTOR.message_types_by_name['Chat__create_ch__s2c'] = _CHAT__CREATE_CH__S2C
-DESCRIPTOR.message_types_by_name['System__error__s2c'] = _SYSTEM__ERROR__S2C
-DESCRIPTOR.message_types_by_name['System__heart_beat__c2s'] = _SYSTEM__HEART_BEAT__C2S
-DESCRIPTOR.message_types_by_name['System__heart_beat__s2c'] = _SYSTEM__HEART_BEAT__S2C
-DESCRIPTOR.message_types_by_name['System__online__c2s'] = _SYSTEM__ONLINE__C2S
-DESCRIPTOR.message_types_by_name['System__online__s2c'] = _SYSTEM__ONLINE__S2C
-DESCRIPTOR.message_types_by_name['Marquee__marquee__s2c'] = _MARQUEE__MARQUEE__S2C
-DESCRIPTOR.message_types_by_name['Flower__flower__s2c'] = _FLOWER__FLOWER__S2C
+_CHAT__CHAT__C2S.fields_by_name["msg"].message_type = _CHAT_MSG
+_CHAT__CHAT__S2C.fields_by_name["msg"].message_type = _CHAT_MSG
+_CHAT__CHAT__S2C.fields_by_name["usr"].message_type = _USER_BASE
+_CHAT__HISTORY__S2C.fields_by_name["msgs"].message_type = _CHAT__CHAT__S2C
+_CHAT__CREATE_CH__S2C.fields_by_name["creater"].message_type = _USER_BASE
+DESCRIPTOR.message_types_by_name["User_base"] = _USER_BASE
+DESCRIPTOR.message_types_by_name["Chat_msg"] = _CHAT_MSG
+DESCRIPTOR.message_types_by_name["Chat__chat__c2s"] = _CHAT__CHAT__C2S
+DESCRIPTOR.message_types_by_name["Chat__chat__s2c"] = _CHAT__CHAT__S2C
+DESCRIPTOR.message_types_by_name["Chat__history__c2s"] = _CHAT__HISTORY__C2S
+DESCRIPTOR.message_types_by_name["Chat__history__s2c"] = _CHAT__HISTORY__S2C
+DESCRIPTOR.message_types_by_name["Chat__join__c2s"] = _CHAT__JOIN__C2S
+DESCRIPTOR.message_types_by_name["Chat__join__s2c"] = _CHAT__JOIN__S2C
+DESCRIPTOR.message_types_by_name["Chat__create_ch__c2s"] = _CHAT__CREATE_CH__C2S
+DESCRIPTOR.message_types_by_name["Chat__create_ch__s2c"] = _CHAT__CREATE_CH__S2C
+DESCRIPTOR.message_types_by_name["System__error__s2c"] = _SYSTEM__ERROR__S2C
+DESCRIPTOR.message_types_by_name["System__heart_beat__c2s"] = _SYSTEM__HEART_BEAT__C2S
+DESCRIPTOR.message_types_by_name["System__heart_beat__s2c"] = _SYSTEM__HEART_BEAT__S2C
+DESCRIPTOR.message_types_by_name["System__online__c2s"] = _SYSTEM__ONLINE__C2S
+DESCRIPTOR.message_types_by_name["System__online__s2c"] = _SYSTEM__ONLINE__S2C
+DESCRIPTOR.message_types_by_name["Marquee__marquee__s2c"] = _MARQUEE__MARQUEE__S2C
+DESCRIPTOR.message_types_by_name["Flower__flower__s2c"] = _FLOWER__FLOWER__S2C
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-User_base = _reflection.GeneratedProtocolMessageType('User_base', (_message.Message,), {
-  'DESCRIPTOR' : _USER_BASE,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:User_base)
-  })
+User_base = _reflection.GeneratedProtocolMessageType(
+    "User_base",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _USER_BASE,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:User_base)
+    },
+)
 _sym_db.RegisterMessage(User_base)
 
-Chat_msg = _reflection.GeneratedProtocolMessageType('Chat_msg', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT_MSG,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat_msg)
-  })
+Chat_msg = _reflection.GeneratedProtocolMessageType(
+    "Chat_msg",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT_MSG,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat_msg)
+    },
+)
 _sym_db.RegisterMessage(Chat_msg)
 
-Chat__chat__c2s = _reflection.GeneratedProtocolMessageType('Chat__chat__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__CHAT__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__chat__c2s)
-  })
+Chat__chat__c2s = _reflection.GeneratedProtocolMessageType(
+    "Chat__chat__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__CHAT__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__chat__c2s)
+    },
+)
 _sym_db.RegisterMessage(Chat__chat__c2s)
 
-Chat__chat__s2c = _reflection.GeneratedProtocolMessageType('Chat__chat__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__CHAT__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__chat__s2c)
-  })
+Chat__chat__s2c = _reflection.GeneratedProtocolMessageType(
+    "Chat__chat__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__CHAT__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__chat__s2c)
+    },
+)
 _sym_db.RegisterMessage(Chat__chat__s2c)
 
-Chat__history__c2s = _reflection.GeneratedProtocolMessageType('Chat__history__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__HISTORY__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__history__c2s)
-  })
+Chat__history__c2s = _reflection.GeneratedProtocolMessageType(
+    "Chat__history__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__HISTORY__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__history__c2s)
+    },
+)
 _sym_db.RegisterMessage(Chat__history__c2s)
 
-Chat__history__s2c = _reflection.GeneratedProtocolMessageType('Chat__history__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__HISTORY__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__history__s2c)
-  })
+Chat__history__s2c = _reflection.GeneratedProtocolMessageType(
+    "Chat__history__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__HISTORY__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__history__s2c)
+    },
+)
 _sym_db.RegisterMessage(Chat__history__s2c)
 
-Chat__join__c2s = _reflection.GeneratedProtocolMessageType('Chat__join__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__JOIN__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__join__c2s)
-  })
+Chat__join__c2s = _reflection.GeneratedProtocolMessageType(
+    "Chat__join__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__JOIN__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__join__c2s)
+    },
+)
 _sym_db.RegisterMessage(Chat__join__c2s)
 
-Chat__join__s2c = _reflection.GeneratedProtocolMessageType('Chat__join__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__JOIN__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__join__s2c)
-  })
+Chat__join__s2c = _reflection.GeneratedProtocolMessageType(
+    "Chat__join__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__JOIN__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__join__s2c)
+    },
+)
 _sym_db.RegisterMessage(Chat__join__s2c)
 
-Chat__create_ch__c2s = _reflection.GeneratedProtocolMessageType('Chat__create_ch__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__CREATE_CH__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__create_ch__c2s)
-  })
+Chat__create_ch__c2s = _reflection.GeneratedProtocolMessageType(
+    "Chat__create_ch__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__CREATE_CH__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__create_ch__c2s)
+    },
+)
 _sym_db.RegisterMessage(Chat__create_ch__c2s)
 
-Chat__create_ch__s2c = _reflection.GeneratedProtocolMessageType('Chat__create_ch__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _CHAT__CREATE_CH__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Chat__create_ch__s2c)
-  })
+Chat__create_ch__s2c = _reflection.GeneratedProtocolMessageType(
+    "Chat__create_ch__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHAT__CREATE_CH__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Chat__create_ch__s2c)
+    },
+)
 _sym_db.RegisterMessage(Chat__create_ch__s2c)
 
-System__error__s2c = _reflection.GeneratedProtocolMessageType('System__error__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _SYSTEM__ERROR__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:System__error__s2c)
-  })
+System__error__s2c = _reflection.GeneratedProtocolMessageType(
+    "System__error__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SYSTEM__ERROR__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:System__error__s2c)
+    },
+)
 _sym_db.RegisterMessage(System__error__s2c)
 
-System__heart_beat__c2s = _reflection.GeneratedProtocolMessageType('System__heart_beat__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _SYSTEM__HEART_BEAT__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:System__heart_beat__c2s)
-  })
+System__heart_beat__c2s = _reflection.GeneratedProtocolMessageType(
+    "System__heart_beat__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SYSTEM__HEART_BEAT__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:System__heart_beat__c2s)
+    },
+)
 _sym_db.RegisterMessage(System__heart_beat__c2s)
 
-System__heart_beat__s2c = _reflection.GeneratedProtocolMessageType('System__heart_beat__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _SYSTEM__HEART_BEAT__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:System__heart_beat__s2c)
-  })
+System__heart_beat__s2c = _reflection.GeneratedProtocolMessageType(
+    "System__heart_beat__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SYSTEM__HEART_BEAT__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:System__heart_beat__s2c)
+    },
+)
 _sym_db.RegisterMessage(System__heart_beat__s2c)
 
-System__online__c2s = _reflection.GeneratedProtocolMessageType('System__online__c2s', (_message.Message,), {
-  'DESCRIPTOR' : _SYSTEM__ONLINE__C2S,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:System__online__c2s)
-  })
+System__online__c2s = _reflection.GeneratedProtocolMessageType(
+    "System__online__c2s",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SYSTEM__ONLINE__C2S,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:System__online__c2s)
+    },
+)
 _sym_db.RegisterMessage(System__online__c2s)
 
-System__online__s2c = _reflection.GeneratedProtocolMessageType('System__online__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _SYSTEM__ONLINE__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:System__online__s2c)
-  })
+System__online__s2c = _reflection.GeneratedProtocolMessageType(
+    "System__online__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SYSTEM__ONLINE__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:System__online__s2c)
+    },
+)
 _sym_db.RegisterMessage(System__online__s2c)
 
-Marquee__marquee__s2c = _reflection.GeneratedProtocolMessageType('Marquee__marquee__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _MARQUEE__MARQUEE__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Marquee__marquee__s2c)
-  })
+Marquee__marquee__s2c = _reflection.GeneratedProtocolMessageType(
+    "Marquee__marquee__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _MARQUEE__MARQUEE__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Marquee__marquee__s2c)
+    },
+)
 _sym_db.RegisterMessage(Marquee__marquee__s2c)
 
-Flower__flower__s2c = _reflection.GeneratedProtocolMessageType('Flower__flower__s2c', (_message.Message,), {
-  'DESCRIPTOR' : _FLOWER__FLOWER__S2C,
-  '__module__' : 'game_pb2'
-  # @@protoc_insertion_point(class_scope:Flower__flower__s2c)
-  })
+Flower__flower__s2c = _reflection.GeneratedProtocolMessageType(
+    "Flower__flower__s2c",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _FLOWER__FLOWER__S2C,
+        "__module__": "game_pb2"
+        # @@protoc_insertion_point(class_scope:Flower__flower__s2c)
+    },
+)
 _sym_db.RegisterMessage(Flower__flower__s2c)
 
 

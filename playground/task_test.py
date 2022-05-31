@@ -2,7 +2,7 @@ import asyncio
 
 
 async def task(name):
-    print('in task', name)
+    print("in task", name)
     await asyncio.sleep(1)
 
 
@@ -25,7 +25,6 @@ async def main2():
     await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
-

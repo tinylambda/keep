@@ -6,6 +6,5 @@ from sqlalchemy import create_engine
 # database called Connection. When working with the Core directly, the Connection object is how all interaction with
 # the database is done. As the context, and the best way to do that is using Python context manager form, also known as
 # the with statement.
-engine = create_engine('sqlite:///memory:', echo=True)
+engine = create_engine("sqlite:///memory:", echo=True)
 print(engine)
-

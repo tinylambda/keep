@@ -8,4 +8,6 @@ class Entry(tornado.web.UIModule):
         return ".entry {margin-bottom: 1em;}"
 
     def render(self, entry, show_comments=False) -> str:
-        return self.render_string('module-entry.html', entry=entry, show_comments=show_comments)
+        return self.render_string(
+            "module-entry.html", entry=entry, show_comments=show_comments
+        )

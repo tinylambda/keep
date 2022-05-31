@@ -1,23 +1,24 @@
 try:
     import gnureadline
     import sys
-    sys.modules['readline'] = gnureadline
+
+    sys.modules["readline"] = gnureadline
 except ImportError:
     pass
 import cmd
 
 
 class HelloWorld(cmd.Cmd):
-    FRIENDS = ['Alice', 'Adam', 'Barbara', 'Bob']
+    FRIENDS = ["Alice", "Adam", "Barbara", "Bob"]
 
     def do_greet(self, person):
         """greet the person"""
         if person and person in self.FRIENDS:
-            greeting = 'hi, {}!'.format(person)
+            greeting = "hi, {}!".format(person)
         elif person:
-            greeting = 'hello, {}'.format(person)
+            greeting = "hello, {}".format(person)
         else:
-            greeting = 'hello'
+            greeting = "hello"
         print(greeting)
 
     def complete_greet(self, text, line, begidx, endidx):
@@ -31,7 +32,5 @@ class HelloWorld(cmd.Cmd):
         return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HelloWorld().cmdloop()
-
-

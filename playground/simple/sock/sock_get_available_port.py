@@ -10,11 +10,11 @@ def get_available_port():
         s.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ports = []
     for _ in range(500):
         port = get_available_port()
         if port in ports:
-            print('Duplicated port !')
+            print("Duplicated port !")
             continue
         ports.append(port)

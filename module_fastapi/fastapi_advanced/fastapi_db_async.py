@@ -10,12 +10,16 @@ DATABASE_URL = "sqlite:///./test.db"
 database = databases.Database(DATABASE_URL)
 metadata = sqlalchemy.MetaData()
 
-notes = sqlalchemy.Table('notes', metadata,
-                         sqlalchemy.Column('id', sqlalchemy.Integer, primary_key=True),
-                         sqlalchemy.Column('text', sqlalchemy.String),
-                         sqlalchemy.Column('completed', sqlalchemy.Boolean),
-                         )
-engine = sqlalchemy.create_engine(DATABASE_URL, connect_args={'check_same_thread': False})
+notes = sqlalchemy.Table(
+    "notes",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
+    sqlalchemy.Column("text", sqlalchemy.String),
+    sqlalchemy.Column("completed", sqlalchemy.Boolean),
+)
+engine = sqlalchemy.create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
 metadata.create_all(bind=engine)
 
 
@@ -33,24 +37,24 @@ class Note(BaseModel):
 app = FastAPI()
 
 
-@app.on_event('startup')
+@app.on_event("startup")
 async def startup():
     await database.connect()
 
 
-@app.on_event('shutdown')
+@app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
 
 
-@app.get('/notes/', response_model=List[Note])
+@app.get("/notes/", response_model=List[Note])
 async def read_notes():
     query = notes.select()
     return await database.fetch_all(query)
 
 
-@app.post('/notes/', response_model=Note)
+@app.post("/notes/", response_model=Note)
 async def create_note(note: NoteIn):
     query = notes.insert().values(text=note.text, completed=note.completed)
     last_record_id = await database.execute(query)
-    return {**note.dict(), 'id': last_record_id}
+    return {**note.dict(), "id": last_record_id}

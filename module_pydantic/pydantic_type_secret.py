@@ -17,8 +17,8 @@ class SimpleModelDumpable(BaseModel):
         }
 
 
-if __name__ == '__main__':
-    sm = SimpleModel(password='Password', password_bytes=b'passwordbytes')
+if __name__ == "__main__":
+    sm = SimpleModel(password="Password", password_bytes=b"passwordbytes")
     print(sm)
     print(sm.password)
     print(sm.password_bytes)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     except ValidationError as e:
         print(e)
 
-    sm2 = SimpleModelDumpable(password='Password', password_bytes=b'passwordbytes')
+    sm2 = SimpleModelDumpable(password="Password", password_bytes=b"passwordbytes")
     print(sm2)
     print(sm2.password)
     print(sm2.password_bytes)

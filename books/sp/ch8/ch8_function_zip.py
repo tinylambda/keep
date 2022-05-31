@@ -1,5 +1,5 @@
-if __name__ == '__main__':
-    keys = ['foobar', 'barzz', 'ba!']
+if __name__ == "__main__":
+    keys = ["foobar", "barzz", "ba!"]
     lens = map(len, keys)
     print(lens)
 
@@ -9,4 +9,3 @@ if __name__ == '__main__':
 
     zip_dict = dict(zip(keys, map(len, keys)))
     print(zip_dict)
-

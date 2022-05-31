@@ -1,4 +1,3 @@
 import dbm
 
-print(dbm.whichdb('/tmp/example.db'))
-
+print(dbm.whichdb("/tmp/example.db"))

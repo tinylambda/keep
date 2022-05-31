@@ -21,7 +21,7 @@ class ChatServicer(chat_pb2_grpc.ChatServiceServicer):
         except asyncio.CancelledError:
             pass
         except Exception as e:
-            logging.exception('something bad happened', e)
+            logging.exception("something bad happened", e)
 
     def create_task(self, coro):
         current_loop = asyncio.get_event_loop()
@@ -40,32 +40,35 @@ class ChatServicer(chat_pb2_grpc.ChatServiceServicer):
 
         msg_channel = asyncio.Queue()
         self.channel_cache[channel_name].append(msg_channel)
-        join_message = f'{who} join channel {channel_name}!'
+        join_message = f"{who} join channel {channel_name}!"
         await self.send_message(channel_name, join_message)
 
         while True:
             message = await msg_channel.get()
             yield message
 
-    async def JoinChannel(self, request: chat_pb2.Channel, context: grpc.aio.ServicerContext):
+    async def JoinChannel(
+        self, request: chat_pb2.Channel, context: grpc.aio.ServicerContext
+    ):
         async for message in self.join_channel(request.name, request.senders_name):
             yield message
 
-    async def SendMessage(self, request_iterator, context: grpc.aio.ServicerContext) -> chat_pb2.MessageAck:
+    async def SendMessage(
+        self, request_iterator, context: grpc.aio.ServicerContext
+    ) -> chat_pb2.MessageAck:
         async for message in request_iterator:
             self.create_task(self.send_message(message.channel.name, message))
-        return chat_pb2.MessageAck(status='OK {}'.format(id(self)))
+        return chat_pb2.MessageAck(status="OK {}".format(id(self)))
 
 
 async def serve() -> None:
     server = grpc.aio.server()
     chat_pb2_grpc.add_ChatServiceServicer_to_server(ChatServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port("[::]:50051")
     await server.start()
     await server.wait_for_termination()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(serve())
-

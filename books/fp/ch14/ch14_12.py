@@ -14,31 +14,22 @@ class ArithmeticProgression:
             result = self.begin + self.step * index
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ap = ArithmeticProgression(0, 1, 3)
-    print(
-        list(ap)
-    )
+    print(list(ap))
 
-    ap = ArithmeticProgression(0, .5, 3)
-    print(
-        list(ap)
-    )
+    ap = ArithmeticProgression(0, 0.5, 3)
+    print(list(ap))
 
-    ap = ArithmeticProgression(0, 1/3, 1)
-    print(
-        list(ap)
-    )
+    ap = ArithmeticProgression(0, 1 / 3, 1)
+    print(list(ap))
 
     from fractions import Fraction
+
     ap = ArithmeticProgression(0, Fraction(1, 3), 1)
-    print(
-        list(ap)
-    )
+    print(list(ap))
 
     from decimal import Decimal
-    ap = ArithmeticProgression(0, Decimal('.1'), .3)
-    print(
-        list(ap)
-    )
 
+    ap = ArithmeticProgression(0, Decimal(".1"), 0.3)
+    print(list(ap))

@@ -1,5 +1,5 @@
 import sys
 
 
-if __name__ == '__main__':
-    print('Arguments:', sys.argv)
+if __name__ == "__main__":
+    print("Arguments:", sys.argv)

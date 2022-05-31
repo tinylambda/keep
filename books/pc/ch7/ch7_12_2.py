@@ -2,7 +2,7 @@ def sample():
     n = 0
 
     def func():
-        print('n=', n)
+        print("n=", n)
 
     def get_n():
         return n
@@ -17,10 +17,9 @@ def sample():
     return func
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     f = sample()
     f()
     f.set_n(10)
     f()
     print(f.get_n())
-

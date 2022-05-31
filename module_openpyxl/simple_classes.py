@@ -18,4 +18,3 @@ class Review:
     headline: str
     body: str
     date: datetime.datetime
-

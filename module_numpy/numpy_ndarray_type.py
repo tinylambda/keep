@@ -1,6 +1,6 @@
 import numpy as np
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr1 = np.array([1, 2, 3], dtype=np.float64)
     arr2 = np.array([1, 2, 3], dtype=np.int32)
 
@@ -18,15 +18,14 @@ if __name__ == '__main__':
 
     print(arr.astype(np.int32))
 
-    numeric_strings = np.array(['1.25', '-9.6', '42'], dtype=np.string_)
+    numeric_strings = np.array(["1.25", "-9.6", "42"], dtype=np.string_)
     print(numeric_strings.astype(float))
 
     int_array = np.arange(10)
     print(int_array, int_array.dtype)
 
-    calibers = np.array([.22, .270, .357, .380, .44, .50], dtype=np.float64)
+    calibers = np.array([0.22, 0.270, 0.357, 0.380, 0.44, 0.50], dtype=np.float64)
     print(int_array.astype(calibers.dtype))
 
-    empty_uint32 = np.empty(8, dtype='u4')
+    empty_uint32 = np.empty(8, dtype="u4")
     print(empty_uint32, empty_uint32.dtype)
-

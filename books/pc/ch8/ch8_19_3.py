@@ -20,33 +20,33 @@ class Connection:
 
 class ClosedConnection(Connection):
     def read(self):
-        raise RuntimeError('not open')
+        raise RuntimeError("not open")
 
     def write(self, data):
-        raise RuntimeError('not open')
+        raise RuntimeError("not open")
 
     def open(self):
         self.new_state(OpenConnection)
 
     def close(self):
-        raise RuntimeError('already closed')
+        raise RuntimeError("already closed")
 
 
 class OpenConnection(Connection):
     def read(self):
-        print('reading')
+        print("reading")
 
     def write(self, data):
-        print('writing')
+        print("writing")
 
     def open(self):
-        raise RuntimeError('already open')
+        raise RuntimeError("already open")
 
     def close(self):
         self.new_state(ClosedConnection)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = Connection()
     print(c)
 
@@ -60,4 +60,3 @@ if __name__ == '__main__':
     c.read()
     c.close()
     print(c)
-

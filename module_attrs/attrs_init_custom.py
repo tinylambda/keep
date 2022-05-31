@@ -14,6 +14,6 @@ class C:
         self.__attrs_init__(x)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C()
-    logging.info('%s', c)
+    logging.info("%s", c)

@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     a, b, *args = range(5)
     print(a, b)
     print(args)
@@ -18,4 +18,3 @@ if __name__ == '__main__':
     *head, b, c, d = range(5)
     print(b, c, d)
     print(head)
-

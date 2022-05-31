@@ -4,4 +4,4 @@ class LineCounter:
 
     def __str__(self):
         self.count += 1
-        return '({:3d})>'.format(self.count)
+        return "({:3d})>".format(self.count)

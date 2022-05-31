@@ -1,7 +1,7 @@
 import numpy
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = numpy.arange(12)
     print(a, type(a))
     print(a.shape)

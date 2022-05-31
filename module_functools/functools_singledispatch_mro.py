@@ -23,22 +23,22 @@ class E(C, D):
 
 @functools.singledispatch
 def myfunc(arg):
-    print('default myfunc({})'.format(arg.__class__.__name__))
+    print("default myfunc({})".format(arg.__class__.__name__))
 
 
 @myfunc.register(A)
 def myfunc_A(arg):
-    print('myfunc_A({})'.format(arg.__class__.__name__))
+    print("myfunc_A({})".format(arg.__class__.__name__))
 
 
 @myfunc.register(B)
 def myfunc_B(arg):
-    print('myfunc_B({})'.format(arg.__class__.__name__))
+    print("myfunc_B({})".format(arg.__class__.__name__))
 
 
 @myfunc.register(C)
 def myfunc_C(arg):
-    print('myfunc_C({})'.format(arg.__class__.__name__))
+    print("myfunc_C({})".format(arg.__class__.__name__))
 
 
 myfunc(A())
@@ -46,4 +46,3 @@ myfunc(B())
 myfunc(C())
 myfunc(D())
 myfunc(E())
-

@@ -6,5 +6,4 @@ def f(a, b):
     return b + a + b
 
 
-print(list(accumulate('abcde', f)))
-
+print(list(accumulate("abcde", f)))

@@ -8,7 +8,7 @@ class SomeClass:
             n -= 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = SomeClass()
     c.method(1000000)
 

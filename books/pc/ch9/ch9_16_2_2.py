@@ -16,25 +16,25 @@ class Structure:
 
 
 class Stock(Structure):
-    __signature__ = make_sig('name', 'shares', 'price')
+    __signature__ = make_sig("name", "shares", "price")
 
 
 class Point(Structure):
-    __signature__ = make_sig('x', 'y')
+    __signature__ = make_sig("x", "y")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import inspect
+
     print(inspect.signature(Stock))
 
-    s1 = Stock('HUAWEI', 100, 490.1)
+    s1 = Stock("HUAWEI", 100, 490.1)
     try:
-        s2 = Stock('HUAWEI', 100)
+        s2 = Stock("HUAWEI", 100)
     except TypeError as e:
         print(e)
 
     try:
-        s1 = Stock('HUAWEI', 100, 490.1, shares=100)
+        s1 = Stock("HUAWEI", 100, 490.1, shares=100)
     except TypeError as e:
         print(e)
-

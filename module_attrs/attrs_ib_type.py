@@ -13,7 +13,7 @@ class C:
     y: int = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(100, 200)
-    logging.info('%s', c)
-    logging.info('%s %s', type(c.x), type(c.y))
+    logging.info("%s", c)
+    logging.info("%s %s", type(c.x), type(c.y))

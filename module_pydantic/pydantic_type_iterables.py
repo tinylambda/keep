@@ -27,14 +27,14 @@ class Model(BaseModel):
     deque: Deque[int] = None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(Model())
 
-    print(Model(simple_list=['1', '2', '3']).simple_list)
-    print(Model(list_of_ints=['1', '2', '3']).list_of_ints)  # auto covert
+    print(Model(simple_list=["1", "2", "3"]).simple_list)
+    print(Model(list_of_ints=["1", "2", "3"]).list_of_ints)  # auto covert
 
-    print(Model(simple_dict={'a': 1, b'b': 2}).simple_dict)
-    print(Model(dict_str_float={'a': 1, b'b': 2}).dict_str_float)
+    print(Model(simple_dict={"a": 1, b"b": 2}).simple_dict)
+    print(Model(dict_str_float={"a": 1, b"b": 2}).dict_str_float)
 
     print(Model(simple_tuple=[1, 2, 3, 4]).simple_tuple)
     print(Model(tuple_of_different_types=[4, 3, 2, 1]).tuple_of_different_types)

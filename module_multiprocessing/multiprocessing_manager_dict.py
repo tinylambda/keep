@@ -6,13 +6,12 @@ def worker(d, key, value):
     d[key] = value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     #  The Manager is responsible for coordinating shared information state between all of its users
     mgr = multiprocessing.Manager()
     d = mgr.dict()
     jobs = [
-        multiprocessing.Process(target=worker, args=(d, i, i * 2))
-        for i in range(10)
+        multiprocessing.Process(target=worker, args=(d, i, i * 2)) for i in range(10)
     ]
     for j in jobs:
         j.start()
@@ -20,4 +19,4 @@ if __name__ == '__main__':
     for j in jobs:
         j.join()
 
-    print('Results:', d)
+    print("Results:", d)

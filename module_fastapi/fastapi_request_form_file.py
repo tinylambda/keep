@@ -13,27 +13,29 @@ Have in mind that this means that the whole contents will be stored in memory. T
 """
 
 
-@app.post('/file/')
-async def create_file(file: bytes = File(..., description='read as bytes')):
-    return {'file_size': len(file)}
+@app.post("/file/")
+async def create_file(file: bytes = File(..., description="read as bytes")):
+    return {"file_size": len(file)}
 
 
-@app.post('/uploadfile/')
-async def create_upload_file(file: UploadFile = File(..., description='read as UploadFile')):
-    return {'filename': file.filename}
+@app.post("/uploadfile/")
+async def create_upload_file(
+    file: UploadFile = File(..., description="read as UploadFile")
+):
+    return {"filename": file.filename}
 
 
-@app.post('/files/')
+@app.post("/files/")
 async def create_files(files: List[bytes] = File(...)):
-    return {'file_sizes': [len(file) for file in files]}
+    return {"file_sizes": [len(file) for file in files]}
 
 
-@app.post('/uploadfiles/')
+@app.post("/uploadfiles/")
 async def create_upload_files(files: List[UploadFile]):
-    return {'filenames': [file.filename for file in files]}
+    return {"filenames": [file.filename for file in files]}
 
 
-@app.get('/')
+@app.get("/")
 async def main():
     content = """
 <body>

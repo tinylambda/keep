@@ -2,8 +2,8 @@ import abc
 import collections
 
 
-if __name__ == '__main__':
-    print('spam'.__class__)
+if __name__ == "__main__":
+    print("spam".__class__)
     print(str.__class__)
     print(type.__class__)
 

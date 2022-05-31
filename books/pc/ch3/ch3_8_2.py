@@ -1,7 +1,7 @@
 from fractions import Fraction
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Fraction(5, 4)
     b = Fraction(7, 16)
 
@@ -18,4 +18,3 @@ if __name__ == '__main__':
     x = 3.75
     y = Fraction(*x.as_integer_ratio())
     print(y)
-

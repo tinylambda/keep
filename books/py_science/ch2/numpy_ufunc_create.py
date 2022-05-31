@@ -8,11 +8,11 @@ def triangle_wave(x, c, c0, hc):
     elif x < c0:
         r = x / c0 * hc
     else:
-        r = (c-x) / (c-c0) * hc
+        r = (c - x) / (c - c0) * hc
     return r
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = np.linspace(0, 2, 1000)
     y1 = np.array([triangle_wave(t, 0.6, 0.4, 1.0) for t in x])
     print(y1)

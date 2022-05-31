@@ -9,11 +9,11 @@ class SpamException(Exception):
 def writer():
     while True:
         try:
-            w = (yield)
+            w = yield
         except SpamException:
-            print('***')
+            print("***")
         else:
-            print('>> ', w)
+            print(">> ", w)
 
 
 def writer_wrapper3(coro):
@@ -21,7 +21,7 @@ def writer_wrapper3(coro):
     while True:
         try:
             try:
-                x = (yield)
+                x = yield
             except Exception as e:
                 coro.throw(e)
             else:
@@ -30,18 +30,14 @@ def writer_wrapper3(coro):
             pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     w = writer()
     # wrap = writer_wrapper(w)  # wont work
     # wrap = writer_wrapper3(w)  # work
     wrap = writer_wrapper2(w)  # work
     wrap.send(None)
-    for i in [0, 1, 2, 'spam', 4]:
-        if i == 'spam':
+    for i in [0, 1, 2, "spam", 4]:
+        if i == "spam":
             wrap.throw(SpamException)
         else:
             wrap.send(i)
-
-
-
-

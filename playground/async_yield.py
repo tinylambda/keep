@@ -9,7 +9,7 @@ async def test_coro():
 
 async def run_coro():
     async for item in test_coro():
-        print('getting item', item)
+        print("getting item", item)
 
 
 def main():
@@ -17,6 +17,5 @@ def main():
     loop.run_until_complete(run_coro())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

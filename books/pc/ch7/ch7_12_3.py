@@ -6,10 +6,12 @@ class ClosureInstance:
         if locals is None:
             locals = sys._getframe(1).f_locals
 
-        self.__dict__.update((key, value) for key, value in locals.items() if callable(value))
+        self.__dict__.update(
+            (key, value) for key, value in locals.items() if callable(value)
+        )
 
     def __len__(self):
-        return self.__dict__['__len__']()
+        return self.__dict__["__len__"]()
 
 
 def Stack():
@@ -41,12 +43,12 @@ class Stack2:
         return len(self.items)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Stack()
     print(s)
     s.push(10)
     s.push(20)
-    s.push('hello')
+    s.push("hello")
     print(len(s))
 
     print(s.pop())
@@ -54,10 +56,11 @@ if __name__ == '__main__':
     print(s.pop())
 
     from timeit import timeit
+
     s = Stack()
-    r = timeit('s.push(1);s.pop()', 'from __main__ import s')
+    r = timeit("s.push(1);s.pop()", "from __main__ import s")
     print(r)
 
     s = Stack2()
-    r = timeit('s.push(1);s.pop()', 'from __main__ import s')
+    r = timeit("s.push(1);s.pop()", "from __main__ import s")
     print(r)

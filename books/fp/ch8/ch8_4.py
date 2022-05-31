@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     import copy
 
     a = [10, 20]
@@ -8,4 +8,3 @@ if __name__ == '__main__':
 
     c = copy.deepcopy(a)
     print(c)
-

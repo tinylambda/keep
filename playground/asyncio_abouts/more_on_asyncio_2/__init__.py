@@ -11,7 +11,7 @@ async def heartbeat():
         start = time.time()
         await asyncio.sleep(1)
         delay = time.time() - start - 1
-        print(f'heartbeat delay = {delay:.3f}s')
+        print(f"heartbeat delay = {delay:.3f}s")
 
 
 async def process():
@@ -21,7 +21,7 @@ async def process():
 async def main():
     asyncio.create_task(heartbeat())
     await asyncio.sleep(2.5)
-    print('begin processing')
+    print("begin processing")
     count = JOB_COUNT
     for _ in range(JOB_COUNT):
         asyncio.create_task(process())
@@ -41,7 +41,7 @@ async def main_with_semaphore():
         time.sleep(JOB_DURATION)
         sem.release()
 
-    print('begin processing')
+    print("begin processing")
     for _ in range(JOB_COUNT):
         asyncio.create_task(process())
 
@@ -61,12 +61,12 @@ async def main_with_queue():
             queue.task_done()
 
     workers = [asyncio.create_task(worker()) for _ in range(WORKER_COUNT)]
-    print('begin processing')
+    print("begin processing")
     for _ in range(JOB_COUNT):
         await queue.put(process())
         await asyncio.sleep(0)
     await queue.join()
-    print('end processing')
+    print("end processing")
 
     for w in workers:
         w.cancel()
@@ -89,7 +89,7 @@ async def producer_consumer():
     async def consumer():
         while True:
             await queue.get()
-            print(f'qsize = {queue.qsize()}')
+            print(f"qsize = {queue.qsize()}")
             queue.task_done()
             await asyncio.sleep(0)
             await asyncio.sleep(0)
@@ -101,6 +101,6 @@ async def producer_consumer():
         await done.wait()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # asyncio.run(main_with_queue())
     asyncio.run(producer_consumer())

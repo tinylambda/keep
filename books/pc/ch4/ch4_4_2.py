@@ -4,7 +4,7 @@ class Node:
         self._children = []
 
     def __repr__(self):
-        return 'Node({!r})'.format(self._value)
+        return "Node({!r})".format(self._value)
 
     def __iter__(self):
         return iter(self._children)
@@ -26,7 +26,7 @@ class Node:
                 q.append(c)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = Node(0)
     child1 = Node(1)
     child2 = Node(2)
@@ -45,8 +45,7 @@ if __name__ == '__main__':
     for item in root.depth_first():
         print(item)
 
-    print('-' * 64)
+    print("-" * 64)
 
     for item in root.breadth_first():
         print(item)
-

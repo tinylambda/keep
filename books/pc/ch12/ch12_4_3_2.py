@@ -10,10 +10,11 @@ def fetch_url(url):
         return urllib.request.urlopen(url)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from concurrent.futures import ThreadPoolExecutor
+
     executor = ThreadPoolExecutor(max_workers=8)
-    request_url = 'http://www.baidu.com'
+    request_url = "http://www.baidu.com"
 
     futs = []
     for _ in range(10):

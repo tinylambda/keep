@@ -9,5 +9,5 @@ class Model(BaseModel):
     c: str
 
 
-if __name__ == '__main__':
-    print(Model(a=3.1415, b=' 2.72 ', c=123).dict())
+if __name__ == "__main__":
+    print(Model(a=3.1415, b=" 2.72 ", c=123).dict())

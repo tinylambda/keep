@@ -1,5 +1,5 @@
 class Vector2d:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, x, y):
         self.__x = float(x)
@@ -15,5 +15,3 @@ class Vector2d:
     @property
     def y(self):
         return self.__y
-
-

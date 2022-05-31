@@ -21,7 +21,8 @@ app = FastAPI()
 
 
 async def common_parameters(q: Optional[str] = None, skip: int = 0, limit: int = 100):
-    return {'q': q, 'skip': skip, 'limit': limit}
+    return {"q": q, "skip": skip, "limit": limit}
+
 
 """
 Whenever a new request arrives, FastAPI will take care of:
@@ -33,12 +34,12 @@ Whenever a new request arrives, FastAPI will take care of:
 """
 
 
-@app.get('/items/')
+@app.get("/items/")
 async def read_items(commons: dict = Depends(common_parameters)):
     return commons
 
 
-@app.get('/users/')
+@app.get("/users/")
 async def read_users(commons: dict = Depends(common_parameters)):
     return commons
 

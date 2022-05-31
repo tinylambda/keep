@@ -24,11 +24,11 @@ class CWithBadDefault:
     x = attr.ib(default=[])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C()
-    logging.info('%s', c)
+    logging.info("%s", c)
 
     bad_one = CWithBadDefault()
     bad_two = CWithBadDefault()
     bad_one.x.append(87)
-    logging.info('%s', bad_two.x)
+    logging.info("%s", bad_two.x)

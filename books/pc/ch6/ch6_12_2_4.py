@@ -11,7 +11,7 @@ class SizedRecord:
     def from_file(cls, f, size_fmt, includes_size=True):
         sz_nbytes = struct.calcsize(size_fmt)
         sz_bytes = f.read(sz_nbytes)
-        sz, = struct.unpack(size_fmt, sz_bytes)
+        (sz,) = struct.unpack(size_fmt, sz_bytes)
         buf = f.read(sz - includes_size * sz_nbytes)
         return cls(buf)
 
@@ -23,25 +23,25 @@ class SizedRecord:
         elif isinstance(code, StructureMeta):
             size = code.struct_size
             for off in range(0, len(self._buffer), size):
-                data = self._buffer[off:off+size]
+                data = self._buffer[off : off + size]
                 yield code(data)
 
 
-if __name__ == '__main__':
-    with open('/tmp/polys.bin', 'rb') as f:
+if __name__ == "__main__":
+    with open("/tmp/polys.bin", "rb") as f:
         phead = PolyHeader.from_file(f)
         print(phead.num_polys)
 
-        polydata = [SizedRecord.from_file(f, '<i') for n in range(phead.num_polys)]
+        polydata = [SizedRecord.from_file(f, "<i") for n in range(phead.num_polys)]
         print(polydata)
         for n, poly in enumerate(polydata):
-            print('polygon', n)
-            for p in poly.iter_as('<dd'):
+            print("polygon", n)
+            for p in poly.iter_as("<dd"):
                 print(p)
 
-        print('-' * 64)
+        print("-" * 64)
 
         for n, poly in enumerate(polydata):
-            print('polygon', n)
+            print("polygon", n)
             for p in poly.iter_as(Point):
                 print(p.x, p.y)

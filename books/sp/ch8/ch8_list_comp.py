@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     # without list comp
     x = []
     for i in (1, 2, 3):
@@ -10,17 +10,18 @@ if __name__ == '__main__':
     print(x)
 
     # with list comp multiple
-    x = [word.capitalize()
-         for line in ('hello world?', 'world!', 'or not')
-         for word in line.split()
-         if not word.startswith('or')]
+    x = [
+        word.capitalize()
+        for line in ("hello world?", "world!", "or not")
+        for word in line.split()
+        if not word.startswith("or")
+    ]
     print(x)
 
     # build a dict
-    x = {item: item.upper() for item in ['hello', 'world']}
+    x = {item: item.upper() for item in ["hello", "world"]}
     print(x)
 
     # build a set
-    x = {item.upper() for item in ['hello', 'world']}
+    x = {item.upper() for item in ["hello", "world"]}
     print(x)
-

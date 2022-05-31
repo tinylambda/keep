@@ -13,10 +13,11 @@ def modified_within(top, seconds):
                     print(fullpath)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     if len(sys.argv) != 3:
-        print('usage: {} dir seconds'.format(sys.argv[0]))
+        print("usage: {} dir seconds".format(sys.argv[0]))
         raise SystemExit(1)
 
     modified_within(sys.argv[1], float(sys.argv[2]))

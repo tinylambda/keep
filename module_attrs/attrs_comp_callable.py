@@ -16,6 +16,6 @@ class C:
     x = attr.ib(order=int)
 
 
-if __name__ == '__main__':
-    logging.info('%s', S('FOO') == S('foo'))  # should be True
-    logging.info('%s', C('10') > C('2'))  # should be True
+if __name__ == "__main__":
+    logging.info("%s", S("FOO") == S("foo"))  # should be True
+    logging.info("%s", C("10") > C("2"))  # should be True

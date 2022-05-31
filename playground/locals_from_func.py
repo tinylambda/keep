@@ -1,9 +1,9 @@
 class A:
     def myfunc():
-        doc = 'this is the doc'
+        doc = "this is the doc"
 
         def fget(self):
-            return 'abc'
+            return "abc"
 
         return locals()
 
@@ -11,10 +11,10 @@ class A:
 
     @property
     def n(self):
-        return 'def'
+        return "def"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A()
     print(a.m)
     print(a.n)

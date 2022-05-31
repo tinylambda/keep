@@ -15,7 +15,7 @@ async def fetch_sem(n):
 
 async def sem_release(sem: asyncio.Semaphore, times=3):
     for _ in range(times):
-        logging.info('release sem...')
+        logging.info("release sem...")
         await asyncio.sleep(1)
         sem.release()
 
@@ -32,16 +32,16 @@ async def full_worker():
     sig_event = asyncio.Event()
     n = 5
     sem: asyncio.Semaphore = await fetch_sem(n)
-    logging.info('%s', sem.locked())
-    logging.info('wait to trigger ...')
+    logging.info("%s", sem.locked())
+    logging.info("wait to trigger ...")
     loop.create_task(sem_trigger(sem, sig_event, n))
     loop.create_task(sem_release(sem, n))
 
     await sig_event.wait()
-    logging.info('I can start work now!')
+    logging.info("I can start work now!")
     await asyncio.sleep(random.random())
-    logging.info('Bye!')
+    logging.info("Bye!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(full_worker())

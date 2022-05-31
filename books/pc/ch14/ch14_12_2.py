@@ -2,8 +2,8 @@ def func(n):
     return n + 10
 
 
-if __name__ == '__main__':
-    func('hello')
+if __name__ == "__main__":
+    func("hello")
 
 
 # (venv) [felix@localhost keep]$ python -i books/pc/ch14/ch14_12_2.py

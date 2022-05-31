@@ -8,8 +8,7 @@ def clock(env, name, tick):
 
 
 env = simpy.Environment()
-env.process(clock(env, 'fast', 0.5))
-env.process(clock(env, 'slow', 1))
+env.process(clock(env, "fast", 0.5))
+env.process(clock(env, "slow", 1))
 
 env.run()
-

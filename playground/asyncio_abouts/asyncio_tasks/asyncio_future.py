@@ -1,18 +1,16 @@
 import asyncio
 import logging
 
-logging.basicConfig(
-    level=logging.INFO
-)
+logging.basicConfig(level=logging.INFO)
 
 
 async def cost_long_time(s: int):
     await asyncio.sleep(s)
-    logging.info('done')
+    logging.info("done")
 
 
 async def raise_exception():
-    raise RuntimeError('just for example')
+    raise RuntimeError("just for example")
 
 
 async def do():
@@ -20,15 +18,15 @@ async def do():
     # logging.info('result: %s', task.result())
 
     task = asyncio.create_task(raise_exception())
-    logging.info('result: %s', task.result())
+    logging.info("result: %s", task.result())
 
 
 def main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(do())
     loop.close()
-    logging.info('main done')
+    logging.info("main done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

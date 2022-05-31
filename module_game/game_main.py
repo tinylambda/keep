@@ -37,4 +37,3 @@ class Farm(Entity):
 
 class Game:
     pass
-

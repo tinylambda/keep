@@ -13,11 +13,11 @@ _no_value = object()
 
 def bar(a, b=_no_value):
     if b is _no_value:
-        print('no b value supplied')
+        print("no b value supplied")
     print(a, b)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     spam(1)
     spam(1, 2)
 
@@ -27,4 +27,3 @@ if __name__ == '__main__':
     bar(1)
     bar(1, [])
     bar(1, None)
-

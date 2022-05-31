@@ -17,9 +17,9 @@ class Model(BaseModel):
 
 
 data = dict(
-    list_of_ints=['1', 2, 'bad'],
-    a_float='not a float',
-    recursive_model={'lat': 4.2, 'lng': 'Beijing'},
+    list_of_ints=["1", 2, "bad"],
+    a_float="not a float",
+    recursive_model={"lat": 4.2, "lng": "Beijing"},
     gt_int=21,
 )
 

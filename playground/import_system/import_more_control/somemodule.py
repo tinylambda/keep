@@ -9,5 +9,4 @@ def grok():
 blah = 42
 
 
-__all__ = ['spam', 'grok']
-
+__all__ = ["spam", "grok"]

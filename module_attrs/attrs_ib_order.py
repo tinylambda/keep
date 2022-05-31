@@ -14,15 +14,15 @@ class C:
     z = attr.ib(order=lambda x: abs(x), eq=lambda x: abs(x))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c1 = C(100, 200, 1)
     c2 = C(100, 88, 1)
     c3 = C(100, 200, 1)
     c4 = C(100, 200, -1)
     l = [c1, c2]
-    logging.info('%s', c1 > c2)
-    logging.info('%s', c1 == c2)
-    logging.info('%s', c1 < c2)
+    logging.info("%s", c1 > c2)
+    logging.info("%s", c1 == c2)
+    logging.info("%s", c1 < c2)
 
-    logging.info('%s', c1 == c3)
-    logging.info('%s', c3 == c4)
+    logging.info("%s", c1 == c3)
+    logging.info("%s", c3 == c4)

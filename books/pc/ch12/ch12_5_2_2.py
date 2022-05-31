@@ -12,17 +12,17 @@ def thread_1():
     while True:
         with acquire(x_lock):
             with acquire(y_lock):
-                print('Thread-1')
+                print("Thread-1")
 
 
 def thread_2():
     while True:
         with acquire(y_lock):
             with acquire(x_lock):
-                print('Thread-2')
+                print("Thread-2")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t1 = threading.Thread(target=thread_1)
     t1.daemon = True
     t1.start()

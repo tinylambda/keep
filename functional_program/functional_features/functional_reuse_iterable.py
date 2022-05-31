@@ -12,7 +12,6 @@ def numbers():
         yield i
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ns = numbers()
     print(limits(ns))
-

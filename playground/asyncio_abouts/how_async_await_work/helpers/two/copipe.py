@@ -10,7 +10,6 @@ def grep(pattern, target):
             target.send(line)
 
 
-if __name__ == '__main__':
-    with open('/tmp/test.log') as f:
-        follow(f, grep('python', printer()))
-
+if __name__ == "__main__":
+    with open("/tmp/test.log") as f:
+        follow(f, grep("python", printer()))

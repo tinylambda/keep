@@ -26,11 +26,10 @@ def threaded(target):
         messages.put(GeneratorExit)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     coro = threaded(printer())
 
     for i in range(10):
         coro.send(i)
 
     coro.close()  # raise GeneratorExit inside generator
-

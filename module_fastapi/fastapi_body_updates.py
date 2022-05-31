@@ -22,20 +22,20 @@ items = {
 }
 
 
-@app.get('/items/{item_id}', response_model=Item)
+@app.get("/items/{item_id}", response_model=Item)
 async def read_item(item_id: str):
     return items[item_id]
 
 
 # PUT is used to receive data that should replace the existing data.
-@app.put('/items/{item_id}', response_model=Item)
+@app.put("/items/{item_id}", response_model=Item)
 async def update_item(item_id: str, item: Item):
     update_item_encoded = jsonable_encoder(item)
     items[item_id] = update_item_encoded
     return update_item_encoded
 
 
-@app.patch('/items2/{item_id}', response_model=Item)
+@app.patch("/items2/{item_id}", response_model=Item)
 async def update_item_2(item_id: str, item: Item):
     stored_item_data = items[item_id]
     stored_item_model = Item(**stored_item_data)
@@ -43,5 +43,6 @@ async def update_item_2(item_id: str, item: Item):
     updated_item = stored_item_model.copy(update=update_data)
     items[item_id] = jsonable_encoder(updated_item)
     return updated_item
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_body_updates:app --reload

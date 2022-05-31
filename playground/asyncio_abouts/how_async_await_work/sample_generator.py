@@ -12,6 +12,3 @@ def lazy_range(up_to):
     while index < up_to:
         yield index
         index += 1
-
-
-

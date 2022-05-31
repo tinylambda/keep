@@ -9,7 +9,7 @@ async def problem():
 
 
 def exception_handler(my_loop, context):
-    print('get exception...')
+    print("get exception...")
 
 
 async def main():
@@ -17,13 +17,13 @@ async def main():
     loop.set_exception_handler(exception_handler)
 
     task = loop.create_task(problem())
-    logging.info('created task = %r', task)
+    logging.info("created task = %r", task)
     tasks = [task]
     await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
 
     for t in tasks:
         if t.done():
-            print(t, 'done')
+            print(t, "done")
             # t.exception()
             # exception = t.exception()
             # if exception is not None:
@@ -32,18 +32,18 @@ async def main():
             #     result = t.result()
             #     print('get result', result)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     logging.basicConfig(
-        format='%(asctime)s.%(msecs)03d %(filename)s:%(lineno)d %(levelname)s %(message)s',
+        format="%(asctime)s.%(msecs)03d %(filename)s:%(lineno)d %(levelname)s %(message)s",
         level=logging.INFO,
-        datefmt='%H:%M:%S'
+        datefmt="%H:%M:%S",
     )
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main())
     except KeyboardInterrupt:
-        logging.info('closing the loop')
+        logging.info("closing the loop")
         loop.close()
 
-    logging.info('shutting down')
-
+    logging.info("shutting down")

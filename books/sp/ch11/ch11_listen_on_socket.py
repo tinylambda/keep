@@ -10,16 +10,13 @@ server.setblocking(False)
 # if we didn't call setblocking(False), the socket would stay in blocking mode rather than raise an error,
 # which is not what we want here. The sockt is then bound to a port and listens with a maximum backlog of eight
 # connections.
-server.bind(('localhost', 10000))
+server.bind(("localhost", 10000))
 server.listen(8)
 
 while True:
     inputs, outputs, excepts = select.select([server], [], [server])
     if server in inputs:
-        print('process new connection')
+        print("process new connection")
         connection, client_address = server.accept()
-        connection.send(b'hello!\n')
+        connection.send(b"hello!\n")
         connection.close()
-
-
-

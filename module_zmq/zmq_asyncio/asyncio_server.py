@@ -13,10 +13,10 @@ async def start_server(context: zmq.asyncio.Context, bind_to: str):
 
     while True:
         msg = await rep_sock.recv()
-        logging.info('received: %s', msg)
-        await rep_sock.send(b'world')
+        logging.info("received: %s", msg)
+        await rep_sock.send(b"world")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ctx = zmq.asyncio.Context()
-    asyncio.run(start_server(ctx, 'tcp://*:5555'))
+    asyncio.run(start_server(ctx, "tcp://*:5555"))

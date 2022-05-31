@@ -5,16 +5,16 @@ import sys
 
 async def spin(msg):
     write, flush = sys.stdout.write, sys.stdout.flush
-    for char in itertools.cycle('|/-\\'):
-        status = char + ' ' + msg
+    for char in itertools.cycle("|/-\\"):
+        status = char + " " + msg
         write(status)
         flush()
-        write('\x08' * len(status))
+        write("\x08" * len(status))
         try:
-            await asyncio.sleep(.1)
+            await asyncio.sleep(0.1)
         except asyncio.CancelledError:
             break
-    write(' ' * len(status) + '\x08' * len(status))
+    write(" " * len(status) + "\x08" * len(status))
 
 
 async def slow_function():
@@ -23,8 +23,8 @@ async def slow_function():
 
 
 async def supervisor():
-    spinner = asyncio.create_task(spin('thinking!'))
-    print('spinner object: ', spinner)
+    spinner = asyncio.create_task(spin("thinking!"))
+    print("spinner object: ", spinner)
     result = await slow_function()
     spinner.cancel()
     return result
@@ -35,9 +35,8 @@ def main():
     # result = loop.run_until_complete(supervisor())
     result = asyncio.run(supervisor())
     # loop.close()
-    print('Answer: ', result)
+    print("Answer: ", result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

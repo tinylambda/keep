@@ -14,7 +14,7 @@ class LotteryBlower(Tombola):
         try:
             position = random.randrange(len(self._balls))
         except ValueError:
-            raise LookupError('pick from empty LotteryBlower')
+            raise LookupError("pick from empty LotteryBlower")
         return self._balls.pop(position)
 
     def loaded(self):
@@ -22,5 +22,3 @@ class LotteryBlower(Tombola):
 
     def inspect(self):
         return tuple(sorted(self._balls))
-
-

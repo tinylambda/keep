@@ -3,9 +3,9 @@ import types, typing
 import inspect
 
 
-if __name__ == '__main__':
-    excel_file = '/home/felix/PycharmProjects/document/配置表/character_detail-统帅基础.xlsx'
-    df = pd.read_excel(excel_file, sheet_name='character_detail', engine='openpyxl')
+if __name__ == "__main__":
+    excel_file = "/home/felix/PycharmProjects/document/配置表/character_detail-统帅基础.xlsx"
+    df = pd.read_excel(excel_file, sheet_name="character_detail", engine="openpyxl")
 
     cn_name_series = df.columns.to_series()
     type_name_series = df.iloc[0]
@@ -23,18 +23,18 @@ if __name__ == '__main__':
         en_name = s[1] or cn_name
 
         v = str
-        default = ''
+        default = ""
         if pd.isna(type_name):
             v = str
         elif isinstance(type_name, str) and type_name:
-            if type_name.endswith('int'):
+            if type_name.endswith("int"):
                 v = int
                 default = 0
-            elif type_name == 'float':
-                v = float,
+            elif type_name == "float":
+                v = (float,)
                 default = 0.0
         else:
-            print(cn_name, en_name, type_name, 'Cannot be processed')
+            print(cn_name, en_name, type_name, "Cannot be processed")
 
         s[pd.isna(s)] = default
         s = s[2:]
@@ -46,5 +46,3 @@ if __name__ == '__main__':
             new_data.update({en_name: s})
 
     df = pd.DataFrame(new_data)
-
-

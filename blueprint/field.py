@@ -3,12 +3,12 @@ import typing
 
 class Field:
     def __init__(
-            self,
-            verbose_name: typing.AnyStr = None,
-            data_type: typing.Any = 'string',
-            required: bool = True,
-            default: typing.Any = None,
-            multi: bool = False,
+        self,
+        verbose_name: typing.AnyStr = None,
+        data_type: typing.Any = "string",
+        required: bool = True,
+        default: typing.Any = None,
+        multi: bool = False,
     ):
         self.name = None
         self.fullname = None
@@ -28,4 +28,3 @@ class Field:
 
     def __set__(self, instance, value):
         setattr(instance, self.internal_name, value)
-

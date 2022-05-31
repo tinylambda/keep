@@ -20,5 +20,5 @@ year = 1
 
 while year <= numyears:
     principal = principal * (1 + rate)
-    print('{0:3d} {1:0.2f}'.format(year, principal))
+    print("{0:3d} {1:0.2f}".format(year, principal))
     year += 1

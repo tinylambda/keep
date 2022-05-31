@@ -1,7 +1,7 @@
 from turtle import *
 
 
-shape('turtle')
+shape("turtle")
 
 for i in range(4):
     forward(200)

@@ -7,7 +7,7 @@ def memoized_sin(x):
     return math.sin(x)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(memoized_sin(2))
     print(memoized_sin.cache_info())
 

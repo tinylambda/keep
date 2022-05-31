@@ -24,7 +24,7 @@ class NodeVisitor:
         return last_result
 
     def _visit(self, node):
-        methname = f'visit_{type(node).__name__}'
+        methname = f"visit_{type(node).__name__}"
         meth = getattr(self, methname, None)
         if meth is None:
             meth = self.generic_visit
@@ -90,7 +90,7 @@ class Evaluator(NodeVisitor):
         return -self.visit(node.operand)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t1 = Sub(Number(3), Number(4))
     t2 = Mul(Number(2), t1)
     t3 = Div(t2, Number(5))
@@ -104,4 +104,3 @@ if __name__ == '__main__':
         a = Add(a, Number(n))
 
     e.visit(a)
-

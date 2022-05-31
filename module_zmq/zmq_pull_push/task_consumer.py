@@ -7,21 +7,21 @@ import zmq
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
 
     # socket to receive messages on
     receiver = context.socket(zmq.PULL)
-    receiver.connect('tcp://localhost:5557')
+    receiver.connect("tcp://localhost:5557")
 
     # socket to send messages to
     sender = context.socket(zmq.PUSH)
-    sender.connect('tcp://localhost:5558')
+    sender.connect("tcp://localhost:5558")
 
     # controller
     controller = context.socket(zmq.SUB)
-    controller.connect('tcp://localhost:5559')
-    controller.setsockopt(zmq.SUBSCRIBE, b'')
+    controller.connect("tcp://localhost:5559")
+    controller.setsockopt(zmq.SUBSCRIBE, b"")
 
     poller = zmq.Poller()
     poller.register(receiver, zmq.POLLIN)
@@ -42,13 +42,13 @@ if __name__ == '__main__':
         for sock, mask in socks:
             if sock == receiver:
                 message = sock.recv()
-                logging.info('received message %s', message)
+                logging.info("received message %s", message)
                 workload = int(message.decode())
-                time.sleep(workload / 1000.)
-                sender.send(b'')
+                time.sleep(workload / 1000.0)
+                sender.send(b"")
             elif sock == controller:
                 exit_sys = True
 
         if exit_sys:
-            logging.info('exiting...')
+            logging.info("exiting...")
             break

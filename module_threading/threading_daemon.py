@@ -4,25 +4,21 @@ import logging
 
 
 def daemon():
-    logging.debug('Starting')
+    logging.debug("Starting")
     time.sleep(2)
-    logging.debug('Exiting')
+    logging.debug("Exiting")
 
 
 def non_daemon():
-    logging.debug('Starting')
+    logging.debug("Starting")
     time.sleep(1)
-    logging.debug('Exiting')
+    logging.debug("Exiting")
 
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='(%(threadName)-10s) %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format="(%(threadName)-10s) %(message)s")
 
-d = threading.Thread(name='daemon', target=daemon, daemon=True)
-t = threading.Thread(name='non-daemon', target=non_daemon)
+d = threading.Thread(name="daemon", target=daemon, daemon=True)
+t = threading.Thread(name="non-daemon", target=non_daemon)
 
 d.start()
 t.start()
-

@@ -8,13 +8,13 @@ from pydantic.fields import ModelField
 class Model(BaseModel):
     infinite: Iterable[int]
 
-    @validator('infinite')
+    @validator("infinite")
     def infinite_first_int(cls, iterable, field: ModelField):
         first_value = next(iterable)
 
         if field.sub_fields:
             sub_field = field.sub_fields[0]
-            v, error = sub_field.validate(first_value, {}, loc='first_value')
+            v, error = sub_field.validate(first_value, {}, loc="first_value")
             if error:
                 raise ValidationError([error], cls)
         return itertools.chain([first_value], iterable)
@@ -29,11 +29,11 @@ def infinite_ints():
 
 def infinite_strs():
     while True:
-        for letter in 'allthesingleladies':
+        for letter in "allthesingleladies":
             yield letter
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = Model(infinite=infinite_ints())
     print(m)
 

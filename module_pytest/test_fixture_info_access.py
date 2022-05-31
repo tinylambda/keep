@@ -3,17 +3,17 @@ import pytest
 
 @pytest.fixture()
 def fixture01(request):
-    print('\nIn fixture...')
-    print('Fixture scope:', str(request.scope))
-    print('Function Name:', str(request.function.__name__))
-    print('Class Name:', str(request.cls))
-    print('Module Name:', str(request.module.__name__))
-    print('File Path:', str(request.fspath))
+    print("\nIn fixture...")
+    print("Fixture scope:", str(request.scope))
+    print("Function Name:", str(request.function.__name__))
+    print("Class Name:", str(request.cls))
+    print("Module Name:", str(request.module.__name__))
+    print("File Path:", str(request.fspath))
 
 
-@pytest.mark.usefixtures('fixture01')
+@pytest.mark.usefixtures("fixture01")
 def test_case01():
-    print('I am the test_case01')
+    print("I am the test_case01")
 
 
 # pytest -vs module_pytest/test_fixture_info_access.py

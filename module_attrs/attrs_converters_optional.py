@@ -11,6 +11,6 @@ class C:
     x = attr.ib(converter=attr.converters.optional(int))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(None)
-    logging.info('%s', c)
+    logging.info("%s", c)

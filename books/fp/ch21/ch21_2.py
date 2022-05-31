@@ -3,19 +3,19 @@ class Validated:
         self.name = None
 
     def __get__(self, instance, owner):
-        print('in get')
+        print("in get")
 
     def __set__(self, instance, value):
-        print('in set')
+        print("in set")
         setattr(instance, self.name, value)
 
 
 def entity(cls):
     for key, attr in cls.__dict__.items():
-        print('Checking: ', key)
+        print("Checking: ", key)
         if isinstance(attr, Validated):
             type_name = type(attr).__name__
-            attr.name = '_{}#{}'.format(type_name, key)
+            attr.name = "_{}#{}".format(type_name, key)
     return cls
 
 
@@ -34,13 +34,9 @@ class LineItem:
         return self.weight * self.price
 
 
-if __name__ == '__main__':
-    raisins = LineItem('Golden raisins', 10, 6.95)
+if __name__ == "__main__":
+    raisins = LineItem("Golden raisins", 10, 6.95)
 
-    print(
-        dir(raisins)
-    )
+    print(dir(raisins))
 
-    print(
-
-    )
+    print()

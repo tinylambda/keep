@@ -31,7 +31,7 @@ async def cleanup(msg):
     # unhelpful simulation of I/O work
     await asyncio.sleep(random.random())
     msg.acked = True
-    logging.info(f'Done. Acked {msg}')
+    logging.info(f"Done. Acked {msg}")
 
 
 async def handle_message(msg):
@@ -65,7 +65,7 @@ async def restart_host(msg):
 async def extend(msg: PubSubMessage, event: asyncio.Event):
     while not event.is_set():
         msg.extended_cnt += 1
-        logging.info(f'extended deadline by 3 seconds for {msg}')
+        logging.info(f"extended deadline by 3 seconds for {msg}")
         await asyncio.sleep(2)
     else:
         await cleanup(msg)

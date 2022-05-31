@@ -6,6 +6,6 @@ def utcnow():
     return datetime.datetime.now(tz=tz.tzutc())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(utcnow())
     print(utcnow().isoformat())

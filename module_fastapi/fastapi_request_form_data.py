@@ -11,8 +11,9 @@ You'll read about handling files in the next chapter.
 """
 
 
-@app.post('/login/')
+@app.post("/login/")
 async def login(username: str = Form(...), password: str = Form(...)):
-    return {'username': username}
+    return {"username": username}
+
 
 # PYTHONPATH=module_fastapi uvicorn fastapi_request_form_data:app --reload

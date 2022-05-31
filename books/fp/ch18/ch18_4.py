@@ -19,8 +19,8 @@ class FetchError(Exception):
 
 
 async def get_flag(base_url, cc):
-    url = '{}/{cc}/{cc}.gif'.format(base_url, cc=cc.lower())
-    async with aiohttp.request('GET', url) as resp:
+    url = "{}/{cc}/{cc}.gif".format(base_url, cc=cc.lower())
+    async with aiohttp.request("GET", url) as resp:
         if resp.status == 200:
             image = await resp.read()
             return image
@@ -37,15 +37,15 @@ async def download_one(cc, base_url, semaphore, verbose):
             image = await get_flag(base_url, cc)
     except web.HTTPNotFound:
         status = HTTPStatus.not_found
-        msg = 'not found'
+        msg = "not found"
     except Exception as exc:
         raise FetchError(cc) from exc
     else:
         loop = asyncio.get_event_loop()
-        loop.run_in_executor(None, save_flag, image, cc.lower() + '.gif')
-        save_flag(image, cc.lower() + '.gif')
+        loop.run_in_executor(None, save_flag, image, cc.lower() + ".gif")
+        save_flag(image, cc.lower() + ".gif")
         status = HTTPStatus.ok
-        msg = 'OK'
+        msg = "OK"
     if verbose and msg:
         print(cc, msg)
 
@@ -69,7 +69,7 @@ async def download_coro(cc_list, base_url, verbose, concur_req):
             except IndexError:
                 error_msg = exc.__cause__.__class__.__name__
             if verbose and error_msg:
-                msg = '*** Error for {}: {}'
+                msg = "*** Error for {}: {}"
                 print(msg.format(country_code, error_msg))
             status = HTTPStatus.error
         else:
@@ -86,9 +86,5 @@ def download_many(cc_list, base_url, verbose, concur_req):
     return counts
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(download_many, DEFAULT_CONCUR_REQ, MAX_CONCUR_REQ)
-
-
-
-

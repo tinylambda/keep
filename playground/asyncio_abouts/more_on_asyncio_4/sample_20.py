@@ -11,8 +11,8 @@ import attr
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s,%(msecs)s %(levelname)s: %(message)s',
-    datefmt='%H:%M:%S'
+    format="%(asctime)s,%(msecs)s %(levelname)s: %(message)s",
+    datefmt="%H:%M:%S",
 )
 
 
@@ -23,7 +23,7 @@ class PubSubMessage:
     hostname = attr.ib(repr=False, init=False)
 
     def __attrs_post_init__(self):
-        self.hostname = f'{self.instance_name}.example.net'
+        self.hostname = f"{self.instance_name}.example.net"
 
 
 def publish_sync(q):
@@ -31,12 +31,12 @@ def publish_sync(q):
 
     while True:
         msg_id = str(uuid.uuid4())
-        host_id = ''.join(random.choices(choices, k=4))
-        instance_name = f'cattle-{host_id}'
+        host_id = "".join(random.choices(choices, k=4))
+        instance_name = f"cattle-{host_id}"
         msg = PubSubMessage(message_id=msg_id, instance_name=instance_name)
         # publish an item
         q.put(msg)
-        logging.info(f'published {msg}')
+        logging.info(f"published {msg}")
         # simulate randomness of publishing messages
         time.sleep(random.random())
 
@@ -46,19 +46,19 @@ def consume_sync(q):
         # wait for an item from the publisher
         msg = q.get()
         # process the message
-        logging.info(f'consumed {msg}')
+        logging.info(f"consumed {msg}")
         # substitute for handling a message
         time.sleep(random.random())
 
 
 async def publish(executor, q):
-    logging.info('starting publisher')
+    logging.info("starting publisher")
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(executor, publish_sync, q)
 
 
 async def consume(executor, q):
-    logging.info('starting consumer')
+    logging.info("starting consumer")
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(executor, consume_sync, q)
 
@@ -74,8 +74,8 @@ def main():
         loop.run_forever()
     finally:
         loop.close()
-        logging.info('successfully shutdown the Mayhem service.')
+        logging.info("successfully shutdown the Mayhem service.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

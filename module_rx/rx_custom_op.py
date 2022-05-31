@@ -9,9 +9,6 @@ def length_more_than_5():
     )
 
 
-rx.of('Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon').pipe(
+rx.of("Alpha", "Beta", "Gamma", "Delta", "Epsilon").pipe(
     length_more_than_5()
-).subscribe(
-    lambda value: print('Received {0}'.format(value))
-)
-
+).subscribe(lambda value: print("Received {0}".format(value)))

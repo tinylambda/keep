@@ -23,11 +23,11 @@ while True:
         b_end = True
 
     if all([a_end, b_end]):
-        print('done')
+        print("done")
         break
 
     if x == y:
-        print('got pair', (x, y))
+        print("got pair", (x, y))
         xi += 1
         yi += 1
     else:
@@ -40,10 +40,3 @@ while True:
         yi += 1
     if b_end:
         xi += 1
-
-
-
-
-
-
-

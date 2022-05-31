@@ -4,21 +4,21 @@ from xml.etree.ElementTree import fromstring
 from pydantic import BaseModel
 from pydantic.utils import GetterDict
 
-xmlstring = '''
+xmlstring = """
 <User Id="1234">
     <FirstName />
     <LoggedIn Value="true" />
 </User>
-'''
+"""
 
 
 class UserGetter(GetterDict):
     def get(self, key: Any, default: Any = None) -> Any:
-        if key in {'Id', 'Status'}:
+        if key in {"Id", "Status"}:
             return self._obj.attrib.get(key, default)
         else:
             try:
-                return self._obj.find(key).attrib['Value']
+                return self._obj.find(key).attrib["Value"]
             except (AttributeError, KeyError):
                 return default
 

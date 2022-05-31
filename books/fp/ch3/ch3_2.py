@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     tt = (1, 2, (30, 40))
     print(hash(tt))
 
@@ -7,4 +7,3 @@ if __name__ == '__main__':
 
     tl = (1, 2, [30, 40])
     print(hash(tl))
-

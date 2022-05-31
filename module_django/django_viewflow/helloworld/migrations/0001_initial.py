@@ -9,20 +9,30 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('viewflow', '0008_jsonfield_and_artifact'),
+        ("viewflow", "0008_jsonfield_and_artifact"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HelloWorldProcess',
+            name="HelloWorldProcess",
             fields=[
-                ('process_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='viewflow.process')),
-                ('text', models.CharField(max_length=150)),
-                ('approved', models.BooleanField(default=False)),
+                (
+                    "process_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="viewflow.process",
+                    ),
+                ),
+                ("text", models.CharField(max_length=150)),
+                ("approved", models.BooleanField(default=False)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('viewflow.process',),
+            bases=("viewflow.process",),
         ),
     ]

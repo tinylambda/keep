@@ -28,5 +28,3 @@ class World:
 
     def run(self):
         pass
-
-

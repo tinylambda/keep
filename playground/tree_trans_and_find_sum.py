@@ -23,7 +23,7 @@ class Node:
             res = cls.inorder_trans(root.left, s)
             res.append(root.val)
             if sum(res) == s:
-                print('Got!', res)
+                print("Got!", res)
                 return res
             res = res + cls.inorder_trans(root.right, s)
         return res
@@ -34,9 +34,13 @@ class Node:
         if root is not None:
             res.append(root.val)
             if sum(res) == s:
-                print('Got!', res)
+                print("Got!", res)
                 return res
-            res = res + cls.preorder_trans(root.left, s) + cls.preorder_trans(root.right, s)
+            res = (
+                res
+                + cls.preorder_trans(root.left, s)
+                + cls.preorder_trans(root.right, s)
+            )
         return res
 
     @classmethod
@@ -47,12 +51,12 @@ class Node:
             res = res + cls.postorder_trans(root.right, s)
             res.append(root.val)
             if sum(res) == s:
-                print('Got!', res)
+                print("Got!", res)
                 return res
         return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = Node(11)
     root.insert(100)
     root.insert(2)
@@ -62,13 +66,12 @@ if __name__ == '__main__':
 
     vals = root.inorder_trans(root, s=16)
     print(vals)
-    print('-' * 100)
+    print("-" * 100)
 
     vals = root.preorder_trans(root, s=16)
     print(vals)
-    print('-' * 100)
+    print("-" * 100)
 
     vals = root.postorder_trans(root, s=16)
     print(vals)
-    print('-' * 100)
-
+    print("-" * 100)

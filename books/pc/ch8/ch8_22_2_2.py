@@ -21,10 +21,9 @@ class Evaluator(NodeVisitor):
         yield -(yield node.operand)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     e = Evaluator()
     a = Number(0)
     for n in range(100000):
         a = Add(a, Number(n))
     print(e.visit(a))
-

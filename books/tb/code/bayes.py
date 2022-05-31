@@ -3,7 +3,7 @@ import math
 
 
 class _DictWrapper:
-    def __init__(self, values=None, name=''):
+    def __init__(self, values=None, name=""):
         self.name = name
         self.d = {}
 
@@ -48,7 +48,7 @@ class _DictWrapper:
             self.Set(value, prob)
 
     def InitFailure(self, values):
-        raise ValueError('None of the initialization methods worked')
+        raise ValueError("None of the initialization methods worked")
 
     def __len__(self):
         return len(self.d)
@@ -79,7 +79,7 @@ class _DictWrapper:
 
     def Log(self, m=None):
         if self.log:
-            raise ValueError('Pmf/Hist already under a log transform')
+            raise ValueError("Pmf/Hist already under a log transform")
         self.log = True
 
         if m is None:
@@ -93,7 +93,7 @@ class _DictWrapper:
 
     def Exp(self, m=None):
         if not self.log:
-            raise ValueError('Pmf/Hist not under a log transform')
+            raise ValueError("Pmf/Hist not under a log transform")
         self.log = False
 
         if m is None:
@@ -158,6 +158,3 @@ class Pmf(_DictWrapper):
 
     def Probs(self, xs):
         return [self.Prob(x) for x in xs]
-
-
-

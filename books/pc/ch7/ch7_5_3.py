@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = 42
 
     def spam(a, b=x):
@@ -8,7 +8,6 @@ if __name__ == '__main__':
     x = 23
     spam(1)
 
-
     def foo(a, b=[]):
         print(b)
         return b
@@ -17,8 +16,7 @@ if __name__ == '__main__':
     print(x)
 
     x.append(99)
-    x.append('Yow!')
+    x.append("Yow!")
     print(x)
 
     foo(1)
-

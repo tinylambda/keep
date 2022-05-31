@@ -20,19 +20,27 @@ def parallel_fetch_old(urls):
     return responses
 
 
-if __name__ == '__main__':
-    test_urls = ['https://www.baidu.com/', 'https://www.qq.com/']
+if __name__ == "__main__":
+    test_urls = ["https://www.baidu.com/", "https://www.qq.com/"]
     loop = IOLoop.current()
 
     def cb(f: Future, use_loop: IOLoop):
         print([item.effective_url for item in f.result()])
         use_loop.stop()
 
-    loop.add_future(asyncio.ensure_future(parallel_fetch(test_urls)), callback=functools.partial(cb, use_loop=loop))
+    loop.add_future(
+        asyncio.ensure_future(parallel_fetch(test_urls)),
+        callback=functools.partial(cb, use_loop=loop),
+    )
     loop.start()
 
-    loop.add_future(convert_yielded(parallel_fetch(test_urls)), callback=functools.partial(cb, use_loop=loop))
+    loop.add_future(
+        convert_yielded(parallel_fetch(test_urls)),
+        callback=functools.partial(cb, use_loop=loop),
+    )
     loop.start()
 
-    loop.add_future(parallel_fetch_old(test_urls), callback=functools.partial(cb, use_loop=loop))
+    loop.add_future(
+        parallel_fetch_old(test_urls), callback=functools.partial(cb, use_loop=loop)
+    )
     loop.start()

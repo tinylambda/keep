@@ -11,6 +11,6 @@ class C:
     x = attr.ib(converter=int)
 
 
-if __name__ == '__main__':
-    c = C('1')
-    logging.info('%s: %s', c, type(c.x))
+if __name__ == "__main__":
+    c = C("1")
+    logging.info("%s: %s", c, type(c.x))

@@ -9,11 +9,10 @@ def search(lines, pattern, history=5):
         previous_lines.append(line)
 
 
-if __name__ == '__main__':
-    with open('/var/log/dmesg') as f:
-        for xline, xprevious_lines in search(f, 'input', 5):
+if __name__ == "__main__":
+    with open("/var/log/dmesg") as f:
+        for xline, xprevious_lines in search(f, "input", 5):
             for pline in xprevious_lines:
-                print(pline, end='')
-            print(xline, end='')
-            print('-' * 20)
-
+                print(pline, end="")
+            print(xline, end="")
+            print("-" * 20)

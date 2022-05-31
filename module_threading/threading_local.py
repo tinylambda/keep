@@ -7,9 +7,9 @@ def show_value(data):
     try:
         val = data.value
     except AttributeError:
-        logging.debug('No value yet')
+        logging.debug("No value yet")
     else:
-        logging.debug('value=%s', val)
+        logging.debug("value=%s", val)
 
 
 def worker(data):
@@ -18,10 +18,7 @@ def worker(data):
     show_value(data)
 
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='(%(threadName)-10s) %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format="(%(threadName)-10s) %(message)s")
 
 
 local_data = threading.local()
@@ -33,4 +30,3 @@ show_value(local_data)
 for i in range(2):
     t = threading.Thread(target=worker, args=(local_data,))
     t.start()
-

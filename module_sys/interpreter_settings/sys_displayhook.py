@@ -8,16 +8,16 @@ class ExpressionCounter:
 
     def __call__(self, value):
         print()
-        print(' Previous:', self.previous_value)
-        print(' New: ', value)
+        print(" Previous:", self.previous_value)
+        print(" New: ", value)
         print()
 
         if value != self.previous_value:
             self.count += 1
-            sys.ps1 = '({:3d})>'.format(self.count)
+            sys.ps1 = "({:3d})>".format(self.count)
         self.previous_value = value
         sys.__displayhook__(value)
 
 
-print('installing')
+print("installing")
 sys.displayhook = ExpressionCounter()

@@ -15,12 +15,12 @@ class C:
 @attr.s
 class D:
     user = attr.ib()
-    password = attr.ib(repr=lambda value: '***')
+    password = attr.ib(repr=lambda value: "***")
 
 
-if __name__ == '__main__':
-    c = C('me', 's3kr3t')
-    logging.info('%s', c)
+if __name__ == "__main__":
+    c = C("me", "s3kr3t")
+    logging.info("%s", c)
 
-    d = D('felix', '324hgkd')
-    logging.info('%s', d)
+    d = D("felix", "324hgkd")
+    logging.info("%s", d)

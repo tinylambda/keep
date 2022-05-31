@@ -1,7 +1,8 @@
 try:
     import gnureadline
     import sys
-    sys.modules['readline'] = gnureadline
+
+    sys.modules["readline"] = gnureadline
 except ImportError:
     pass
 
@@ -11,20 +12,23 @@ import cmd
 class HelloWorld(cmd.Cmd):
     def do_greet(self, person):
         if person:
-            print('hi', person)
+            print("hi", person)
         else:
-            print('hi')
+            print("hi")
 
     def help_greet(self):
-        print('\n'.join([
-            'greet [person]',
-            'Greet the named person',
-        ]))
+        print(
+            "\n".join(
+                [
+                    "greet [person]",
+                    "Greet the named person",
+                ]
+            )
+        )
 
     def do_EOF(self, line):
         return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HelloWorld().cmdloop()
-

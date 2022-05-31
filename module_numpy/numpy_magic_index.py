@@ -1,7 +1,7 @@
 import numpy as np
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr = np.empty((8, 4))
     for i in range(8):
         arr[i] = i
@@ -16,4 +16,3 @@ if __name__ == '__main__':
     print(arr[[1, 5, 7, 2], [0, 3, 1, 2]])
 
     print(arr[[1, 5, 7, 2]][:, [0, 3, 1, 2]])
-

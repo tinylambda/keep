@@ -3,9 +3,9 @@ import logging
 
 
 logging.basicConfig(
-    format='%(asctime)s - %(levelname)s:%(message)s',
+    format="%(asctime)s - %(levelname)s:%(message)s",
     level=logging.DEBUG,
-    datefmt='%m/%d/%Y %I:%M:%S %p'
+    datefmt="%m/%d/%Y %I:%M:%S %p",
 )
 
 
@@ -36,25 +36,24 @@ def logged(level, name=None, message=None):
         def set_message(newmsg):
             nonlocal logmsg
             logmsg = newmsg
+
         return wrapper
+
     return decorate
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     @logged(logging.DEBUG)
     def add(x, y):
         return x + y
 
-    @logged(logging.CRITICAL, 'example')
+    @logged(logging.CRITICAL, "example")
     def spam():
-        print('spam')
+        print("spam")
 
     add(1, 2)
-    add.set_message('Add called')
+    add.set_message("Add called")
     add(1, 2)
     add.set_level(logging.WARNING)
     add(1, 2)
-
-
-
-

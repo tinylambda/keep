@@ -2,14 +2,11 @@ import codecs
 
 from module_codecs.codecs_invertcaps_charmap import encoding_map
 
-text = 'pi: \u03c0'
+text = "pi: \u03c0"
 
-for error in ['ignore', 'replace', 'strict']:
+for error in ["ignore", "replace", "strict"]:
     try:
-        encoded = codecs.charmap_encode(
-            text, error, encoding_map
-        )
+        encoded = codecs.charmap_encode(text, error, encoding_map)
     except UnicodeEncodeError as err:
         encoded = str(err)
-    print('{:7}: {}'.format(error, encoded))
-
+    print("{:7}: {}".format(error, encoded))

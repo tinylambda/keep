@@ -4,5 +4,5 @@ from uhashring import HashRing
 hr = HashRing(nodes=[])
 
 # get the node name for the 'coconut' key
-target_node = hr.get_node('coconut')
+target_node = hr.get_node("coconut")
 print(target_node)  # is None

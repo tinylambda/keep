@@ -1,12 +1,12 @@
 import collections
 import random
 
-Card = collections.namedtuple('Card', ['rank', 'suit'])
+Card = collections.namedtuple("Card", ["rank", "suit"])
 
 
 class FrenchDeck2(collections.MutableSequence):
-    ranks = [str(n) for n in range(1, 11)] + list('JQKA')
-    suits = 'spades diamonds clubs hearts'.split()
+    ranks = [str(n) for n in range(1, 11)] + list("JQKA")
+    suits = "spades diamonds clubs hearts".split()
 
     def __init__(self):
         self._cards = [Card(rank, suit) for suit in self.suits for rank in self.ranks]
@@ -27,7 +27,7 @@ class FrenchDeck2(collections.MutableSequence):
         self._cards.insert(index, value)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fd = FrenchDeck2()
     print(
         isinstance(fd, collections.Sized),
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         isinstance(fd, collections.Callable),
         isinstance(fd, collections.Iterable),
         isinstance(fd, collections.UserString),
-        isinstance(fd, collections.Mapping)
+        isinstance(fd, collections.Mapping),
     )
 
     print(

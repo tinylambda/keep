@@ -35,21 +35,21 @@ class GameServer:
         return True
 
     async def start(self):
-        print('init game server')
+        print("init game server")
         await self.initialize()
 
         await asyncio.sleep(10)
-        print('init done')
+        print("init done")
 
     async def stop(self):
-        print('stop game server')
+        print("stop game server")
         for task in itertools.chain(self.new_tasks, self.running_tasks):
             task.cancel()
             try:
                 await task
             except asyncio.CancelledError:
                 pass
-        print('stop done')
+        print("stop done")
 
     async def common_task(self, waiters=[]):
         pass
@@ -73,11 +73,10 @@ class GameServer:
                 self.new_tasks.append(task)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     gs = GameServer()
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(gs.run_server())
     except KeyboardInterrupt:
         loop.run_until_complete(gs.stop())
-

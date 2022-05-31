@@ -14,7 +14,7 @@ def infinite_ints():
         i += 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = Model(infinite=infinite_ints())
     print(m)
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         if i == 10:
             break
 
-    print('again, generator is stateful')
+    print("again, generator is stateful")
     for i in m.infinite:
         print(i)
         break

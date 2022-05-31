@@ -9,5 +9,5 @@ def sample(n):
         traceback.print_stack(file=sys.stderr)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sample(3)

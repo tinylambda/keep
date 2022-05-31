@@ -3,16 +3,16 @@ from collections import deque
 
 def countdown(n):
     while n > 0:
-        print('T-minus', n)
+        print("T-minus", n)
         yield
         n -= 1
-    print('Blastoff!')
+    print("Blastoff!")
 
 
 def countup(n):
     x = 0
     while x < n:
-        print('Counting up', x)
+        print("Counting up", x)
         yield
         x += 1
 
@@ -34,10 +34,9 @@ class TaskScheduler:
                 pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sched = TaskScheduler()
     sched.new_task(countdown(10))
     sched.new_task(countdown(5))
     sched.new_task(countup(15))
     sched.run()
-

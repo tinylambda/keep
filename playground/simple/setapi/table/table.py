@@ -17,7 +17,12 @@ class Table:
     desc = attr.ib(eq=False)
     columns = attr.ib(type=List[Column], eq=False)
 
-    column_dict = attr.ib(type=typing.Dict[AnyStr, Column], init=False, default=attr.Factory(dict), eq=False)
+    column_dict = attr.ib(
+        type=typing.Dict[AnyStr, Column],
+        init=False,
+        default=attr.Factory(dict),
+        eq=False,
+    )
 
     def __attrs_post_init__(self):
         for column in self.columns:
@@ -35,14 +40,18 @@ class Table:
         return False
 
 
-if __name__ == '__main__':
-    table = Table('test_table', 'this is a good table', columns=[
-        Column('col1', SqlType.string, 'this is a good column'),
-        Column('col2', SqlType.int, 'this is also a good column'),
-        Column('col3', SqlType.float, 'this is also a good column'),
-    ])
+if __name__ == "__main__":
+    table = Table(
+        "test_table",
+        "this is a good table",
+        columns=[
+            Column("col1", SqlType.string, "this is a good column"),
+            Column("col2", SqlType.int, "this is also a good column"),
+            Column("col3", SqlType.float, "this is also a good column"),
+        ],
+    )
 
-    logging.info('%s', table)
+    logging.info("%s", table)
     for _column in table.columns:
-        logging.info('%s', _column.is_number_column())
-        logging.info('%s', _column.is_float_column())
+        logging.info("%s", _column.is_number_column())
+        logging.info("%s", _column.is_float_column())

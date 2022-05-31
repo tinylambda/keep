@@ -40,9 +40,6 @@ class SimpleCache:
         return self._backend.delete(self, key)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sc = SimpleCache(LocalCacheBackend())
     sc.get("x")
-
-
-

@@ -26,7 +26,7 @@ class Node:
         return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = Node(11)
     root.insert(100)
     root.insert(2)
@@ -36,4 +36,3 @@ if __name__ == '__main__':
 
     vals = root.preorder_trans(root)
     print(vals)
-

@@ -3,7 +3,7 @@ import logging.config
 
 import yaml
 
-with open(file='logging.yaml', mode='r', encoding='utf-8') as f:
+with open(file="logging.yaml", mode="r", encoding="utf-8") as f:
     logging_yaml = yaml.load(stream=f, Loader=yaml.FullLoader)
     logging.config.dictConfig(config=logging_yaml)
 
@@ -16,10 +16,10 @@ class LogProxy:
         self.logger.info("role is %s", role, stacklevel=2)
 
 
-if __name__ == '__main__':
-    logger = logging.getLogger('simpleExample')
-    logger.debug('debug message')
-    logger.info('info message')
-    logger.warning('warn message')
-    logger.error('error message')
-    logger.critical('critical message')
+if __name__ == "__main__":
+    logger = logging.getLogger("simpleExample")
+    logger.debug("debug message")
+    logger.info("info message")
+    logger.warning("warn message")
+    logger.error("error message")
+    logger.critical("critical message")

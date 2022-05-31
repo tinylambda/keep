@@ -2,8 +2,8 @@ import copy
 
 
 class State:
-    DEAD = 'X'
-    LIVE = 'O'
+    DEAD = "X"
+    LIVE = "O"
 
     def __init__(self, row_num: int, column_num: int):
         self.row_num = row_num
@@ -15,9 +15,9 @@ class State:
 
     def __str__(self):
         # print the overall state
-        line_fmt = '{}' * self.column_num
+        line_fmt = "{}" * self.column_num
         lines = [line_fmt.format(*line_state) for line_state in self._state]
-        return '\n'.join(lines)
+        return "\n".join(lines)
 
     def _ensure_index(self, row_index, column_index):
         # handle index overflow including negative index
@@ -79,7 +79,7 @@ class State:
         return len([item for item in neighbor_states if item == self.LIVE])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = State(4, 4)
     s.set_state_at(1, 1, s.LIVE)
     s.set_state_at(0, 0, s.LIVE)
@@ -88,18 +88,18 @@ if __name__ == '__main__':
     s.set_state_at(2, 1, s.LIVE)
     print(s)
 
-    print('*' * 64)
+    print("*" * 64)
     s.refresh()
     print(s)
 
-    print('*' * 64)
+    print("*" * 64)
     s.refresh()
     print(s)
 
-    print('*' * 64)
+    print("*" * 64)
     s.refresh()
     print(s)
 
-    print('*' * 64)
+    print("*" * 64)
     s.refresh()
     print(s)

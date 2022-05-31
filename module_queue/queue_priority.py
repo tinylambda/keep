@@ -8,7 +8,7 @@ class Job:
     def __init__(self, priority, description):
         self.priority = priority
         self.description = description
-        print('New job: ', description)
+        print("New job: ", description)
 
     def __eq__(self, other):
         try:
@@ -25,21 +25,24 @@ class Job:
 
 q = queue.PriorityQueue()
 
-q.put(Job(3, 'Mid-level job'))
-q.put(Job(10, 'Low-level job'))
-q.put(Job(1, 'important job'))
+q.put(Job(3, "Mid-level job"))
+q.put(Job(10, "Low-level job"))
+q.put(Job(1, "important job"))
 
 
 def process_job(q):
     while True:
         next_job = q.get()
-        print(f'Processing job [{threading.current_thread().name}]: ', next_job.description)
+        print(
+            f"Processing job [{threading.current_thread().name}]: ",
+            next_job.description,
+        )
         q.task_done()
 
 
 workers = [
-    threading.Thread(target=process_job, args=(q, )),
-    threading.Thread(target=process_job, args=(q, ))
+    threading.Thread(target=process_job, args=(q,)),
+    threading.Thread(target=process_job, args=(q,)),
 ]
 
 for w in workers:
@@ -47,4 +50,3 @@ for w in workers:
     w.start()
 
 q.join()
-

@@ -6,9 +6,7 @@ class Proxy:
         return getattr(self._obj, name)
 
     def __setattr__(self, name, value):
-        if name.startswith('_'):
+        if name.startswith("_"):
             super(Proxy, self).__setattr__(name, value)
         else:
             setattr(self._obj, name, value)
-
-    

@@ -11,9 +11,8 @@ class BugStatus(enum.IntEnum):
     fix_released = 1
 
 
-print('Ordered by value: ')
-print('\n'.join(' ' + s.name for s in sorted(BugStatus)))
+print("Ordered by value: ")
+print("\n".join(" " + s.name for s in sorted(BugStatus)))
 
 print(BugStatus.new == 7)
 print(BugStatus.incomplete == 6)
-

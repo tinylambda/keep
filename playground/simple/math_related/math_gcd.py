@@ -4,7 +4,7 @@ def gcd(a: int, b: int):
     return a
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(gcd(1, 2))
     print(gcd(10, 2))
     print(gcd(10, 5))

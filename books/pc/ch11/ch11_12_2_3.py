@@ -59,7 +59,7 @@ class TCPEchoClient(TCPClient):
             self.outgoing.extend(data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     handlers = []
-    handlers.append(TCPServer(('', 16000), TCPEchoClient, handlers))
+    handlers.append(TCPServer(("", 16000), TCPEchoClient, handlers))
     event_loop(handlers)

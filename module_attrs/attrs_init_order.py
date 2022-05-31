@@ -24,7 +24,7 @@ class C:
     @y.validator
     def _validate_y(self, attribute, value):
         if value < 0:
-            raise ValueError('y should be > 0')
+            raise ValueError("y should be > 0")
 
     # @x.validator
     # def _validate_y(self, attribute, value):
@@ -32,6 +32,6 @@ class C:
     #         raise ValueError('x should be > 0')
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(-3)
-    logging.info('%s', c)
+    logging.info("%s", c)

@@ -13,7 +13,7 @@ class C:
     t: int = 20
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(100, 200)
     print(c.z)
     print(c.t)
@@ -21,4 +21,3 @@ if __name__ == '__main__':
 
     pprint.pprint(fields(C))
     pprint.pprint(fields(c))
-

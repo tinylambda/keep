@@ -11,8 +11,10 @@ class SomethingFromSomeoneElse:
         self.x = x
 
 
-SomethingFromSomeoneElse = attr.s(these={'x': attr.ib()}, init=False)(SomethingFromSomeoneElse)
+SomethingFromSomeoneElse = attr.s(these={"x": attr.ib()}, init=False)(
+    SomethingFromSomeoneElse
+)
 
 
-if __name__ == '__main__':
-    logging.info('%s', SomethingFromSomeoneElse(1))
+if __name__ == "__main__":
+    logging.info("%s", SomethingFromSomeoneElse(1))

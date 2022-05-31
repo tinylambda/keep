@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     l = [1, 2, 3]
     print(id(l))
     l *= 2
@@ -8,4 +8,3 @@ if __name__ == '__main__':
     print(id(t))
     t *= 2
     print(id(t))
-

@@ -9,7 +9,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 
 
 class Command(BaseCommand):
-    help = 'Start game server'
+    help = "Start game server"
 
     def __init__(self, *args, **kwargs):
         super(Command, self).__init__(*args, **kwargs)
@@ -33,5 +33,3 @@ class Command(BaseCommand):
             self.loop.run_until_complete(self.stop_server())
             self.loop.close()
         self.stdout.write(self.style.SUCCESS("Done"))
-
-

@@ -7,7 +7,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
 async def set_event(event, delay=3):
-    logging.info('waiting for event for %s seconds', delay)
+    logging.info("waiting for event for %s seconds", delay)
     await asyncio.sleep(delay)
     event.set()
 
@@ -22,11 +22,11 @@ async def shutdown(loop):
 async def long_running_worker(stop_event: asyncio.Event):
     i = 0
     while True and not stop_event.is_set():
-        logging.info('process task %s', i)
+        logging.info("process task %s", i)
         await asyncio.sleep(random.random())
         i += 1
 
-    logging.info('Done')
+    logging.info("Done")
     loop = asyncio.get_running_loop()
     loop.create_task(shutdown(loop))
 
@@ -39,5 +39,5 @@ def main():
     loop.run_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

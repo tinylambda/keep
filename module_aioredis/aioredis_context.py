@@ -10,16 +10,15 @@ class AIOContext:
         self.callback_data = {}
 
     async def __aenter__(self):
-        self.redis = await aioredis.create_redis_pool('redis://localhost', db=0, password='rpassword')
+        self.redis = await aioredis.create_redis_pool(
+            "redis://localhost", db=0, password="rpassword"
+        )
         self.multi_exec = self.redis.multi_exec()
         self.pipeline = self.redis.pipeline()
 
-        keys = [f'kx{i}' for i in range(2)]
+        keys = [f"kx{i}" for i in range(2)]
         await self.redis.watch(*keys)
-        futures = [
-            self.pipeline.get(key)
-            for key in keys
-        ]
+        futures = [self.pipeline.get(key) for key in keys]
         await self.pipeline.execute()
         result = await asyncio.gather(*futures)
         print(result)
@@ -30,7 +29,7 @@ class AIOContext:
             new_data = {}
             for k in self.callback_data:
                 v = self.callback_data[k]
-                v += b'___'
+                v += b"___"
                 new_data.update({k: v})
 
             for k, v in new_data.items():
@@ -54,25 +53,26 @@ class AIOContext:
 
 
 async def main():
-    redis = await aioredis.create_redis_pool('redis://localhost', db=0, password='rpassword')
-    keys = [f'k{i}' for i in range(3)]
+    redis = await aioredis.create_redis_pool(
+        "redis://localhost", db=0, password="rpassword"
+    )
+    keys = [f"k{i}" for i in range(3)]
     try:
         res = await redis.watch(*keys)
         pipe = redis.multi_exec()
         for k in keys:
-            pipe.set(k, 'xyz')
-            print(k, ' set!')
+            pipe.set(k, "xyz")
+            print(k, " set!")
             # await asyncio.sleep(5)
         result = await pipe.execute()
-        print('Done', result)
+        print("Done", result)
     finally:
-        print('Unwatch')
+        print("Unwatch")
         await redis.unwatch()
         redis.close()
         await redis.wait_closed()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     with AIOContext():
         pass
-

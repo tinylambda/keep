@@ -32,7 +32,7 @@ class DLL:
 
     def insert(self, data, index):
         if index > self.count or index < 0:
-            raise IndexError('out of index')
+            raise IndexError("out of index")
 
         if index == self.count:
             self.append(data)
@@ -53,7 +53,7 @@ class DLL:
 
     def remove(self, index):
         if index >= self.count or index < 0:
-            raise IndexError('out of index')
+            raise IndexError("out of index")
 
         if index == 0:
             self.head = self.head.next
@@ -91,16 +91,16 @@ class LRUCache:
 
     def get(self, key):
         if key not in self.hm:
-            logging.info('fetch data for key: %s', key)
+            logging.info("fetch data for key: %s", key)
             value = self.get_data_from_db(key)
             self.dll.insert(key, 0)
             self.hm[key] = value
         else:
-            logging.info('key exists: %s, using cache!', key)
+            logging.info("key exists: %s, using cache!", key)
 
         if self.dll.size() > self.max_size:
             to_be_removed_key = self.dll.tail.data
-            logging.info('shrinking key:  %s', to_be_removed_key)
+            logging.info("shrinking key:  %s", to_be_removed_key)
             try:
                 del self.hm[to_be_removed_key]
             except KeyError:
@@ -114,11 +114,10 @@ class LRUCache:
         return hashlib.md5(key.encode()).hexdigest()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cache = LRUCache(max_size=2)
-    print(cache.get('100'))
-    print(cache.get('101'))
-    print(cache.get('102'))  # remove 100
-    print(cache.get('100'))  # remove 101
-    print(cache.get('100'))  # nothing happen
-
+    print(cache.get("100"))
+    print(cache.get("101"))
+    print(cache.get("102"))  # remove 100
+    print(cache.get("100"))  # remove 101
+    print(cache.get("100"))  # nothing happen

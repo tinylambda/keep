@@ -6,14 +6,14 @@ import zmq
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     context = zmq.Context()
 
     reader = context.socket(zmq.SUB)
-    reader.connect('tcp://localhost:8100')
-    reader.setsockopt(zmq.SUBSCRIBE, b'')
+    reader.connect("tcp://localhost:8100")
+    reader.setsockopt(zmq.SUBSCRIBE, b"")
 
-    logging.info('reading from lb proxy')
+    logging.info("reading from lb proxy")
     while True:
         message = reader.recv()
-        logging.info('processing message: %s', message)
+        logging.info("processing message: %s", message)

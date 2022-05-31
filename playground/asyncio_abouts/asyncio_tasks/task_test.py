@@ -2,9 +2,9 @@ import asyncio
 
 
 async def t(i):
-    print('hello world')
+    print("hello world")
     await asyncio.sleep(i)
-    raise RuntimeError(f'exception {i}')
+    raise RuntimeError(f"exception {i}")
 
 
 async def main():
@@ -23,8 +23,7 @@ async def main():
         if len(tasks) == 0:
             break
 
-    print('main done')
+    print("main done")
 
 
 asyncio.run(main())
-

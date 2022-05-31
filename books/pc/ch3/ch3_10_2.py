@@ -2,7 +2,7 @@ import numpy as np
 import numpy.linalg
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m = np.matrix([[1, -2, 3], [0, 4, 5], [7, 8, -9]])
     print(m)
 
@@ -20,5 +20,3 @@ if __name__ == '__main__':
 
     print(m * x)
     print(v)
-
-

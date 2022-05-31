@@ -5,29 +5,33 @@ import seaborn as sns
 from utils import decorate, savefig
 
 np.random.seed(87)
-colors = sns.color_palette('pastel', 5)
+colors = sns.color_palette("pastel", 5)
 sns.set_palette(colors)
 
 
-if __name__ == '__main__':
+def flip(p):
+    return np.random.random() < p
+
+
+if __name__ == "__main__":
     G = nx.DiGraph()
 
-    G.add_node('Alice')
-    G.add_node('Bob')
-    G.add_node('Chuck')
+    G.add_node("Alice")
+    G.add_node("Bob")
+    G.add_node("Chuck")
 
     print(G.nodes())
 
-    G.add_edge('Alice', 'Bob')
-    G.add_edge('Alice', 'Chuck')
-    G.add_edge('Bob', 'Alice')
-    G.add_edge('Bob', 'Chuck')
+    G.add_edge("Alice", "Bob")
+    G.add_edge("Alice", "Chuck")
+    G.add_edge("Bob", "Alice")
+    G.add_edge("Bob", "Chuck")
 
     print(list(G.edges()))
 
-    nx.draw_circular(G, node_color='C0', node_size=2000, with_labels=True)
-    plt.axis('equal')
-    savefig('figs/chap02-1')
+    nx.draw_circular(G, node_color="C0", node_size=2000, with_labels=True)
+    plt.axis("equal")
+    savefig("figs/chap02-1")
 
     # start a new graph
     plt.clf()
@@ -44,18 +48,18 @@ if __name__ == '__main__':
     print(G.nodes)
 
     drive_times = {
-        ('Albany', 'Boston'): 3,
-        ('Albany', 'NYC'): 4,
-        ('Boston', 'NYC'): 4,
-        ('NYC', 'Philly'): 2,
+        ("Albany", "Boston"): 3,
+        ("Albany", "NYC"): 4,
+        ("Boston", "NYC"): 4,
+        ("NYC", "Philly"): 2,
     }
     G.add_edges_from(drive_times)
     print(G.edges)
     nx.draw(
         G,
         positions,
-        node_color='C1',
-        node_shape='s',
+        node_color="C1",
+        node_shape="s",
         node_size=2500,
         with_labels=True,
     )
@@ -64,8 +68,8 @@ if __name__ == '__main__':
         positions,
         edge_labels=drive_times,
     )
-    plt.axis('equal')
-    savefig('figs/chap02-2')
+    plt.axis("equal")
+    savefig("figs/chap02-2")
 
     plt.clf()
 
@@ -86,11 +90,11 @@ if __name__ == '__main__':
     print(complete.number_of_nodes())
     nx.draw_circular(
         complete,
-        node_color='C2',
+        node_color="C2",
         node_size=1000,
         with_labels=True,
     )
-    savefig('figs/chap02-3')
+    savefig("figs/chap02-3")
     plt.clf()
 
     print(list(complete.neighbors(0)))
@@ -106,9 +110,6 @@ if __name__ == '__main__':
         return seen
 
     print(reachable_nodes(complete, 0))
-
-    def flip(p):
-        return np.random.random() < p
 
     def random_pairs(nodes, p):
         for edge in all_pairs(nodes):
@@ -129,11 +130,11 @@ if __name__ == '__main__':
 
     nx.draw_circular(
         random_graph,
-        node_color='C3',
+        node_color="C3",
         node_size=1000,
         with_labels=True,
     )
-    savefig('figs/chap02-4')
+    savefig("figs/chap02-4")
     plt.clf()
 
     print(reachable_nodes(random_graph, 0))
@@ -160,28 +161,28 @@ if __name__ == '__main__':
     for p, y in zip(ps, ys):
         print(p, y)
 
-    plt.axvline(pstar, color='gray')
-    plt.plot(ps, ys, color='green')
-    decorate(xlabel='Prob of edge (p)', ylabel='Prob connected', xscale='log')
-    savefig('figs/chap02-5')
+    plt.axvline(pstar, color="gray")
+    plt.plot(ps, ys, color="green")
+    decorate(xlabel="Prob of edge (p)", ylabel="Prob connected", xscale="log")
+    savefig("figs/chap02-5")
     plt.clf()
 
     ns = [300, 100, 30]
     ps = np.logspace(-2.5, 0, 11)
-    sns.set_palette('Blues_r', 4)
+    sns.set_palette("Blues_r", 4)
     for n in ns:
         print(n)
         pstar = np.log(n) / n
-        plt.axvline(pstar, color='gray', alpha=0.3)
+        plt.axvline(pstar, color="gray", alpha=0.3)
         ys = [prob_connected(n, p) for p in ps]
-        plt.plot(ps, ys, label='n=%d' % n)
+        plt.plot(ps, ys, label="n=%d" % n)
 
     decorate(
-        xlabel='Prob of edge (p)',
-        ylabel='Prob connected',
-        xscale='log',
+        xlabel="Prob of edge (p)",
+        ylabel="Prob connected",
+        xscale="log",
         xlim=[ps[0], ps[-1]],
-        loc='upper left',
+        loc="upper left",
     )
-    savefig('figs/chap02-6')
+    savefig("figs/chap02-6")
     plt.clf()

@@ -1,1 +1,1 @@
-raise SystemExit('it failed')
+raise SystemExit("it failed")

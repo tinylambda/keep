@@ -7,7 +7,8 @@ class BitUtil:
     """
     Process bits in a bytes buffer
     """
-    ONE_BYTE_STRUCT = struct.Struct('1b')
+
+    ONE_BYTE_STRUCT = struct.Struct("1b")
 
     @classmethod
     def get_location_info(cls, bytes_buffer, nth):
@@ -31,9 +32,9 @@ class BitUtil:
         byte_selected = bytes_buffer[byte_location]
         byte_selected_value = cls.ONE_BYTE_STRUCT.unpack(byte_selected)[0]
 
-        mask_bits = ['0' for _ in range(8)]
-        mask_bits[bit_location] = '1'
-        mask_byte_string = ''.join(mask_bits)
+        mask_bits = ["0" for _ in range(8)]
+        mask_bits[bit_location] = "1"
+        mask_byte_string = "".join(mask_bits)
         mask_byte_value = int(mask_byte_string, 2)
 
         byte_selected_masked = byte_selected_value | mask_byte_value
@@ -45,9 +46,9 @@ class BitUtil:
         byte_selected = bytes_buffer[byte_location]
         byte_selected_value = cls.ONE_BYTE_STRUCT.unpack(byte_selected)[0]
 
-        mask_bits = ['1' for _ in range(8)]
-        mask_bits[bit_location] = '0'
-        mask_byte_string = ''.join(mask_bits)
+        mask_bits = ["1" for _ in range(8)]
+        mask_bits[bit_location] = "0"
+        mask_byte_string = "".join(mask_bits)
         mask_byte_value = int(mask_byte_string, 2)
 
         byte_selected_masked = byte_selected_value & mask_byte_value
@@ -59,16 +60,16 @@ class BitUtil:
         byte_selected = bytes_buffer[byte_location]
         byte_selected_value = cls.ONE_BYTE_STRUCT.unpack(byte_selected)[0]
 
-        mask_bits = ['0' for _ in range(8)]
-        mask_bits[bit_location] = '1'
-        mask_byte_string = ''.join(mask_bits)
+        mask_bits = ["0" for _ in range(8)]
+        mask_bits[bit_location] = "1"
+        mask_byte_string = "".join(mask_bits)
         mask_byte_value = int(mask_byte_string, 2)
 
         byte_selected_masked = byte_selected_value & mask_byte_value
         if byte_selected_masked > 0:
-            return '1'
+            return "1"
         else:
-            return '0'
+            return "0"
 
     @classmethod
     def set_bit_batch(cls, bytes_buffer, nth_list=[]):
@@ -82,11 +83,8 @@ class BitUtil:
 
     @classmethod
     def get_bit_batch(cls, bytes_buffer, nth_list):
-        bit_value_list = [
-            cls.get_bit(bytes_buffer, nth)
-            for nth in nth_list
-        ]
-        return ''.join(bit_value_list)
+        bit_value_list = [cls.get_bit(bytes_buffer, nth) for nth in nth_list]
+        return "".join(bit_value_list)
 
     @classmethod
     def set_byte(cls, bytes_buffer, nth, value):
@@ -102,18 +100,16 @@ class MessageLayout:
         self.blocks = {}
 
     def add_block(self, name, bit_index_list):
-        self.blocks.update(
-            {
-                name: {'bit_index_list': bit_index_list}
-            }
-        )
+        self.blocks.update({name: {"bit_index_list": bit_index_list}})
 
     def extract_block(self, name, message):
         block = self.blocks.get(name, {})
-        bit_index_list = block.get('bit_index_list', [])
+        bit_index_list = block.get("bit_index_list", [])
         return BitUtil.get_bit_batch(message, bit_index_list)
 
-    def extract_blocks(self,):
+    def extract_blocks(
+        self,
+    ):
         raise NotImplementedError
 
 
@@ -121,15 +117,11 @@ class StunMessage:
     MAGIC_COOKIE_VALUE = 0x2112A442
     MAGIC_COOKIE_VALUE_HEX = [0x21, 0x12, 0xA4, 0x42]
     MESSAGE_LAYOUT = MessageLayout()
-    MESSAGE_LAYOUT.add_block('first_2_bits', [1, 2])
-    MESSAGE_LAYOUT.add_block('method_bits', [3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16])
-    MESSAGE_LAYOUT.add_block('class_bits', [8, 12])
-    MESSAGE_LAYOUT.add_block(
-        'message_length_bits', [i for i in range(17, 33)]
-    )
-    MESSAGE_LAYOUT.add_block(
-        'magic_cookie_bits', [i for i in range(33, 65)]
-    )
+    MESSAGE_LAYOUT.add_block("first_2_bits", [1, 2])
+    MESSAGE_LAYOUT.add_block("method_bits", [3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16])
+    MESSAGE_LAYOUT.add_block("class_bits", [8, 12])
+    MESSAGE_LAYOUT.add_block("message_length_bits", [i for i in range(17, 33)])
+    MESSAGE_LAYOUT.add_block("magic_cookie_bits", [i for i in range(33, 65)])
 
     def __init__(self, message):
         self.message = message
@@ -142,8 +134,8 @@ class StunMessage:
         BitUtil.set_byte(self.message, 8, 0x42)
 
 
-if __name__ == '__main__':
-    s = struct.Struct('20b')
+if __name__ == "__main__":
+    s = struct.Struct("20b")
     buffer = ctypes.create_string_buffer(s.size)
     # s.pack_into(buffer, 0, *[i for i in range(20)])
     # print(buffer.raw)
@@ -164,6 +156,3 @@ if __name__ == '__main__':
     # print(BitUtil.get_batch(buffer))
     sm = StunMessage(buffer)
     print(binascii.hexlify(sm.message.raw))
-
-
-

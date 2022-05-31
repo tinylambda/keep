@@ -11,16 +11,14 @@ def make_averager():
         b = 7
         total = sum(series)
         return total / len(series)
+
     return averager
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     avg = make_averager()
-    print(
-        avg(10)
-    )
+    print(avg(10))
     print(avg(11))
     print(avg(12))
 
     print(b)
-

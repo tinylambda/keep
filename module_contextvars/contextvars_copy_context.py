@@ -1,6 +1,6 @@
 from contextvars import Context, copy_context
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """
     Context:
 

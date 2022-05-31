@@ -1,9 +1,9 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = (4, 5)
     x, y = p
     print(x, y)
 
-    data = ['ACME', 50, 91.1, (2012, 12, 21)]
+    data = ["ACME", 50, 91.1, (2012, 12, 21)]
     name, shares, price, date = data
     print(name)
     print(date)
@@ -14,5 +14,3 @@ if __name__ == '__main__':
     print(day)
 
     x, y, z = p  # raise ValueError
-
-

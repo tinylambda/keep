@@ -3,13 +3,17 @@ from typing import Optional, List
 
 import jwt
 from fastapi import FastAPI, Depends, HTTPException, status, Security
-from fastapi.security import OAuth2PasswordBearer, SecurityScopes, OAuth2PasswordRequestForm
+from fastapi.security import (
+    OAuth2PasswordBearer,
+    SecurityScopes,
+    OAuth2PasswordRequestForm,
+)
 from jose import JWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel, ValidationError
 
-SECRET_KEY = '09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7'
-ALGORITHM = 'HS256'
+SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
@@ -52,13 +56,13 @@ class UserInDB(User):
     hashed_password: str
 
 
-pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl='token',
+    tokenUrl="token",
     scopes={
-        'me': 'Read information about the current user.',
-        'items': 'Read items',
-    }
+        "me": "Read information about the current user.",
+        "items": "Read items",
+    },
 )
 
 
@@ -95,29 +99,37 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
 
-    to_encode.update({'exp': expire})
+    to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
-def get_current_user(security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)):
+def get_current_user(
+    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
+):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:
-        authenticate_value = f'Bearer'
+        authenticate_value = f"Bearer"
 
     credential_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail='Could not validate credentials',
-        headers={'WWW-Authenticate': authenticate_value},
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": authenticate_value},
     )
 
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM, ])
-        username: str = payload.get('sub')
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[
+                ALGORITHM,
+            ],
+        )
+        username: str = payload.get("sub")
         if username is None:
             raise credential_exception
-        token_scopes = payload.get('scopes', [])
+        token_scopes = payload.get("scopes", [])
         token_data = TokenData(scopes=token_scopes, username=username)
     except (JWTError, ValidationError):
         raise credential_exception
@@ -130,44 +142,53 @@ def get_current_user(security_scopes: SecurityScopes, token: str = Depends(oauth
         if scope not in token_data.scopes:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail='Not enough permissions',
-                headers={'WWW-Authenticate': authenticate_value},
+                detail="Not enough permissions",
+                headers={"WWW-Authenticate": authenticate_value},
             )
     return user
 
 
-async def get_current_active_user(current_user: User = Security(get_current_user, scopes=['me'])):
+async def get_current_active_user(
+    current_user: User = Security(get_current_user, scopes=["me"])
+):
     if current_user.disabled:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Inactive user')
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Inactive user"
+        )
     return current_user
 
 
-@app.post('/token', response_model=Token)
+@app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Incorrect username or password')
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Incorrect username or password",
+        )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={'sub': user.username, 'scopes': form_data.scopes},
+        data={"sub": user.username, "scopes": form_data.scopes},
         expires_delta=access_token_expires,
     )
-    return {'access_token': access_token, 'token_type': 'bearer'}
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get('/users/me/', response_model=User)
+@app.get("/users/me/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 
 
-@app.get('/users/me/items/')
-async def read_own_items(current_user: User = Security(get_current_active_user, scopes=['items'])):
-    return [{'item_id': 'foo', 'owner': current_user.username}]
+@app.get("/users/me/items/")
+async def read_own_items(
+    current_user: User = Security(get_current_active_user, scopes=["items"])
+):
+    return [{"item_id": "foo", "owner": current_user.username}]
 
 
-@app.get('/status/')
+@app.get("/status/")
 async def read_system_status(current_user: User = Depends(get_current_user)):
-    return {'status': 'OK'}
+    return {"status": "OK"}
 
 
 #

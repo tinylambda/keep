@@ -39,14 +39,13 @@ class Task:
         self.name = name
 
     def send(self, msg):
-        print(f'{self.name} is processing message {msg}')
+        print(f"{self.name} is processing message {msg}")
 
 
-if __name__ == '__main__':
-    exc = get_exchange('name')
-    task_a = Task('a')
-    task_b = Task('b')
+if __name__ == "__main__":
+    exc = get_exchange("name")
+    task_a = Task("a")
+    task_b = Task("b")
     with exc.subscribe(task_a, task_b):
-        exc.send('msg1')
-        exc.send('msg2')
-
+        exc.send("msg1")
+        exc.send("msg2")

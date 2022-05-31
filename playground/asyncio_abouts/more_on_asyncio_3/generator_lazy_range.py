@@ -10,6 +10,6 @@ def lazy_range(up_to):
     yield from gratuitous_refactor()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for i in lazy_range(10):
         print(i)

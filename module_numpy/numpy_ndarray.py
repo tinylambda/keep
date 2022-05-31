@@ -1,7 +1,7 @@
 import numpy as np
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data1 = [6, 7.5, 8, 0, 1]
     arr1 = np.array(data1)
     print(arr1)
@@ -20,4 +20,3 @@ if __name__ == '__main__':
     print(np.empty((2, 3, 2)))
 
     print(np.arange(15))
-

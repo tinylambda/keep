@@ -9,4 +9,3 @@ class IStream(metaclass=ABCMeta):
     @abstractmethod
     def write(self, data):
         pass
-

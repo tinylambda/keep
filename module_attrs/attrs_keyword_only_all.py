@@ -12,11 +12,11 @@ class A:
     b = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         a = A(1, 2)
     except TypeError as e:
-        logging.info('error', exc_info=e)
+        logging.info("error", exc_info=e)
 
     a = A(a=1, b=2)
-    logging.info('%s', a)
+    logging.info("%s", a)

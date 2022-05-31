@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+if __name__ == "__main__":
     l = list(range(10))
     print(l)
 
@@ -13,4 +13,3 @@ if __name__ == '__main__':
 
     l[2:5] = [100]
     print(l)
-

@@ -9,14 +9,9 @@ def chain2(*iterables):
         yield from it
 
 
-if __name__ == '__main__':
-    s = 'ABC'
+if __name__ == "__main__":
+    s = "ABC"
     t = tuple(range(3))
-    print(
-        list(chain(s, t))
-    )
+    print(list(chain(s, t)))
 
-    print(
-        list(chain2(s, t))
-    )
-
+    print(list(chain2(s, t)))

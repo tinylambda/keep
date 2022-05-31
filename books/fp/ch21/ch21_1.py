@@ -1,6 +1,6 @@
 def record_factory(cls_name, field_names):
     try:
-        field_names = field_names.replace(',',  ' ').split()
+        field_names = field_names.replace(",", " ").split()
     except AttributeError:
         pass
     field_names = tuple(field_names)
@@ -16,23 +16,21 @@ def record_factory(cls_name, field_names):
             yield getattr(self, name)
 
     def __repr__(self):
-        values = ', '.join('{}={!r}'.format(*i) for i in zip(self.__slots__, self))
-        return '{}({})'.format(self.__class__.__name__, values)
+        values = ", ".join("{}={!r}".format(*i) for i in zip(self.__slots__, self))
+        return "{}({})".format(self.__class__.__name__, values)
 
     cls_attrs = dict(
         __slots__=field_names,
         __init__=__init__,
         __iter__=__iter__,
         __repr__=__repr__,
-
     )
-    return type(cls_name, (object, ), cls_attrs)
+    return type(cls_name, (object,), cls_attrs)
 
 
-if __name__ == '__main__':
-    cls = record_factory('Dog', 'name age owner')
+if __name__ == "__main__":
+    cls = record_factory("Dog", "name age owner")
     print(cls)
 
-    instance = cls(name='Puppy', age=2, owner='Felix')
+    instance = cls(name="Puppy", age=2, owner="Felix")
     print(instance)
-

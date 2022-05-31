@@ -9,5 +9,5 @@ def findfile(start, name):
             print(os.path.normpath(os.path.abspath(full_path)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     findfile(sys.argv[1], sys.argv[2])

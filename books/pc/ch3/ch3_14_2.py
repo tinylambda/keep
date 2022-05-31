@@ -19,15 +19,16 @@ def date_range(start, stop, step):
         start += step
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a_day = timedelta(days=1)
     first_day, last_day = get_month_range()
     while first_day < last_day:
         print(first_day)
         first_day += a_day
 
-    print('-' * 64)
+    print("-" * 64)
 
-    for d in date_range(datetime(2012, 9, 1), datetime(2012, 10, 1), timedelta(hours=6)):
+    for d in date_range(
+        datetime(2012, 9, 1), datetime(2012, 10, 1), timedelta(hours=6)
+    ):
         print(d)
-

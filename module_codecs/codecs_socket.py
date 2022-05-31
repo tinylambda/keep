@@ -16,11 +16,11 @@ class PassThrough:
         self.other = other
 
     def write(self, data):
-        print('Writing: ', repr(data))
+        print("Writing: ", repr(data))
         return self.other.write(data)
 
     def read(self, size=-1):
-        print('Reading: ', end=' ')
+        print("Reading: ", end=" ")
         data = self.other.read(size)
         print(repr(data))
         return data
@@ -32,12 +32,12 @@ class PassThrough:
         return self.other.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import codecs
     import socket
     import threading
 
-    address = ('localhost', 0)  # let the kernel assign a port
+    address = ("localhost", 0)  # let the kernel assign a port
     server = socketserver.TCPServer(address, Echo)
     ip, port = server.server_address  # what port was assigned?
 
@@ -50,22 +50,21 @@ if __name__ == '__main__':
     s.connect((ip, port))
 
     # Wrap the socket with a reader and writer
-    read_file = s.makefile('rb')
-    incoming = codecs.getreader('utf-8')(PassThrough(read_file))
-    write_file = s.makefile('wb')
-    outgoing = codecs.getwriter('utf-8')(PassThrough(write_file))
+    read_file = s.makefile("rb")
+    incoming = codecs.getreader("utf-8")(PassThrough(read_file))
+    write_file = s.makefile("wb")
+    outgoing = codecs.getwriter("utf-8")(PassThrough(write_file))
 
     # Send the data
-    text = '中国'
-    print('Sending: ', repr(text))
+    text = "中国"
+    print("Sending: ", repr(text))
     outgoing.write(text)
     outgoing.flush()
 
     # Receive a response
     response = incoming.read()
-    print('Received: ', repr(response))
+    print("Received: ", repr(response))
 
     # Clean up
     s.close()
     server.socket.close()
-

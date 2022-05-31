@@ -15,4 +15,3 @@ class Date:
         d.month = t.tm_mon
         d.day = t.tm_mday
         return d
-

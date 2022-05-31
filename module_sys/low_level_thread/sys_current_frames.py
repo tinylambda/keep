@@ -10,21 +10,18 @@ blocker = threading.Lock()
 def block(i):
     t = threading.current_thread()
     with io_lock:
-        print('{} with ident {} going to sleep'.format(t.name, t.ident))
+        print("{} with ident {} going to sleep".format(t.name, t.ident))
 
     if i:
         blocker.acquire()
         time.sleep(0.2)
 
     with io_lock:
-        print(t.name, 'finishing')
+        print(t.name, "finishing")
 
 
 # Create and start several threads that "block"
-threads = [
-    threading.Thread(target=block, args=(i, ))
-    for i in range(3)
-]
+threads = [threading.Thread(target=block, args=(i,)) for i in range(3)]
 
 for t in threads:
     t.daemon = True
@@ -43,5 +40,8 @@ with io_lock:
             # Main thread
             continue
 
-        print('{} stopped at line {} of {}'.format(
-            t.name, frame.f_code.co_name, frame.f_lineno, frame.f_code.co_filename))
+        print(
+            "{} stopped at line {} of {}".format(
+                t.name, frame.f_code.co_name, frame.f_lineno, frame.f_code.co_filename
+            )
+        )

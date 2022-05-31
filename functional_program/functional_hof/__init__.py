@@ -1,10 +1,6 @@
-print(
-    max(1, 2, 3)
-)
+print(max(1, 2, 3))
 
-print(
-    max((1, 2, 3, 4))
-)
+print(max((1, 2, 3, 4)))
 
 
 def g():
@@ -13,4 +9,3 @@ def g():
 
 
 print(max(g()))
-

@@ -11,4 +11,3 @@ def f():
 
 formatted_stack = call_function(f)
 pprint(formatted_stack)
-

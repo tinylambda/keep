@@ -5,15 +5,11 @@ import datetime
 
 
 doc = {
-    'name': 'Felix',
-    'tag': ['Python', 'Go'],
-    'email': 'tinylambda@gmail.com',
-    'item': {
-        'name': 'The Python Programming Language',
-        'quantity': 10
-    }
+    "name": "Felix",
+    "tag": ["Python", "Go"],
+    "email": "tinylambda@gmail.com",
+    "item": {"name": "The Python Programming Language", "quantity": 10},
 }
 
 res = elasticsearch_client.index(index=DEFAULT_INDEX_NAME, body=doc)
 print(res)
-

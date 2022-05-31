@@ -9,21 +9,21 @@ from kivy.graphics import Color, Ellipse, Line
 class MyPaintWidget(Widget):
     def on_touch_down(self, touch):
         with self.canvas:
-            color = (random(), 1., 1.)
-            Color(*color, mode='hsv')
-            d = 30.
+            color = (random(), 1.0, 1.0)
+            Color(*color, mode="hsv")
+            d = 30.0
             Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
-            touch.ud['line'] = Line(points=(touch.x, touch.y))
+            touch.ud["line"] = Line(points=(touch.x, touch.y))
 
     def on_touch_move(self, touch):
-        touch.ud['line'].points += [touch.x, touch.y]
+        touch.ud["line"].points += [touch.x, touch.y]
 
 
 class MyPaintApp(App):
     def build(self):
         parent = Widget()
         self.painter = MyPaintWidget()
-        clearnbtn = Button(text='Clear')
+        clearnbtn = Button(text="Clear")
         clearnbtn.bind(on_release=self.clear_canvas)
         parent.add_widget(self.painter)
         parent.add_widget(clearnbtn)
@@ -33,6 +33,5 @@ class MyPaintApp(App):
         self.painter.canvas.clear()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyPaintApp().run()
-

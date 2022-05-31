@@ -1,7 +1,6 @@
 def bar():
-    print('bar')
+    print("bar")
 
 
 def grok():
-    print('new grok')
-
+    print("new grok")

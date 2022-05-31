@@ -9,8 +9,5 @@ def aritprog_gen(begin, step, end=None):
     return ap_gen
 
 
-if __name__ == '__main__':
-    print(
-        list(aritprog_gen(1, .5, 3))
-    )
-
+if __name__ == "__main__":
+    print(list(aritprog_gen(1, 0.5, 3)))

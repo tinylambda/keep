@@ -6,4 +6,3 @@ b = [2, 5, 6, 11]
 
 for c in heapq.merge(a, b):
     print(c)
-

@@ -12,8 +12,8 @@ class C1:
     y = attr.ib()
 
 
-C2 = attr.make_class('C2', ['x', 'y'])
+C2 = attr.make_class("C2", ["x", "y"])
 
 
-if __name__ == '__main__':
-    logging.info('%s', attr.fields(C1) == attr.fields(C2))
+if __name__ == "__main__":
+    logging.info("%s", attr.fields(C1) == attr.fields(C2))

@@ -28,7 +28,7 @@ def faster(b: int) -> int:
     return t * t
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m1s = Mersenne1(shifty)
     m1m = Mersenne1(multy)
     m1f = Mersenne1(faster)

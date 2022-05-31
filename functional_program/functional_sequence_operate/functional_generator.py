@@ -14,10 +14,7 @@ def isprime(x: int) -> bool:
         return True
     if x % 2 == 0:
         return False
-    factor = first(
-        lambda n: x % n == 0,
-        range(3, int(math.sqrt(x) + 0.5) + 1, 2)
-    )
+    factor = first(lambda n: x % n == 0, range(3, int(math.sqrt(x) + 0.5) + 1, 2))
 
     return factor is None
 
@@ -30,7 +27,7 @@ def map_not_none(func: Callable, source: Iterable) -> Iterator:
             pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x1 = [1, 2, 3, 4]
     x2 = range(100)
 
@@ -53,7 +50,6 @@ if __name__ == '__main__':
     r = map_not_none(math.sqrt, x4)
     print(list(r))
 
-    x5 = ['10', 'abc', '20', '34', '45y']
+    x5 = ["10", "abc", "20", "34", "45y"]
     r2 = map_not_none(int, x5)
     print(list(r2))
-

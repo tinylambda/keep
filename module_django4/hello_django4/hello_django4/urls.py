@@ -19,15 +19,15 @@ from django.urls import path, include
 from index.views import IndexView, UserListView, CacheView
 
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('userlist/', UserListView.as_view()),
-    path('cache/', CacheView.as_view()),
-    path('admin/', admin.site.urls),
-
-    path('books/', include('urltest.urls')),
-
-    path('<username>/blog/', include('blog.urls'), {'foo': 'bar'}),
-
-    path('author-polls/', include(('polls.urls', 'polls'), namespace='author-polls')),
-    path('publisher-polls/', include(('polls.urls', 'polls'), namespace='publisher-polls')),
+    path("", IndexView.as_view()),
+    path("userlist/", UserListView.as_view()),
+    path("cache/", CacheView.as_view()),
+    path("admin/", admin.site.urls),
+    path("books/", include("urltest.urls")),
+    path("<username>/blog/", include("blog.urls"), {"foo": "bar"}),
+    path("author-polls/", include(("polls.urls", "polls"), namespace="author-polls")),
+    path(
+        "publisher-polls/",
+        include(("polls.urls", "polls"), namespace="publisher-polls"),
+    ),
 ]

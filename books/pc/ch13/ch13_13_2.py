@@ -9,12 +9,12 @@ class Timer:
 
     def start(self):
         if self._start is not None:
-            raise RuntimeError('already started')
+            raise RuntimeError("already started")
         self._start = self._func()
 
     def stop(self):
         if self._start is None:
-            raise RuntimeError('not started')
+            raise RuntimeError("not started")
         end = self._func()
         self.elapsed += end - self._start
         self._start = None
@@ -39,7 +39,7 @@ def countdown(n):
         n -= 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t = Timer()
     t.start()
     countdown(1000000)

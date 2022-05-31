@@ -13,9 +13,9 @@ def acquire(*locks):
     locks = sorted(locks, key=lambda x: id(x))
 
     # make sure lock order of previously acquired locks is not violated
-    acquired = getattr(_local, 'acquired', [])
+    acquired = getattr(_local, "acquired", [])
     if acquired and max(id(lock) for lock in acquired) >= id(locks[0]):
-        raise RuntimeError('lock order violation')
+        raise RuntimeError("lock order violation")
 
     # acquire all of the locks
     acquired.extend(locks)
@@ -29,23 +29,24 @@ def acquire(*locks):
         # release locks in reverse order of acquisition
         for lock in reversed(locks):
             lock.release()
-        del acquired[-len(locks):]
+        del acquired[-len(locks) :]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import threading
+
     x_lock = threading.Lock()
     y_lock = threading.Lock()
 
     def thread_1():
         while True:
             with acquire(x_lock, y_lock):
-                print('Thraed-1')
+                print("Thraed-1")
 
     def thread_2():
         while True:
             with acquire(y_lock, x_lock):
-                print('Thread-2')
+                print("Thread-2")
 
     t1 = threading.Thread(target=thread_1)
     t1.daemon = True

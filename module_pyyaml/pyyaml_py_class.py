@@ -14,11 +14,14 @@ class Hero:
     sp = attr.ib()
 
 
-if __name__ == '__main__':
-    result = yaml.load('''
+if __name__ == "__main__":
+    result = yaml.load(
+        """
     !!python/object:__main__.Hero
     name: Felix
     hp: 1200
     sp: 0
-    ''', yaml.UnsafeLoader)
-    logging.info('%s', result)
+    """,
+        yaml.UnsafeLoader,
+    )
+    logging.info("%s", result)

@@ -3,12 +3,10 @@ def f(a, b):
     return a
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = 1
     y = 2
-    print(
-        f(x, y)
-    )
+    print(f(x, y))
     print(x, y)
 
     a = [1, 2]
@@ -20,4 +18,3 @@ if __name__ == '__main__':
     u = (30, 40)
     f(t, u)
     print(t, u)
-

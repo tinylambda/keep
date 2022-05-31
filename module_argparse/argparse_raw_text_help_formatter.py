@@ -1,17 +1,25 @@
 import argparse
 
-parser = argparse.ArgumentParser(add_help=True, formatter_class=argparse.RawTextHelpFormatter, description='''
+parser = argparse.ArgumentParser(
+    add_help=True,
+    formatter_class=argparse.RawTextHelpFormatter,
+    description="""
 description
     not
         wrapped
-''', epilog='''
+""",
+    epilog="""
 epilog
     not
-    wrapped''')
+    wrapped""",
+)
 
-parser.add_argument('-a', action='store_true', help='''argument
+parser.add_argument(
+    "-a",
+    action="store_true",
+    help="""argument
 help is not
-wrapped''')
+wrapped""",
+)
 
 parser.print_help()
-

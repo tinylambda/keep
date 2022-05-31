@@ -7,7 +7,7 @@
 """
 
 
-def module_level_function(arg1, arg2='default', *args, **kwargs):
+def module_level_function(arg1, arg2="default", *args, **kwargs):
     """This function is declared in the module."""
     local_variable = arg1 * 2
     return local_variable
@@ -24,7 +24,7 @@ class A(object):
         return self.name
 
 
-instance_of_a = A('sample_instance')
+instance_of_a = A("sample_instance")
 
 
 class B(A):
@@ -38,5 +38,4 @@ class B(A):
 
     def get_name(self):
         """Overrides version from A"""
-        return 'B(' + self.name + ')'
-
+        return "B(" + self.name + ")"

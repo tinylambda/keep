@@ -11,10 +11,6 @@ class GameServer(RoleMixin):
         self.name = name
 
 
-if __name__ == '__main__':
-    gs = GameServer('GOOD')
+if __name__ == "__main__":
+    gs = GameServer("GOOD")
     gs.print_name()
-
-
-
-

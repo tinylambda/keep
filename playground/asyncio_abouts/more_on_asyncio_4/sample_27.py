@@ -11,9 +11,9 @@ from aiodebug import log_slow_callbacks
 
 logging.basicConfig(
     level=logging.INFO,
-    format='{asctime},{msecs} {levelname}: {message}',
-    style='{',
-    datefmt='%H:%M:%S',
+    format="{asctime},{msecs} {levelname}: {message}",
+    style="{",
+    datefmt="%H:%M:%S",
 )
 
 
@@ -28,7 +28,7 @@ class PubSubMessage:
     extended_cnt = attr.ib(repr=False, default=0)
 
     def __attrs_post_init__(self):
-        self.hostname = f'{self.instance_name}.example.net'
+        self.hostname = f"{self.instance_name}.example.net"
 
 
 class RestartedFailed(Exception):
@@ -40,10 +40,10 @@ async def publish(q: asyncio.Queue):
 
     while True:
         msg_id = str(uuid.uuid4())
-        host_id = ''.join(random.choices(choices, k=4))
-        instance_name = f'cattle-{host_id}'
+        host_id = "".join(random.choices(choices, k=4))
+        instance_name = f"cattle-{host_id}"
         msg = PubSubMessage(message_id=msg_id, instance_name=instance_name)
-        logging.debug(f'published message {msg}')
+        logging.debug(f"published message {msg}")
         asyncio.create_task(q.put(msg))
         await asyncio.sleep(random.random())
 
@@ -52,9 +52,9 @@ async def restart_host(msg: PubSubMessage):
     await asyncio.sleep(random.random())
 
     if random.randrange(1, 5) == 3:
-        raise RestartedFailed(f'could not restart {msg.hostname}')
+        raise RestartedFailed(f"could not restart {msg.hostname}")
     msg.restarted = True
-    logging.info(f'restarted {msg}')
+    logging.info(f"restarted {msg}")
 
 
 async def save(msg: PubSubMessage):
@@ -62,16 +62,16 @@ async def save(msg: PubSubMessage):
     time.sleep(1 + random.random())
 
     if random.randrange(1, 5) == 3:
-        raise Exception(f'could not save {msg}')
+        raise Exception(f"could not save {msg}")
 
     msg.saved = True
-    logging.info(f'saved {msg} into database')
+    logging.info(f"saved {msg} into database")
 
 
 async def extend(msg: PubSubMessage, event: asyncio.Event):
     while not event.is_set():
         msg.extended_cnt += 1
-        logging.info(f'extended deadline by 3 seconds for {msg}')
+        logging.info(f"extended deadline by 3 seconds for {msg}")
         await asyncio.sleep(2)
 
 
@@ -79,15 +79,15 @@ async def cleanup(msg: PubSubMessage, event: asyncio.Event):
     await event.wait()
     await asyncio.sleep(random.random())
     msg.acked = True
-    logging.info(f'done. acked {msg}')
+    logging.info(f"done. acked {msg}")
 
 
 def handle_results(results, msg: PubSubMessage):
     for result in results:
         if isinstance(result, RestartedFailed):
-            logging.error(f'retrying for failure to restart: {msg.hostname}')
+            logging.error(f"retrying for failure to restart: {msg.hostname}")
         elif isinstance(result, Exception):
-            logging.error(f'handling general error : {result}')
+            logging.error(f"handling general error : {result}")
 
 
 async def handle_message(msg: PubSubMessage):
@@ -105,22 +105,22 @@ async def handle_message(msg: PubSubMessage):
 async def consume(q: asyncio.Queue):
     while True:
         msg: PubSubMessage = await q.get()
-        logging.info(f'pulled {msg}')
+        logging.info(f"pulled {msg}")
         asyncio.create_task(handle_message(msg))
 
 
 async def shutdown(loop, sig=None):
     if sig:
-        logging.info(f'received exit signal {sig.name}')
-    logging.info('closing database connections')
-    logging.info('nacking outstanding messages')
+        logging.info(f"received exit signal {sig.name}")
+    logging.info("closing database connections")
+    logging.info("nacking outstanding messages")
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
 
     [task.cancel() for task in tasks]
 
-    logging.info('cancelling outstanding tasks')
+    logging.info("cancelling outstanding tasks")
     await asyncio.gather(*tasks, return_exceptions=True)
-    logging.info(f'flushing metrics')
+    logging.info(f"flushing metrics")
     loop.stop()
 
 
@@ -137,7 +137,9 @@ def main():
 
     signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
     for s in signals:
-        loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(loop, sig=s)))
+        loop.add_signal_handler(
+            s, lambda s=s: asyncio.create_task(shutdown(loop, sig=s))
+        )
 
     # remove loop.set_exception_handler for debugging purpose
     q = asyncio.Queue()
@@ -148,10 +150,10 @@ def main():
         loop.run_forever()
     finally:
         loop.close()
-        logging.info('successfully shutdown the Mayhem service.')
+        logging.info("successfully shutdown the Mayhem service.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 # PYTHONASYNCIODEBUG=1 python playground/asyncio_abouts/more_on_asyncio_4/sample_26.py

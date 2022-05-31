@@ -5,10 +5,10 @@ from kivy.uix.boxlayout import BoxLayout
 
 
 class MyWidget1(BoxLayout):
-    writing = StringProperty('XYZ')
+    writing = StringProperty("XYZ")
 
     def text(self, val):
-        print('text input text is : {txt}'.format(txt=val))
+        print("text input text is : {txt}".format(txt=val))
 
 
 class MyWidget2(BoxLayout):
@@ -30,6 +30,5 @@ class MyApp(App):
         return MyW()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MyApp().run()
-

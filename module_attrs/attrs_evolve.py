@@ -27,24 +27,24 @@ class X:
         self.x = x
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     i1 = C(1, 2)
-    logging.info('%s', i1)
+    logging.info("%s", i1)
     i2 = attr.evolve(i1, y=3)
-    logging.info('%s', i2)
-    logging.info('%s', i1 == i2)
+    logging.info("%s", i2)
+    logging.info("%s", i1 == i2)
     try:
         i3 = attr.evolve(i2, z=100)
     except TypeError as e:
-        logging.error('type error', exc_info=e)
+        logging.error("type error", exc_info=e)
 
     x1 = X(1)
     try:
         x2 = attr.evolve(x1, x=2)
     except NotAnAttrsClassError as e:
-        logging.error('NotAnAttrsClassError', exc_info=e)
+        logging.error("NotAnAttrsClassError", exc_info=e)
 
-    Y = attr.s(these={'x': attr.ib()})(X)
+    Y = attr.s(these={"x": attr.ib()})(X)
     y1 = Y(1)
     y2 = attr.evolve(y1, x=3)
-    logging.info('%s -> %s', y1, y2)
+    logging.info("%s -> %s", y1, y2)

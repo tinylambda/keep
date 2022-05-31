@@ -6,12 +6,12 @@ import yaml
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = {
-        'name': 'Felix',
-        'race': 'human',
-        'traits': ['ONE_HAND', 'ONE_EYE'],
+        "name": "Felix",
+        "race": "human",
+        "traits": ["ONE_HAND", "ONE_EYE"],
     }
 
     result = yaml.dump(data)
-    logging.info('%s', result)
+    logging.info("%s", result)

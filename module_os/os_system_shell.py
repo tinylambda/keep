@@ -1,4 +1,4 @@
 import os
 
-if __name__ == '__main__':
-    os.system('echo $PATH')
+if __name__ == "__main__":
+    os.system("echo $PATH")

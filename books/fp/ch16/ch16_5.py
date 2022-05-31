@@ -7,6 +7,7 @@ def coroutine(func):
         gen = func(*args, **kwargs)
         next(gen)
         return gen
+
     return primer
 
 
@@ -22,22 +23,13 @@ def averager():
         average = total / count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from inspect import getgeneratorstate
 
     coro_avg = averager()
 
-    print(
-        getgeneratorstate(coro_avg)
-    )
+    print(getgeneratorstate(coro_avg))
 
-    print(
-        coro_avg.send(10)
-    )
-    print(
-        coro_avg.send(30)
-    )
-    print(
-        coro_avg.send(5)
-    )
-
+    print(coro_avg.send(10))
+    print(coro_avg.send(30))
+    print(coro_avg.send(5))

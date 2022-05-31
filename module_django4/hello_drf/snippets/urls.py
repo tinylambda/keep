@@ -30,11 +30,11 @@ from snippets import views
 # })
 
 router = DefaultRouter()
-router.register('snippets', views.SnippetViewSet)
-router.register('users', views.UserViewSet)
+router.register("snippets", views.SnippetViewSet)
+router.register("users", views.UserViewSet)
 
 urlpatterns = [
-    path('',  include(router.urls)),
+    path("", include(router.urls)),
     # path('', views.api_root),
     # path('snippets/', snippet_list, name='snippet-list'),
     # path('snippets/<int:pk>/', snippet_detail, name='snippet-detail'),

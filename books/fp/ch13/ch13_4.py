@@ -13,10 +13,10 @@ class A:
         return self
 
     def __repr__(self):
-        return f'A({self._x})'
+        return f"A({self._x})"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a1 = A(1)
     a2 = A(2)
 
@@ -28,10 +28,9 @@ if __name__ == '__main__':
 
     print(a1)
 
-    print('_' * 100)
+    print("_" * 100)
     a1 = A(1)
     a2 = A(2)
     print(id(a1))
     a1 = a1 + a2
     print(a1, id(a1))
-

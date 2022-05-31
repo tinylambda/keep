@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('question', '0003_auto_20210604_0652'),
+        ("question", "0003_auto_20210604_0652"),
     ]
 
     operations = [
         migrations.AlterIndexTogether(
-            name='answerrecord',
-            index_together={('question_id', 'user_id')},
+            name="answerrecord",
+            index_together={("question_id", "user_id")},
         ),
     ]

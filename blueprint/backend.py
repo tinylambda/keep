@@ -7,4 +7,3 @@ class Backend:
 
     def set(self, k, v) -> typing.NoReturn:
         pass
-

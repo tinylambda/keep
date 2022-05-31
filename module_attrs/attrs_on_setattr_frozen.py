@@ -13,10 +13,10 @@ class C:
     x = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(100)
-    logging.info('%s', c)
+    logging.info("%s", c)
     try:
         c.x = 200  # trigger FrozenAttributeError
     except FrozenAttributeError as e:
-        logging.error('it happened')
+        logging.error("it happened")

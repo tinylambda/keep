@@ -7,7 +7,7 @@ import psutil
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pprint.pprint(psutil.virtual_memory())
 
     # total: total physical memory (exclusive swap).
@@ -31,4 +31,3 @@ if __name__ == '__main__':
     # shared (Linux, BSD): memory that may be simultaneously accessed by multiple processes.
 
     # slab (Linux): in-kernel data structures cache.
-    

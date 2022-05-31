@@ -12,7 +12,7 @@ class Model(BaseModel):
     c: Optional[int] = Field(...)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(Model(b=1, c=2))
     try:
         Model(a=1, b=2)

@@ -7,7 +7,7 @@ from django.views.generic import ListView
 
 class IndexView(View):
     def get(self, request):
-        result = reverse('polls:index', current_app=self.request.resolver_match.namespace)
-        return render(request, 'poll-author.html')
-
-
+        result = reverse(
+            "polls:index", current_app=self.request.resolver_match.namespace
+        )
+        return render(request, "poll-author.html")

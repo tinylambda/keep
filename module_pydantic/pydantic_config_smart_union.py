@@ -29,8 +29,8 @@ class Model3(BaseModel, smart_union=True):
     x: Union[List[str], List[int]]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(Model(x=1, y=Bar()))
     print(Model2(x=1, y=Bar()))
-    print(Model3(x=[1, '2']))
+    print(Model3(x=[1, "2"]))
     print(Model3(x=[1, 2]))

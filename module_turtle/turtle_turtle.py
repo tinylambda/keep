@@ -1,6 +1,6 @@
 import turtle
 
-turtle.shape('turtle')
+turtle.shape("turtle")
 turtle.home()
 print(turtle.position())
 
@@ -14,7 +14,12 @@ def draw_turtle(side_num=30, side_length=100):
         if i == 0 or i == side_num // 2:
             turtle.circle(10)
 
-        if i == foot_step or i == foot_step * 2 or i == foot_step * 3 or i == foot_step * 4:
+        if (
+            i == foot_step
+            or i == foot_step * 2
+            or i == foot_step * 3
+            or i == foot_step * 4
+        ):
             turtle.circle(20)
 
         turtle.forward(side_length)

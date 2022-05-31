@@ -11,7 +11,6 @@ class C:
     x = attr.ib(converter=attr.converters.pipe(int, float))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(1.24)
-    logging.info('%s', c)
-    
+    logging.info("%s", c)

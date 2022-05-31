@@ -22,20 +22,14 @@ class Model(BaseModel):
         extra = Extra.forbid
 
 
-if __name__ == '__main__':
-    print(
-        Model(u={'identity': {'name': 'Pan', 'surname': 'Felix'}, 'age': 35})
-    )
+if __name__ == "__main__":
+    print(Model(u={"identity": {"name": "Pan", "surname": "Felix"}, "age": 35}))
 
-    print(
-        Model(u={'identity': {'name': None, 'surname': 'Felix'}, 'age': 35})
-    )
+    print(Model(u={"identity": {"name": None, "surname": "Felix"}, "age": 35}))
 
-    print(
-        Model(u={'identity': {}, 'age': 35})
-    )
+    print(Model(u={"identity": {}, "age": 35}))
 
     try:
-        Model(u={'identity': {'name': ['Pan'], 'surname': 'Felix'}, 'age': 21})
+        Model(u={"identity": {"name": ["Pan"], "surname": "Felix"}, "age": 21})
     except ValidationError as e:
         print(e)

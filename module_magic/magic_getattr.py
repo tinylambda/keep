@@ -3,7 +3,7 @@ class SimpleDictProxy:
         self._data: dict = data
 
     def __getattribute__(self, item):
-        data_dict = super().__getattribute__('_data')
+        data_dict = super().__getattribute__("_data")
         if item in data_dict:
             value = data_dict[item]
             if isinstance(value, dict):
@@ -15,14 +15,12 @@ class SimpleDictProxy:
 
     def __setattr__(self, key, value):
         try:
-            data_dict = super().__getattribute__('_data')
-            print(f'can get {key}')
+            data_dict = super().__getattribute__("_data")
+            print(f"can get {key}")
             if key in data_dict:
-                data_dict.update({
-                    key: value
-                })
+                data_dict.update({key: value})
         except AttributeError:
-            print(f'cannot get {key}')
+            print(f"cannot get {key}")
         super().__setattr__(key, value)
 
     @classmethod
@@ -31,21 +29,21 @@ class SimpleDictProxy:
         return o
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     role_info = {
-        'characters': {
-            'c1': {
-                'instance_id': 'c1',
-                'level': 10,
-                'exp': 10877,
-                'star': 2,
+        "characters": {
+            "c1": {
+                "instance_id": "c1",
+                "level": 10,
+                "exp": 10877,
+                "star": 2,
             },
-            'c2': {
-                'instance_id': 'c2',
-                'level': 23,
-                'exp': 400,
-                'star': 4,
-            }
+            "c2": {
+                "instance_id": "c2",
+                "level": 23,
+                "exp": 400,
+                "star": 4,
+            },
         }
     }
 
@@ -58,6 +56,5 @@ if __name__ == '__main__':
     p.characters.c1.level += 1
     print(role_info)
 
-    print('-' * 64)
+    print("-" * 64)
     print(p.characters.c1.level)
-

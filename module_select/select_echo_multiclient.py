@@ -3,11 +3,11 @@ import sys
 
 
 messages = [
-    'This is the message. ',
-    'It will be sent ',
-    'in parts.',
+    "This is the message. ",
+    "It will be sent ",
+    "in parts.",
 ]
-server_address = ('localhost', 10000)
+server_address = ("localhost", 10000)
 
 
 socks = [
@@ -16,7 +16,7 @@ socks = [
 ]
 
 # Connect the socket to the port where the server is listening on
-print('Connecting to {} port {}'.format(*server_address))
+print("Connecting to {} port {}".format(*server_address))
 for s in socks:
     s.connect(server_address)
 
@@ -24,13 +24,15 @@ for message in messages:
     outgoing_data = message.encode()
     # Send message on both sockets
     for s in socks:
-        print('{}: sending {!r}'.format(s.getpeername(), outgoing_data), file=sys.stderr)
+        print(
+            "{}: sending {!r}".format(s.getpeername(), outgoing_data), file=sys.stderr
+        )
         s.send(outgoing_data)
 
     # Read responses on both sockets
     for s in socks:
         data = s.recv(1024)
-        print('{}: received {!r}'.format(s.getsockname(), data), file=sys.stderr)
+        print("{}: received {!r}".format(s.getsockname(), data), file=sys.stderr)
         if not data:
-            print('Closing socket', s.getsockname(), file=sys.stderr)
+            print("Closing socket", s.getsockname(), file=sys.stderr)
             s.close()

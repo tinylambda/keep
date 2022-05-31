@@ -16,7 +16,7 @@ class User:
     login_info = attr.ib(type=LoginInfo)
 
 
-if __name__ == '__main__':
-    user = User(LoginInfo({'20210901', '20210902', '20210903'}))
-    logging.info('%s', attr.astuple(user, recurse=True, retain_collection_types=False))
-    logging.info('%s', attr.astuple(user, recurse=True, retain_collection_types=True))
+if __name__ == "__main__":
+    user = User(LoginInfo({"20210901", "20210902", "20210903"}))
+    logging.info("%s", attr.astuple(user, recurse=True, retain_collection_types=False))
+    logging.info("%s", attr.astuple(user, recurse=True, retain_collection_types=True))

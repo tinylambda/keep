@@ -7,7 +7,7 @@ class Model(BaseModel):
     c: int = Field(...)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         Model()
     except ValidationError as e:

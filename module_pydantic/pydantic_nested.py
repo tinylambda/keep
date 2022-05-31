@@ -8,8 +8,8 @@ class Foo(BaseModel):
 
 
 class Bar(BaseModel):
-    apple = 'x'
-    banana = 'y'
+    apple = "x"
+    banana = "y"
 
 
 class Spam(BaseModel):
@@ -17,6 +17,6 @@ class Spam(BaseModel):
     bars: List[Bar]
 
 
-m = Spam(foo={'count': 4}, bars=[{'apple': 'x1'}, {'apple': 'x2'}])
+m = Spam(foo={"count": 4}, bars=[{"apple": "x1"}, {"apple": "x2"}])
 print(m)
 print(m.dict())

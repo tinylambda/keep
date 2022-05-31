@@ -7,8 +7,6 @@ def synchronous_fetch(url):
     return response.body
 
 
-if __name__ == '__main__':
-    test_url = 'https://www.baidu.com/'
+if __name__ == "__main__":
+    test_url = "https://www.baidu.com/"
     print(synchronous_fetch(test_url))
-
-

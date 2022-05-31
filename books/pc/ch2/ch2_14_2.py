@@ -1,29 +1,20 @@
-if __name__ == '__main__':
-    parts = ['Is', 'Chicago', 'Not', 'Chicago?']
-    print(
-        ' '.join(parts)
-    )
+if __name__ == "__main__":
+    parts = ["Is", "Chicago", "Not", "Chicago?"]
+    print(" ".join(parts))
 
-    print(
-        ','.join(parts)
-    )
+    print(",".join(parts))
 
-    print(
-        ''.join(parts)
-    )
+    print("".join(parts))
 
-    print('-' * 64)
+    print("-" * 64)
 
-    a = 'Is Chicago'
-    b = 'Not chicago?'
-    print(
-        a + ' ' + b
-    )
+    a = "Is Chicago"
+    b = "Not chicago?"
+    print(a + " " + b)
 
-    print('-' * 64)
-    print('{} {}'.format(a, b))
-    print(a + ' ' + b)
+    print("-" * 64)
+    print("{} {}".format(a, b))
+    print(a + " " + b)
 
-    a = 'Hello' 'World'
+    a = "Hello" "World"
     print(a)
-

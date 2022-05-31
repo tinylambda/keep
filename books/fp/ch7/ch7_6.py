@@ -7,7 +7,5 @@ def f2(a):
     b = 9
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     f2(3)
-
-

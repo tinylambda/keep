@@ -10,7 +10,7 @@ async def g():
 
 
 async def g_ex():
-    raise RuntimeError('go')
+    raise RuntimeError("go")
 
 
 async def g_sleep(n):

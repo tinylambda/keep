@@ -11,22 +11,21 @@ class AnswerDict2(collections.UserDict):
         return 42
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dd = DoppelDict2(one=1)
     print(dd)
 
-    dd['two'] = 2
+    dd["two"] = 2
     print(dd)
 
     dd.update(three=3)
     print(dd)
 
-    ad = AnswerDict2(a='foo')
+    ad = AnswerDict2(a="foo")
     print(ad)
-    print(ad['a'])
+    print(ad["a"])
 
     d = {}
     d.update(ad)
-    print(d['a'])
+    print(d["a"])
     print(d)
-

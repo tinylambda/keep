@@ -12,6 +12,6 @@ class C:
     _x = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     signature = inspect.signature(C.__init__)
-    logging.info('%s', signature)
+    logging.info("%s", signature)

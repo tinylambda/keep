@@ -9,11 +9,10 @@ def timethis(label):
         yield
     finally:
         end = time.time()
-        print('{}: {}'.format(label, end - start))
+        print("{}: {}".format(label, end - start))
 
 
-with timethis('counting'):
+with timethis("counting"):
     n = 100000000
     while n > 0:
         n -= 1
-

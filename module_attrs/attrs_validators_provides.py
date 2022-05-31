@@ -14,14 +14,14 @@ class Computer(Interface):
 
 class BadCompute:
     def compute(self, num):
-        logging.info('bad implement')
+        logging.info("bad implement")
 
 
 @implementer(Computer)
 class GoodCompute:
     def compute(self, num):
         for i in range(num):
-            logging.info('computing %s', i)
+            logging.info("computing %s", i)
 
 
 @attr.s
@@ -29,12 +29,12 @@ class C:
     a = attr.ib(type=Computer, validator=attr.validators.provides(Computer))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(GoodCompute())
-    logging.info('%s', c)
+    logging.info("%s", c)
     c.a.compute(10)
 
     try:
         c = C(BadCompute())
     except TypeError as e:
-        logging.error('type error')
+        logging.error("type error")

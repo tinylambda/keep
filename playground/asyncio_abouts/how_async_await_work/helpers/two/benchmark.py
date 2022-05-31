@@ -27,11 +27,10 @@ def null():
         item = yield
 
 
-if __name__ == '__main__':
-    line = 'python is nice'
-    p1 = grep('python', null())
-    p2 = GrepHandler('python', null())
+if __name__ == "__main__":
+    line = "python is nice"
+    p1 = grep("python", null())
+    p2 = GrepHandler("python", null())
 
-    print('coroutine', timeit('p1.send(line)', 'from __main__ import line, p1'))
-    print('object', timeit('p2.send(line)', 'from __main__ import line, p2'))
-
+    print("coroutine", timeit("p1.send(line)", "from __main__ import line, p1"))
+    print("object", timeit("p2.send(line)", "from __main__ import line, p2"))

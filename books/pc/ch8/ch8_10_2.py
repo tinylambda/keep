@@ -20,16 +20,16 @@ class Circle:
 
     @LazyProperty
     def area(self):
-        print('Computing area')
-        return math.pi * self.radius ** 2
+        print("Computing area")
+        return math.pi * self.radius**2
 
     @LazyProperty
     def perimeter(self):
-        print('computing perimeter')
+        print("computing perimeter")
         return 2 * math.pi * self.radius
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = Circle(4.0)
     print(vars(c))
 
@@ -49,6 +49,3 @@ if __name__ == '__main__':
 
     c.area = 25
     print(c.area)
-
-
-

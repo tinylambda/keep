@@ -8,11 +8,10 @@ def f3(a):
     b = 9
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     f3(3)
     print(b)
 
     f3(3)
 
     b = 30
-

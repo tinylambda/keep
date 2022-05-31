@@ -1,10 +1,12 @@
-#coding=utf-8
+# coding=utf-8
 # 给出一个数组序列，找出其中最长的递增子序列
 # 比如给出[2, 5, 7, 6, 4, 7, 9]   ->  2, 5, 6, 7, 9
 from collections import defaultdict
 
 
-def find_max_continuous_list(original_list, current_index, cont_cache=defaultdict(list)):
+def find_max_continuous_list(
+    original_list, current_index, cont_cache=defaultdict(list)
+):
     assert cont_cache[current_index] == []
     if current_index > (len(original_list) - 1):
         return cont_cache
@@ -23,7 +25,7 @@ def find_max_continuous_list(original_list, current_index, cont_cache=defaultdic
             cont_cache[current_index].extend(cont_cache[max_before_index])
         cont_cache[current_index].append(current_number)
 
-        return find_max_continuous_list(original_list, current_index+1, cont_cache)
+        return find_max_continuous_list(original_list, current_index + 1, cont_cache)
 
 
 l = [2, 5, 7, 6, 4, 7, 9]
@@ -42,8 +44,3 @@ for key in result:
         if len(key_list) > len(max_key_list):
             max_key = key
 print(result[max_key])
-
-
-
-
-

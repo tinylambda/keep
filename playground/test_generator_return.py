@@ -3,11 +3,11 @@ def g():
     for i in range(10):
         yield i
         r += i
-    print('returning ', r)
+    print("returning ", r)
     return r
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     gg = g()
     for i in range(10):
         next(gg)

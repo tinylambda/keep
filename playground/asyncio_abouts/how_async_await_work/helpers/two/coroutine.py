@@ -3,19 +3,20 @@ def coroutine(func):
         cr = func(*args, **kwargs)
         next(cr)
         return cr
+
     return start
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     @coroutine
     def grep(pattern):
-        print(f'looking for {pattern}')
+        print(f"looking for {pattern}")
         while True:
-            line = (yield)
+            line = yield
             if pattern in line:
                 print(line)
 
-    g = grep('python')
-    g.send('hello')
-    g.send('python go')
-
+    g = grep("python")
+    g.send("hello")
+    g.send("python go")

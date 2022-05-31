@@ -11,16 +11,16 @@ class A:
     a = attr.ib(kw_only=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = A(a=1)
-    logging.info('%s', a)
+    logging.info("%s", a)
 
     try:
         a = A()
     except TypeError as e:
-        logging.error('error', exc_info=e)
+        logging.error("error", exc_info=e)
 
     try:
-        a = A(1)   # raise a TypeError
+        a = A(1)  # raise a TypeError
     except TypeError as e:
-        logging.error('error', exc_info=e)
+        logging.error("error", exc_info=e)

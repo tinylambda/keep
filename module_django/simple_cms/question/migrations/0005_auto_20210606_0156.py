@@ -6,33 +6,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('question', '0004_alter_answerrecord_index_together'),
+        ("question", "0004_alter_answerrecord_index_together"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AnswerCoinRecord',
+            name="AnswerCoinRecord",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_id', models.IntegerField(unique=True, verbose_name='user id')),
-                ('num', models.IntegerField(verbose_name='total num')),
-                ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
-                ('update_time', models.DateTimeField(auto_now=True, verbose_name='更新时间')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("user_id", models.IntegerField(unique=True, verbose_name="user id")),
+                ("num", models.IntegerField(verbose_name="total num")),
+                (
+                    "create_time",
+                    models.DateTimeField(auto_now_add=True, verbose_name="创建时间"),
+                ),
+                (
+                    "update_time",
+                    models.DateTimeField(auto_now=True, verbose_name="更新时间"),
+                ),
             ],
         ),
         migrations.AlterField(
-            model_name='question',
-            name='content',
-            field=models.CharField(max_length=512, verbose_name='问题内容'),
+            model_name="question",
+            name="content",
+            field=models.CharField(max_length=512, verbose_name="问题内容"),
         ),
         migrations.AlterField(
-            model_name='question',
-            name='question_type',
-            field=models.SmallIntegerField(verbose_name='问题类型'),
+            model_name="question",
+            name="question_type",
+            field=models.SmallIntegerField(verbose_name="问题类型"),
         ),
         migrations.AlterField(
-            model_name='question',
-            name='show_type',
-            field=models.SmallIntegerField(verbose_name='题目形式'),
+            model_name="question",
+            name="show_type",
+            field=models.SmallIntegerField(verbose_name="题目形式"),
         ),
     ]

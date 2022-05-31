@@ -8,7 +8,7 @@ def compute_roots(nums):
     return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     nums = range(1000000)
     for n in range(100):
         compute_roots(nums)

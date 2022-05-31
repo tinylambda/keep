@@ -11,7 +11,7 @@ def s1(samples: Sequence) -> float:
 
 
 def s2(samples: Sequence) -> float:
-    return sum(x ** 2 for x in samples)
+    return sum(x**2 for x in samples)
 
 
 def mean(samples: Sequence) -> float:
@@ -38,16 +38,42 @@ def corr(samples1: Sequence, samples2: Sequence) -> float:
     return r
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     d = [2, 4, 4, 4, 5, 5, 7, 9]
-    print(
-        list(z(x, mean(d), stdev(d)) for x in d)
-    )
+    print(list(z(x, mean(d), stdev(d)) for x in d))
 
-    xi = [1.47, 1.50, 1.52, 1.55, 1.57, 1.60, 1.63, 1.65, 1.68, 1.70, 1.73, 1.75, 1.78, 1.80, 1.83]
-    yi = [52.21, 53.12, 54.48, 55.84, 57.20, 58.57, 59.93, 61.29, 63.11, 64.47, 66.28, 68.10, 69.92, 72.19, 74.46]
-    print(
-        len(xi), len(yi),
-        round(corr(xi, yi), 5)
-    )
-
+    xi = [
+        1.47,
+        1.50,
+        1.52,
+        1.55,
+        1.57,
+        1.60,
+        1.63,
+        1.65,
+        1.68,
+        1.70,
+        1.73,
+        1.75,
+        1.78,
+        1.80,
+        1.83,
+    ]
+    yi = [
+        52.21,
+        53.12,
+        54.48,
+        55.84,
+        57.20,
+        58.57,
+        59.93,
+        61.29,
+        63.11,
+        64.47,
+        66.28,
+        68.10,
+        69.92,
+        72.19,
+        74.46,
+    ]
+    print(len(xi), len(yi), round(corr(xi, yi), 5))

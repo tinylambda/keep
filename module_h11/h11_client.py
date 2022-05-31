@@ -8,11 +8,13 @@ conn = h11.Connection(our_role=h11.CLIENT)
 
 ssl.create_default_context = ssl._create_unverified_context
 ctx = ssl.create_default_context()
-sock = ctx.wrap_socket(socket.create_connection(('www.baidu.com', 443)), server_hostname='www.baidu.com')
+sock = ctx.wrap_socket(
+    socket.create_connection(("www.baidu.com", 443)), server_hostname="www.baidu.com"
+)
 
 
 def send(event):
-    print('sending event:', event)
+    print("sending event:", event)
     # pass the event through h11's state machine and encoding machinery
     data = conn.send(event)
     sock.sendall(data)
@@ -20,9 +22,9 @@ def send(event):
 
 send(
     h11.Request(
-        method='GET',
-        target='/',
-        headers=[('Host', 'www.baidu.com'), ('Connection', 'close')],
+        method="GET",
+        target="/",
+        headers=[("Host", "www.baidu.com"), ("Connection", "close")],
     )
 )
 send(h11.EndOfMessage())
@@ -35,16 +37,15 @@ def next_event():
             data = sock.recv(2048)
             conn.receive_data(data)
             continue
-        print('RETURN....')
+        print("RETURN....")
         return event
 
 
 while True:
     event = next_event()
-    print('received event:')
+    print("received event:")
     print(event)
     if type(event) is h11.EndOfMessage:
         break
 
 sock.close()
-

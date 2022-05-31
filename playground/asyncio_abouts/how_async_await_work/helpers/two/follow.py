@@ -11,8 +11,7 @@ def follow(thefile):
         yield line.strip()
 
 
-if __name__ == '__main__':
-    with open('/tmp/test.log') as logfile:
+if __name__ == "__main__":
+    with open("/tmp/test.log") as logfile:
         for line in follow(logfile):
             print(line)
-

@@ -2,8 +2,7 @@ from urllib.parse import urlencode
 
 
 query_args = {
-    'foo': ['foo1', 'foo2'],
+    "foo": ["foo1", "foo2"],
 }
-print('Single: ', urlencode(query_args))
-print('Sequence: ', urlencode(query_args, doseq=True))
-
+print("Single: ", urlencode(query_args))
+print("Sequence: ", urlencode(query_args, doseq=True))

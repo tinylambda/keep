@@ -4,14 +4,8 @@ import inspect
 from unittest.mock import AsyncMock
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     mock = AsyncMock()
-    print(
-        asyncio.iscoroutinefunction(mock)
-    )
+    print(asyncio.iscoroutinefunction(mock))
 
-    print(
-        inspect.isawaitable(mock())
-    )
-
-
+    print(inspect.isawaitable(mock()))

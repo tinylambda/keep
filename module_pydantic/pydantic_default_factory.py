@@ -10,7 +10,7 @@ class Model(BaseModel):
     updated: datetime = Field(default_factory=datetime.utcnow)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     m1 = Model()
     m2 = Model()
     print(m1)

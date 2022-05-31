@@ -23,10 +23,10 @@ class PointGood:
         return cls(row.x, row.y)
 
 
-if __name__ == '__main__':
-    Row = namedtuple('Row', 'x,y')
+if __name__ == "__main__":
+    Row = namedtuple("Row", "x,y")
     pb = PointBad(Row(x=1, y=2))
-    logging.info('x = %s, y = %s', pb.x, pb.y)
+    logging.info("x = %s, y = %s", pb.x, pb.y)
 
     pg = PointGood.from_row(Row(x=1, y=2))
-    logging.info('%s', pg)
+    logging.info("%s", pg)

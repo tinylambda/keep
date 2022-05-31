@@ -17,15 +17,14 @@ class Cached(type):
 
 class Spam(metaclass=Cached):
     def __init__(self, name):
-        print('creating spam({!r})'.format(name))
+        print("creating spam({!r})".format(name))
         self.name = name
 
 
-if __name__ == '__main__':
-    a = Spam('Guido')
-    b = Spam('Felix')
-    c = Spam('Guido')
+if __name__ == "__main__":
+    a = Spam("Guido")
+    b = Spam("Felix")
+    c = Spam("Guido")
 
     print(a is b)
     print(a is c)
-

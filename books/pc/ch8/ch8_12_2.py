@@ -43,13 +43,11 @@ class A(metaclass=ABCMeta):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # a = IStream()  # Can't instantiate abstract class IStream with abstract methods read, write
 
     s = StockItem()
 
     IStream.register(io.IOBase)
-    f = open('/tmp/test.txt', 'w')
+    f = open("/tmp/test.txt", "w")
     print(isinstance(f, IStream))
-
-

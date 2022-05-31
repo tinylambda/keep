@@ -15,6 +15,6 @@ class C:
         self.y = self.x + 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c = C(1)
-    logging.info('%s', c)
+    logging.info("%s", c)

@@ -3,21 +3,21 @@ class Proxy:
         self._obj = obj
 
     def __getattr__(self, item):
-        print('getattr:', item)
+        print("getattr:", item)
         return getattr(self._obj, item)
 
     def __setattr__(self, key, value):
-        if key.startswith('_'):
+        if key.startswith("_"):
             super().__setattr__(key, value)
         else:
-            print('setattr:', key, value)
+            print("setattr:", key, value)
             setattr(self._obj, key, value)
 
     def __delattr__(self, item):
-        if item.startswith('_'):
+        if item.startswith("_"):
             super().__delattr__(item)
         else:
-            print('delattr:', item)
+            print("delattr:", item)
             delattr(self._obj, item)
 
 
@@ -26,13 +26,12 @@ class Spam:
         self.x = x
 
     def bar(self, y):
-        print('Spam.bar', self.x, y)
+        print("Spam.bar", self.x, y)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Spam(2)
     p = Proxy(s)
     print(p.x)
     p.bar(3)
     p.x = 7
-

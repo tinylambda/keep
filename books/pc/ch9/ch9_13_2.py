@@ -3,7 +3,6 @@ class Spam:
         self.name = name
 
 
-if __name__ == '__main__':
-    a = Spam('Guido')
-    b = Spam('Felix')
-
+if __name__ == "__main__":
+    a = Spam("Guido")
+    b = Spam("Felix")

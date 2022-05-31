@@ -5,8 +5,9 @@ log.addHandler(logging.NullHandler())
 
 
 def func():
-    log.critical('a critical error')
-    log.debug('a debug message')
+    log.critical("a critical error")
+    log.debug("a debug message")
+
 
 # Python 3.9.1 (default, Jan 21 2021, 10:58:50)
 # [GCC 10.2.0] on linux

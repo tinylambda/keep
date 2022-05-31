@@ -8,13 +8,17 @@ from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.properties import BooleanProperty, ObjectProperty
 
 
-class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout):
+class SelectableRecycleBoxLayout(
+    FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout
+):
     """Add selection and focus behavior to the view"""
+
     pass
 
 
 class SelectableLabel(RecycleDataViewBehavior, Label):
     """Add selection support to the Label"""
+
     index = None
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
@@ -40,6 +44,5 @@ class WeatherApp(App):
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     WeatherApp().run()
-

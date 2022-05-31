@@ -27,16 +27,11 @@ def fibonacci():
         a, b = b, a + b
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fg = FibonacciGenerator()
     r = itertools.takewhile(lambda n: n < 1000, fg)
-    print(
-        list(r)
-    )
+    print(list(r))
 
     fg2 = fibonacci()
     r = itertools.takewhile(lambda n: n < 1000, fg2)
-    print(
-        list(r)
-    )
-
+    print(list(r))

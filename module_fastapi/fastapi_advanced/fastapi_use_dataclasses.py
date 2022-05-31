@@ -21,13 +21,14 @@ class Item:
 #     return item
 
 
-@app.get('/items/next', response_model=Item)
+@app.get("/items/next", response_model=Item)
 async def read_next_item():
     return {
-        'name': 'Hello world',
-        'price': 12.99,
-        'description': 'Hi',
-        'tags': ['tag1'],
+        "name": "Hello world",
+        "price": 12.99,
+        "description": "Hi",
+        "tags": ["tag1"],
     }
+
 
 # PYTHONPATH=module_fastapi/fastapi_advanced uvicorn fastapi_use_dataclasses:app --reload

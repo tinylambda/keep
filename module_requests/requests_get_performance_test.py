@@ -2,11 +2,11 @@ import time
 import requests
 
 
-URL1 = 'http://127.0.0.1:10000'
-URL2 = 'http://localhost:8000/chat/cc/'
+URL1 = "http://127.0.0.1:10000"
+URL2 = "http://localhost:8000/chat/cc/"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start = time.time()
     ex_count = 0
 
@@ -18,8 +18,7 @@ if __name__ == '__main__':
         except Exception as e:
             ex_count += 1
             print(e)
-            print('-' * 64)
+            print("-" * 64)
 
-    print('Cost: ', time.time() - start)
-    print('Exception count: ', ex_count)
-
+    print("Cost: ", time.time() - start)
+    print("Exception count: ", ex_count)

@@ -8,9 +8,9 @@ def show(iterable):
             if first is not None:
                 print()
             first = item[0]
-        print(''.join(item), end=' ')
+        print("".join(item), end=" ")
     print()
 
 
-print('Unique pairs: \n')
-show(combinations_with_replacement('abcd', r=2))
+print("Unique pairs: \n")
+show(combinations_with_replacement("abcd", r=2))

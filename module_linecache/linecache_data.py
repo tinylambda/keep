@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-lorem = '''Lorem ipsum dolor sit amet, consectetuer
+lorem = """Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit.  Vivamus eget elit. In posuere mi non
 risus. Mauris id quam posuere lectus sollicitudin
 varius. Praesent at mi. Nunc eu velit. Sed augue massa,
@@ -15,17 +15,16 @@ nec, condimentum ac, interdum non, tellus. Aenean viverra,
 mauris vehicula semper porttitor, ipsum odio consectetuer
 lorem, ac imperdiet eros odio a sapien. Nulla mauris tellus,
 aliquam non, egestas a, nonummy et, erat. Vivamus sagittis
-porttitor eros.'''
+porttitor eros."""
 
 
 def make_tempfile():
     fd, temp_file_name = tempfile.mkstemp()
     os.close(fd)
-    with open(temp_file_name, 'wt') as f:
+    with open(temp_file_name, "wt") as f:
         f.write(lorem)
     return temp_file_name
 
 
 def cleanup(filename):
     os.unlink(filename)
-

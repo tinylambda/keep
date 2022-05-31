@@ -5,22 +5,21 @@ import time
 
 def show_file_info(filename):
     stat_info = os.stat(filename)
-    print('Mode: ', oct(stat_info.st_mode))
-    print('Created: ', time.ctime(stat_info.st_ctime))
-    print('Accessed: ', time.ctime(stat_info.st_atime))
-    print('Modified: ', time.ctime(stat_info.st_mtime))
+    print("Mode: ", oct(stat_info.st_mode))
+    print("Created: ", time.ctime(stat_info.st_ctime))
+    print("Accessed: ", time.ctime(stat_info.st_atime))
+    print("Modified: ", time.ctime(stat_info.st_mtime))
 
 
 try:
-    os.mkdir('example')
+    os.mkdir("example")
 except FileExistsError:
     pass
 
-print('SOURCE: ')
-show_file_info('shutil_copy2.py')
+print("SOURCE: ")
+show_file_info("shutil_copy2.py")
 
-shutil.copy2('shutil_copy2.py', 'example')
+shutil.copy2("shutil_copy2.py", "example")
 
-print('DEST: ')
-show_file_info('example/shutil_copy.py')
-
+print("DEST: ")
+show_file_info("example/shutil_copy.py")

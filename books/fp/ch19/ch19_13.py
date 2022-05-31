@@ -6,14 +6,14 @@ def quantity(storage_name):
         if value > 0:
             instance.__dict__[storage_name] = value
         else:
-            raise ValueError('value must be > 0')
+            raise ValueError("value must be > 0")
 
     return property(qty_getter, qty_setter)
 
 
 class LineItem:
-    weight = quantity('weight')
-    price = quantity('price')
+    weight = quantity("weight")
+    price = quantity("price")
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -24,14 +24,10 @@ class LineItem:
         return self.weight * self.price
 
 
-if __name__ == '__main__':
-    nutmeg = LineItem('Moluccan nutmeg', 8, 13.95)
-    print(
-        nutmeg.weight, nutmeg.price
-    )
-    print(
-        sorted(vars(nutmeg).items())
-    )
+if __name__ == "__main__":
+    nutmeg = LineItem("Moluccan nutmeg", 8, 13.95)
+    print(nutmeg.weight, nutmeg.price)
+    print(sorted(vars(nutmeg).items()))
     # How to skip
-    nutmeg.__dict__['weight'] = -8
+    nutmeg.__dict__["weight"] = -8
     print(nutmeg.subtotal())

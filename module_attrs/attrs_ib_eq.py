@@ -13,7 +13,7 @@ class C:
     z = attr.ib(eq=lambda x: abs(x))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     c1 = C(100, 200, 1)
     c2 = C(100, 300, -1)
-    logging.info('should be True: %s', c1 == c2)
+    logging.info("should be True: %s", c1 == c2)

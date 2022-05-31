@@ -12,11 +12,11 @@ def show_thread(q):
 
 def run_threads():
     interval = sys.getswitchinterval()
-    print('interval = {:0.3f}'.format(interval))
+    print("interval = {:0.3f}".format(interval))
 
     q = Queue()
     threads = [
-        threading.Thread(target=show_thread, name='T{}'.format(i), args=(q, ))
+        threading.Thread(target=show_thread, name="T{}".format(i), args=(q,))
         for i in range(3)
     ]
 
@@ -28,11 +28,11 @@ def run_threads():
         t.join()
 
     while not q.empty():
-        print(q.get(), end=' ')
+        print(q.get(), end=" ")
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for interval in [0.001, 0.1]:
         sys.setswitchinterval(interval)
         run_threads()

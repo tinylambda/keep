@@ -1,4 +1,4 @@
-article = 'metaclass'
+article = "metaclass"
 print(article.__class__)
 print(type(article))
 print(type(str))
@@ -11,4 +11,3 @@ print(
 )
 
 print(article.__class__.__class__)
-

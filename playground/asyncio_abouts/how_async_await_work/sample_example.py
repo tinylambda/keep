@@ -59,23 +59,24 @@ def sleep(seconds):
 
 
 async def countdown(label, length, *, delay=0):
-    print(label, 'waiting', delay, 'seconds before starting countdown')
+    print(label, "waiting", delay, "seconds before starting countdown")
     delta = await sleep(delay)
-    print(label, 'starting after waiting', delta)
+    print(label, "starting after waiting", delta)
     while length:
-        print(label, 'T-minus', length)
+        print(label, "T-minus", length)
         waited = await sleep(1)
         length -= 1
-    print(label, 'lift-off!')
+    print(label, "lift-off!")
 
 
 def main():
-    loop = SleepingLoop(countdown('A', 5), countdown('B', 3), countdown('C', 4, delay=1))
+    loop = SleepingLoop(
+        countdown("A", 5), countdown("B", 3), countdown("C", 4, delay=1)
+    )
     start = datetime.datetime.now()
     loop.run_until_complete()
-    print('total elapsed time is', datetime.datetime.now() - start)
+    print("total elapsed time is", datetime.datetime.now() - start)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

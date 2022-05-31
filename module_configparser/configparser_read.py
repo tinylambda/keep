@@ -2,7 +2,6 @@ from configparser import ConfigParser
 
 
 parser = ConfigParser()
-parser.read('test.ini')
+parser.read("test.ini")
 
-print(parser.get('bug_tracker', 'url'))
-
+print(parser.get("bug_tracker", "url"))

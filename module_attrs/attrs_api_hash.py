@@ -46,18 +46,18 @@ class ForceHash:
     y = attr.ib()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     complete_hashable = CompleteHashable(100, 200)
-    logging.info('%s', hash(complete_hashable))
+    logging.info("%s", hash(complete_hashable))
 
     try:
         unhashable = Unhashable(100, 200)
         hash(unhashable)
     except TypeError as e:
-        logging.warning('error', exc_info=e)
+        logging.warning("error", exc_info=e)
 
     use_base_hash = UseBaseHash(100, 200)
-    logging.info('%s', hash(use_base_hash))
+    logging.info("%s", hash(use_base_hash))
 
     force_hash = ForceHash(100, 200)
-    logging.info('%s', hash(force_hash))
+    logging.info("%s", hash(force_hash))

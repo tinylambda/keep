@@ -14,10 +14,11 @@ use the following commands to change the key:
 
 async def main():
     async with aetcd3.client() as client:
-        await client.put('foo', 'bar')
-        event = await client.watch_once('foo')
-        logging.info('get event %s', event)
-        logging.info('done')
+        await client.put("foo", "bar")
+        event = await client.watch_once("foo")
+        logging.info("get event %s", event)
+        logging.info("done")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     asyncio.run(main())

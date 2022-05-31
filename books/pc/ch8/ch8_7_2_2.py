@@ -9,7 +9,6 @@ class B(A):
         self.y = 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     b = B()
     print(b.x, b.y)
-

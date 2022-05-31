@@ -10,7 +10,7 @@ def top():
     return (yield from middle())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     gen = top()
     value = next(gen)
     print(value)

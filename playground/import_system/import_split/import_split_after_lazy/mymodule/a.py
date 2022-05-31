@@ -1,7 +1,6 @@
-print('after split lazy')
+print("after split lazy")
 
 
 class A:
     def spam(self):
-        print('A.spam')
-
+        print("A.spam")
