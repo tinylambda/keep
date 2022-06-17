@@ -23,7 +23,7 @@ async def run_blocking_tasks(executor):
     log.info("waiting for executor tasks")
     completed, pending = await asyncio.wait(blocking_tasks)
     results = [t.result() for t in completed]
-    log.info("results: [!r]".format(results))
+    log.info("results: [{!r}]".format(results))
 
     log.info("exiting")
 
