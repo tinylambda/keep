@@ -1,5 +1,5 @@
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
+
 from pytz import timezone
 
 if __name__ == "__main__":
@@ -22,3 +22,14 @@ if __name__ == "__main__":
 
     later = central.normalize(loc_d + timedelta(minutes=30))
     print(later)
+
+    d = datetime(2022, 6, 29, 16, 0, 0, tzinfo=timezone("US/Eastern"))
+
+    new_york = timezone("US/Eastern")
+    print(new_york)
+
+    new_york_time = d.astimezone(new_york)
+    print(new_york_time)
+
+    beijing_time = new_york_time.astimezone(timezone("Asia/Shanghai"))
+    print(beijing_time)
