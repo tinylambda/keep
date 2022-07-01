@@ -10,3 +10,7 @@ partitions = consumer.partitions_for_topic(topic)
 for partition in partitions:
     p = TopicPartition(topic, partition)
     print(p)
+
+
+for item in consumer:
+    print(item)
