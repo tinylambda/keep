@@ -1,10 +1,14 @@
 from typing import Optional
 
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
 
 app = FastAPI()
 
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+fake_items_db = [
+    {"item_name": "Foo"},
+    {"item_name": "Bar"},
+    {"item_name": "Baz"},
+]
 
 
 class CommonQueryParams:
