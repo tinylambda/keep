@@ -8,7 +8,7 @@ num_part = 3
 if len(sys.argv) >= 2:
     topic = sys.argv[1]
 
-bootstrap_servers = "localhost:30001,localhost:30002,localhost:30003"
+bootstrap_servers = "localhost:9092"
 producer = KafkaProducer(
     bootstrap_servers=bootstrap_servers,
 )
