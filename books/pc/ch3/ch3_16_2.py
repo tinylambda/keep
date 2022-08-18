@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from pytz import timezone
 
 if __name__ == "__main__":
+    print(datetime.utcnow())
+
     d = datetime(2012, 12, 12, 9, 30, 0)
     print(d)
 
@@ -33,3 +35,18 @@ if __name__ == "__main__":
 
     beijing_time = new_york_time.astimezone(timezone("Asia/Shanghai"))
     print(beijing_time)
+
+    print("More")
+    utc_tz_name = "UTC"
+    pdt_tz_name = "America/Los_Angeles"
+
+    utc_tz = timezone(utc_tz_name)
+    pdt_tz = timezone(pdt_tz_name)
+
+    _utc_now = datetime.utcnow()
+    _utc_now = utc_tz.localize(_utc_now)
+
+    pdt_now = _utc_now.astimezone(pdt_tz)
+    print(_utc_now)
+    print(pdt_now)
+    print(pdt_now.strftime("%Y-%m-%d"))
