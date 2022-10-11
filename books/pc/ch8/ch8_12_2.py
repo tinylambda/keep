@@ -1,5 +1,4 @@
 import io
-
 from abc import ABCMeta, abstractmethod
 
 
@@ -13,7 +12,7 @@ class IStream(metaclass=ABCMeta):
         pass
 
 
-class StockItem(IStream):
+class SocketStream(IStream):
     def read(self, maxbytes=-1):
         pass
 
@@ -46,7 +45,7 @@ class A(metaclass=ABCMeta):
 if __name__ == "__main__":
     # a = IStream()  # Can't instantiate abstract class IStream with abstract methods read, write
 
-    s = StockItem()
+    s = SocketStream()
 
     IStream.register(io.IOBase)
     f = open("/tmp/test.txt", "w")
