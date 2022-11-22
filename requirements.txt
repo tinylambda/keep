@@ -69,7 +69,7 @@ openpyxl==3.0.5
 orjson==3.6.7
 pandas==1.2.1
 papa==1.0.6
-pillow==9.0.1
+pillow==9.3.0
 ply==3.11
 plyer==1.4.3
 pre-commit==2.19.0
