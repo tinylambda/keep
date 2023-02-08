@@ -20,7 +20,7 @@ chardet==3.0.4
 cityhash==0.2.3.post9
 clickhouse-cityhash==1.0.2.3
 coverage==6.3
-cryptography==36.0.2
+cryptography==39.0.1
 cython==0.29.20
 daphne==3.0.2
 databases==0.6.0
