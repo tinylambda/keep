@@ -105,7 +105,7 @@ simpy==4.0.1
 sqlalchemy==1.4.15
 sqlparse==0.4.2
 sshtunnel==0.4.0
-starlette==0.17.1
+starlette==0.25.0
 strawberry-graphql[fastapi]==0.104.1
 thrift==0.13.0
 thrift-sasl==0.4.3
