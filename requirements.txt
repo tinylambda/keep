@@ -103,7 +103,7 @@ scipy==1.8.0
 seaborn==0.11.2
 simpy==4.0.1
 sqlalchemy==1.4.15
-sqlparse==0.4.2
+sqlparse==0.4.4
 sshtunnel==0.4.0
 starlette==0.17.1
 strawberry-graphql[fastapi]==0.104.1
